@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects
+/api/* 404
+/requirements.txt 404
+/env_example.txt 404
