@@ -10,18 +10,66 @@ const topRestaurants = getTopRestaurants(6);
 const cities = getAllCities();
 const cuisines = getPopularCuisines(6);
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Date Night Restaurants",
-  "description": "Discover the best date night restaurants in Los Angeles. Curated list of romantic dining spots with reviews, photos, and reservations.",
-  "url": "https://datenightrestaurants.com",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://datenightrestaurants.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Date Night Restaurants",
+    "description": "Discover the best date night restaurants in Los Angeles. Curated list of romantic dining spots with reviews, photos, and reservations.",
+    "url": "https://datenightrestaurants.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://datenightrestaurants.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the best date night restaurants in Los Angeles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The best date night restaurants in Los Angeles include Providence (fine dining seafood), Republique (French bistro), Bestia (Italian), n/naka (Japanese kaiseki), and Perch LA (rooftop French). We feature 100+ romantic dining spots across LA neighborhoods."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much should I budget for a date night in Los Angeles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Date night dining in LA ranges from $50-$300+ per person. Budget-friendly options ($-$$) include Jon & Vinny's and Night + Market. Mid-range ($$$) includes Gjelina and AOC. High-end ($$$$) includes Providence, n/naka, and Vespertine."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What neighborhoods in LA have the best date night restaurants?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Top neighborhoods for date night dining include: Beverly Hills (upscale fine dining), West Hollywood (trendy rooftop spots), Santa Monica (beachside romance), Venice (casual-chic), Downtown LA (modern rooftops), and Hollywood (classic elegance)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I make reservations for date night restaurants in LA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, reservations are highly recommended, especially for popular restaurants and weekends. Book 1-2 weeks in advance for most spots, or 2-4 weeks for high-demand restaurants like Providence, n/naka, or Bestia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the most romantic restaurants in Los Angeles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The most romantic restaurants include The Little Door (intimate patio), Perch LA (rooftop with city views), Yamashiro (Japanese gardens), Castaway (hilltop views), and Geoffrey's Malibu (ocean sunset views)."
+        }
+      }
+    ]
   }
-};
+];
 ---
 
 <BaseLayout 

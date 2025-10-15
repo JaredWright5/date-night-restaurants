@@ -54,7 +54,7 @@ const mainImage = getRestaurantImage(restaurant);
     <div class="card-image">
       <img 
         src={mainImage} 
-        alt={restaurant.name} 
+        alt={`${restaurant.name} - ${restaurant.cuisineTypes[0].replace(/_/g, ' ')} restaurant in ${restaurant.neighborhood}, Los Angeles`}
         loading="lazy"
         onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3'"
       />
