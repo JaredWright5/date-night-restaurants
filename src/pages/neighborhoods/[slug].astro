@@ -1,40 +1,22 @@
----
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
-import { getRestaurantsByNeighborhood } from '@/data/restaurants';
+import { restaurants, getRestaurantsByNeighborhood } from '@/data/restaurants';
 
 export async function getStaticPaths() {
-  // Get all unique neighborhoods from the restaurant data
-  const neighborhoods = [
-    'beverly-hills', 'west-hollywood', 'santa-monica', 'venice',
-    'downtown-la', 'hollywood', 'silver-lake', 'los-feliz',
-    'manhattan-beach', 'pasadena'
-  ];
-  
-  return neighborhoods.map((neighborhood) => ({
-    params: { slug: neighborhood },
-    props: { neighborhoodSlug: neighborhood },
+  const uniqueNeighborhoods = Array.from(new Set(restaurants.map(r => r.neighborhood)));
+  const toSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+  return uniqueNeighborhoods.map((name) => ({
+    params: { slug: toSlug(name) },
+    props: { neighborhoodName: name },
   }));
 }
 
-const { neighborhoodSlug } = Astro.props;
+const { neighborhoodName: providedName } = Astro.props;
 const { slug } = Astro.params;
 
 // Convert slug back to proper neighborhood name
-const neighborhoodNameMap = {
-  'beverly-hills': 'Beverly Hills',
-  'west-hollywood': 'West Hollywood',
-  'santa-monica': 'Santa Monica',
-  'venice': 'Venice',
-  'downtown-la': 'Los Angeles',
-  'hollywood': 'Hollywood',
-  'silver-lake': 'Silver Lake',
-  'los-feliz': 'Los Feliz',
-  'manhattan-beach': 'Manhattan Beach',
-  'pasadena': 'Pasadena'
-};
-
-const neighborhoodName = neighborhoodNameMap[slug];
+const slugToName = (s: string) => s.replace(/-/g,' ').replace(/\b\w/g, l => l.toUpperCase());
+const neighborhoodName = providedName ?? slugToName(slug);
 
 if (!neighborhoodName) {
   return Astro.redirect('/404');
@@ -95,8 +77,21 @@ const structuredData = {
     <div class="neighborhood-hero-content">
       <h1>Date Night Restaurants in {neighborhoodName}</h1>
       <p class="neighborhood-description">
-        Discover the most romantic dining experiences in {neighborhoodName}, Los Angeles. 
-        Handpicked restaurants perfect for date nights, anniversaries, and special occasions.
+        {(() => {
+          const intros: Record<string,string> = {
+            'Beverly Hills': 'Glamour meets romance. From white-tablecloth icons to chic modern rooms, Beverly Hills elevates every date night.',
+            'West Hollywood': 'Trendy, vibrant, and stylish—WeHo blends creative cuisine with lively energy perfect for a flirty evening out.',
+            'Santa Monica': 'Ocean breezes, sunset views, and coastal charm create effortlessly romantic nights by the beach.',
+            'Venice': 'Bohemian spirit and creative kitchens—Venice is ideal for couples who love character and conversation.',
+            'Downtown LA': 'Rooftops, modern tasting menus, and skyline views make DTLA a dramatic stage for big nights.',
+            'Hollywood': 'Classic LA allure with intimate hideaways and iconic settings for cinematic romance.',
+            'Silver Lake': 'Hip, cozy, and culinary-forward—Silver Lake shines for low-key, high-quality dates.',
+            'Los Feliz': 'Charming streets and warm neighborhood gems set the tone for relaxed romance.',
+            'Manhattan Beach': 'Seafood, sunsets, and sophisticated casual—MB is coastal romance at its best.',
+            'Pasadena': 'Historic elegance and refined dining rooms perfect for timeless celebrations.'
+          };
+          return intros[neighborhoodName] ?? `Discover the most romantic dining experiences in ${neighborhoodName}, Los Angeles.`;
+        })()}
       </p>
       
       <div class="neighborhood-stats">
