@@ -2,3 +2,8 @@
 /api/* 404
 /requirements.txt 404
 /env_example.txt 404
+
+# Force HTTPS
+http://datenightrestaurants.com/* https://datenightrestaurants.com/:splat 301
+http://www.datenightrestaurants.com/* https://datenightrestaurants.com/:splat 301
+https://www.datenightrestaurants.com/* https://datenightrestaurants.com/:splat 301
