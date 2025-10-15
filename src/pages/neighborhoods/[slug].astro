@@ -61,6 +61,14 @@ const structuredData = {
         "reviewCount": restaurant.reviews.length
       }
     }))
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://datenightrestaurants.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Neighborhoods", "item": "https://datenightrestaurants.com/neighborhoods/"},
+      {"@type": "ListItem", "position": 3, "name": `${neighborhoodName}`, "item": `https://datenightrestaurants.com/neighborhoods/${slug}/`}
+    ]
   }
 };
 ---
@@ -75,6 +83,7 @@ const structuredData = {
   <!-- Neighborhood Hero -->
   <section class="neighborhood-hero">
     <div class="neighborhood-hero-content">
+      <nav class="breadcrumbs"><a href="/">Home</a> / <a href="/neighborhoods/">Neighborhoods</a> / <span>{neighborhoodName}</span></nav>
       <h1>Date Night Restaurants in {neighborhoodName}</h1>
       <p class="neighborhood-description">
         {(() => {
@@ -135,6 +144,25 @@ const structuredData = {
           <a href={`/neighborhoods/${slug}/restaurants/`} class="btn btn-primary">
             View All {neighborhoodRestaurants.length} Restaurants
           </a>
+        </div>
+      )}
+
+      {topRestaurants.length > 0 && (
+        <div class="why-we-love">
+          <h3>Why We Love These Picks</h3>
+          <ul>
+            {topRestaurants.slice(0,3).map(r => (
+              <li>
+                <strong>{r.name}</strong> —
+                {r.cuisineTypes.includes('rooftop_restaurant') ? ' breathtaking views and golden-hour ambiance' : ''}
+                {r.cuisineTypes.includes('italian_restaurant') ? ' handmade pasta and candlelit romance' : ''}
+                {r.cuisineTypes.includes('french_restaurant') ? ' refined French technique in an intimate room' : ''}
+                {(!r.cuisineTypes.includes('rooftop_restaurant') && !r.cuisineTypes.includes('italian_restaurant') && !r.cuisineTypes.includes('french_restaurant')) ? ' exceptional cooking with true date-night atmosphere' : ''}
+                {r.priceLevel >= 3 ? ' with upscale service for special occasions' : ' with a relaxed vibe ideal for conversation'}
+                {r.rating >= 4.6 ? ' and consistently stellar diner reviews.' : '.'}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
