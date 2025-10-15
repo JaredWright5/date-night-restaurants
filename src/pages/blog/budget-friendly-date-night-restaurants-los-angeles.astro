@@ -1,0 +1,548 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Select budget-friendly restaurants ($ and $$)
+const budgetRestaurants = restaurants.filter(r => 
+  r.priceLevel <= 2 && r.rating >= 4.0
+).slice(0, 15);
+
+const postDate = "2024-10-16";
+const author = "Date Night Experts";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Budget-Friendly Date Night Restaurants in Los Angeles Under $50",
+  "description": "Discover amazing date night restaurants in LA that won't break the bank. These romantic spots offer excellent food and ambiance for under $50 per person.",
+  "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop",
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  }
+};
+---
+
+<BaseLayout
+  title="Budget-Friendly Date Night Restaurants in Los Angeles Under $50 (2024)"
+  description="Discover 15 amazing date night restaurants in LA under $50 per person. Romantic ambiance and excellent food without breaking the bank. Perfect for couples on a budget."
+  keywords={['budget date night restaurants los angeles', 'cheap date night LA', 'affordable romantic restaurants', 'date night under $50 LA', 'inexpensive date spots los angeles', 'budget friendly restaurants']}
+  canonical="https://datenightrestaurants.com/blog/budget-friendly-date-night-restaurants-los-angeles/"
+  ogImage="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="/">Home</a> / <a href="/blog/">Blog</a> / <span>Budget-Friendly Date Nights</span>
+        </div>
+        <h1>Budget-Friendly Date Night Restaurants in Los Angeles Under $50</h1>
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="separator">•</span>
+          <span>{author}</span>
+          <span class="separator">•</span>
+          <span>9 min read</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="featured-image">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=600&fit=crop" alt="Budget-friendly romantic restaurant in Los Angeles" />
+    </div>
+
+    <div class="post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          
+          <section class="content-section">
+            <p class="lead">
+              Romance doesn't have to come with a hefty price tag. Los Angeles is home to countless incredible restaurants where you can enjoy a memorable date night for under $50 per person. From cozy neighborhood bistros to trendy eateries with amazing food, these budget-friendly spots prove that great dates are about the company and atmosphere, not the bill.
+            </p>
+
+            <p>
+              Whether you're saving for a big trip, dating on a student budget, or simply believe that the best dates don't need to be expensive, this guide will help you find romantic dining experiences that deliver on ambiance, food quality, and value. These aren't "cheap" restaurants—they're smart choices that let you focus on what matters: connecting with your date.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Why Budget-Friendly Doesn't Mean Less Romantic</h2>
+            
+            <div class="feature-grid">
+              <div class="feature-item">
+                <h3>💝 Thoughtfulness Over Price</h3>
+                <p>Choosing a great affordable spot shows you value experiences over expensive gestures. It's about the thought, not the cost.</p>
+              </div>
+
+              <div class="feature-item">
+                <h3>😌 Less Pressure</h3>
+                <p>When you're not worried about the bill, you can relax and enjoy each other's company. That's what date night is really about.</p>
+              </div>
+
+              <div class="feature-item">
+                <h3>🎯 Quality Over Luxury</h3>
+                <p>Many of LA's best chefs run casual spots with incredible food at accessible prices. You're getting the same talent, just in a relaxed setting.</p>
+              </div>
+
+              <div class="feature-item">
+                <h3>🌟 More Dates</h3>
+                <p>When dates are affordable, you can go out more often. Regular date nights strengthen relationships more than occasional splurges.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section">
+            <h2>15 Amazing Date Night Restaurants Under $50</h2>
+
+            <div class="restaurants-list">
+              {budgetRestaurants.map((restaurant, index) => (
+                <div class="restaurant-feature">
+                  <div class="restaurant-number">{index + 1}</div>
+                  <div class="restaurant-info">
+                    <h3>
+                      <a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a>
+                    </h3>
+                    <div class="restaurant-details">
+                      <span class="cuisine">{restaurant.cuisineTypes.join(', ').replace(/_/g, ' ')}</span>
+                      <span class="separator">•</span>
+                      <span class="location">{restaurant.neighborhood}</span>
+                      <span class="separator">•</span>
+                      <span class="price">{'$'.repeat(restaurant.priceLevel)}</span>
+                      <span class="separator">•</span>
+                      <span class="rating">★ {restaurant.rating}</span>
+                    </div>
+                    <p class="restaurant-description">
+                      Excellent value with a romantic atmosphere. Expect to spend $30-$45 per person including drinks. {restaurant.cuisineTypes[0].includes('wine') ? 'The wine selection is impressive for the price point.' : 'Perfect for a casual yet memorable date night.'} Great for couples who appreciate quality food without the fine dining price tag.
+                    </p>
+                    <a href={`/losangeles/${restaurant.slug}/`} class="view-details">View Full Details →</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="content-section">
+            <h2>How to Make Budget Dates Feel Special</h2>
+            
+            <h3>1. Choose Ambiance Over Price</h3>
+            <p>
+              A cozy neighborhood spot with candlelight and good music can feel more romantic than an expensive restaurant with harsh lighting and loud crowds. Focus on atmosphere.
+            </p>
+
+            <h3>2. Go During Happy Hour</h3>
+            <p>
+              Many upscale restaurants offer happy hour menus (usually 4-7 PM) with significantly reduced prices. You get the same quality food and ambiance at half the cost.
+            </p>
+
+            <h3>3. Share Everything</h3>
+            <p>
+              Ordering several appetizers or small plates to share is not only more affordable but also more interactive and fun. Plus, you get to try more dishes.
+            </p>
+
+            <h3>4. BYOB Restaurants</h3>
+            <p>
+              Some restaurants allow you to bring your own wine (check first!). This can save $30-$50 on the bill while still feeling special.
+            </p>
+
+            <h3>5. Skip the Alcohol</h3>
+            <p>
+              Drinks can double your bill. Consider restaurants with great mocktails or interesting non-alcoholic options. You'll save money and have clearer heads for conversation.
+            </p>
+
+            <h3>6. Lunch Instead of Dinner</h3>
+            <p>
+              Many restaurants offer lunch versions of their dinner menus at 30-40% lower prices. Weekend lunch dates can be just as romantic.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Budget Date Night Ideas Beyond Dinner</h2>
+            
+            <h3>Dinner + Free Activity</h3>
+            <p>
+              Pair an affordable dinner with free LA activities:
+            </p>
+            <ul>
+              <li><strong>Beach sunset:</strong> Dinner in Venice + walk on the beach</li>
+              <li><strong>Griffith Observatory:</strong> Dinner in Los Feliz + free observatory visit</li>
+              <li><strong>Arts District:</strong> Dinner + gallery walk (most galleries are free)</li>
+              <li><strong>Santa Monica Pier:</strong> Dinner + pier walk and street performers</li>
+            </ul>
+
+            <h3>Split the Experience</h3>
+            <p>
+              Instead of a full dinner, try:
+            </p>
+            <ul>
+              <li><strong>Appetizers + Dessert:</strong> Order several small plates and share a dessert</li>
+              <li><strong>Coffee + Pastries:</strong> Afternoon coffee dates at bakeries like Republique</li>
+              <li><strong>Tacos + Drinks:</strong> Casual Mexican spots with great margaritas</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <h2>Neighborhood Guide for Budget Dates</h2>
+            
+            <h3>Silver Lake & Echo Park</h3>
+            <p>
+              Hip, creative neighborhoods with excellent affordable options. Sqirl, Cliff's Edge, and Botanica offer great food and atmosphere without the West Side prices.
+            </p>
+
+            <h3>Venice & Mar Vista</h3>
+            <p>
+              Beach vibes with reasonable prices. Gjelina's sister restaurants and local spots offer quality dining with a laid-back feel.
+            </p>
+
+            <h3>Koreatown</h3>
+            <p>
+              Incredible value for money. Korean BBQ spots offer interactive dining experiences where you cook together—fun and affordable.
+            </p>
+
+            <h3>Arts District</h3>
+            <p>
+              Trendy industrial-chic restaurants with reasonable prices. Guerrilla Tacos and Manuela offer Instagram-worthy settings without luxury prices.
+            </p>
+
+            <h3>Fairfax District</h3>
+            <p>
+              Central location with diverse options. Jon & Vinny's and other neighborhood spots offer quality food in casual settings.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Money-Saving Date Night Strategies</h2>
+            
+            <h3>The $100 Total Date Night Plan</h3>
+            <p>
+              Here's how to plan a complete date night for two people under $100:
+            </p>
+            <ul>
+              <li><strong>Dinner:</strong> $60-70 (appetizers, entrees, shared dessert)</li>
+              <li><strong>Drinks:</strong> $20-30 (cocktails or wine)</li>
+              <li><strong>Parking/Uber:</strong> $10-20</li>
+              <li><strong>Total:</strong> $90-120 for a complete evening</li>
+            </ul>
+
+            <h3>The $50 Per Person Sweet Spot</h3>
+            <p>
+              At $50 per person, you can enjoy:
+            </p>
+            <ul>
+              <li>Appetizer or salad to share</li>
+              <li>Individual entrees</li>
+              <li>Shared dessert</li>
+              <li>One drink each (cocktail, wine, or beer)</li>
+              <li>Tax and 20% tip included</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <h2>When to Splurge vs Save</h2>
+            
+            <h3>Save Money On:</h3>
+            <ul>
+              <li><strong>Regular date nights:</strong> Weekly or bi-weekly dates should be affordable</li>
+              <li><strong>Early relationship:</strong> First few dates don't need to be expensive</li>
+              <li><strong>Casual occasions:</strong> "Just because" dates can be simple</li>
+              <li><strong>Trying new places:</strong> Test affordable spots before committing to pricey ones</li>
+            </ul>
+
+            <h3>Consider Splurging On:</h3>
+            <ul>
+              <li><strong>Anniversaries:</strong> Milestone celebrations deserve something special</li>
+              <li><strong>Birthdays:</strong> Once a year, go all out</li>
+              <li><strong>Special achievements:</strong> Promotions, graduations, big wins</li>
+              <li><strong>Make-up dates:</strong> After a fight, sometimes a nice gesture helps</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <h2>Budget Date Night Mistakes to Avoid</h2>
+            
+            <h3>❌ Going TOO Cheap</h3>
+            <p>
+              Fast food or chain restaurants suggest you didn't put thought into the date. There's a difference between budget-friendly and low-effort.
+            </p>
+
+            <h3>❌ Skipping Reservations</h3>
+            <p>
+              Even affordable restaurants can have waits. Make a reservation to show you planned ahead and value your date's time.
+            </p>
+
+            <h3>❌ Over-Explaining the Budget</h3>
+            <p>
+              Don't apologize for choosing an affordable spot. Confidence in your choice matters more than the price point.
+            </p>
+
+            <h3>❌ Ordering the Cheapest Thing</h3>
+            <p>
+              Order what you actually want. The difference between a $15 and $18 entree won't make or break your budget, but ordering something you don't enjoy will affect the date.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Free Date Night Add-Ons in LA</h2>
+            <p>
+              Enhance your budget date with these free activities:
+            </p>
+
+            <ul>
+              <li><strong>Beach walks:</strong> Sunset stroll after dinner in Santa Monica or Venice</li>
+              <li><strong>Griffith Observatory:</strong> Free admission with incredible views</li>
+              <li><strong>Getty Center:</strong> Free admission (parking is $20 but worth it)</li>
+              <li><strong>Arts District galleries:</strong> Most are free to browse</li>
+              <li><strong>Grand Park:</strong> Free events and beautiful downtown views</li>
+              <li><strong>Hiking:</strong> Runyon Canyon or Temescal Canyon for active couples</li>
+              <li><strong>Street art tours:</strong> Self-guided walks through Venice or Arts District</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <h2>The Psychology of Budget Dating</h2>
+            <p>
+              Here's a secret: many people actually prefer budget-friendly dates, especially early in a relationship. Here's why:
+            </p>
+
+            <h3>Less Pressure</h3>
+            <p>
+              When someone spends $300 on dinner, there's an unspoken expectation. Budget dates keep things light and fun without pressure.
+            </p>
+
+            <h3>More Authentic</h3>
+            <p>
+              Casual settings encourage people to be themselves rather than putting on airs. You see the real person, not their "fancy restaurant" persona.
+            </p>
+
+            <h3>Better Conversation</h3>
+            <p>
+              Without the formality of fine dining, conversations flow more naturally. You're not worried about using the right fork or impressing the sommelier.
+            </p>
+
+            <h3>Sustainable Dating</h3>
+            <p>
+              If every date costs $200+, you can't go out often. Affordable dates mean more time together, which builds stronger relationships.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Sample Budget Date Night Itineraries</h2>
+            
+            <h3>The Venice Beach Date ($40 per person)</h3>
+            <ul>
+              <li>5:30 PM: Arrive at Gjelina or similar spot</li>
+              <li>6:00 PM: Dinner with shared appetizers and entrees</li>
+              <li>7:30 PM: Walk on Venice Beach for sunset</li>
+              <li>8:00 PM: Coffee or gelato at a beachside cafe</li>
+              <li><strong>Total:</strong> $35-40 per person + free activities</li>
+            </ul>
+
+            <h3>The Arts District Date ($35 per person)</h3>
+            <ul>
+              <li>6:00 PM: Tacos at Guerrilla Tacos</li>
+              <li>7:00 PM: Walk through Arts District galleries</li>
+              <li>8:00 PM: Drinks at a local bar</li>
+              <li><strong>Total:</strong> $30-35 per person + free art viewing</li>
+            </ul>
+
+            <h3>The Koreatown Date ($30 per person)</h3>
+            <ul>
+              <li>7:00 PM: Korean BBQ (cook together at your table)</li>
+              <li>8:30 PM: Karaoke or dessert cafe</li>
+              <li><strong>Total:</strong> $25-30 per person + entertainment</li>
+            </ul>
+          </section>
+
+          <section class="content-section">
+            <h2>Tips for Maximizing Value</h2>
+            
+            <h3>1. Research Before You Go</h3>
+            <p>
+              Check menus online to ensure prices fit your budget. Nothing kills romance like sticker shock when the menu arrives.
+            </p>
+
+            <h3>2. Look for Specials</h3>
+            <p>
+              Many restaurants offer:
+            </p>
+            <ul>
+              <li>Happy hour menus (4-7 PM)</li>
+              <li>Prix fixe dinner deals</li>
+              <li>Early bird specials</li>
+              <li>Weeknight promotions</li>
+            </ul>
+
+            <h3>3. Skip Expensive Add-Ons</h3>
+            <p>
+              Save money by:
+            </p>
+            <ul>
+              <li>Drinking water instead of soda ($3-5 saved)</li>
+              <li>Sharing dessert instead of ordering two ($8-12 saved)</li>
+              <li>Skipping appetizers if entrees are filling ($12-18 saved)</li>
+            </ul>
+
+            <h3>4. Use Credit Card Rewards</h3>
+            <p>
+              If you have dining rewards cards, use them strategically. Some cards offer 3-4% cash back on restaurants.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Budget-Friendly Date Night by Cuisine</h2>
+            
+            <h3>Mexican & Latin American</h3>
+            <p>
+              LA has incredible Mexican food at all price points. Authentic taquerias and modern Mexican spots offer amazing food for $20-35 per person.
+            </p>
+
+            <h3>Thai & Vietnamese</h3>
+            <p>
+              Asian cuisines often provide exceptional value. Flavorful, filling meals with great variety for $25-40 per person.
+            </p>
+
+            <h3>Pizza & Italian</h3>
+            <p>
+              Casual Italian spots and pizzerias offer shareable options perfect for date nights. $30-45 per person for quality ingredients and cozy atmospheres.
+            </p>
+
+            <h3>Mediterranean & Middle Eastern</h3>
+            <p>
+              Mezze-style dining with lots of small plates to share. Interactive and affordable at $35-50 per person.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>The Truth About Budget Dating</h2>
+            <p>
+              Let's address the elephant in the room: some people worry that budget dates suggest you're cheap or not serious about the relationship. Here's the reality:
+            </p>
+
+            <h3>Quality Partners Don't Care About Price</h3>
+            <p>
+              If someone judges you for choosing an affordable restaurant, they're not the right person. Great partners appreciate thoughtfulness, not expense accounts.
+            </p>
+
+            <h3>Experiences Matter More Than Money</h3>
+            <p>
+              Research shows that couples who do activities together (cooking, exploring, trying new foods) build stronger bonds than those who simply spend money on expensive dates.
+            </p>
+
+            <h3>Financial Compatibility is Important</h3>
+            <p>
+              Dating within your means shows financial responsibility—an attractive quality in a long-term partner. It also helps you find someone with similar values about money.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Final Thoughts</h2>
+            <p>
+              The best date nights aren't measured by how much you spend, but by the memories you create. Los Angeles offers countless opportunities for romantic, memorable evenings that won't strain your budget. These restaurants prove that you can have excellent food, great ambiance, and meaningful connection without spending a fortune.
+            </p>
+
+            <p>
+              Remember: the most expensive restaurant in LA can't buy chemistry, laughter, or genuine connection. Those things happen when you're relaxed, present, and enjoying each other's company—which is exactly what these budget-friendly spots enable.
+            </p>
+
+            <div class="cta-box">
+              <h3>Explore More Affordable Date Night Options</h3>
+              <p>Browse our complete directory of {restaurants.length}+ restaurants with filters for price range.</p>
+              <a href="/losangeles/restaurants/" class="btn btn-primary">View All Restaurants</a>
+            </div>
+          </section>
+
+          <section class="related-posts">
+            <h2>Related Articles</h2>
+            <div class="related-grid">
+              <div class="related-item">
+                <a href="/blog/best-date-night-restaurants-los-angeles/">
+                  <h4>Ultimate Guide to Date Night Restaurants</h4>
+                  <p>Comprehensive guide to LA's best romantic dining.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/best-first-date-restaurants-los-angeles/">
+                  <h4>Best First Date Restaurants in LA</h4>
+                  <p>Low-pressure spots perfect for getting to know someone.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/best-rooftop-restaurants-los-angeles-date-night/">
+                  <h4>Best Rooftop Date Night Restaurants</h4>
+                  <p>Stunning views and romantic ambiance.</p>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Same styles as other blog posts */
+  .blog-post { background: white; }
+  .post-header { background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%); color: white; padding: 140px 0 60px; text-align: center; }
+  .breadcrumbs { font-size: 0.9rem; margin-bottom: 2rem; opacity: 0.8; }
+  .breadcrumbs a { color: white; text-decoration: none; transition: opacity 0.3s ease; }
+  .breadcrumbs a:hover { opacity: 0.7; }
+  .breadcrumbs span { opacity: 0.6; }
+  .post-header h1 { font-size: 3rem; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; line-height: 1.2; max-width: 900px; margin-left: auto; margin-right: auto; }
+  .post-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; font-size: 0.95rem; opacity: 0.9; }
+  .separator { opacity: 0.5; }
+  .featured-image { width: 100%; height: 500px; overflow: hidden; }
+  .featured-image img { width: 100%; height: 100%; object-fit: cover; }
+  .post-content { padding: 4rem 0; }
+  .content-wrapper { max-width: 800px; margin: 0 auto; }
+  .content-section { margin-bottom: 3rem; }
+  .lead { font-size: 1.25rem; line-height: 1.8; color: #4A4A4A; margin-bottom: 1.5rem; }
+  .content-section h2 { font-size: 2rem; color: #2C2C2C; margin: 2rem 0 1rem; font-family: 'Playfair Display', serif; }
+  .content-section h3 { font-size: 1.5rem; color: #2C2C2C; margin: 1.5rem 0 0.75rem; }
+  .content-section p { line-height: 1.8; color: #4A4A4A; margin-bottom: 1rem; }
+  .content-section ul { margin: 1rem 0; padding-left: 2rem; }
+  .content-section li { line-height: 1.8; color: #4A4A4A; margin-bottom: 0.75rem; }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+  .feature-item { background: #F8F6F0; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #D4AF37; }
+  .feature-item h3 { font-size: 1.1rem; margin: 0 0 0.75rem 0; color: #2C2C2C; }
+  .feature-item p { margin: 0; font-size: 0.95rem; }
+  .restaurants-list { margin: 2rem 0; }
+  .restaurant-feature { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid #E8D5B7; }
+  .restaurant-feature:last-child { border-bottom: none; }
+  .restaurant-number { flex-shrink: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #D4AF37, #B8941F); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; }
+  .restaurant-info h3 { margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+  .restaurant-info h3 a { color: #2C2C2C; text-decoration: none; transition: color 0.3s ease; }
+  .restaurant-info h3 a:hover { color: #D4AF37; }
+  .restaurant-details { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-size: 0.9rem; color: #666; margin-bottom: 0.75rem; }
+  .restaurant-details .rating { color: #D4AF37; font-weight: 600; }
+  .restaurant-description { line-height: 1.7; margin-bottom: 1rem; }
+  .view-details { color: #D4AF37; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.3s ease; }
+  .view-details:hover { gap: 0.75rem; }
+  .cta-box { background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%); color: white; padding: 2.5rem; border-radius: 15px; text-align: center; margin: 3rem 0; }
+  .cta-box h3 { color: white; margin: 0 0 1rem 0; font-size: 1.8rem; }
+  .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; }
+  .btn { display: inline-block; padding: 1rem 2rem; background: white; color: #2C2C2C; text-decoration: none; border-radius: 50px; font-weight: 600; transition: transform 0.3s ease, background 0.3s ease; }
+  .btn:hover { transform: translateY(-2px); background: #F0EDE5; }
+  .related-posts { background: #F8F6F0; padding: 2rem; border-radius: 15px; margin-top: 3rem; }
+  .related-posts h2 { font-size: 1.8rem; color: #2C2C2C; margin: 0 0 1.5rem 0; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .related-item { background: white; padding: 1.5rem; border-radius: 10px; }
+  .related-item a { text-decoration: none; color: inherit; }
+  .related-item h4 { font-size: 1.1rem; color: #2C2C2C; margin: 0 0 0.5rem 0; transition: color 0.3s ease; }
+  .related-item a:hover h4 { color: #D4AF37; }
+  .related-item p { margin: 0; font-size: 0.9rem; color: #666; }
+  
+  @media (max-width: 768px) {
+    .post-header h1 { font-size: 2rem; }
+    .featured-image { height: 300px; }
+    .post-content { padding: 2rem 1rem; }
+    .lead { font-size: 1.1rem; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .restaurant-feature { flex-direction: column; }
+    .restaurant-number { align-self: flex-start; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
