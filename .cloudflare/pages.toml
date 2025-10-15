@@ -1,0 +1,12 @@
+[build]
+command = "npm run build"
+cwd = "."
+watch_dir = "src"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[deploy]
+account_id = ""
+project_name = "date-night-restaurants"
+
