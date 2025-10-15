@@ -1,0 +1,289 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const blogPosts = [
+  {
+    title: "The Ultimate Guide to Date Night Restaurants in Los Angeles",
+    slug: "best-date-night-restaurants-los-angeles",
+    excerpt: "Discover the most romantic and memorable dining experiences in LA. From intimate Italian trattorias to elegant rooftop venues, we've curated the perfect spots for your next date night.",
+    date: "2024-10-15",
+    author: "Date Night Experts",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+    category: "Restaurant Guides"
+  }
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Date Night Restaurants Blog",
+  "description": "Expert guides and tips for finding the perfect romantic dining experience in Los Angeles",
+  "url": "https://datenightrestaurants.com/blog/"
+};
+---
+
+<BaseLayout
+  title="Blog | Date Night Restaurants Los Angeles"
+  description="Expert guides, tips, and recommendations for the best romantic dining experiences in Los Angeles. Discover hidden gems and top-rated date night spots."
+  keywords={['date night blog', 'Los Angeles restaurants', 'romantic dining guides', 'restaurant reviews LA', 'date night tips']}
+  canonical="https://datenightrestaurants.com/blog/"
+  structuredData={structuredData}
+>
+  <!-- Blog Hero -->
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Date Night Dining Guides</h1>
+      <p>Expert advice and curated recommendations for unforgettable romantic experiences in Los Angeles</p>
+    </div>
+  </section>
+
+  <!-- Blog Posts Grid -->
+  <section class="blog-posts">
+    <div class="container">
+      <div class="posts-grid">
+        {blogPosts.map(post => (
+          <article class="post-card">
+            <a href={`/blog/${post.slug}/`} class="post-link">
+              <div class="post-image">
+                <img src={post.image} alt={post.title} loading="lazy" />
+                <div class="post-category">{post.category}</div>
+              </div>
+              <div class="post-content">
+                <div class="post-meta">
+                  <time datetime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+                  <span class="post-author">by {post.author}</span>
+                </div>
+                <h2>{post.title}</h2>
+                <p>{post.excerpt}</p>
+                <span class="read-more">Read More →</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Stay Updated on LA's Best Date Spots</h2>
+        <p>Get our latest guides, restaurant reviews, and exclusive date night tips delivered to your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+
+  .blog-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .blog-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  .blog-posts {
+    padding: 4rem 0;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .post-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+
+  .post-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .post-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card:hover .post-image img {
+    transform: scale(1.05);
+  }
+
+  .post-category {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .post-content {
+    padding: 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .post-meta time {
+    color: #D4AF37;
+    font-weight: 600;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.3;
+  }
+
+  .post-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .read-more {
+    color: #D4AF37;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .newsletter-section {
+    background: #F8F6F0;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsletter-content h2 {
+    font-size: 2rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .newsletter-content p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: 1px solid #E8D5B7;
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  .newsletter-form input:focus {
+    border-color: #D4AF37;
+  }
+
+  .newsletter-form button {
+    padding: 1rem 2rem;
+    background: #D4AF37;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .newsletter-form button:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .blog-hero p {
+      font-size: 1rem;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .post-image {
+      height: 200px;
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+      width: 100%;
+    }
+  }
+</style>
+
