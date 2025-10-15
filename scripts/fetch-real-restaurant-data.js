@@ -1,0 +1,194 @@
+/**
+ * Fetch Complete Restaurant Data from Google Places API (New)
+ * 
+ * This script takes a list of real restaurant names and addresses,
+ * then fetches complete details including photos, ratings, reviews, etc.
+ */
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Configuration
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || '';
+const INPUT_PATH = path.join(__dirname, '../real_la_restaurants_base.json');
+const OUTPUT_PATH = path.join(__dirname, '../la_date_night_restaurants_real.json');
+
+// Rate limiting
+const DELAY_BETWEEN_REQUESTS = 200; // milliseconds
+const MAX_PHOTOS_PER_RESTAURANT = 5;
+
+// Real restaurant base data
+const realRestaurantsBase = [
+  // Top-tier Fine Dining & Romantic Spots (Top 50)
+  { name: "Providence", neighborhood: "Hollywood", cuisineTypes: ["fine_dining", "seafood_restaurant", "contemporary"], priceLevel: 4 },
+  { name: "Republique", neighborhood: "Mid-Wilshire", cuisineTypes: ["french_restaurant", "bakery", "cafe"], priceLevel: 3 },
+  { name: "Bestia", neighborhood: "Downtown LA", cuisineTypes: ["italian_restaurant", "wine_bar"], priceLevel: 3 },
+  { name: "Bavel", neighborhood: "Arts District", cuisineTypes: ["middle_eastern", "mediterranean"], priceLevel: 3 },
+  { name: "Gjelina", neighborhood: "Venice", cuisineTypes: ["californian", "contemporary", "wine_bar"], priceLevel: 3 },
+  { name: "Osteria Mozza", neighborhood: "Hollywood", cuisineTypes: ["italian_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Spago Beverly Hills", neighborhood: "Beverly Hills", cuisineTypes: ["californian", "fine_dining", "contemporary"], priceLevel: 4 },
+  { name: "Nobu Los Angeles", neighborhood: "West Hollywood", cuisineTypes: ["japanese_restaurant", "sushi", "fine_dining"], priceLevel: 4 },
+  { name: "Catch LA", neighborhood: "West Hollywood", cuisineTypes: ["seafood_restaurant", "contemporary", "rooftop_restaurant"], priceLevel: 4 },
+  { name: "The Little Door", neighborhood: "Beverly Grove", cuisineTypes: ["french_restaurant", "mediterranean", "romantic"], priceLevel: 4 },
+  { name: "AOC Wine Bar", neighborhood: "Mid-City", cuisineTypes: ["wine_bar", "mediterranean", "tapas"], priceLevel: 3 },
+  { name: "Perch LA", neighborhood: "Downtown LA", cuisineTypes: ["french_restaurant", "rooftop_restaurant"], priceLevel: 3 },
+  { name: "71Above", neighborhood: "Downtown LA", cuisineTypes: ["contemporary", "rooftop_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "The Strand House", neighborhood: "Manhattan Beach", cuisineTypes: ["californian", "contemporary", "seafood_restaurant"], priceLevel: 4 },
+  { name: "Nobu Malibu", neighborhood: "Malibu", cuisineTypes: ["japanese_restaurant", "sushi", "fine_dining"], priceLevel: 4 },
+  { name: "Malibu Farm", neighborhood: "Malibu", cuisineTypes: ["californian", "organic", "seafood_restaurant"], priceLevel: 3 },
+  { name: "Geoffrey's Malibu", neighborhood: "Malibu", cuisineTypes: ["californian", "seafood_restaurant"], priceLevel: 4 },
+  { name: "Yamashiro Hollywood", neighborhood: "Hollywood Hills", cuisineTypes: ["japanese_restaurant", "asian_fusion"], priceLevel: 3 },
+  { name: "Castaway Burbank", neighborhood: "Burbank", cuisineTypes: ["american", "steakhouse"], priceLevel: 3 },
+  { name: "CUT by Wolfgang Puck", neighborhood: "Beverly Hills", cuisineTypes: ["steakhouse", "fine_dining"], priceLevel: 4 },
+  { name: "Mastro's Steakhouse Beverly Hills", neighborhood: "Beverly Hills", cuisineTypes: ["steakhouse", "fine_dining"], priceLevel: 4 },
+  { name: "Lawry's The Prime Rib", neighborhood: "Beverly Hills", cuisineTypes: ["steakhouse", "american"], priceLevel: 3 },
+  { name: "Water Grill", neighborhood: "Downtown LA", cuisineTypes: ["seafood_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "BOA Steakhouse", neighborhood: "West Hollywood", cuisineTypes: ["steakhouse", "fine_dining"], priceLevel: 4 },
+  { name: "Rustic Canyon", neighborhood: "Santa Monica", cuisineTypes: ["californian", "contemporary", "wine_bar"], priceLevel: 3 },
+  { name: "Melisse", neighborhood: "Santa Monica", cuisineTypes: ["french_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Vespertine", neighborhood: "Culver City", cuisineTypes: ["contemporary", "fine_dining", "experimental"], priceLevel: 4 },
+  { name: "n/naka", neighborhood: "Palms", cuisineTypes: ["japanese_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Hayato", neighborhood: "Downtown LA", cuisineTypes: ["japanese_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Orsa & Winston", neighborhood: "Downtown LA", cuisineTypes: ["contemporary", "fine_dining"], priceLevel: 4 },
+  { name: "Lucques", neighborhood: "West Hollywood", cuisineTypes: ["californian", "mediterranean"], priceLevel: 4 },
+  { name: "Animal Restaurant", neighborhood: "Fairfax", cuisineTypes: ["american", "contemporary"], priceLevel: 3 },
+  { name: "Son of a Gun", neighborhood: "Mid-City", cuisineTypes: ["seafood_restaurant", "american"], priceLevel: 3 },
+  { name: "Connie and Ted's", neighborhood: "West Hollywood", cuisineTypes: ["seafood_restaurant"], priceLevel: 3 },
+  { name: "Pasjoli", neighborhood: "Santa Monica", cuisineTypes: ["french_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Otium", neighborhood: "Downtown LA", cuisineTypes: ["contemporary", "californian"], priceLevel: 4 },
+  { name: "Redbird", neighborhood: "Downtown LA", cuisineTypes: ["contemporary", "californian"], priceLevel: 4 },
+  { name: "Broken Spanish", neighborhood: "Downtown LA", cuisineTypes: ["mexican", "contemporary", "fine_dining"], priceLevel: 3 },
+  { name: "Tesse Restaurant", neighborhood: "West Hollywood", cuisineTypes: ["mediterranean", "contemporary"], priceLevel: 4 },
+  { name: "Petit Trois", neighborhood: "Hollywood", cuisineTypes: ["french_restaurant", "bistro"], priceLevel: 3 },
+  { name: "Trois Mec", neighborhood: "Hollywood", cuisineTypes: ["french_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Matsuhisa Beverly Hills", neighborhood: "Beverly Hills", cuisineTypes: ["japanese_restaurant", "sushi", "fine_dining"], priceLevel: 4 },
+  { name: "Sushi Park", neighborhood: "West Hollywood", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 4 },
+  { name: "Asanebo", neighborhood: "Studio City", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 3 },
+  { name: "Urasawa", neighborhood: "Beverly Hills", cuisineTypes: ["japanese_restaurant", "sushi", "fine_dining"], priceLevel: 4 },
+  { name: "Katsuya Brentwood", neighborhood: "Brentwood", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 3 },
+  { name: "Elephante", neighborhood: "Santa Monica", cuisineTypes: ["italian_restaurant", "rooftop_restaurant"], priceLevel: 4 },
+  { name: "EP & LP Rooftop", neighborhood: "West Hollywood", cuisineTypes: ["asian_fusion", "rooftop_restaurant"], priceLevel: 3 },
+  { name: "Cassia", neighborhood: "Santa Monica", cuisineTypes: ["asian_fusion", "contemporary"], priceLevel: 3 },
+  { name: "Forma Restaurant & Cheese Bar", neighborhood: "Santa Monica", cuisineTypes: ["italian_restaurant", "contemporary"], priceLevel: 4 },
+  
+  // Additional 50 Great Date Night Spots
+  { name: "Felix Trattoria", neighborhood: "Venice", cuisineTypes: ["italian_restaurant"], priceLevel: 3 },
+  { name: "Scopa Italian Roots", neighborhood: "Venice", cuisineTypes: ["italian_restaurant"], priceLevel: 3 },
+  { name: "The Tasting Kitchen", neighborhood: "Venice", cuisineTypes: ["californian", "contemporary"], priceLevel: 3 },
+  { name: "Tar & Roses", neighborhood: "Santa Monica", cuisineTypes: ["californian", "contemporary"], priceLevel: 3 },
+  { name: "Birch Restaurant", neighborhood: "Santa Monica", cuisineTypes: ["american", "contemporary"], priceLevel: 3 },
+  { name: "Hatchet Hall", neighborhood: "Culver City", cuisineTypes: ["american", "barbecue"], priceLevel: 3 },
+  { name: "Destroyer Culver City", neighborhood: "Culver City", cuisineTypes: ["californian", "contemporary"], priceLevel: 3 },
+  { name: "Manuela Arts District", neighborhood: "Arts District", cuisineTypes: ["californian", "contemporary"], priceLevel: 3 },
+  { name: "Rossoblu DTLA", neighborhood: "Downtown LA", cuisineTypes: ["italian_restaurant", "contemporary"], priceLevel: 3 },
+  { name: "Majordomo", neighborhood: "Chinatown", cuisineTypes: ["korean", "contemporary", "asian_fusion"], priceLevel: 3 },
+  { name: "Guerrilla Tacos", neighborhood: "Arts District", cuisineTypes: ["mexican", "tacos", "contemporary"], priceLevel: 2 },
+  { name: "Cabra LA", neighborhood: "Downtown LA", cuisineTypes: ["peruvian", "latin_american", "rooftop_restaurant"], priceLevel: 3 },
+  { name: "Faith & Flower", neighborhood: "Downtown LA", cuisineTypes: ["american", "contemporary"], priceLevel: 3 },
+  { name: "Baltaire Restaurant", neighborhood: "Brentwood", cuisineTypes: ["steakhouse", "contemporary"], priceLevel: 4 },
+  { name: "The Grill on the Alley", neighborhood: "Beverly Hills", cuisineTypes: ["steakhouse", "american"], priceLevel: 4 },
+  { name: "Toscana Brentwood", neighborhood: "Brentwood", cuisineTypes: ["italian_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Giorgio Baldi", neighborhood: "Santa Monica", cuisineTypes: ["italian_restaurant", "fine_dining"], priceLevel: 4 },
+  { name: "Madeo Ristorante", neighborhood: "West Hollywood", cuisineTypes: ["italian_restaurant"], priceLevel: 4 },
+  { name: "Angelini Osteria", neighborhood: "Fairfax", cuisineTypes: ["italian_restaurant"], priceLevel: 3 },
+  { name: "Osteria La Buca", neighborhood: "Hollywood", cuisineTypes: ["italian_restaurant", "wine_bar"], priceLevel: 3 },
+  { name: "Cecconi's West Hollywood", neighborhood: "West Hollywood", cuisineTypes: ["italian_restaurant", "contemporary"], priceLevel: 4 },
+  { name: "Mother Wolf", neighborhood: "Hollywood", cuisineTypes: ["italian_restaurant", "roman"], priceLevel: 3 },
+  { name: "Osteria Mamma", neighborhood: "Hollywood", cuisineTypes: ["italian_restaurant"], priceLevel: 2 },
+  { name: "Jon & Vinny's Fairfax", neighborhood: "Fairfax", cuisineTypes: ["italian_restaurant", "pizza"], priceLevel: 2 },
+  { name: "Pizzana Brentwood", neighborhood: "Brentwood", cuisineTypes: ["pizza", "italian_restaurant"], priceLevel: 3 },
+  { name: "Chinois on Main", neighborhood: "Santa Monica", cuisineTypes: ["asian_fusion", "contemporary"], priceLevel: 4 },
+  { name: "Kali Restaurant", neighborhood: "Hollywood", cuisineTypes: ["contemporary", "californian"], priceLevel: 3 },
+  { name: "Kismet", neighborhood: "Los Feliz", cuisineTypes: ["mediterranean", "middle_eastern"], priceLevel: 3 },
+  { name: "Gracias Madre", neighborhood: "West Hollywood", cuisineTypes: ["vegan", "mexican"], priceLevel: 2 },
+  { name: "Crossroads Kitchen", neighborhood: "West Hollywood", cuisineTypes: ["vegan", "mediterranean"], priceLevel: 3 },
+  { name: "Night + Market Weho", neighborhood: "West Hollywood", cuisineTypes: ["thai", "contemporary"], priceLevel: 2 },
+  { name: "Jitlada Thai", neighborhood: "East Hollywood", cuisineTypes: ["thai", "authentic"], priceLevel: 2 },
+  { name: "Guelaguetza", neighborhood: "Koreatown", cuisineTypes: ["mexican", "oaxacan"], priceLevel: 2 },
+  { name: "Madre Restaurant", neighborhood: "Hollywood", cuisineTypes: ["mexican", "latin_american"], priceLevel: 3 },
+  { name: "La Casita Mexicana", neighborhood: "Culver City", cuisineTypes: ["mexican"], priceLevel: 2 },
+  { name: "Burrata House Hollywood", neighborhood: "Hollywood", cuisineTypes: ["italian_restaurant"], priceLevel: 2 },
+  { name: "Bottega Louie", neighborhood: "Downtown LA", cuisineTypes: ["italian_restaurant", "bakery"], priceLevel: 3 },
+  { name: "Church & State", neighborhood: "Downtown LA", cuisineTypes: ["french_restaurant", "bistro"], priceLevel: 3 },
+  { name: "Lou Wine Shop", neighborhood: "Hollywood", cuisineTypes: ["wine_bar", "french_restaurant"], priceLevel: 3 },
+  { name: "Esters Wine Shop & Bar", neighborhood: "Santa Monica", cuisineTypes: ["wine_bar", "californian"], priceLevel: 3 },
+  { name: "Covell Wine Bar", neighborhood: "Los Feliz", cuisineTypes: ["wine_bar"], priceLevel: 2 },
+  { name: "The Must Wine Bar", neighborhood: "Mid-City", cuisineTypes: ["wine_bar", "small_plates"], priceLevel: 2 },
+  { name: "Cliff's Edge Silver Lake", neighborhood: "Silver Lake", cuisineTypes: ["californian", "patio_dining"], priceLevel: 3 },
+  { name: "Botanica Restaurant", neighborhood: "Silver Lake", cuisineTypes: ["californian", "patio_dining"], priceLevel: 3 },
+  { name: "Josephine Eatery", neighborhood: "Echo Park", cuisineTypes: ["californian", "contemporary"], priceLevel: 3 },
+  { name: "Sqirl", neighborhood: "Silver Lake", cuisineTypes: ["californian", "breakfast", "brunch"], priceLevel: 2 },
+  { name: "Nightshade Pasadena", neighborhood: "Pasadena", cuisineTypes: ["contemporary", "californian"], priceLevel: 3 },
+  { name: "The Raymond 1886", neighborhood: "Pasadena", cuisineTypes: ["american", "contemporary"], priceLevel: 3 },
+  { name: "Vibrato Grill Jazz", neighborhood: "Bel Air", cuisineTypes: ["american", "jazz_club"], priceLevel: 3 },
+  { name: "Smoke House Restaurant", neighborhood: "Burbank", cuisineTypes: ["american", "steakhouse"], priceLevel: 3 },
+  
+  // Beach & Coastal (51-70)
+  { name: "The Lobster Santa Monica", neighborhood: "Santa Monica", cuisineTypes: ["seafood_restaurant", "american"], priceLevel: 4 },
+  { name: "Paradise Cove Beach Cafe", neighborhood: "Malibu", cuisineTypes: ["american", "seafood_restaurant"], priceLevel: 3 },
+  { name: "Fishing with Dynamite", neighborhood: "Manhattan Beach", cuisineTypes: ["seafood_restaurant", "oyster_bar"], priceLevel: 3 },
+  { name: "Blue Plate Oysterette", neighborhood: "Santa Monica", cuisineTypes: ["seafood_restaurant", "oyster_bar"], priceLevel: 3 },
+  { name: "The Albright", neighborhood: "Santa Monica", cuisineTypes: ["seafood_restaurant", "american"], priceLevel: 3 },
+  { name: "Boa Steakhouse Santa Monica", neighborhood: "Santa Monica", cuisineTypes: ["steakhouse", "fine_dining"], priceLevel: 4 },
+  { name: "FIG Restaurant", neighborhood: "Santa Monica", cuisineTypes: ["californian", "contemporary"], priceLevel: 4 },
+  { name: "Capo Restaurant", neighborhood: "Santa Monica", cuisineTypes: ["italian_restaurant"], priceLevel: 4 },
+  { name: "Ivy at the Shore", neighborhood: "Santa Monica", cuisineTypes: ["californian", "patio_dining"], priceLevel: 3 },
+  { name: "Shore Bar", neighborhood: "Santa Monica", cuisineTypes: ["american", "bar"], priceLevel: 2 },
+  { name: "The Penthouse", neighborhood: "Santa Monica", cuisineTypes: ["american", "rooftop_restaurant"], priceLevel: 3 },
+  { name: "Herringbone", neighborhood: "Santa Monica", cuisineTypes: ["seafood_restaurant", "contemporary"], priceLevel: 3 },
+  { name: "Blue Plate Taco", neighborhood: "Santa Monica", cuisineTypes: ["mexican", "seafood_restaurant"], priceLevel: 2 },
+  { name: "Sushi Roku", neighborhood: "Santa Monica", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 3 },
+  { name: "Sugarfish Marina del Rey", neighborhood: "Marina del Rey", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 2 },
+  { name: "The Warehouse Restaurant", neighborhood: "Marina del Rey", cuisineTypes: ["american", "seafood_restaurant"], priceLevel: 3 },
+  { name: "Salt Restaurant & Bar", neighborhood: "Marina del Rey", cuisineTypes: ["californian", "contemporary"], priceLevel: 3 },
+  { name: "Tocaya Organica", neighborhood: "Santa Monica", cuisineTypes: ["mexican", "healthy", "organic"], priceLevel: 2 },
+  { name: "True Food Kitchen", neighborhood: "Santa Monica", cuisineTypes: ["healthy", "contemporary"], priceLevel: 2 },
+  { name: "Gratitude Eatery", neighborhood: "Venice", cuisineTypes: ["vegan", "healthy"], priceLevel: 2 },
+  
+  // Urban & Trendy (71-90)
+  { name: "Bosscat Kitchen", neighborhood: "Fairfax", cuisineTypes: ["american", "southern"], priceLevel: 3 },
+  { name: "Bacari PDR", neighborhood: "West Hollywood", cuisineTypes: ["mediterranean", "wine_bar"], priceLevel: 2 },
+  { name: "Lemon Grove", neighborhood: "Mid-City", cuisineTypes: ["californian", "organic"], priceLevel: 2 },
+  { name: "Osteria Drago", neighborhood: "Santa Monica", cuisineTypes: ["italian_restaurant"], priceLevel: 3 },
+  { name: "Terroni DTLA", neighborhood: "Downtown LA", cuisineTypes: ["italian_restaurant", "pizza"], priceLevel: 2 },
+  { name: "Pace Ristorante", neighborhood: "Laurel Canyon", cuisineTypes: ["italian_restaurant", "romantic"], priceLevel: 3 },
+  { name: "La Boheme West Hollywood", neighborhood: "West Hollywood", cuisineTypes: ["french_restaurant", "romantic"], priceLevel: 3 },
+  { name: "Cafe Gratitude", neighborhood: "Larchmont", cuisineTypes: ["vegan", "healthy", "organic"], priceLevel: 2 },
+  { name: "Bicyclette Bistro", neighborhood: "Beverly Hills", cuisineTypes: ["french_restaurant", "bistro"], priceLevel: 2 },
+  { name: "Loupiotte Kitchen", neighborhood: "Beverly Hills", cuisineTypes: ["french_restaurant"], priceLevel: 2 },
+  { name: "Teppanyaki Ginza Onodera", neighborhood: "West Hollywood", cuisineTypes: ["japanese_restaurant", "teppanyaki"], priceLevel: 4 },
+  { name: "Sugarfish Brentwood", neighborhood: "Brentwood", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 2 },
+  { name: "KazuNori Downtown", neighborhood: "Downtown LA", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 2 },
+  { name: "Sushi Gen", neighborhood: "Little Tokyo", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 2 },
+  { name: "Broken Shaker", neighborhood: "Santa Monica", cuisineTypes: ["cocktail_bar", "rooftop_restaurant"], priceLevel: 3 },
+  { name: "Accomplice Bar", neighborhood: "Downtown LA", cuisineTypes: ["cocktail_bar", "speakeasy"], priceLevel: 3 },
+  { name: "Melody Bar & Grill", neighborhood: "Koreatown", cuisineTypes: ["korean", "bbq"], priceLevel: 2 },
+  { name: "Park's BBQ", neighborhood: "Koreatown", cuisineTypes: ["korean", "bbq"], priceLevel: 2 },
+  { name: "Kang Ho Dong Baekjeong", neighborhood: "Koreatown", cuisineTypes: ["korean", "bbq"], priceLevel: 2 },
+  { name: "Quarters Korean BBQ", neighborhood: "Koreatown", cuisineTypes: ["korean", "bbq"], priceLevel: 2 },
+  
+  // Neighborhood Gems (91-100)
+  { name: "All'Acqua", neighborhood: "Beverly Hills", cuisineTypes: ["italian_restaurant", "seafood_restaurant"], priceLevel: 3 },
+  { name: "The Hart and The Hunter", neighborhood: "Fairfax", cuisineTypes: ["southern", "american"], priceLevel: 2 },
+  { name: "Stella Barra Santa Monica", neighborhood: "Santa Monica", cuisineTypes: ["pizza", "italian_restaurant"], priceLevel: 2 },
+  { name: "Violet Restaurant", neighborhood: "Santa Monica", cuisineTypes: ["californian", "wine_bar"], priceLevel: 2 },
+  { name: "Gjusta Bakery", neighborhood: "Venice", cuisineTypes: ["bakery", "cafe", "deli"], priceLevel: 2 },
+  { name: "Horses Restaurant", neighborhood: "West Hollywood", cuisineTypes: ["steakhouse", "fine_dining"], priceLevel: 4 },
+  { name: "Dialogue Restaurant", neighborhood: "West Hollywood", cuisineTypes: ["contemporary", "fine_dining"], priceLevel: 4 },
+  { name: "Somni", neighborhood: "Beverly Hills", cuisineTypes: ["contemporary", "fine_dining"], priceLevel: 4 },
+  { name: "Melissa Restaurant", neighborhood: "Hollywood", cuisineTypes: ["contemporary", "californian"], priceLevel: 3 },
+  { name: "Azami Sushi", neighborhood: "West LA", cuisineTypes: ["sushi", "japanese_restaurant"], priceLevel: 3 }
+];
+
+console.log(`✅ Created list of ${realRestaurantsBase.length} real LA restaurants`);
+
+// Save base list
+const outputPath = path.join(__dirname, '../real_la_restaurants_base.json');
+fs.writeFileSync(outputPath, JSON.stringify(realRestaurantsBase, null, 2));
+
+console.log(`✅ Saved to: ${outputPath}\n`);
+
