@@ -26,31 +26,6 @@ const featuredRestaurants = getFeaturedRestaurants(3);
         />
       ))}
     </div>
-    
-    <div class="featured-footer">
-      <div class="partnership-info">
-        <h3>Partner with LA Date Night</h3>
-        <p>Get featured in our premium section and reach thousands of couples looking for the perfect date night experience.</p>
-        <div class="partnership-benefits">
-          <div class="benefit">
-            <i class="fas fa-eye"></i>
-            <span>Premium Visibility</span>
-          </div>
-          <div class="benefit">
-            <i class="fas fa-chart-line"></i>
-            <span>Increased Bookings</span>
-          </div>
-          <div class="benefit">
-            <i class="fas fa-star"></i>
-            <span>Enhanced Credibility</span>
-          </div>
-        </div>
-        <a href="/partnership/" class="btn btn-partnership">
-          <i class="fas fa-handshake"></i>
-          Become a Partner
-        </a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -115,80 +90,8 @@ const featuredRestaurants = getFeaturedRestaurants(3);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
-    margin-bottom: 4rem;
     position: relative;
     z-index: 2;
-  }
-  
-  .featured-footer {
-    background: white;
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 2;
-  }
-  
-  .partnership-info {
-    text-align: center;
-  }
-  
-  .partnership-info h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .partnership-info p {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .partnership-benefits {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-  
-  .benefit {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 1.5rem;
-    background: #f8f9fa;
-    border-radius: 15px;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .benefit i {
-    color: #d63384;
-    font-size: 1.1rem;
-  }
-  
-  .btn-partnership {
-    background: linear-gradient(45deg, #d63384, #ff6b6b);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(214, 51, 132, 0.3);
-  }
-  
-  .btn-partnership:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(214, 51, 132, 0.4);
   }
   
   @media (max-width: 768px) {
@@ -205,17 +108,6 @@ const featuredRestaurants = getFeaturedRestaurants(3);
     .featured-grid {
       grid-template-columns: 1fr;
     }
-    
-    .partnership-benefits {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .benefit {
-      width: 100%;
-      max-width: 300px;
-      justify-content: center;
-    }
   }
   
   @media (max-width: 480px) {
@@ -225,14 +117,6 @@ const featuredRestaurants = getFeaturedRestaurants(3);
     
     .header-content h2 {
       font-size: 1.75rem;
-    }
-    
-    .featured-footer {
-      padding: 2rem;
-    }
-    
-    .partnership-info h3 {
-      font-size: 1.5rem;
     }
   }
 </style>
