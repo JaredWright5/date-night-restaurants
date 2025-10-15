@@ -4,7 +4,7 @@
     "address": "Los Angeles, CA",
     "phone": "(213) 105-8931",
     "website": "https://www.providence.com",
-    "rating": 4.211778034210609,
+    "rating": 4.2,
     "price_level": 4,
     "cuisine_types": [
       "fine_dining",
@@ -49,7 +49,7 @@
     "latitude": 34.050073459956,
     "longitude": -118.16530828031414,
     "neighborhood": "Hollywood",
-    "date_night_score": 88
+    "date_night_score": 97
   },
   {
     "name": "République Café Bakery & République Restaurant",
@@ -103,14 +103,14 @@
     "latitude": 34.064158899999995,
     "longitude": -118.343697,
     "neighborhood": "Mid-Wilshire",
-    "date_night_score": 87
+    "date_night_score": 99
   },
   {
     "name": "Bestia",
     "address": "Los Angeles, CA",
     "phone": "(310) 548-4131",
     "website": "https://www.bestia.com",
-    "rating": 4.066860981255376,
+    "rating": 4.1,
     "price_level": 3,
     "cuisine_types": [
       "italian_restaurant",
@@ -154,7 +154,7 @@
     "latitude": 34.08510927860899,
     "longitude": -118.28002322017984,
     "neighborhood": "Downtown LA",
-    "date_night_score": 88
+    "date_night_score": 93
   },
   {
     "name": "Bavel",
@@ -207,7 +207,7 @@
     "latitude": 34.041487,
     "longitude": -118.23293129999998,
     "neighborhood": "Arts District",
-    "date_night_score": 85
+    "date_night_score": 98
   },
   {
     "name": "Gjelina",
@@ -261,7 +261,7 @@
     "latitude": 33.990497,
     "longitude": -118.4649651,
     "neighborhood": "Venice",
-    "date_night_score": 93
+    "date_night_score": 90
   },
   {
     "name": "Osteria Mozza",
@@ -314,14 +314,14 @@
     "latitude": 34.083214,
     "longitude": -118.33896999999999,
     "neighborhood": "Hollywood",
-    "date_night_score": 86
+    "date_night_score": 99
   },
   {
     "name": "Spago Beverly Hills",
     "address": "Los Angeles, CA",
     "phone": "(310) 644-5216",
     "website": "https://www.spago-beverly-hills.com",
-    "rating": 4.492222255673748,
+    "rating": 4.5,
     "price_level": 4,
     "cuisine_types": [
       "californian",
@@ -366,7 +366,7 @@
     "latitude": 33.95548839395949,
     "longitude": -118.19701089026948,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 88
+    "date_night_score": 99
   },
   {
     "name": "Nobu Los Angeles",
@@ -420,14 +420,14 @@
     "latitude": 34.087151899999995,
     "longitude": -118.3766041,
     "neighborhood": "West Hollywood",
-    "date_night_score": 94
+    "date_night_score": 99
   },
   {
     "name": "Catch LA",
     "address": "Los Angeles, CA",
     "phone": "(213) 529-4173",
     "website": "https://www.catch-la.com",
-    "rating": 4.4896996247858105,
+    "rating": 4.5,
     "price_level": 4,
     "cuisine_types": [
       "seafood_restaurant",
@@ -472,7 +472,7 @@
     "latitude": 34.14803567487166,
     "longitude": -118.20966880746712,
     "neighborhood": "West Hollywood",
-    "date_night_score": 97
+    "date_night_score": 99
   },
   {
     "name": "The Little Door",
@@ -526,7 +526,7 @@
     "latitude": 34.0720931,
     "longitude": -118.3675088,
     "neighborhood": "Beverly Grove",
-    "date_night_score": 94
+    "date_night_score": 99
   },
   {
     "name": "A.O.C.",
@@ -580,14 +580,14 @@
     "latitude": 34.0734135,
     "longitude": -118.38192719999999,
     "neighborhood": "Mid-City",
-    "date_night_score": 85
+    "date_night_score": 96
   },
   {
     "name": "Perch LA",
     "address": "Los Angeles, CA",
     "phone": "(213) 628-9106",
     "website": "https://www.perch-la.com",
-    "rating": 4.35630712611023,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "french_restaurant",
@@ -638,7 +638,7 @@
     "address": "Los Angeles, CA",
     "phone": "(323) 361-7270",
     "website": "https://www.71above.com",
-    "rating": 4.607679388771765,
+    "rating": 4.6,
     "price_level": 4,
     "cuisine_types": [
       "contemporary",
@@ -683,7 +683,7 @@
     "latitude": 34.07594656507701,
     "longitude": -118.3359294309042,
     "neighborhood": "Downtown LA",
-    "date_night_score": 90
+    "date_night_score": 99
   },
   {
     "name": "The Strand House",
@@ -737,7 +737,7 @@
     "latitude": 33.8847744,
     "longitude": -118.41136979999999,
     "neighborhood": "Manhattan Beach",
-    "date_night_score": 97
+    "date_night_score": 98
   },
   {
     "name": "Nobu Malibu",
@@ -791,7 +791,7 @@
     "latitude": 34.0390391,
     "longitude": -118.66964770000001,
     "neighborhood": "Malibu",
-    "date_night_score": 85
+    "date_night_score": 99
   },
   {
     "name": "Malibu Farm Restaurant at the Pier",
@@ -845,14 +845,14 @@
     "latitude": 34.037224099999996,
     "longitude": -118.6765344,
     "neighborhood": "Malibu",
-    "date_night_score": 89
+    "date_night_score": 86
   },
   {
     "name": "Geoffrey's Malibu",
     "address": "Los Angeles, CA",
     "phone": "(310) 471-6435",
     "website": "https://www.geoffreys-malibu.com",
-    "rating": 4.221219607427119,
+    "rating": 4.2,
     "price_level": 4,
     "cuisine_types": [
       "californian",
@@ -896,14 +896,14 @@
     "latitude": 34.141899541947765,
     "longitude": -118.25004933359872,
     "neighborhood": "Malibu",
-    "date_night_score": 85
+    "date_night_score": 92
   },
   {
     "name": "Yamashiro Hollywood",
     "address": "Los Angeles, CA",
     "phone": "(323) 702-6263",
     "website": "https://www.yamashiro-hollywood.com",
-    "rating": 4.30190538105433,
+    "rating": 4.3,
     "price_level": 3,
     "cuisine_types": [
       "japanese_restaurant",
@@ -947,14 +947,14 @@
     "latitude": 34.020705644754564,
     "longitude": -118.25661497821115,
     "neighborhood": "Hollywood Hills",
-    "date_night_score": 99
+    "date_night_score": 92
   },
   {
     "name": "Castaway Burbank",
     "address": "Los Angeles, CA",
     "phone": "(213) 853-6849",
     "website": "https://www.castaway-burbank.com",
-    "rating": 4.408730597412588,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "american",
@@ -998,14 +998,14 @@
     "latitude": 34.03933530663733,
     "longitude": -118.26117194880462,
     "neighborhood": "Burbank",
-    "date_night_score": 90
+    "date_night_score": 94
   },
   {
     "name": "CUT by Wolfgang Puck",
     "address": "Los Angeles, CA",
     "phone": "(310) 766-6617",
     "website": "https://www.cut-by-wolfgang-puck.com",
-    "rating": 4.715007665213508,
+    "rating": 4.7,
     "price_level": 4,
     "cuisine_types": [
       "steakhouse",
@@ -1049,14 +1049,14 @@
     "latitude": 34.10222212615149,
     "longitude": -118.32667633930107,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 92
+    "date_night_score": 99
   },
   {
     "name": "Mastro's Steakhouse Beverly Hills",
     "address": "Los Angeles, CA",
     "phone": "(323) 935-3627",
     "website": "https://www.mastros-steakhouse-beverly-hills.com",
-    "rating": 4.2941925023646945,
+    "rating": 4.3,
     "price_level": 4,
     "cuisine_types": [
       "steakhouse",
@@ -1100,14 +1100,14 @@
     "latitude": 34.0842649161128,
     "longitude": -118.2704927071713,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 89
+    "date_night_score": 99
   },
   {
     "name": "Lawry's The Prime Rib",
     "address": "Los Angeles, CA",
     "phone": "(424) 117-2186",
     "website": "https://www.lawrys-the-prime-rib.com",
-    "rating": 4.369104607146237,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "steakhouse",
@@ -1158,7 +1158,7 @@
     "address": "Los Angeles, CA",
     "phone": "(310) 701-6218",
     "website": "https://www.water-grill.com",
-    "rating": 4.492168296183767,
+    "rating": 4.5,
     "price_level": 4,
     "cuisine_types": [
       "seafood_restaurant",
@@ -1202,14 +1202,14 @@
     "latitude": 34.06081901833803,
     "longitude": -118.27312964324241,
     "neighborhood": "Downtown LA",
-    "date_night_score": 94
+    "date_night_score": 99
   },
   {
     "name": "BOA Steakhouse",
     "address": "Los Angeles, CA",
     "phone": "(213) 121-2851",
     "website": "https://www.boa-steakhouse.com",
-    "rating": 4.654097831274613,
+    "rating": 4.7,
     "price_level": 4,
     "cuisine_types": [
       "steakhouse",
@@ -1253,14 +1253,14 @@
     "latitude": 33.98616427887557,
     "longitude": -118.18997156137353,
     "neighborhood": "West Hollywood",
-    "date_night_score": 98
+    "date_night_score": 99
   },
   {
     "name": "Rustic Canyon",
     "address": "Rustic Canyon, Los Angeles, CA 90272, USA",
     "phone": "(213) 925-5126",
     "website": "https://www.rustic-canyon.com",
-    "rating": 4.783034267048575,
+    "rating": 4.8,
     "price_level": 3,
     "cuisine_types": [
       "californian",
@@ -1307,7 +1307,7 @@
     "latitude": 34.041249199999996,
     "longitude": -118.5182633,
     "neighborhood": "Santa Monica",
-    "date_night_score": 95
+    "date_night_score": 99
   },
   {
     "name": "Mélisse Restaurant",
@@ -1360,7 +1360,7 @@
     "latitude": 34.0245221,
     "longitude": -118.49135629999999,
     "neighborhood": "Santa Monica",
-    "date_night_score": 97
+    "date_night_score": 99
   },
   {
     "name": "Vespertine",
@@ -1414,7 +1414,7 @@
     "latitude": 34.0241968,
     "longitude": -118.3818786,
     "neighborhood": "Culver City",
-    "date_night_score": 94
+    "date_night_score": 99
   },
   {
     "name": "n/naka",
@@ -1467,14 +1467,14 @@
     "latitude": 34.0251279,
     "longitude": -118.4122016,
     "neighborhood": "Palms",
-    "date_night_score": 88
+    "date_night_score": 99
   },
   {
     "name": "Hayato",
     "address": "Los Angeles, CA",
     "phone": "(310) 430-2186",
     "website": "https://www.hayato.com",
-    "rating": 4.609103750146486,
+    "rating": 4.6,
     "price_level": 4,
     "cuisine_types": [
       "japanese_restaurant",
@@ -1518,14 +1518,14 @@
     "latitude": 34.112224583006736,
     "longitude": -118.26562313127339,
     "neighborhood": "Downtown LA",
-    "date_night_score": 85
+    "date_night_score": 99
   },
   {
     "name": "Orsa & Winston",
     "address": "Los Angeles, CA",
     "phone": "(323) 113-8482",
     "website": "https://www.orsa-and-winston.com",
-    "rating": 4.22999302093777,
+    "rating": 4.2,
     "price_level": 4,
     "cuisine_types": [
       "contemporary",
@@ -1569,7 +1569,7 @@
     "latitude": 34.13503140076979,
     "longitude": -118.19291748613587,
     "neighborhood": "Downtown LA",
-    "date_night_score": 89
+    "date_night_score": 97
   },
   {
     "name": "Lucques",
@@ -1622,7 +1622,7 @@
     "latitude": 34.0823465,
     "longitude": -118.3754196,
     "neighborhood": "West Hollywood",
-    "date_night_score": 93
+    "date_night_score": 98
   },
   {
     "name": "Animal Restaurant",
@@ -1675,7 +1675,7 @@
     "latitude": 34.0792438,
     "longitude": -118.36177869999999,
     "neighborhood": "Fairfax",
-    "date_night_score": 91
+    "date_night_score": 94
   },
   {
     "name": "Son of a Gun",
@@ -1728,14 +1728,14 @@
     "latitude": 34.07272,
     "longitude": -118.37250200000001,
     "neighborhood": "Mid-City",
-    "date_night_score": 93
+    "date_night_score": 90
   },
   {
     "name": "Connie and Ted's",
     "address": "Los Angeles, CA",
     "phone": "(323) 270-8763",
     "website": "https://www.connie-and-teds.com",
-    "rating": 4.237376180187321,
+    "rating": 4.2,
     "price_level": 3,
     "cuisine_types": [
       "seafood_restaurant"
@@ -1778,14 +1778,14 @@
     "latitude": 33.96011141797898,
     "longitude": -118.19802633472644,
     "neighborhood": "West Hollywood",
-    "date_night_score": 88
+    "date_night_score": 90
   },
   {
     "name": "Pasjoli",
     "address": "Los Angeles, CA",
     "phone": "(424) 761-5286",
     "website": "https://www.pasjoli.com",
-    "rating": 4.309975590906033,
+    "rating": 4.3,
     "price_level": 4,
     "cuisine_types": [
       "french_restaurant",
@@ -1829,14 +1829,14 @@
     "latitude": 34.081376354670745,
     "longitude": -118.20415109528987,
     "neighborhood": "Santa Monica",
-    "date_night_score": 91
+    "date_night_score": 99
   },
   {
     "name": "Otium",
     "address": "Los Angeles, CA",
     "phone": "(323) 944-3232",
     "website": "https://www.otium.com",
-    "rating": 4.687811477158658,
+    "rating": 4.7,
     "price_level": 4,
     "cuisine_types": [
       "contemporary",
@@ -1880,14 +1880,14 @@
     "latitude": 33.98912376923928,
     "longitude": -118.27083476676152,
     "neighborhood": "Downtown LA",
-    "date_night_score": 96
+    "date_night_score": 99
   },
   {
     "name": "Redbird",
     "address": "Los Angeles, CA",
     "phone": "(213) 932-5809",
     "website": "https://www.redbird.com",
-    "rating": 4.24781810468583,
+    "rating": 4.2,
     "price_level": 4,
     "cuisine_types": [
       "contemporary",
@@ -1931,14 +1931,14 @@
     "latitude": 34.060296661658306,
     "longitude": -118.34310133953416,
     "neighborhood": "Downtown LA",
-    "date_night_score": 87
+    "date_night_score": 92
   },
   {
     "name": "Broken Spanish",
     "address": "Los Angeles, CA",
     "phone": "(310) 519-3601",
     "website": "https://www.broken-spanish.com",
-    "rating": 4.6216826410087855,
+    "rating": 4.6,
     "price_level": 3,
     "cuisine_types": [
       "mexican",
@@ -2036,7 +2036,7 @@
     "latitude": 34.09394530000001,
     "longitude": -118.37651059999999,
     "neighborhood": "West Hollywood",
-    "date_night_score": 97
+    "date_night_score": 99
   },
   {
     "name": "Petit Trois",
@@ -2089,14 +2089,14 @@
     "latitude": 34.0841618,
     "longitude": -118.3381893,
     "neighborhood": "Hollywood",
-    "date_night_score": 86
+    "date_night_score": 99
   },
   {
     "name": "Trois Mec",
     "address": "Los Angeles, CA",
     "phone": "(323) 181-3478",
     "website": "https://www.trois-mec.com",
-    "rating": 4.62059646515831,
+    "rating": 4.6,
     "price_level": 4,
     "cuisine_types": [
       "french_restaurant",
@@ -2140,14 +2140,14 @@
     "latitude": 34.003166622305706,
     "longitude": -118.19675964650253,
     "neighborhood": "Hollywood",
-    "date_night_score": 88
+    "date_night_score": 99
   },
   {
     "name": "Matsuhisa Beverly Hills",
     "address": "Los Angeles, CA",
     "phone": "(310) 299-4358",
     "website": "https://www.matsuhisa-beverly-hills.com",
-    "rating": 4.049744263661895,
+    "rating": 4,
     "price_level": 4,
     "cuisine_types": [
       "japanese_restaurant",
@@ -2192,14 +2192,14 @@
     "latitude": 34.035731607476635,
     "longitude": -118.21799207230218,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 85
+    "date_night_score": 93
   },
   {
     "name": "Sushi Park",
     "address": "Los Angeles, CA",
     "phone": "(213) 818-1648",
     "website": "https://www.sushi-park.com",
-    "rating": 4.209314118692316,
+    "rating": 4.2,
     "price_level": 4,
     "cuisine_types": [
       "sushi",
@@ -2243,7 +2243,7 @@
     "latitude": 34.05097467468229,
     "longitude": -118.30801717981437,
     "neighborhood": "West Hollywood",
-    "date_night_score": 93
+    "date_night_score": 92
   },
   {
     "name": "Asanebo",
@@ -2296,14 +2296,14 @@
     "latitude": 34.1435667,
     "longitude": -118.39186939999999,
     "neighborhood": "Studio City",
-    "date_night_score": 91
+    "date_night_score": 98
   },
   {
     "name": "Urasawa",
     "address": "Los Angeles, CA",
     "phone": "(310) 631-8417",
     "website": "https://www.urasawa.com",
-    "rating": 4.765754765618436,
+    "rating": 4.8,
     "price_level": 4,
     "cuisine_types": [
       "japanese_restaurant",
@@ -2348,14 +2348,14 @@
     "latitude": 34.041683633875365,
     "longitude": -118.32399581362515,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 95
+    "date_night_score": 99
   },
   {
     "name": "Katsuya Brentwood",
     "address": "Los Angeles, CA",
     "phone": "(310) 168-4874",
     "website": "https://www.katsuya-brentwood.com",
-    "rating": 4.435788627772734,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "sushi",
@@ -2399,7 +2399,7 @@
     "latitude": 34.05098496414852,
     "longitude": -118.28020891366607,
     "neighborhood": "Brentwood",
-    "date_night_score": 87
+    "date_night_score": 94
   },
   {
     "name": "Élephante",
@@ -2452,14 +2452,14 @@
     "latitude": 34.0152447,
     "longitude": -118.4979996,
     "neighborhood": "Santa Monica",
-    "date_night_score": 92
+    "date_night_score": 99
   },
   {
     "name": "EP & LP Rooftop",
     "address": "Los Angeles, CA",
     "phone": "(310) 795-4745",
     "website": "https://www.ep-and-lp-rooftop.com",
-    "rating": 4.6519236087035924,
+    "rating": 4.7,
     "price_level": 3,
     "cuisine_types": [
       "asian_fusion",
@@ -2503,14 +2503,14 @@
     "latitude": 33.98072246585751,
     "longitude": -118.32290618816593,
     "neighborhood": "West Hollywood",
-    "date_night_score": 91
+    "date_night_score": 99
   },
   {
     "name": "Cassia",
     "address": "Los Angeles, CA",
     "phone": "(424) 285-8376",
     "website": "https://www.cassia.com",
-    "rating": 4.060736938601452,
+    "rating": 4.1,
     "price_level": 3,
     "cuisine_types": [
       "asian_fusion",
@@ -2554,14 +2554,14 @@
     "latitude": 33.951272911123674,
     "longitude": -118.33923637577918,
     "neighborhood": "Santa Monica",
-    "date_night_score": 95
+    "date_night_score": 88
   },
   {
     "name": "Forma Restaurant & Cheese Bar",
     "address": "Los Angeles, CA",
     "phone": "(213) 624-9414",
     "website": "https://www.forma-restaurant-and-cheese-bar.com",
-    "rating": 4.575481964049198,
+    "rating": 4.6,
     "price_level": 4,
     "cuisine_types": [
       "italian_restaurant",
@@ -2605,7 +2605,7 @@
     "latitude": 33.96113148566813,
     "longitude": -118.30923234203726,
     "neighborhood": "Santa Monica",
-    "date_night_score": 97
+    "date_night_score": 99
   },
   {
     "name": "Felix Trattoria",
@@ -2657,7 +2657,7 @@
     "latitude": 33.9922429,
     "longitude": -118.47186579999999,
     "neighborhood": "Venice",
-    "date_night_score": 87
+    "date_night_score": 99
   },
   {
     "name": "Scopa Italian Roots",
@@ -2709,14 +2709,14 @@
     "latitude": 33.9883582,
     "longitude": -118.45154280000001,
     "neighborhood": "Venice",
-    "date_night_score": 92
+    "date_night_score": 99
   },
   {
     "name": "The Tasting Kitchen",
     "address": "Los Angeles, CA",
     "phone": "(323) 368-5273",
     "website": "https://www.the-tasting-kitchen.com",
-    "rating": 4.393211200975745,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "californian",
@@ -2760,7 +2760,7 @@
     "latitude": 34.028727015908515,
     "longitude": -118.18856165784435,
     "neighborhood": "Venice",
-    "date_night_score": 85
+    "date_night_score": 94
   },
   {
     "name": "Tar & Roses",
@@ -2813,7 +2813,7 @@
     "latitude": 34.0179488,
     "longitude": -118.4930091,
     "neighborhood": "Santa Monica",
-    "date_night_score": 93
+    "date_night_score": 99
   },
   {
     "name": "Birch",
@@ -2866,14 +2866,14 @@
     "latitude": 34.1009179,
     "longitude": -118.3293253,
     "neighborhood": "Santa Monica",
-    "date_night_score": 96
+    "date_night_score": 94
   },
   {
     "name": "Hatchet Hall",
     "address": "Los Angeles, CA",
     "phone": "(424) 805-3903",
     "website": "https://www.hatchet-hall.com",
-    "rating": 4.401448164298154,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "american",
@@ -2917,7 +2917,7 @@
     "latitude": 33.98099987407316,
     "longitude": -118.2733449036464,
     "neighborhood": "Culver City",
-    "date_night_score": 95
+    "date_night_score": 94
   },
   {
     "name": "Destroyer",
@@ -2970,7 +2970,7 @@
     "latitude": 34.0246417,
     "longitude": -118.3813241,
     "neighborhood": "Culver City",
-    "date_night_score": 87
+    "date_night_score": 96
   },
   {
     "name": "Manuela",
@@ -3023,14 +3023,14 @@
     "latitude": 34.046459899999995,
     "longitude": -118.23483369999998,
     "neighborhood": "Arts District",
-    "date_night_score": 93
+    "date_night_score": 96
   },
   {
     "name": "Rossoblu DTLA",
     "address": "Los Angeles, CA",
     "phone": "(323) 373-5208",
     "website": "https://www.rossoblu-dtla.com",
-    "rating": 4.493220391698194,
+    "rating": 4.5,
     "price_level": 3,
     "cuisine_types": [
       "italian_restaurant",
@@ -3074,7 +3074,7 @@
     "latitude": 34.04787868477076,
     "longitude": -118.30031357552653,
     "neighborhood": "Downtown LA",
-    "date_night_score": 95
+    "date_night_score": 99
   },
   {
     "name": "Majordomo",
@@ -3128,14 +3128,14 @@
     "latitude": 34.0690822,
     "longitude": -118.2261672,
     "neighborhood": "Chinatown",
-    "date_night_score": 99
+    "date_night_score": 98
   },
   {
     "name": "Guerrilla Tacos",
     "address": "Los Angeles, CA",
     "phone": "(424) 724-4731",
     "website": "https://www.guerrilla-tacos.com",
-    "rating": 4.184351242133614,
+    "rating": 4.2,
     "price_level": 2,
     "cuisine_types": [
       "mexican",
@@ -3180,7 +3180,7 @@
     "latitude": 33.992652688014694,
     "longitude": -118.28235918628528,
     "neighborhood": "Arts District",
-    "date_night_score": 96
+    "date_night_score": 88
   },
   {
     "name": "Cabra Los Angeles",
@@ -3287,14 +3287,14 @@
     "latitude": 34.046090899999996,
     "longitude": -118.2615236,
     "neighborhood": "Downtown LA",
-    "date_night_score": 93
+    "date_night_score": 94
   },
   {
     "name": "Baltaire Restaurant",
     "address": "Los Angeles, CA",
     "phone": "(213) 415-9642",
     "website": "https://www.baltaire-restaurant.com",
-    "rating": 4.510547739035603,
+    "rating": 4.5,
     "price_level": 4,
     "cuisine_types": [
       "steakhouse",
@@ -3338,7 +3338,7 @@
     "latitude": 34.10656849433378,
     "longitude": -118.32203337468513,
     "neighborhood": "Brentwood",
-    "date_night_score": 94
+    "date_night_score": 98
   },
   {
     "name": "The Grill on the Alley",
@@ -3391,14 +3391,14 @@
     "latitude": 34.067283499999995,
     "longitude": -118.4019281,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 90
+    "date_night_score": 99
   },
   {
     "name": "Toscana Brentwood",
     "address": "Los Angeles, CA",
     "phone": "(323) 351-5185",
     "website": "https://www.toscana-brentwood.com",
-    "rating": 4.1046021528525465,
+    "rating": 4.1,
     "price_level": 4,
     "cuisine_types": [
       "italian_restaurant",
@@ -3442,14 +3442,14 @@
     "latitude": 34.09489924749761,
     "longitude": -118.29558892570033,
     "neighborhood": "Brentwood",
-    "date_night_score": 85
+    "date_night_score": 95
   },
   {
     "name": "Giorgio Baldi",
     "address": "Los Angeles, CA",
     "phone": "(213) 549-7072",
     "website": "https://www.giorgio-baldi.com",
-    "rating": 4.475181893746937,
+    "rating": 4.5,
     "price_level": 4,
     "cuisine_types": [
       "italian_restaurant",
@@ -3493,14 +3493,14 @@
     "latitude": 34.04409664392255,
     "longitude": -118.3032386813641,
     "neighborhood": "Santa Monica",
-    "date_night_score": 98
+    "date_night_score": 99
   },
   {
     "name": "Madeo Ristorante",
     "address": "Los Angeles, CA",
     "phone": "(323) 963-8079",
     "website": "https://www.madeo-ristorante.com",
-    "rating": 4.262469714536455,
+    "rating": 4.3,
     "price_level": 4,
     "cuisine_types": [
       "italian_restaurant"
@@ -3543,7 +3543,7 @@
     "latitude": 34.09733200429042,
     "longitude": -118.24430984480978,
     "neighborhood": "West Hollywood",
-    "date_night_score": 92
+    "date_night_score": 99
   },
   {
     "name": "Angelini Osteria",
@@ -3595,14 +3595,14 @@
     "latitude": 34.0763922,
     "longitude": -118.3491316,
     "neighborhood": "Fairfax",
-    "date_night_score": 89
+    "date_night_score": 99
   },
   {
     "name": "Osteria La Buca",
     "address": "Los Angeles, CA",
     "phone": "(213) 850-9996",
     "website": "https://www.osteria-la-buca.com",
-    "rating": 4.602382651975721,
+    "rating": 4.6,
     "price_level": 3,
     "cuisine_types": [
       "italian_restaurant",
@@ -3646,14 +3646,14 @@
     "latitude": 34.033177765213274,
     "longitude": -118.28771400702641,
     "neighborhood": "Hollywood",
-    "date_night_score": 95
+    "date_night_score": 99
   },
   {
     "name": "Cecconi's West Hollywood",
     "address": "Los Angeles, CA",
     "phone": "(424) 836-1371",
     "website": "https://www.cecconis-west-hollywood.com",
-    "rating": 4.771140401744768,
+    "rating": 4.8,
     "price_level": 4,
     "cuisine_types": [
       "italian_restaurant",
@@ -3697,7 +3697,7 @@
     "latitude": 33.982112856702955,
     "longitude": -118.29262939480024,
     "neighborhood": "West Hollywood",
-    "date_night_score": 92
+    "date_night_score": 99
   },
   {
     "name": "Mother Wolf",
@@ -3750,14 +3750,14 @@
     "latitude": 34.0994241,
     "longitude": -118.33130980000001,
     "neighborhood": "Hollywood",
-    "date_night_score": 89
+    "date_night_score": 97
   },
   {
     "name": "Osteria Mamma",
     "address": "Los Angeles, CA",
     "phone": "(424) 682-3101",
     "website": "https://www.osteria-mamma.com",
-    "rating": 4.61921819160021,
+    "rating": 4.6,
     "price_level": 2,
     "cuisine_types": [
       "italian_restaurant"
@@ -3800,7 +3800,7 @@
     "latitude": 34.03316039066585,
     "longitude": -118.32316566574778,
     "neighborhood": "Hollywood",
-    "date_night_score": 85
+    "date_night_score": 99
   },
   {
     "name": "Jon & Vinny's Fairfax",
@@ -3853,7 +3853,7 @@
     "latitude": 34.0786444,
     "longitude": -118.3612833,
     "neighborhood": "Fairfax",
-    "date_night_score": 88
+    "date_night_score": 95
   },
   {
     "name": "Pizzana",
@@ -3906,14 +3906,14 @@
     "latitude": 34.0533058,
     "longitude": -118.4660211,
     "neighborhood": "Brentwood",
-    "date_night_score": 96
+    "date_night_score": 99
   },
   {
     "name": "Chinois on Main",
     "address": "Los Angeles, CA",
     "phone": "(310) 838-3843",
     "website": "https://www.chinois-on-main.com",
-    "rating": 4.065987071361402,
+    "rating": 4.1,
     "price_level": 4,
     "cuisine_types": [
       "asian_fusion",
@@ -3957,7 +3957,7 @@
     "latitude": 34.071808859526406,
     "longitude": -118.24432001023578,
     "neighborhood": "Santa Monica",
-    "date_night_score": 85
+    "date_night_score": 90
   },
   {
     "name": "Kali Steak",
@@ -4017,7 +4017,7 @@
     "address": "Los Angeles, CA",
     "phone": "(323) 826-7680",
     "website": "https://www.kismet.com",
-    "rating": 4.654608882204429,
+    "rating": 4.7,
     "price_level": 3,
     "cuisine_types": [
       "mediterranean",
@@ -4114,7 +4114,7 @@
     "latitude": 34.0810234,
     "longitude": -118.38696649999999,
     "neighborhood": "West Hollywood",
-    "date_night_score": 96
+    "date_night_score": 94
   },
   {
     "name": "Crossroads Kitchen",
@@ -4167,14 +4167,14 @@
     "latitude": 34.083527,
     "longitude": -118.370157,
     "neighborhood": "West Hollywood",
-    "date_night_score": 91
+    "date_night_score": 98
   },
   {
     "name": "Night + Market Weho",
     "address": "Los Angeles, CA",
     "phone": "(310) 577-8020",
     "website": "https://www.night-market-weho.com",
-    "rating": 4.136042062909858,
+    "rating": 4.1,
     "price_level": 2,
     "cuisine_types": [
       "thai",
@@ -4218,14 +4218,14 @@
     "latitude": 34.12879202448566,
     "longitude": -118.2546894141774,
     "neighborhood": "West Hollywood",
-    "date_night_score": 95
+    "date_night_score": 86
   },
   {
     "name": "Jitlada Thai",
     "address": "Los Angeles, CA",
     "phone": "(310) 194-6474",
     "website": "https://www.jitlada-thai.com",
-    "rating": 4.614222457209271,
+    "rating": 4.6,
     "price_level": 2,
     "cuisine_types": [
       "thai",
@@ -4269,7 +4269,7 @@
     "latitude": 34.107526435571465,
     "longitude": -118.25242549313319,
     "neighborhood": "East Hollywood",
-    "date_night_score": 89
+    "date_night_score": 96
   },
   {
     "name": "Guelaguetza Restaurant",
@@ -4322,7 +4322,7 @@
     "latitude": 34.0524074,
     "longitude": -118.30066809999998,
     "neighborhood": "Koreatown",
-    "date_night_score": 89
+    "date_night_score": 90
   },
   {
     "name": "Madre! Oaxacan Restaurant and Mezcaleria",
@@ -4375,14 +4375,14 @@
     "latitude": 33.8355173,
     "longitude": -118.3148352,
     "neighborhood": "Hollywood",
-    "date_night_score": 91
+    "date_night_score": 92
   },
   {
     "name": "La Casita Mexicana",
     "address": "Los Angeles, CA",
     "phone": "(323) 235-2786",
     "website": "https://www.la-casita-mexicana.com",
-    "rating": 4.5527941363492115,
+    "rating": 4.6,
     "price_level": 2,
     "cuisine_types": [
       "mexican"
@@ -4425,7 +4425,7 @@
     "latitude": 34.1279739471064,
     "longitude": -118.27723827231353,
     "neighborhood": "Culver City",
-    "date_night_score": 94
+    "date_night_score": 96
   },
   {
     "name": "Burrata House",
@@ -4530,14 +4530,14 @@
     "latitude": 34.0470524,
     "longitude": -118.2565439,
     "neighborhood": "Downtown LA",
-    "date_night_score": 97
+    "date_night_score": 99
   },
   {
     "name": "Church & State",
     "address": "Los Angeles, CA",
     "phone": "(323) 599-9360",
     "website": "https://www.church-and-state.com",
-    "rating": 4.180015120534806,
+    "rating": 4.2,
     "price_level": 3,
     "cuisine_types": [
       "french_restaurant",
@@ -4581,14 +4581,14 @@
     "latitude": 34.008950796643035,
     "longitude": -118.25973157869694,
     "neighborhood": "Downtown LA",
-    "date_night_score": 92
+    "date_night_score": 95
   },
   {
     "name": "Lou Wine Shop",
     "address": "Los Angeles, CA",
     "phone": "(424) 810-5798",
     "website": "https://www.lou-wine-shop.com",
-    "rating": 4.369022674965485,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "wine_bar",
@@ -4632,7 +4632,7 @@
     "latitude": 34.11035516738627,
     "longitude": -118.30879303068738,
     "neighborhood": "Hollywood",
-    "date_night_score": 85
+    "date_night_score": 99
   },
   {
     "name": "Esters Wine Shop & Oyster Bar",
@@ -4685,14 +4685,14 @@
     "latitude": 34.0195764,
     "longitude": -118.4935844,
     "neighborhood": "Santa Monica",
-    "date_night_score": 89
+    "date_night_score": 94
   },
   {
     "name": "Covell Wine Bar",
     "address": "Los Angeles, CA",
     "phone": "(323) 767-9471",
     "website": "https://www.covell-wine-bar.com",
-    "rating": 4.784796782593336,
+    "rating": 4.8,
     "price_level": 2,
     "cuisine_types": [
       "wine_bar"
@@ -4735,14 +4735,14 @@
     "latitude": 34.04125980129745,
     "longitude": -118.18677790403925,
     "neighborhood": "Los Feliz",
-    "date_night_score": 91
+    "date_night_score": 99
   },
   {
     "name": "The Must Wine Bar",
     "address": "Los Angeles, CA",
     "phone": "(310) 743-9062",
     "website": "https://www.the-must-wine-bar.com",
-    "rating": 4.373728956369385,
+    "rating": 4.4,
     "price_level": 2,
     "cuisine_types": [
       "wine_bar",
@@ -4786,14 +4786,14 @@
     "latitude": 34.09916141444532,
     "longitude": -118.34413798311928,
     "neighborhood": "Mid-City",
-    "date_night_score": 99
+    "date_night_score": 92
   },
   {
     "name": "Cliff's Edge Silver Lake",
     "address": "Los Angeles, CA",
     "phone": "(424) 682-2143",
     "website": "https://www.cliffs-edge-silver-lake.com",
-    "rating": 4.444299034581065,
+    "rating": 4.4,
     "price_level": 3,
     "cuisine_types": [
       "californian",
@@ -4837,7 +4837,7 @@
     "latitude": 34.063202959141854,
     "longitude": -118.32023670144173,
     "neighborhood": "Silver Lake",
-    "date_night_score": 92
+    "date_night_score": 94
   },
   {
     "name": "Botanica Restaurant and Market",
@@ -4890,14 +4890,14 @@
     "latitude": 34.0884858,
     "longitude": -118.2688688,
     "neighborhood": "Silver Lake",
-    "date_night_score": 93
+    "date_night_score": 96
   },
   {
     "name": "Josephine Eatery",
     "address": "Los Angeles, CA",
     "phone": "(310) 237-7975",
     "website": "https://www.josephine-eatery.com",
-    "rating": 4.043235104024131,
+    "rating": 4,
     "price_level": 3,
     "cuisine_types": [
       "californian",
@@ -4941,7 +4941,7 @@
     "latitude": 34.00764364027082,
     "longitude": -118.31958128484447,
     "neighborhood": "Echo Park",
-    "date_night_score": 98
+    "date_night_score": 86
   },
   {
     "name": "Sqirl",
@@ -4995,14 +4995,14 @@
     "latitude": 34.0844653,
     "longitude": -118.2866952,
     "neighborhood": "Silver Lake",
-    "date_night_score": 91
+    "date_night_score": 92
   },
   {
     "name": "Nightshade Pasadena",
     "address": "Los Angeles, CA",
     "phone": "(310) 699-8749",
     "website": "https://www.nightshade-pasadena.com",
-    "rating": 4.190728310903494,
+    "rating": 4.2,
     "price_level": 3,
     "cuisine_types": [
       "contemporary",
@@ -5046,14 +5046,14 @@
     "latitude": 34.13529336566985,
     "longitude": -118.22918726703826,
     "neighborhood": "Pasadena",
-    "date_night_score": 92
+    "date_night_score": 90
   },
   {
     "name": "The Raymond 1886",
     "address": "Los Angeles, CA",
     "phone": "(310) 116-7517",
     "website": "https://www.the-raymond-1886.com",
-    "rating": 4.174254373494657,
+    "rating": 4.2,
     "price_level": 3,
     "cuisine_types": [
       "american",
@@ -5097,14 +5097,14 @@
     "latitude": 33.991083520111744,
     "longitude": -118.34332685360042,
     "neighborhood": "Pasadena",
-    "date_night_score": 88
+    "date_night_score": 90
   },
   {
     "name": "Vibrato Grill Jazz",
     "address": "Los Angeles, CA",
     "phone": "(424) 953-5249",
     "website": "https://www.vibrato-grill-jazz.com",
-    "rating": 4.54363919784381,
+    "rating": 4.5,
     "price_level": 3,
     "cuisine_types": [
       "american",
@@ -5148,14 +5148,14 @@
     "latitude": 34.098642669183384,
     "longitude": -118.33508279317255,
     "neighborhood": "Bel Air",
-    "date_night_score": 94
+    "date_night_score": 96
   },
   {
     "name": "Smoke House Restaurant",
     "address": "Los Angeles, CA",
     "phone": "(213) 739-1746",
     "website": "https://www.smoke-house-restaurant.com",
-    "rating": 4.536474518228426,
+    "rating": 4.5,
     "price_level": 3,
     "cuisine_types": [
       "american",
@@ -5199,6 +5199,6 @@
     "latitude": 33.96843177462286,
     "longitude": -118.18605803419901,
     "neighborhood": "Burbank",
-    "date_night_score": 88
+    "date_night_score": 96
   }
 ]
