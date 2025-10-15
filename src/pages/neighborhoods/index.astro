@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+const neighborhoods = Array.from(new Set(restaurants.map(r => r.neighborhood)));
+const toSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+const cards = neighborhoods.map(name => {
+  const count = restaurants.filter(r => r.neighborhood === name).length;
+  const avg = count ? (restaurants.filter(r => r.neighborhood === name).reduce((s,r)=>s+r.rating,0)/count).toFixed(1) : '0.0';
+  return { name, count, avg, slug: toSlug(name) };
+}).sort((a,b)=> b.count - a.count);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Los Angeles Neighborhoods | Date Night Restaurants",
+  "description": "Explore LA neighborhoods and discover the best date night restaurants in each area.",
+  "url": "https://datenightrestaurants.com/neighborhoods/",
+  "mainEntity": cards.map((c, i) => ({
+    "@type": "ListItem",
+    "position": i+1,
+    "name": `${c.name} Date Night Restaurants`,
+    "url": `https://datenightrestaurants.com/neighborhoods/${c.slug}/`
+  }))
+};
+---
+
+<BaseLayout
+  title="Los Angeles Neighborhoods | Date Night Restaurants"
+  description="Browse LA neighborhoods to find the best date night restaurants—Beverly Hills, West Hollywood, Santa Monica, Venice, Hollywood, DTLA, and more."
+  keywords={["los angeles neighborhoods date night","romantic restaurants by neighborhood","la date night areas"]}
+  canonical="https://datenightrestaurants.com/neighborhoods/"
+  structuredData={structuredData}
+>
+  <section class="neighborhoods-hero">
+    <div class="container">
+      <h1>Explore LA Neighborhoods</h1>
+      <p>Find the perfect date night spot in your favorite part of Los Angeles.</p>
+    </div>
+  </section>
+
+  <section class="neighborhoods-list">
+    <div class="container">
+      <div class="grid">
+        {cards.map(card => (
+          <a href={`/neighborhoods/${card.slug}/`} class="card">
+            <h3>{card.name}</h3>
+            <p>{card.count} restaurants • {card.avg}★ avg</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .neighborhoods-hero { background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%); color: #fff; text-align:center; padding: 120px 0 60px; }
+  .neighborhoods-hero h1 { font-size: 3rem; margin: 0 0 1rem 0; }
+  .neighborhoods-hero p { opacity: .9; }
+  .neighborhoods-list { padding: 60px 0; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .card { background:#fff; border:1px solid #E8D5B7; border-radius:12px; padding: 1rem; text-decoration:none; color: inherit; transition: transform .2s ease; }
+  .card:hover { transform: translateY(-3px); }
+  .card h3 { margin: 0 0 .25rem 0; }
+  .card p { margin: 0; color:#666; }
+</style>
