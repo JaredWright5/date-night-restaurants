@@ -1,0 +1,364 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { getTopRestaurants, restaurants } from '@/data/restaurants';
+import { getAllCities } from '@/data/cities';
+import { neighborhoods } from '@/data/neighborhoods';
+
+const topRestaurants = getTopRestaurants(6);
+const laNeighborhoodsCount = new Set(restaurants.map(r => r.neighborhood)).size;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Date Night Restaurants Los Angeles",
+  "url": "https://datenightrestaurants.com/losangeles/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://datenightrestaurants.com/losangeles/?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<BaseLayout
+  title="Date Night Restaurants Los Angeles | Top Romantic Dining in LA"
+  description="Discover the best date night restaurants in Los Angeles. Curated list of romantic dining spots with reviews, photos, and reservations. Perfect for couples and special occasions."
+  keywords={['date night restaurants Los Angeles', 'romantic dining LA', 'couples restaurants LA', 'fine dining Los Angeles', 'romantic restaurants Beverly Hills', 'date night LA']}
+  structuredData={structuredData}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Discover LA's Most Romantic Restaurants</h1>
+      <p>Curated collection of the best date night dining experiences across Los Angeles neighborhoods</p>
+      <div class="search-box">
+        <input type="text" placeholder="Search restaurants, cuisine, or location..." />
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">{restaurants.length}+</span>
+          <span class="stat-label">Restaurants</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{laNeighborhoodsCount}</span>
+          <span class="stat-label">LA Neighborhoods</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4.5★</span>
+          <span class="stat-label">Avg. Rating</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Restaurants Section -->
+  <section class="featured-restaurants">
+    <div class="container">
+      <h2>Top Picks for Your Next Date Night</h2>
+      <p>Handpicked romantic dining experiences in Los Angeles</p>
+      <div class="restaurants-grid">
+        {topRestaurants.map(restaurant => (
+          <RestaurantCard restaurant={restaurant} />
+        ))}
+      </div>
+      <div class="section-actions">
+        <a href="/losangeles/restaurants/" class="btn btn-primary">View All Restaurants</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Section -->
+  <section class="neighborhoods-explore">
+    <div class="container">
+      <h2>Explore by Neighborhood</h2>
+      <p>Discover romantic dining experiences in specific areas of Los Angeles.</p>
+      <div class="neighborhoods-grid">
+        {neighborhoods.map(neighborhood => (
+          <div class="neighborhood-card">
+            <a href={`/losangeles/neighborhoods/${neighborhood.slug}/`}>
+              <h3>{neighborhood.name}</h3>
+              <p>{neighborhood.restaurantCount} restaurants</p>
+              <div class="neighborhood-rating">
+                <span class="stars">{'★'.repeat(Math.floor(parseFloat(neighborhood.averageRating)))}</span>
+                <span class="rating">{neighborhood.averageRating}</span>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Can't Decide? Let Us Help!</h2>
+      <p>Answer a few questions and we'll suggest the perfect date night spot for you.</p>
+      <a href="/quiz/" class="btn btn-primary">Find My Date Night</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+    animation: rotate 20s linear infinite;
+    opacity: 0.5;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+  }
+
+  .search-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .search-box button {
+    background: #D4AF37;
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .search-box button:hover {
+    background: #B8941F;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    display: block;
+  }
+
+  .featured-restaurants, .neighborhoods-explore, .cta-section {
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .featured-restaurants h2, .neighborhoods-explore h2, .cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .featured-restaurants p, .neighborhoods-explore p, .cta-section p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .restaurants-grid, .neighborhoods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-actions {
+    margin-top: 3rem;
+  }
+
+  .btn {
+    display: inline-block;
+    background: #D4AF37;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+
+  .neighborhood-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    padding: 1.5rem;
+  }
+
+  .neighborhood-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+
+  .neighborhood-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .neighborhood-card h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .neighborhood-card p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .neighborhood-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+  .neighborhood-rating .stars {
+    color: #D4AF37;
+  }
+
+  .neighborhood-rating .rating {
+    font-weight: 600;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 5rem 0;
+    border-radius: 15px;
+    margin: 4rem auto;
+    max-width: 1200px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  .cta-section h2 {
+    color: white;
+  }
+
+  .cta-section p {
+    color: #F8F6F0;
+  }
+
+  .cta-section .btn {
+    background: white;
+    color: #2C2C2C;
+  }
+
+  .cta-section .btn:hover {
+    background: #F0EDE5;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+    }
+
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .search-box input {
+      border-radius: 50px 0 0 50px;
+    }
+
+    .search-box button {
+      border-radius: 0 50px 50px 0;
+    }
+
+    .featured-restaurants, .neighborhoods-explore, .cta-section {
+      padding: 3rem 0;
+    }
+
+    .featured-restaurants h2, .neighborhoods-explore h2, .cta-section h2 {
+      font-size: 2rem;
+    }
+
+    .featured-restaurants p, .neighborhoods-explore p, .cta-section p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
