@@ -275,4 +275,4 @@ For questions or issues:
 
 ---
 
-Built with ❤️ using Astro, TypeScript, and Tailwind CSS
+Built with ❤️ using Astro, TypeScript, and Tailwind CSS# Force Cloudflare deployment
