@@ -163,7 +163,7 @@ async function fetchRestaurantData() {
           ];
       
       // Parse opening hours
-      const openingHours = {};
+      let openingHours = {};
       if (place.regularOpeningHours && place.regularOpeningHours.weekdayDescriptions) {
         place.regularOpeningHours.weekdayDescriptions.forEach(desc => {
           const [day, hours] = desc.split(': ');
