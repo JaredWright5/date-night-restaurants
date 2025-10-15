@@ -19,6 +19,8 @@ export default defineConfig({
         'https://datenightrestaurants.com/',
         'https://datenightrestaurants.com/cities/',
         'https://datenightrestaurants.com/cuisines/',
+        'https://datenightrestaurants.com/neighborhoods/',
+        'https://datenightrestaurants.com/sitemap-neighborhoods.xml',
       ]
     }),
     tailwind({
