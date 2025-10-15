@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate": "node scripts/generate-data.js"
+    "generate": "node scripts/generate-data.js",
+    "fetch-photos": "node scripts/fetch-restaurant-photos.js"
   },
   "dependencies": {
     "astro": "^4.0.0",
