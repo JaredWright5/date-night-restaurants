@@ -1,0 +1,5 @@
+# Google Places API Key
+GOOGLE_PLACES_API_KEY=your_google_places_api_key_here
+
+# Optional: Yelp API Key for additional data
+YELP_API_KEY=your_yelp_api_key_here

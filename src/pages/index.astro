@@ -1,0 +1,528 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import FeaturedSection from '@/components/FeaturedSection.astro';
+import { getTopRestaurants, restaurants } from '@/data/restaurants';
+import { getAllCities } from '@/data/cities';
+import { getPopularCuisines } from '@/data/cuisines';
+
+const topRestaurants = getTopRestaurants(6);
+const cities = getAllCities();
+const cuisines = getPopularCuisines(6);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Date Night Restaurants",
+  "description": "Discover the best date night restaurants in Los Angeles. Curated list of romantic dining spots with reviews, photos, and reservations.",
+  "url": "https://datenightrestaurants.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://datenightrestaurants.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<BaseLayout 
+  title="Date Night Restaurants | Top Romantic Dining in Los Angeles"
+  description="Discover the best date night restaurants in Los Angeles. Curated list of romantic dining spots with reviews, photos, and reservations. Perfect for couples and special occasions."
+  keywords={['date night restaurants', 'romantic dining Los Angeles', 'couples restaurants', 'fine dining LA', 'romantic restaurants Beverly Hills', 'date night LA']}
+  structuredData={structuredData}
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Discover LA's Most Romantic Restaurants</h1>
+      <p class="hero-subtitle">Curated collection of the best date night dining experiences across Los Angeles neighborhoods</p>
+      
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">{restaurants.length}</span>
+          <span class="stat-label">Restaurants</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4.3★</span>
+          <span class="stat-label">Average Rating</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{new Set(restaurants.map(r => r.neighborhood)).size}</span>
+          <span class="stat-label">LA Neighborhoods</span>
+        </div>
+      </div>
+      
+      <div class="hero-search">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search restaurants, cuisine, or location..." />
+          <button id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="search-filters">
+          <select id="cuisineFilter">
+            <option value="">All Cuisines</option>
+            {cuisines.map(cuisine => (
+              <option value={cuisine.slug}>{cuisine.name}</option>
+            ))}
+          </select>
+          <select id="priceFilter">
+            <option value="">All Prices</option>
+            <option value="1">$</option>
+            <option value="2">$$</option>
+            <option value="3">$$$</option>
+            <option value="4">$$$$</option>
+          </select>
+          <select id="ratingFilter">
+            <option value="">All Ratings</option>
+            <option value="4.5">4.5+ Stars</option>
+            <option value="4.0">4.0+ Stars</option>
+            <option value="3.5">3.5+ Stars</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Restaurants Section -->
+  <FeaturedSection />
+
+  <!-- Featured Restaurants -->
+  <section class="restaurants">
+    <div class="container">
+      <div class="section-header">
+        <h2>Top Date Night Restaurants</h2>
+        <p>Handpicked romantic dining experiences across Los Angeles</p>
+      </div>
+      
+      <div class="restaurants-grid">
+        {topRestaurants.map(restaurant => (
+          <RestaurantCard restaurant={restaurant} />
+        ))}
+      </div>
+      
+      <div class="section-actions">
+        <a href="/restaurants/" class="btn btn-primary">View All Restaurants</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Section -->
+  <section class="neighborhoods">
+    <div class="container">
+      <div class="section-header">
+        <h2>Explore by Neighborhood</h2>
+        <p>Discover romantic restaurants across Los Angeles neighborhoods</p>
+      </div>
+      
+      <div class="neighborhoods-grid">
+        {Array.from(new Set(restaurants.map(r => r.neighborhood))).slice(0, 8).map(neighborhood => {
+          const neighborhoodRestaurants = restaurants.filter(r => r.neighborhood === neighborhood);
+          const avgRating = (neighborhoodRestaurants.reduce((sum, r) => sum + r.rating, 0) / neighborhoodRestaurants.length).toFixed(1);
+          return (
+            <div class="neighborhood-card">
+              <a href={`/neighborhoods/${neighborhood.toLowerCase().replace(/\s+/g, '-')}/`}>
+                <h3>{neighborhood}</h3>
+                <p>{neighborhoodRestaurants.length} restaurants</p>
+                <div class="neighborhood-rating">
+                  <span class="stars">{'★'.repeat(Math.floor(parseFloat(avgRating)))}</span>
+                  <span class="rating">{avgRating}</span>
+                </div>
+              </a>
+            </div>
+          );
+        })}
+      </div>
+      
+      <div class="section-actions">
+        <a href="/neighborhoods" class="btn">View All Neighborhoods</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuisines Section -->
+  <section class="cuisines">
+    <div class="container">
+      <div class="section-header">
+        <h2>Popular Cuisines</h2>
+        <p>Find your perfect romantic dining style</p>
+      </div>
+      
+      <div class="cuisines-grid">
+        {cuisines.map(cuisine => (
+          <div class="cuisine-card">
+            <a href={`/cuisines/${cuisine.slug}/`}>
+              <div class="cuisine-icon">{cuisine.icon}</div>
+              <h3>{cuisine.name}</h3>
+              <p>{cuisine.restaurantCount} restaurants</p>
+              <p class="cuisine-description">{cuisine.description}</p>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <div class="about-content">
+        <h2>Why Choose LA Date Night?</h2>
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3>Curated Selection</h3>
+            <p>Every restaurant is carefully selected for its romantic ambiance, exceptional cuisine, and date night appeal.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>LA Coverage</h3>
+            <p>From Beverly Hills to Venice Beach, we cover all the best romantic dining spots across Los Angeles.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Date Night Focus</h3>
+            <p>Specialized in romantic dining experiences perfect for couples, anniversaries, and special occasions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .hero-search {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .search-box {
+    display: flex;
+    background: white;
+    border-radius: 50px;
+    padding: 5px;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  
+  .search-box input {
+    flex: 1;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .search-box button {
+    background: #D4AF37;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .search-box button:hover {
+    background: #6B1A2F;
+  }
+  
+  .search-filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .search-filters select {
+    padding: 10px 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 25px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  .search-filters select option {
+    background: #333;
+    color: white;
+  }
+  
+  .restaurants, .cities, .cuisines, .about {
+    padding: 80px 0;
+  }
+  
+  .restaurants {
+    background: #fff;
+  }
+  
+  .cities {
+    background: #f8f9fa;
+  }
+  
+  .cuisines {
+    background: #fff;
+  }
+  
+  .about {
+    background: #f8f9fa;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .section-header p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .cities-grid, .cuisines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .city-card, .cuisine-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .city-card:hover, .cuisine-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .city-card a, .cuisine-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .city-card h3, .cuisine-card h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .city-card p, .cuisine-card p {
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .city-description, .cuisine-description {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .cuisine-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .feature {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  }
+  
+  .feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #d63384, #ff6b6b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  .feature h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .feature p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .neighborhoods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .neighborhood-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .neighborhood-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .neighborhood-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .neighborhood-card p {
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .neighborhood-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .neighborhood-rating .stars {
+    color: #D4AF37;
+    font-size: 1.1rem;
+  }
+  
+  .neighborhood-rating .rating {
+    color: #666;
+    font-weight: 600;
+  }
+
+  .section-actions {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #D4AF37;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #6B1A2F;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .search-filters {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

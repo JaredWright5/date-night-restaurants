@@ -1,0 +1,478 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { featuredRestaurants, addFeaturedRestaurant, removeFeaturedRestaurant, updateFeaturedRestaurant } from '@/data/featured';
+
+// This would typically be protected by authentication in production
+const isAdmin = true; // Replace with actual auth check
+
+if (!isAdmin) {
+  return Astro.redirect('/404');
+}
+---
+
+<BaseLayout 
+  title="Manage Featured Restaurants | Admin Panel"
+  description="Admin panel for managing featured restaurant placements"
+>
+  <div class="admin-container">
+    <div class="admin-header">
+      <h1>Featured Restaurants Management</h1>
+      <p>Manage premium restaurant placements and partnerships</p>
+    </div>
+
+    <div class="admin-content">
+      <!-- Current Featured Restaurants -->
+      <section class="current-featured">
+        <h2>Current Featured Restaurants</h2>
+        <div class="featured-list">
+          {featuredRestaurants.map(restaurant => (
+            <div class="featured-item">
+              <div class="restaurant-info">
+                <h3>{restaurant.name}</h3>
+                <div class="restaurant-meta">
+                  <span class="tier tier-{restaurant.featuredTier}">{restaurant.featuredTier}</span>
+                  <span class="priority">Priority: {restaurant.priority}</span>
+                  <span class="expires">Expires: {new Date(restaurant.featuredUntil).toLocaleDateString()}</span>
+                </div>
+                <p class="restaurant-description">{restaurant.description}</p>
+              </div>
+              <div class="restaurant-actions">
+                <button class="btn btn-edit">Edit</button>
+                <button class="btn btn-delete">Remove</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Add New Featured Restaurant -->
+      <section class="add-featured">
+        <h2>Add Featured Restaurant</h2>
+        <form class="featured-form">
+          <div class="form-group">
+            <label for="restaurant-select">Select Restaurant</label>
+            <select id="restaurant-select" name="restaurantId" required>
+              <option value="">Choose a restaurant...</option>
+              <!-- This would be populated with available restaurants -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tier">Featured Tier</label>
+              <select id="tier" name="tier" required>
+                <option value="premium">Premium ($500/month)</option>
+                <option value="gold">Gold ($1,000/month)</option>
+                <option value="platinum">Platinum ($2,000/month)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="priority">Priority (1-100)</label>
+              <input type="number" id="priority" name="priority" min="1" max="100" value="50" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="featured-until">Featured Until</label>
+              <input type="date" id="featured-until" name="featuredUntil" required>
+            </div>
+
+            <div class="form-group">
+              <label for="badge">Badge Text</label>
+              <input type="text" id="badge" name="badge" placeholder="e.g., Editor's Choice">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cta-text">Call-to-Action Text</label>
+            <input type="text" id="cta-text" name="ctaText" placeholder="e.g., Reserve Your Table" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cta-url">Call-to-Action URL</label>
+            <input type="url" id="cta-url" name="ctaUrl" placeholder="https://restaurant.com/reservations" required>
+          </div>
+
+          <div class="form-group">
+            <label for="special-offer">Special Offer (Optional)</label>
+            <input type="text" id="special-offer" name="specialOffer" placeholder="e.g., Free dessert for date night reservations">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Add Featured Restaurant</button>
+        </form>
+      </section>
+
+      <!-- Partnership Tiers -->
+      <section class="partnership-tiers">
+        <h2>Partnership Tiers</h2>
+        <div class="tiers-grid">
+          <div class="tier-card tier-premium">
+            <div class="tier-header">
+              <h3>Premium</h3>
+              <div class="tier-price">$500<span>/month</span></div>
+            </div>
+            <ul class="tier-features">
+              <li>Featured placement on homepage</li>
+              <li>Enhanced restaurant card design</li>
+              <li>Priority in search results</li>
+              <li>Basic analytics</li>
+            </ul>
+          </div>
+
+          <div class="tier-card tier-gold">
+            <div class="tier-header">
+              <h3>Gold</h3>
+              <div class="tier-price">$1,000<span>/month</span></div>
+            </div>
+            <ul class="tier-features">
+              <li>Everything in Premium</li>
+              <li>Animated card effects</li>
+              <li>Special badge display</li>
+              <li>Advanced analytics</li>
+              <li>Email marketing inclusion</li>
+            </ul>
+          </div>
+
+          <div class="tier-card tier-platinum">
+            <div class="tier-header">
+              <h3>Platinum</h3>
+              <div class="tier-price">$2,000<span>/month</span></div>
+            </div>
+            <ul class="tier-features">
+              <li>Everything in Gold</li>
+              <li>Premium glow effects</li>
+              <li>Top placement priority</li>
+              <li>Custom CTA buttons</li>
+              <li>Dedicated account manager</li>
+              <li>Social media promotion</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics -->
+      <section class="analytics">
+        <h2>Featured Restaurant Analytics</h2>
+        <div class="analytics-grid">
+          <div class="metric-card">
+            <div class="metric-value">12</div>
+            <div class="metric-label">Active Featured</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">$18,500</div>
+            <div class="metric-label">Monthly Revenue</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">2,340</div>
+            <div class="metric-label">Monthly Clicks</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">15.2%</div>
+            <div class="metric-label">Conversion Rate</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    min-height: 100vh;
+  }
+
+  .admin-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+
+  .admin-header h1 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .admin-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .current-featured, .add-featured, .partnership-tiers, .analytics {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+
+  .current-featured h2, .add-featured h2, .partnership-tiers h2, .analytics h2 {
+    color: #333;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #d63384;
+    padding-bottom: 0.5rem;
+  }
+
+  .featured-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .featured-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #d63384;
+  }
+
+  .restaurant-info h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+
+  .restaurant-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tier {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .tier-premium {
+    background: #28a745;
+    color: white;
+  }
+
+  .tier-gold {
+    background: #ffc107;
+    color: #333;
+  }
+
+  .tier-platinum {
+    background: #6f42c1;
+    color: white;
+  }
+
+  .priority, .expires {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .restaurant-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .restaurant-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-edit {
+    background: #17a2b8;
+    color: white;
+  }
+
+  .btn-edit:hover {
+    background: #138496;
+  }
+
+  .btn-delete {
+    background: #dc3545;
+    color: white;
+  }
+
+  .btn-delete:hover {
+    background: #c82333;
+  }
+
+  .btn-primary {
+    background: #d63384;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    background: #b02a5b;
+  }
+
+  .featured-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .form-group input, .form-group select {
+    padding: 0.75rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #d63384;
+  }
+
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .tier-card {
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .tier-premium {
+    border-color: #28a745;
+  }
+
+  .tier-gold {
+    border-color: #ffc107;
+  }
+
+  .tier-platinum {
+    border-color: #6f42c1;
+  }
+
+  .tier-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .tier-header h3 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .tier-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d63384;
+  }
+
+  .tier-price span {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tier-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f8f9fa;
+    color: #666;
+  }
+
+  .tier-features li:last-child {
+    border-bottom: none;
+  }
+
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .metric-card {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+  }
+
+  .metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #d63384;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-label {
+    color: #666;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .admin-container {
+      padding: 1rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .restaurant-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+</style>

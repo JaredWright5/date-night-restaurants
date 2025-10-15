@@ -1,0 +1,230 @@
+---
+import { getAllCities } from '@/data/cities';
+import { getAllCuisines } from '@/data/cuisines';
+
+const cities = getAllCities();
+const cuisines = getAllCuisines();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+                <div class="footer-logo">
+          <div class="footer-logo-icon">D</div>
+          <div class="footer-logo-text">
+            <span class="footer-logo-main">Date Night</span>
+            <span class="footer-logo-sub">Restaurants</span>
+          </div>
+        </div>
+                <p>Your guide to the most romantic restaurants in Los Angeles and beyond. Discover perfect date night dining experiences.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/cities/">Cities</a></li>
+          <li><a href="/cuisines/">Cuisines</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Popular Cities</h4>
+        <ul>
+          {cities.filter(city => city.restaurantCount > 0).slice(0, 4).map(city => (
+            <li><a href={`/cities/${city.slug}/`}>{city.name}</a></li>
+          ))}
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Popular Cuisines</h4>
+        <ul>
+          {cuisines.filter(cuisine => cuisine.restaurantCount > 0).slice(0, 4).map(cuisine => (
+            <li><a href={`/cuisines/${cuisine.slug}/`}>{cuisine.name}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2024 LA Date Night Restaurants. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #333;
+    color: white;
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  
+  .footer-logo-main {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .footer-logo-sub {
+    color: #ccc;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .footer-section h3,
+  .footer-section h4 {
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .footer-section p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-section ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-section ul li a:hover {
+    color: #D4AF37;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #444;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    background: #D4AF37;
+    color: #2C2C2C;
+    transform: translateY(-2px);
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid #555;
+    padding-top: 2rem;
+  }
+  
+  .footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .footer-bottom p {
+    color: #999;
+    margin: 0;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .footer-links a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: #D4AF37;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-bottom-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .footer-links {
+      justify-content: center;
+    }
+  }
+</style>

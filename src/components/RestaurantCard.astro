@@ -1,0 +1,282 @@
+---
+import type { Restaurant } from '@/types';
+
+export interface Props {
+  restaurant: Restaurant;
+  showDateScore?: boolean;
+  showActions?: boolean;
+}
+
+const { restaurant, showDateScore = true, showActions = true } = Astro.props;
+
+const priceSymbols = '$'.repeat(restaurant.priceLevel);
+const stars = '★'.repeat(Math.floor(restaurant.rating));
+// Use a reliable fallback image and ensure we have a working photo
+const getRestaurantImage = (restaurant) => {
+  // Try to get the first photo, or use a fallback
+  const photos = restaurant.photos || [];
+  if (photos.length > 0 && photos[0]) {
+    return photos[0];
+  }
+  
+  // Fallback to cuisine-specific images
+  const cuisineImages = {
+    'fine_dining': 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+    'italian_restaurant': 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+    'french_restaurant': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+    'japanese_restaurant': 'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+    'seafood_restaurant': 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+    'contemporary': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+    'wine_bar': 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+    'rooftop_restaurant': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&ixlib=rb-4.0.3'
+  };
+  
+  // Find matching cuisine image
+  for (const cuisine of restaurant.cuisineTypes || []) {
+    if (cuisineImages[cuisine]) {
+      return cuisineImages[cuisine];
+    }
+  }
+  
+  // Default fallback
+  return 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3';
+};
+
+const mainImage = getRestaurantImage(restaurant);
+---
+
+<div class="restaurant-card" 
+     data-neighborhood={restaurant.neighborhood}
+     data-price={restaurant.priceLevel}
+     data-rating={restaurant.rating}
+     data-cuisine={restaurant.cuisineTypes.join(', ')}>
+  <a href={`/restaurants/${restaurant.slug}/`} class="card-link">
+    <div class="card-image">
+      <img 
+        src={mainImage} 
+        alt={restaurant.name} 
+        loading="lazy"
+        onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3'"
+      />
+      <div class="card-overlay">
+        <div class="card-rating">
+          <span class="stars">{stars}</span>
+          <span>{restaurant.rating}/5</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card-content">
+      <div class="card-header">
+        <h3 class="restaurant-name">{restaurant.name}</h3>
+        <div class="restaurant-price">{priceSymbols}</div>
+      </div>
+      
+      <p class="restaurant-cuisine">{restaurant.cuisineTypes.join(', ')}</p>
+      <p class="restaurant-address">{restaurant.address}</p>
+      
+      {showDateScore && (
+        <div class="date-score">
+          <i class="fas fa-heart"></i>
+          <span>Date Score: <strong>{restaurant.dateNightScore}</strong></span>
+        </div>
+      )}
+      
+      {showActions && (
+        <div class="card-actions">
+          <a href={`/restaurants/${restaurant.slug}/`} class="btn btn-primary">
+            <i class="fas fa-info-circle"></i> View Details
+          </a>
+          <a href={restaurant.website} target="_blank" class="btn btn-secondary" onclick="event.stopPropagation()">
+            <i class="fas fa-external-link-alt"></i> Website
+          </a>
+        </div>
+      )}
+    </div>
+  </a>
+</div>
+
+<style>
+  .restaurant-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  }
+  
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .card-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: #f8f9fa;
+  }
+  
+  .card-image img[src=""] {
+    opacity: 0;
+  }
+  
+  .card-image img:not([src=""]) {
+    opacity: 1;
+  }
+  
+  .restaurant-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .card-rating {
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .card-rating .stars {
+    color: #ffc107;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .restaurant-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .restaurant-price {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+  .restaurant-cuisine {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .restaurant-address {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  
+  .date-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .date-score i {
+    color: #D4AF37;
+  }
+  
+  .date-score strong {
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+  }
+  
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .btn-primary {
+    background: #D4AF37;
+    color: #2C2C2C;
+  }
+  
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  .btn-secondary:hover {
+    background: #e9ecef;
+  }
+  
+  @media (max-width: 480px) {
+    .card-actions {
+      flex-direction: column;
+    }
+    
+    .btn {
+      flex: none;
+    }
+  }
+</style>

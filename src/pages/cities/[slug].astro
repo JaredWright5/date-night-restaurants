@@ -1,0 +1,437 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { getCityBySlug, getAllCities } from '@/data/cities';
+import { getRestaurantsByCity } from '@/data/restaurants';
+
+export async function getStaticPaths() {
+  const cities = getAllCities();
+  return cities.map((city) => ({
+    params: { slug: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+const { slug } = Astro.params;
+
+if (!city) {
+  return Astro.redirect('/404');
+}
+
+const cityRestaurants = getRestaurantsByCity(city.name);
+const topRestaurants = cityRestaurants
+  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .slice(0, 6);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "City",
+  "name": city.name,
+  "description": city.description,
+  "url": `https://datenightrestaurants.com/cities/${city.slug}/`,
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": city.coordinates.latitude,
+    "longitude": city.coordinates.longitude
+  },
+  "containedInPlace": {
+    "@type": "State",
+    "name": city.state
+  }
+};
+---
+
+<BaseLayout 
+  title={`Date Night Restaurants in ${city.name} | ${city.state} | Date Night Restaurants`}
+  description={`${city.description} Find the best romantic restaurants in ${city.name} with our curated list of ${city.restaurantCount} date night dining spots.`}
+  keywords={[`date night restaurants ${city.name}`, `romantic dining ${city.name}`, `couples restaurants ${city.name}`, `fine dining ${city.name}`]}
+  canonical={`https://datenightrestaurants.com/cities/${city.slug}/`}
+  structuredData={structuredData}
+>
+  <!-- City Hero -->
+  <section class="city-hero">
+    <div class="city-hero-content">
+      <h1>Date Night Restaurants in {city.name}</h1>
+      <p class="city-description">{city.description}</p>
+      
+      <div class="city-stats">
+        <div class="stat">
+          <span class="stat-number">{city.restaurantCount}</span>
+          <span class="stat-label">Restaurants</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{city.averageRating}★</span>
+          <span class="stat-label">Average Rating</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{city.popularCuisines.length}</span>
+          <span class="stat-label">Cuisine Types</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Cuisines -->
+  {city.popularCuisines.length > 0 && (
+    <section class="popular-cuisines">
+      <div class="container">
+        <h2>Popular Cuisines in {city.name}</h2>
+        <div class="cuisines-list">
+          {city.popularCuisines.map(cuisine => (
+            <a href={`/cuisines/${cuisine.toLowerCase().replace(/\s+/g, '-')}/`} class="cuisine-tag">
+              {cuisine}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Top Restaurants -->
+  <section class="top-restaurants">
+    <div class="container">
+      <h2>Top Date Night Restaurants in {city.name}</h2>
+      <p>Handpicked romantic dining experiences in {city.name}</p>
+      
+      {topRestaurants.length > 0 ? (
+        <div class="restaurants-grid">
+          {topRestaurants.map(restaurant => (
+            <RestaurantCard restaurant={restaurant} />
+          ))}
+        </div>
+      ) : (
+        <div class="no-restaurants">
+          <h3>Coming Soon!</h3>
+          <p>We're working on adding the best date night restaurants in {city.name}. Check back soon!</p>
+        </div>
+      )}
+      
+      {cityRestaurants.length > 6 && (
+        <div class="section-actions">
+          <a href={`/cities/${city.slug}/restaurants/`} class="btn btn-primary">
+            View All {city.restaurantCount} Restaurants
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- City Info -->
+  <section class="city-info">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-section">
+          <h3>About {city.name}</h3>
+          <p>{city.description}</p>
+          <div class="city-details">
+            <p><strong>State:</strong> {city.state}</p>
+            <p><strong>Country:</strong> {city.country}</p>
+            <p><strong>Restaurants:</strong> {city.restaurantCount}</p>
+          </div>
+        </div>
+        
+        <div class="info-section">
+          <h3>Best Areas for Date Night</h3>
+          <div class="areas-list">
+            {cityRestaurants.reduce((areas, restaurant) => {
+              if (!areas.includes(restaurant.area)) {
+                areas.push(restaurant.area);
+              }
+              return areas;
+            }, []).slice(0, 5).map(area => (
+              <div class="area-item">
+                <strong>{area}</strong>
+                <span>{cityRestaurants.filter(r => r.area === area).length} restaurants</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Cities -->
+  <section class="related-cities">
+    <div class="container">
+      <h2>Explore Other Cities</h2>
+      <div class="cities-grid">
+        {getAllCities()
+          .filter(c => c.slug !== city.slug && c.restaurantCount > 0)
+          .slice(0, 3)
+          .map(otherCity => (
+            <div class="city-card">
+              <a href={`/cities/${otherCity.slug}/`}>
+                <h3>{otherCity.name}</h3>
+                <p>{otherCity.restaurantCount} restaurants</p>
+                <p class="city-description">{otherCity.description}</p>
+              </a>
+            </div>
+          ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .city-hero {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+  
+  .city-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .city-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .city-description {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .city-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .popular-cuisines {
+    padding: 60px 0;
+    background: #f8f9fa;
+  }
+  
+  .popular-cuisines h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .cuisines-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .cuisine-tag {
+    background: #D4AF37;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .cuisine-tag:hover {
+    background: #6B1A2F;
+    transform: translateY(-2px);
+  }
+  
+  .top-restaurants {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .top-restaurants h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .top-restaurants p {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #666;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .no-restaurants {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+  }
+  
+  .no-restaurants h3 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .no-restaurants p {
+    color: #666;
+  }
+  
+  .section-actions {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #D4AF37;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #6B1A2F;
+    transform: translateY(-2px);
+  }
+  
+  .city-info {
+    padding: 80px 0;
+    background: #f8f9fa;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .info-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  }
+  
+  .info-section h3 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .info-section p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .city-details p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .areas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .area-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+  }
+  
+  .area-item strong {
+    color: #333;
+  }
+  
+  .area-item span {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .related-cities {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .related-cities h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+  }
+  
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .city-card {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .city-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .city-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .city-card h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .city-card p {
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .city-description {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  @media (max-width: 768px) {
+    .city-hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .city-stats {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

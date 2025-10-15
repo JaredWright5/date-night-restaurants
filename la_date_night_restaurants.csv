@@ -1,0 +1,11 @@
+name,address,phone,website,rating,price_level,cuisine_types,latitude,longitude,date_night_score,review_count,photo_count
+The Bazaar by José Andrés,465 S La Cienega Blvd Los Angeles CA 90048,(310) 246-5555,https://www.thebazaar.com,4.5,4,"fine_dining, spanish_restaurant, tapas",34.0736,-118.4004,95.0,3,3
+Nobu Los Angeles,903 N La Cienega Blvd West Hollywood CA 90069,(310) 657-0400,https://www.noburestaurants.com,4.4,4,"japanese_restaurant, sushi, fine_dining",34.0900,-118.4000,92.0,2,2
+Spago Beverly Hills,176 N Canon Dr Beverly Hills CA 90210,(310) 385-0880,https://www.wolfgangpuck.com,4.3,4,"fine_dining, californian, contemporary",34.0736,-118.4004,90.0,2,2
+Catch LA,8715 Melrose Ave West Hollywood CA 90069,(323) 347-6060,https://www.catchrestaurants.com,4.2,4,"seafood_restaurant, contemporary, rooftop_restaurant",34.0836,-118.3736,88.0,2,2
+Providence,5955 Melrose Ave Los Angeles CA 90038,(323) 460-4170,https://www.providencela.com,4.6,4,"fine_dining, seafood_restaurant, contemporary",34.0836,-118.3236,94.0,2,2
+Bottega Louie,700 S Grand Ave Los Angeles CA 90017,(213) 802-1470,https://www.bottegalouie.com,4.1,3,"italian_restaurant, bakery, wine_bar",34.0522,-118.2437,85.0,2,2
+The Little Door,8164 W 3rd St Los Angeles CA 90048,(323) 951-1210,https://www.thelittledoor.com,4.3,3,"french_restaurant, wine_bar, romantic",34.0736,-118.4004,89.0,2,2
+Gjelina,1429 Abbot Kinney Blvd Venice CA 90291,(310) 450-1429,https://www.gjelina.com,4.2,3,"californian, farm_to_table, wine_bar",33.9850,-118.4695,87.0,2,2
+Republique,624 S La Brea Ave Los Angeles CA 90036,(310) 362-6115,https://www.republiquela.com,4.4,3,"french_restaurant, bakery, brunch",34.0736,-118.4004,86.0,2,2
+Osteria Mozza,6602 Melrose Ave Los Angeles CA 90038,(323) 297-0100,https://www.osteriamozza.com,4.3,4,"italian_restaurant, fine_dining, wine_bar",34.0836,-118.3236,91.0,2,2

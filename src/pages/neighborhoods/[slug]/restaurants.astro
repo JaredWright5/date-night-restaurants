@@ -1,0 +1,481 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { getRestaurantsByNeighborhood } from '@/data/restaurants';
+
+export async function getStaticPaths() {
+  const neighborhoods = [
+    'beverly-hills', 'west-hollywood', 'santa-monica', 'venice',
+    'downtown-la', 'hollywood', 'silver-lake', 'los-feliz',
+    'manhattan-beach', 'pasadena'
+  ];
+  
+  return neighborhoods.map((neighborhood) => ({
+    params: { slug: neighborhood },
+    props: { neighborhoodSlug: neighborhood },
+  }));
+}
+
+const { neighborhoodSlug } = Astro.props;
+const { slug } = Astro.params;
+
+const neighborhoodNameMap = {
+  'beverly-hills': 'Beverly Hills',
+  'west-hollywood': 'West Hollywood',
+  'santa-monica': 'Santa Monica',
+  'venice': 'Venice',
+  'downtown-la': 'Los Angeles',
+  'hollywood': 'Hollywood',
+  'silver-lake': 'Silver Lake',
+  'los-feliz': 'Los Feliz',
+  'manhattan-beach': 'Manhattan Beach',
+  'pasadena': 'Pasadena'
+};
+
+const neighborhoodName = neighborhoodNameMap[slug];
+
+if (!neighborhoodName) {
+  return Astro.redirect('/404');
+}
+
+const neighborhoodRestaurants = getRestaurantsByNeighborhood(neighborhoodName);
+const allRestaurants = neighborhoodRestaurants
+  .sort((a, b) => b.dateNightScore - a.dateNightScore);
+
+// Get unique cuisines for filtering
+const allCuisines = neighborhoodRestaurants.flatMap(r => r.cuisineTypes);
+const uniqueCuisines = Array.from(new Set(allCuisines)).sort();
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": `All Date Night Restaurants in ${neighborhoodName}`,
+  "description": `Complete list of ${neighborhoodRestaurants.length} romantic restaurants in ${neighborhoodName}, Los Angeles for perfect date nights.`,
+  "url": `https://datenightrestaurants.com/neighborhoods/${slug}/restaurants/`,
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": neighborhoodRestaurants.length,
+    "itemListElement": neighborhoodRestaurants.slice(0, 10).map((restaurant, index) => ({
+      "@type": "Restaurant",
+      "position": index + 1,
+      "name": restaurant.name,
+      "address": restaurant.address,
+      "telephone": restaurant.phone,
+      "url": restaurant.website,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": restaurant.rating,
+        "reviewCount": restaurant.reviews.length
+      }
+    }))
+  }
+};
+---
+
+<BaseLayout 
+  title={`All Date Night Restaurants in ${neighborhoodName} | Los Angeles | Date Night Restaurants`}
+  description={`Complete list of ${neighborhoodRestaurants.length} romantic restaurants in ${neighborhoodName}, Los Angeles for perfect date nights. Find the best romantic dining spots in ${neighborhoodName}.`}
+  keywords={[`all restaurants ${neighborhoodName}`, `complete list ${neighborhoodName}`, `romantic dining ${neighborhoodName}`, `date night ${neighborhoodName}`]}
+  canonical={`https://datenightrestaurants.com/neighborhoods/${slug}/restaurants/`}
+  structuredData={structuredData}
+>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <div class="header-content">
+        <h1>All Date Night Restaurants in {neighborhoodName}</h1>
+        <p class="header-description">Complete list of {neighborhoodRestaurants.length} romantic restaurants in {neighborhoodName}, Los Angeles</p>
+        
+        <div class="header-stats">
+          <div class="stat">
+            <span class="stat-number">{neighborhoodRestaurants.length}</span>
+            <span class="stat-label">Total Restaurants</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{uniqueCuisines.length}</span>
+            <span class="stat-label">Cuisine Types</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{neighborhoodRestaurants.filter(r => r.priceLevel >= 3).length}</span>
+            <span class="stat-label">Fine Dining</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="filters">
+    <div class="container">
+      <div class="filters-content">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search restaurants..." />
+          <button id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="filter-group">
+          <select id="cuisineFilter">
+            <option value="">All Cuisines</option>
+            {uniqueCuisines.map(cuisine => (
+              <option value={cuisine}>{cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>
+            ))}
+          </select>
+          
+          <select id="priceFilter">
+            <option value="">All Price Levels</option>
+            <option value="1">$ (Budget)</option>
+            <option value="2">$$ (Moderate)</option>
+            <option value="3">$$$ (Expensive)</option>
+            <option value="4">$$$$ (Very Expensive)</option>
+          </select>
+          
+          <select id="ratingFilter">
+            <option value="">All Ratings</option>
+            <option value="4.5">4.5+ Stars</option>
+            <option value="4.0">4.0+ Stars</option>
+            <option value="3.5">3.5+ Stars</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="results">
+    <div class="container">
+      <div class="results-header">
+        <h2 id="resultsTitle">All Restaurants in {neighborhoodName}</h2>
+        <p id="resultsCount">{neighborhoodRestaurants.length} restaurants found</p>
+      </div>
+      
+      <div id="restaurantsGrid" class="restaurants-grid">
+        {allRestaurants.map(restaurant => (
+          <RestaurantCard restaurant={restaurant} />
+        ))}
+      </div>
+      
+      <div id="noResults" class="no-results" style="display: none;">
+        <h3>No restaurants found</h3>
+        <p>Try adjusting your filters or search terms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Neighborhood -->
+  <section class="back-to-neighborhood">
+    <div class="container">
+      <div class="back-link">
+        <a href={`/neighborhoods/${slug}/`} class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> Back to {neighborhoodName}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #8B1538 0%, #B91C5C 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+  
+  .header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .page-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .header-description {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .filters {
+    padding: 40px 0;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .filters-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .search-box {
+    display: flex;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .search-box input {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 25px 0 0 25px;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  .search-box input:focus {
+    border-color: #8B1538;
+  }
+  
+  .search-box button {
+    background: #8B1538;
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .search-box button:hover {
+    background: #6B1A2F;
+  }
+  
+  .filter-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .filter-group select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .filter-group select:focus {
+    outline: none;
+    border-color: #8B1538;
+  }
+  
+  .results {
+    padding: 60px 0;
+    background: #fff;
+  }
+  
+  .results-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .results-header h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .results-header p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+  }
+  
+  .no-results h3 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .no-results p {
+    color: #666;
+  }
+  
+  .back-to-neighborhood {
+    padding: 40px 0;
+    background: #f8f9fa;
+  }
+  
+  .back-link {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-secondary {
+    background: #6c757d;
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .header-stats {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .filter-group {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .filter-group select {
+      width: 100%;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Client-side filtering and search
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const cuisineFilter = document.getElementById('cuisineFilter');
+    const priceFilter = document.getElementById('priceFilter');
+    const ratingFilter = document.getElementById('ratingFilter');
+    const restaurantsGrid = document.getElementById('restaurantsGrid');
+    const noResults = document.getElementById('noResults');
+    const resultsTitle = document.getElementById('resultsTitle');
+    const resultsCount = document.getElementById('resultsCount');
+    
+    const allRestaurants = Array.from(restaurantsGrid.children);
+    
+    // Extract restaurant data from the DOM
+    function getRestaurantData(restaurantCard) {
+      const name = restaurantCard.querySelector('h3')?.textContent || '';
+      const address = restaurantCard.querySelector('.restaurant-address')?.textContent || '';
+      const cuisine = restaurantCard.querySelector('.restaurant-cuisine')?.textContent || '';
+      const price = restaurantCard.dataset.price || '';
+      const rating = restaurantCard.dataset.rating || '';
+      
+      return { name, address, cuisine, price, rating };
+    }
+    
+    function filterRestaurants() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCuisine = cuisineFilter.value;
+      const selectedPrice = priceFilter.value;
+      const selectedRating = ratingFilter.value;
+      
+      let visibleCount = 0;
+      
+      allRestaurants.forEach(restaurantCard => {
+        const restaurant = getRestaurantData(restaurantCard);
+        let show = true;
+        
+        // Search filter
+        if (searchTerm && 
+            !restaurant.name.toLowerCase().includes(searchTerm) && 
+            !restaurant.address.toLowerCase().includes(searchTerm) &&
+            !restaurant.cuisine.toLowerCase().includes(searchTerm)) {
+          show = false;
+        }
+        
+        // Cuisine filter
+        if (selectedCuisine && !restaurant.cuisine.toLowerCase().includes(selectedCuisine.toLowerCase())) {
+          show = false;
+        }
+        
+        // Price filter
+        if (selectedPrice && restaurant.price !== selectedPrice) {
+          show = false;
+        }
+        
+        // Rating filter
+        if (selectedRating && parseFloat(restaurant.rating) < parseFloat(selectedRating)) {
+          show = false;
+        }
+        
+        if (show) {
+          restaurantCard.style.display = 'block';
+          visibleCount++;
+        } else {
+          restaurantCard.style.display = 'none';
+        }
+      });
+      
+      // Update results
+      if (visibleCount === 0) {
+        restaurantsGrid.style.display = 'none';
+        noResults.style.display = 'block';
+      } else {
+        restaurantsGrid.style.display = 'grid';
+        noResults.style.display = 'none';
+      }
+      
+      resultsCount.textContent = `${visibleCount} restaurants found`;
+    }
+    
+    // Add event listeners
+    searchInput.addEventListener('input', filterRestaurants);
+    cuisineFilter.addEventListener('change', filterRestaurants);
+    priceFilter.addEventListener('change', filterRestaurants);
+    ratingFilter.addEventListener('change', filterRestaurants);
+    
+    // Initialize
+    filterRestaurants();
+  });
+</script>
