@@ -22,6 +22,20 @@ if (!neighborhoodName) {
   return Astro.redirect('/404');
 }
 
+// Predefined neighborhood intro copy (moved out of template to avoid TS in expressions)
+const intros = {
+  'Beverly Hills': 'Glamour meets romance. From white-tablecloth icons to chic modern rooms, Beverly Hills elevates every date night.',
+  'West Hollywood': 'Trendy, vibrant, and stylish—WeHo blends creative cuisine with lively energy perfect for a flirty evening out.',
+  'Santa Monica': 'Ocean breezes, sunset views, and coastal charm create effortlessly romantic nights by the beach.',
+  'Venice': 'Bohemian spirit and creative kitchens—Venice is ideal for couples who love character and conversation.',
+  'Downtown LA': 'Rooftops, modern tasting menus, and skyline views make DTLA a dramatic stage for big nights.',
+  'Hollywood': 'Classic LA allure with intimate hideaways and iconic settings for cinematic romance.',
+  'Silver Lake': 'Hip, cozy, and culinary-forward—Silver Lake shines for low-key, high-quality dates.',
+  'Los Feliz': 'Charming streets and warm neighborhood gems set the tone for relaxed romance.',
+  'Manhattan Beach': 'Seafood, sunsets, and sophisticated casual—MB is coastal romance at its best.',
+  'Pasadena': 'Historic elegance and refined dining rooms perfect for timeless celebrations.'
+};
+
 const neighborhoodRestaurants = getRestaurantsByNeighborhood(neighborhoodName);
 const topRestaurants = neighborhoodRestaurants
   .sort((a, b) => b.dateNightScore - a.dateNightScore)
@@ -85,23 +99,7 @@ const structuredData = {
     <div class="neighborhood-hero-content">
       <nav class="breadcrumbs"><a href="/">Home</a> / <a href="/neighborhoods/">Neighborhoods</a> / <span>{neighborhoodName}</span></nav>
       <h1>Date Night Restaurants in {neighborhoodName}</h1>
-      <p class="neighborhood-description">
-        {(() => {
-          const intros: Record<string,string> = {
-            'Beverly Hills': 'Glamour meets romance. From white-tablecloth icons to chic modern rooms, Beverly Hills elevates every date night.',
-            'West Hollywood': 'Trendy, vibrant, and stylish—WeHo blends creative cuisine with lively energy perfect for a flirty evening out.',
-            'Santa Monica': 'Ocean breezes, sunset views, and coastal charm create effortlessly romantic nights by the beach.',
-            'Venice': 'Bohemian spirit and creative kitchens—Venice is ideal for couples who love character and conversation.',
-            'Downtown LA': 'Rooftops, modern tasting menus, and skyline views make DTLA a dramatic stage for big nights.',
-            'Hollywood': 'Classic LA allure with intimate hideaways and iconic settings for cinematic romance.',
-            'Silver Lake': 'Hip, cozy, and culinary-forward—Silver Lake shines for low-key, high-quality dates.',
-            'Los Feliz': 'Charming streets and warm neighborhood gems set the tone for relaxed romance.',
-            'Manhattan Beach': 'Seafood, sunsets, and sophisticated casual—MB is coastal romance at its best.',
-            'Pasadena': 'Historic elegance and refined dining rooms perfect for timeless celebrations.'
-          };
-          return intros[neighborhoodName] ?? `Discover the most romantic dining experiences in ${neighborhoodName}, Los Angeles.`;
-        })()}
-      </p>
+      <p class="neighborhood-description">{intros[neighborhoodName] ?? `Discover the most romantic dining experiences in ${neighborhoodName}, Los Angeles.`}</p>
       
       <div class="neighborhood-stats">
         <div class="stat">
