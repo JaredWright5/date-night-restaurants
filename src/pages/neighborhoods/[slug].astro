@@ -187,13 +187,13 @@ const structuredData = {
         <div class="info-section">
           <h3>Popular Cuisines</h3>
           <div class="cuisines-list">
-            {Array.from(new Set(neighborhoodRestaurants.flatMap(r => r.cuisineTypes)))
-              .slice(0, 6)
-              .map(cuisine => (
-                <span class="cuisine-tag">
-                  {cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                </span>
-              ))}
+            {(() => {
+              const seen = Array.from(new Set(neighborhoodRestaurants.flatMap(r => r.cuisineTypes))).slice(0, 6);
+              const capitalizeWords = (s) => s.replace(/_/g, ' ').replace(/\b\w/g, (ch) => ch.toUpperCase());
+              return seen.map((cuisine) => (
+                <span class="cuisine-tag">{capitalizeWords(cuisine)}</span>
+              ));
+            })()}
           </div>
         </div>
       </div>
