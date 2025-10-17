@@ -1,0 +1,482 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Group restaurants by neighborhood
+const restaurantsByNeighborhood = restaurants.reduce((acc, restaurant) => {
+  const neighborhood = restaurant.neighborhood;
+  if (!acc[neighborhood]) {
+    acc[neighborhood] = [];
+  }
+  acc[neighborhood].push(restaurant);
+  return acc;
+}, {});
+
+// Get top restaurants for each neighborhood
+const neighborhoodData = Object.entries(restaurantsByNeighborhood).map(([neighborhood, neighborhoodRestaurants]) => {
+  const topRestaurants = neighborhoodRestaurants
+    .sort((a, b) => b.dateNightScore - a.dateNightScore)
+    .slice(0, 3);
+  
+  const avgRating = neighborhoodRestaurants.reduce((sum, r) => sum + r.rating, 0) / neighborhoodRestaurants.length;
+  
+  return {
+    neighborhood,
+    restaurants: topRestaurants,
+    totalCount: neighborhoodRestaurants.length,
+    avgRating: avgRating.toFixed(1)
+  };
+}).sort((a, b) => b.totalCount - a.totalCount);
+
+const postDate = "2024-10-16";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Best Date Night Restaurants by Neighborhood in Los Angeles",
+  "description": "Explore top romantic restaurants across Beverly Hills, West Hollywood, Santa Monica, Venice, Hollywood, DTLA, and more.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "mainEntityOfPage": "https://datenightrestaurants.com/blog/best-date-night-restaurants-by-neighborhood-los-angeles/",
+  "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop"
+};
+---
+
+<BaseLayout
+  title="Best Date Night Restaurants by Neighborhood in Los Angeles"
+  description="Explore top romantic restaurants across Beverly Hills, West Hollywood, Santa Monica, Venice, Hollywood, DTLA, and more."
+  keywords={['date night restaurants by neighborhood', 'Los Angeles neighborhoods', 'romantic dining LA', 'Beverly Hills restaurants', 'West Hollywood dining', 'Santa Monica date spots']}
+  canonical="https://datenightrestaurants.com/blog/best-date-night-restaurants-by-neighborhood-los-angeles/"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <!-- Blog Header -->
+    <header class="blog-header">
+      <div class="container">
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="separator">•</span>
+          <span class="post-author">by Date Night Experts</span>
+          <span class="separator">•</span>
+          <span class="post-category">Neighborhoods</span>
+        </div>
+        <h1>Best Date Night Restaurants by Neighborhood in Los Angeles</h1>
+        <p class="post-excerpt">Explore top romantic restaurants across Beverly Hills, West Hollywood, Santa Monica, Venice, Hollywood, DTLA, and more.</p>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="featured-image">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=600&fit=crop" alt="Los Angeles neighborhood dining scene" />
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <p class="lead">Los Angeles is a city of diverse neighborhoods, each offering its own unique dining scene and romantic atmosphere. From the glamour of Beverly Hills to the beach vibes of Santa Monica, every neighborhood has its own collection of exceptional date night restaurants.</p>
+
+          <p>Whether you're looking for intimate neighborhood gems or world-class fine dining, LA's diverse neighborhoods provide the perfect backdrop for romantic dining experiences. Let's explore the best date night restaurants across Los Angeles neighborhoods.</p>
+
+          <h2>Neighborhood Date Night Guide</h2>
+
+          <div class="neighborhoods-section">
+            {neighborhoodData.map((neighborhoodInfo, index) => (
+              <div class="neighborhood-section">
+                <div class="neighborhood-header">
+                  <h3>{neighborhoodInfo.neighborhood}</h3>
+                  <div class="neighborhood-stats">
+                    <span class="restaurant-count">{neighborhoodInfo.totalCount} restaurants</span>
+                    <span class="separator">•</span>
+                    <span class="avg-rating">{neighborhoodInfo.avgRating}★ average</span>
+                  </div>
+                </div>
+                
+                <div class="neighborhood-restaurants">
+                  {neighborhoodInfo.restaurants.map((restaurant, restaurantIndex) => (
+                    <div class="restaurant-card">
+                      <div class="restaurant-info">
+                        <h4>{restaurant.name}</h4>
+                        <div class="restaurant-details">
+                          <span class="cuisine">{restaurant.cuisineTypes.join(', ').replace(/_/g, ' ')}</span>
+                          <span class="separator">•</span>
+                          <span class="rating">{restaurant.rating}★</span>
+                          <span class="separator">•</span>
+                          <span class="price">{'$'.repeat(restaurant.priceLevel)}</span>
+                        </div>
+                        <p class="restaurant-description">
+                          {restaurant.name.includes('Providence') && "A culinary masterpiece offering an intimate fine dining experience with exceptional seafood and innovative presentations."}
+                          {restaurant.name.includes('Spago') && "Wolfgang Puck's flagship restaurant combines celebrity glamour with exceptional cuisine in a sophisticated Beverly Hills setting."}
+                          {restaurant.name.includes('Bestia') && "This industrial-chic Italian restaurant offers handmade pasta and an impressive wine selection with an open kitchen."}
+                          {restaurant.name.includes('71Above') && "Perched on the 71st floor, this is LA's highest restaurant offering breathtaking 360-degree city views."}
+                          {restaurant.name.includes('Perch') && "This French-inspired rooftop bistro offers stunning skyline views and romantic ambiance with fire pits."}
+                          {restaurant.name.includes('Nobu') && "World-renowned Japanese cuisine in an elegant setting with sophisticated atmosphere and exceptional sushi."}
+                          {restaurant.name.includes('Cut') && "Wolfgang Puck's modern steakhouse offers premium cuts in a sophisticated Beverly Hills setting."}
+                          {restaurant.name.includes('Osteria') && "This intimate Italian restaurant specializes in handmade pasta and traditional Northern Italian cuisine."}
+                          {restaurant.name.includes('Water Grill') && "An upscale seafood restaurant offering the freshest catches in an elegant downtown setting."}
+                          {restaurant.name.includes('Vespertine') && "A revolutionary dining experience offering avant-garde cuisine in a dramatic, artistic setting."}
+                        </p>
+                      </div>
+                      <div class="restaurant-actions">
+                        <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Details</a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <h2>Choosing the Right Neighborhood for Your Date Night</h2>
+
+          <div class="neighborhood-guide">
+            <div class="guide-item">
+              <h3>Beverly Hills</h3>
+              <p>Perfect for special occasions and upscale dining. Expect fine dining, celebrity spotting, and elegant atmospheres.</p>
+            </div>
+            
+            <div class="guide-item">
+              <h3>West Hollywood</h3>
+              <p>Trendy and vibrant with a mix of upscale and casual options. Great for people-watching and energetic atmospheres.</p>
+            </div>
+            
+            <div class="guide-item">
+              <h3>Santa Monica</h3>
+              <p>Beach vibes with ocean views and fresh seafood. Perfect for casual yet romantic dining experiences.</p>
+            </div>
+            
+            <div class="guide-item">
+              <h3>Venice</h3>
+              <p>Bohemian and artistic with unique, creative dining options. Great for couples who appreciate eclectic atmospheres.</p>
+            </div>
+            
+            <div class="guide-item">
+              <h3>Downtown LA</h3>
+              <p>Urban sophistication with rooftop dining and modern cuisine. Perfect for couples who love city views and contemporary dining.</p>
+            </div>
+            
+            <div class="guide-item">
+              <h3>Hollywood</h3>
+              <p>Historic charm with a mix of classic and modern options. Great for couples who enjoy entertainment district vibes.</p>
+            </div>
+          </div>
+
+          <h2>Tips for Neighborhood Date Night Planning</h2>
+
+          <ul>
+            <li><strong>Consider Parking:</strong> Some neighborhoods have easier parking than others. Plan accordingly or consider rideshare services.</li>
+            <li><strong>Walkability:</strong> Choose neighborhoods where you can walk to other activities before or after dinner.</li>
+            <li><strong>Atmosphere Match:</strong> Select neighborhoods that match your desired date night vibe.</li>
+            <li><strong>Traffic Considerations:</strong> Factor in LA traffic when choosing your neighborhood and reservation time.</li>
+            <li><strong>Post-Dinner Activities:</strong> Consider what you'll do after dinner in each neighborhood.</li>
+          </ul>
+
+          <h2>Conclusion</h2>
+
+          <p>Los Angeles offers an incredible variety of romantic dining experiences across its diverse neighborhoods. Whether you prefer the glamour of Beverly Hills, the beach vibes of Santa Monica, or the urban sophistication of Downtown LA, there's a perfect neighborhood and restaurant for every couple.</p>
+
+          <p>Take time to explore different neighborhoods and discover the unique character each one brings to your date night experience. The best date nights often come from trying new neighborhoods and discovering hidden gems together.</p>
+
+          <div class="cta-section">
+            <h3>Ready to Explore LA's Neighborhoods?</h3>
+            <p>Discover more restaurants in your favorite neighborhood with our <a href="/losangeles/restaurants/">complete Los Angeles restaurant directory</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    background: #fff;
+  }
+
+  .blog-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .separator {
+    color: #D4AF37;
+  }
+
+  .post-category {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .blog-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  .post-excerpt {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-content {
+    padding: 4rem 0;
+  }
+
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2C2C2C;
+    margin: 3rem 0 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    color: #2C2C2C;
+    margin: 2rem 0 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #4A4A4A;
+  }
+
+  ul {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    color: #4A4A4A;
+  }
+
+  .neighborhoods-section {
+    margin: 3rem 0;
+  }
+
+  .neighborhood-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: #F8F6F0;
+    border-radius: 15px;
+  }
+
+  .neighborhood-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #D4AF37;
+  }
+
+  .neighborhood-header h3 {
+    margin: 0;
+    color: #2C2C2C;
+    font-size: 1.8rem;
+  }
+
+  .neighborhood-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .neighborhood-restaurants {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .restaurant-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .restaurant-info {
+    flex: 1;
+  }
+
+  .restaurant-info h4 {
+    font-size: 1.2rem;
+    color: #2C2C2C;
+    margin-bottom: 0.5rem;
+  }
+
+  .restaurant-details {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .restaurant-description {
+    color: #4A4A4A;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .restaurant-actions {
+    margin-left: 1rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    background: #D4AF37;
+    color: #2C2C2C;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+
+  .btn:hover {
+    background: #B8941F;
+  }
+
+  .neighborhood-guide {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .guide-item {
+    padding: 1.5rem;
+    background: #F8F6F0;
+    border-radius: 10px;
+    border-left: 4px solid #D4AF37;
+  }
+
+  .guide-item h3 {
+    color: #2C2C2C;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .guide-item p {
+    color: #4A4A4A;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .cta-section {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta-section h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cta-section a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .blog-header h1 {
+      font-size: 2.5rem;
+    }
+
+    .post-excerpt {
+      font-size: 1.1rem;
+    }
+
+    .neighborhood-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .restaurant-card {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .restaurant-actions {
+      margin-left: 0;
+      align-self: flex-start;
+    }
+
+    .neighborhood-guide {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

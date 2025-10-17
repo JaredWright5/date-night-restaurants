@@ -1,0 +1,360 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+const anniversaryRestaurants = restaurants
+  .filter(r => r.priceLevel >= 3 && r.rating >= 4.4)
+  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .slice(0, 8);
+
+const postDate = "2024-10-16";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Anniversary Dinner Ideas in Los Angeles: Most Romantic Restaurants",
+  "description": "Celebrate with Michelin-level tasting menus, skyline rooftops, ocean-view escapes, and intimate neighborhood gems.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "mainEntityOfPage": "https://datenightrestaurants.com/blog/anniversary-dinner-ideas-los-angeles/",
+  "image": "https://images.unsplash.com/photo-1516683037151-9d9c9541a1d2?w=800&h=600&fit=crop"
+};
+---
+
+<BaseLayout
+  title="Anniversary Dinner Ideas in Los Angeles | Most Romantic Restaurants"
+  description="Celebrate with Michelin-level tasting menus, skyline rooftops, ocean-view escapes, and intimate neighborhood gems."
+  keywords={['anniversary dinner ideas', 'romantic restaurants Los Angeles', 'special occasion dining', 'anniversary celebration', 'fine dining LA']}
+  canonical="https://datenightrestaurants.com/blog/anniversary-dinner-ideas-los-angeles/"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <!-- Blog Header -->
+    <header class="blog-header">
+      <div class="container">
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="separator">•</span>
+          <span class="post-author">by Date Night Experts</span>
+          <span class="separator">•</span>
+          <span class="post-category">Occasions</span>
+        </div>
+        <h1>Anniversary Dinner Ideas in Los Angeles: Most Romantic Restaurants</h1>
+        <p class="post-excerpt">Celebrate with Michelin-level tasting menus, skyline rooftops, ocean-view escapes, and intimate neighborhood gems.</p>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="featured-image">
+      <img src="https://images.unsplash.com/photo-1516683037151-9d9c9541a1d2?w=1200&h=600&fit=crop" alt="Elegant anniversary dinner setting" />
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <p class="lead">Anniversaries deserve to be celebrated in style, and Los Angeles offers some of the most romantic and memorable dining experiences in the world. From intimate neighborhood gems to world-class fine dining establishments, LA's restaurant scene provides the perfect backdrop for your special celebration.</p>
+
+          <p>Whether you're celebrating your first anniversary or your fiftieth, these carefully curated restaurants offer exceptional cuisine, romantic ambiance, and service that will make your anniversary truly unforgettable.</p>
+
+          <h2>LA's Most Romantic Anniversary Restaurants</h2>
+
+          <div class="restaurants-section">
+            <div class="restaurants-list">
+              {anniversaryRestaurants.map((restaurant, index) => (
+                <div class="restaurant-feature">
+                  <div class="restaurant-number">{index + 1}</div>
+                  <div class="restaurant-content">
+                    <h3>{restaurant.name}</h3>
+                    <div class="restaurant-details">
+                      <span class="cuisine">{restaurant.cuisineTypes.join(', ').replace(/_/g, ' ')}</span>
+                      <span class="separator">•</span>
+                      <span class="rating">{restaurant.rating}★</span>
+                      <span class="separator">•</span>
+                      <span class="price">{'$'.repeat(restaurant.priceLevel)}</span>
+                      <span class="separator">•</span>
+                      <span class="neighborhood">{restaurant.neighborhood}</span>
+                    </div>
+                    <p class="restaurant-description">
+                      {restaurant.name.includes('Providence') && "A culinary masterpiece offering an intimate fine dining experience with exceptional seafood and innovative presentations. The elegant dining room and impeccable service make it perfect for celebrating major milestones."}
+                      {restaurant.name.includes('Spago') && "Wolfgang Puck's flagship restaurant combines celebrity glamour with exceptional cuisine. The sophisticated Beverly Hills setting and outdoor patio create an unforgettable anniversary atmosphere."}
+                      {restaurant.name.includes('Bestia') && "This industrial-chic Italian restaurant offers handmade pasta and an impressive wine selection. The open kitchen adds excitement while maintaining an intimate, romantic vibe perfect for celebrations."}
+                      {restaurant.name.includes('71Above') && "Perched on the 71st floor, this is LA's highest restaurant offering breathtaking 360-degree city views. The contemporary American menu and dramatic setting create an unforgettable anniversary experience."}
+                      {restaurant.name.includes('Perch') && "This French-inspired rooftop bistro in Downtown LA offers stunning skyline views and romantic ambiance. The fire pits and retractable roof make it perfect for special celebrations."}
+                      {restaurant.name.includes('Nobu') && "World-renowned Japanese cuisine in an elegant setting. The sophisticated atmosphere and exceptional sushi make it ideal for celebrating important milestones."}
+                      {restaurant.name.includes('Cut') && "Wolfgang Puck's modern steakhouse offers premium cuts in a sophisticated Beverly Hills setting. The elegant dining room and exceptional service create the perfect anniversary atmosphere."}
+                      {restaurant.name.includes('Osteria') && "This intimate Italian restaurant specializes in handmade pasta and traditional Northern Italian cuisine. The cozy atmosphere and candlelit tables create a romantic setting for celebrations."}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <h2>Planning Your Perfect Anniversary Dinner</h2>
+
+          <p>Creating the perfect anniversary dinner involves more than just choosing a great restaurant. Here are some tips to make your celebration truly special:</p>
+
+          <h3>1. Make Reservations Early</h3>
+          <p>Popular anniversary restaurants often require reservations weeks or even months in advance, especially for weekend evenings. Book early to secure your preferred date and time.</p>
+
+          <h3>2. Consider the Atmosphere</h3>
+          <p>Think about what type of ambiance you both enjoy. Do you prefer intimate, quiet settings or lively, energetic atmospheres? Consider factors like lighting, music, and overall vibe.</p>
+
+          <h3>3. Plan Your Budget</h3>
+          <p>Anniversary dinners are special occasions worth investing in, but it's important to plan your budget accordingly. Consider wine pairings, multiple courses, and any special touches you might want to add.</p>
+
+          <h3>4. Dress to Impress</h3>
+          <p>Many fine dining establishments have dress codes. When in doubt, smart casual to formal attire is always appropriate for anniversary celebrations.</p>
+
+          <h2>Special Touches for Your Anniversary</h2>
+
+          <ul>
+            <li><strong>Custom Menus:</strong> Some restaurants can create personalized menus for your celebration</li>
+            <li><strong>Wine Pairings:</strong> Sommelier-guided wine selections to enhance each course</li>
+            <li><strong>Private Dining:</strong> Intimate private rooms for the ultimate romantic experience</li>
+            <li><strong>Photography Services:</strong> Some venues offer professional photography to capture your special evening</li>
+            <li><strong>Special Desserts:</strong> Custom anniversary desserts or chocolate arrangements</li>
+            <li><strong>Champagne Service:</strong> Elegant champagne presentations to toast your love</li>
+          </ul>
+
+          <h2>Conclusion</h2>
+
+          <p>Los Angeles offers an incredible variety of romantic restaurants perfect for anniversary celebrations. Whether you prefer the elegance of fine dining, the drama of rooftop views, or the intimacy of neighborhood gems, there's a restaurant in LA that will make your anniversary truly special.</p>
+
+          <p>Remember, the best anniversary restaurant is one that reflects your unique relationship and creates memories that will last a lifetime. Take your time choosing, make your reservations early, and most importantly, focus on celebrating the love you share.</p>
+
+          <div class="cta-section">
+            <h3>Ready to Plan Your Anniversary Celebration?</h3>
+            <p>Explore our complete directory of <a href="/losangeles/restaurants/">Los Angeles restaurants</a> to find the perfect spot for your special anniversary dinner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    background: #fff;
+  }
+
+  .blog-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .separator {
+    color: #D4AF37;
+  }
+
+  .post-category {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .blog-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  .post-excerpt {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-content {
+    padding: 4rem 0;
+  }
+
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2C2C2C;
+    margin: 3rem 0 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    color: #2C2C2C;
+    margin: 2rem 0 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #4A4A4A;
+  }
+
+  ul {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    color: #4A4A4A;
+  }
+
+  .restaurants-section {
+    margin: 3rem 0;
+  }
+
+  .restaurants-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .restaurant-feature {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: #F8F6F0;
+    border-radius: 15px;
+    border-left: 4px solid #D4AF37;
+  }
+
+  .restaurant-number {
+    background: #D4AF37;
+    color: #2C2C2C;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .restaurant-content {
+    flex: 1;
+  }
+
+  .restaurant-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #2C2C2C;
+  }
+
+  .restaurant-details {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .restaurant-details .separator {
+    color: #D4AF37;
+  }
+
+  .restaurant-description {
+    color: #4A4A4A;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta-section h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cta-section a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .blog-header h1 {
+      font-size: 2.5rem;
+    }
+
+    .post-excerpt {
+      font-size: 1.1rem;
+    }
+
+    .restaurant-feature {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .restaurant-details {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+</style>
