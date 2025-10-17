@@ -36,63 +36,80 @@ const tierStyles = {
 const style = tierStyles[tier];
 ---
 
-<div class={`featured-card featured-${tier}`} style={`--tier-color: ${style.borderColor}; --tier-gradient: ${style.gradient}; --tier-glow: ${style.glowColor};`}>
-  <div class="featured-badge">
-    <span class="badge-icon">
-      {tier === 'platinum' ? '👑' : tier === 'gold' ? '⭐' : '✨'}
-    </span>
-    <span class="badge-text">{restaurant.badge || 'Featured'}</span>
-  </div>
-  
-  <div class="featured-content">
-    <div class="featured-image">
-      <img src={mainImage} alt={restaurant.name} />
-      <div class="image-overlay">
-        <div class="restaurant-rating">
-          <div class="date-score-display">
-            <i class="fas fa-heart"></i>
-            <span>{restaurant.dateNightScore}</span>
-          </div>
-        </div>
-      </div>
+<a href={restaurant.ctaUrl} class="featured-card-link">
+  <div class={`featured-card featured-${tier}`} style={`--tier-color: ${style.borderColor}; --tier-gradient: ${style.gradient}; --tier-glow: ${style.glowColor};`}>
+    <div class="featured-badge">
+      <span class="badge-icon">
+        {tier === 'platinum' ? '👑' : tier === 'gold' ? '⭐' : '✨'}
+      </span>
+      <span class="badge-text">{restaurant.badge || 'Featured'}</span>
     </div>
     
-    <div class="featured-info">
-      <div class="restaurant-header">
-        <h3 class="restaurant-name">{restaurant.name}</h3>
-        <div class="restaurant-price">{priceSymbols}</div>
+    <div class="featured-content">
+      <div class="featured-image">
+        <img src={mainImage} alt={restaurant.name} />
+        <div class="image-overlay">
+          <div class="restaurant-rating">
+            <div class="date-score-display">
+              <i class="fas fa-heart"></i>
+              <span>{restaurant.dateNightScore}</span>
+            </div>
+          </div>
+        </div>
       </div>
       
-      <p class="restaurant-cuisine">{restaurant.cuisineTypes.map(cuisine => 
-        cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
-      ).join(', ')}</p>
-      <p class="restaurant-address">{restaurant.area}</p>
-      
-      <div class="featured-highlights">
-        <div class="date-score">
-          <i class="fas fa-heart"></i>
-          <span>Date Score: <strong>{restaurant.dateNightScore}</strong></span>
+      <div class="featured-info">
+        <div class="restaurant-header">
+          <h3 class="restaurant-name">{restaurant.name}</h3>
+          <div class="restaurant-price">{priceSymbols}</div>
         </div>
         
-        {restaurant.specialOffer && (
-          <div class="special-offer">
-            <i class="fas fa-gift"></i>
-            <span>{restaurant.specialOffer}</span>
+        <p class="restaurant-cuisine">{restaurant.cuisineTypes.map(cuisine => 
+          cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+        ).join(', ')}</p>
+        <p class="restaurant-address">{restaurant.area}</p>
+        
+        <div class="featured-highlights">
+          <div class="date-score">
+            <i class="fas fa-heart"></i>
+            <span>Date Score: <strong>{restaurant.dateNightScore}</strong></span>
           </div>
-        )}
-      </div>
-      
-      <div class="featured-actions">
-        <a href={restaurant.ctaUrl} class="btn btn-featured">
-          <i class="fas fa-info-circle"></i>
-          {restaurant.ctaText}
-        </a>
+          
+          {restaurant.specialOffer && (
+            <div class="special-offer">
+              <i class="fas fa-gift"></i>
+              <span>{restaurant.specialOffer}</span>
+            </div>
+          )}
+        </div>
+        
+        <div class="featured-actions">
+          <div class="btn btn-featured">
+            <i class="fas fa-info-circle"></i>
+            {restaurant.ctaText}
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</a>
 
 <style>
+  .featured-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+  
+  .featured-card-link:hover {
+    transform: translateY(-8px);
+  }
+  
+  .featured-card-link:hover .featured-card {
+    box-shadow: 0 20px 50px var(--tier-glow);
+  }
+  
   .featured-card {
     background: #FFF8F0;
     border-radius: 20px;
@@ -118,10 +135,6 @@ const style = tierStyles[tier];
     z-index: -1;
   }
   
-  .featured-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px var(--tier-glow);
-  }
   
   .featured-badge {
     position: absolute;
@@ -314,11 +327,7 @@ const style = tierStyles[tier];
     background: var(--tier-gradient);
     color: white;
     box-shadow: 0 4px 15px var(--tier-glow);
-  }
-  
-  .btn-featured:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--tier-glow);
+    pointer-events: none;
   }
   
   .btn-secondary {
