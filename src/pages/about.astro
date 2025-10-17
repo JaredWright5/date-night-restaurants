@@ -131,6 +131,131 @@ const structuredData = {
     </div>
   </section>
 
+  <!-- Date Score System -->
+  <section class="date-score-system">
+    <div class="container">
+      <h2>Our Proprietary Date Score System</h2>
+      <p class="section-intro">
+        Unlike traditional star ratings that focus on general dining quality, our Date Score is specifically designed 
+        to evaluate how perfect a restaurant is for romantic date nights. We use a sophisticated weighted algorithm 
+        that considers six key factors that matter most to couples.
+      </p>
+      
+      <div class="score-factors">
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-icon">
+              <i class="fas fa-candle-holder"></i>
+            </div>
+            <h3>Ambiance & Vibe Signals</h3>
+            <div class="factor-weight">30%</div>
+          </div>
+          <p>
+            We analyze social comments, website copy, photos, and reviews for romantic keywords like "cozy," 
+            "candlelit," "intimate," "rooftop view," "live music," and "soft lighting" to identify truly 
+            romantic atmospheres.
+          </p>
+        </div>
+        
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Social Buzz & Sentiment</h3>
+            <div class="factor-weight">20%</div>
+          </div>
+          <p>
+            We measure how often restaurants are mentioned in couple-focused social content and analyze 
+            the sentiment of those mentions, including engagement rates and follower demographics.
+          </p>
+        </div>
+        
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-icon">
+              <i class="fas fa-ring"></i>
+            </div>
+            <h3>Occasion Fit</h3>
+            <div class="factor-weight">15%</div>
+          </div>
+          <p>
+            We track how often users mention date-specific contexts like "anniversary," "first date," 
+            "proposal," "engagement," and "birthday dinner" while filtering out work or family dining mentions.
+          </p>
+        </div>
+        
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3>Quality & Popularity</h3>
+            <div class="factor-weight">15%</div>
+          </div>
+          <p>
+            We consider Google and Yelp ratings, review volume, rating trends over time, and the frequency 
+            of new reviews to ensure consistent quality.
+          </p>
+        </div>
+        
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-icon">
+              <i class="fas fa-trending-up"></i>
+            </div>
+            <h3>Freshness & Momentum</h3>
+            <div class="factor-weight">10%</div>
+          </div>
+          <p>
+            We track recent positive social activities, new mentions in the last 30 days, trending posts, 
+            new openings, and media coverage to identify restaurants with current buzz.
+          </p>
+        </div>
+        
+        <div class="factor-card">
+          <div class="factor-header">
+            <div class="factor-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Practical Date Night Factors</h3>
+            <div class="factor-weight">10%</div>
+          </div>
+          <p>
+            We evaluate reservation availability, price appropriateness for date nights, noise levels, 
+            operating hours, and location accessibility to ensure a smooth romantic experience.
+          </p>
+        </div>
+      </div>
+      
+      <div class="score-explanation">
+        <h3>How to Use Date Scores</h3>
+        <div class="score-ranges">
+          <div class="score-range">
+            <div class="range-score">95-100</div>
+            <div class="range-label">Exceptional Date Night Experience</div>
+            <div class="range-description">Perfect for special occasions, anniversaries, and memorable moments</div>
+          </div>
+          <div class="score-range">
+            <div class="range-score">90-94</div>
+            <div class="range-label">Outstanding Romantic Dining</div>
+            <div class="range-description">Excellent choice for any romantic occasion</div>
+          </div>
+          <div class="score-range">
+            <div class="range-score">85-89</div>
+            <div class="range-label">Great Date Night Spot</div>
+            <div class="range-description">Reliable choice for regular date nights</div>
+          </div>
+          <div class="score-range">
+            <div class="range-score">80-84</div>
+            <div class="range-label">Good Date Night Option</div>
+            <div class="range-description">Solid choice for casual romantic dining</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Our Story -->
   <section class="our-story">
     <div class="container">
@@ -516,6 +641,153 @@ const structuredData = {
     }
     
     .contact-info {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Date Score System Styles */
+  .date-score-system {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+  }
+  
+  .date-score-system h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #D4AF37;
+    font-size: 2.5rem;
+  }
+  
+  .section-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+    color: #e0e0e0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .score-factors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .factor-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .factor-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  
+  .factor-icon {
+    width: 50px;
+    height: 50px;
+    background: #D4AF37;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2C2C2C;
+    font-size: 1.2rem;
+  }
+  
+  .factor-header h3 {
+    flex: 1;
+    color: #D4AF37;
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  
+  .factor-weight {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  
+  .factor-card p {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .score-explanation {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  
+  .score-explanation h3 {
+    text-align: center;
+    color: #D4AF37;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .score-ranges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .score-range {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  
+  .range-score {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+  }
+  
+  .range-label {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .range-description {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .score-factors {
+      grid-template-columns: 1fr;
+    }
+    
+    .factor-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+    
+    .score-explanation {
+      padding: 2rem;
+    }
+    
+    .score-ranges {
       grid-template-columns: 1fr;
     }
   }
