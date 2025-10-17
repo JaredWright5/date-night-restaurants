@@ -7,6 +7,7 @@ import { getAllCities } from '@/data/cities';
 // Get URL parameters
 const url = new URL(Astro.request.url);
 const searchQuery = url.searchParams.get('search') || '';
+const neighborhoodFilter = url.searchParams.get('neighborhood') || '';
 const cuisineFilter = url.searchParams.get('cuisine') || '';
 const priceFilter = url.searchParams.get('price') || '';
 const ratingFilter = url.searchParams.get('rating') || '';
@@ -16,12 +17,14 @@ let filteredRestaurants = restaurants;
 
 if (searchQuery) {
   filteredRestaurants = searchRestaurants(searchQuery, {
+    neighborhood: neighborhoodFilter,
     cuisine: cuisineFilter,
     price: priceFilter,
     rating: ratingFilter
   });
-} else if (cuisineFilter || priceFilter || ratingFilter) {
+} else if (neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter) {
   filteredRestaurants = searchRestaurants('', {
+    neighborhood: neighborhoodFilter,
     cuisine: cuisineFilter,
     price: priceFilter,
     rating: ratingFilter
@@ -43,8 +46,9 @@ const getPageTitle = () => {
   if (searchQuery) {
     return `Search Results for "${searchQuery}" | Date Night Restaurants in Los Angeles`;
   }
-  if (cuisineFilter || priceFilter || ratingFilter) {
+  if (neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter) {
     const filters = [];
+    if (neighborhoodFilter) filters.push(neighborhoodFilter);
     if (cuisineFilter) filters.push(cuisineFilter.replace(/_/g, ' '));
     if (priceFilter) filters.push(`${'$'.repeat(parseInt(priceFilter))} restaurants`);
     if (ratingFilter) filters.push(`${ratingFilter}+ star restaurants`);
@@ -57,7 +61,7 @@ const getPageDescription = () => {
   if (searchQuery) {
     return `Search results for "${searchQuery}" in Los Angeles date night restaurants. Find the perfect romantic dining spot.`;
   }
-  if (cuisineFilter || priceFilter || ratingFilter) {
+  if (neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter) {
     return `Filtered date night restaurants in Los Angeles based on your criteria. Discover romantic dining spots that match your preferences.`;
   }
   return "Explore our complete directory of romantic date night restaurants in Los Angeles. Use our advanced filters to find the perfect spot by neighborhood, cuisine, or price.";
@@ -85,11 +89,12 @@ const structuredData = {
           <h1>Search Results for "{searchQuery}"</h1>
           <p>Found {allRestaurants.length} restaurant{allRestaurants.length !== 1 ? 's' : ''} matching your search.</p>
         </div>
-      ) : cuisineFilter || priceFilter || ratingFilter ? (
+      ) : neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter ? (
         <div class="filter-results-header">
           <h1>Filtered Date Night Restaurants</h1>
           <p>Showing {allRestaurants.length} restaurant{allRestaurants.length !== 1 ? 's' : ''} matching your filters.</p>
           <div class="active-filters">
+            {neighborhoodFilter && <span class="filter-tag">Neighborhood: {neighborhoodFilter}</span>}
             {cuisineFilter && <span class="filter-tag">Cuisine: {cuisineFilter.replace(/_/g, ' ')}</span>}
             {priceFilter && <span class="filter-tag">Price: {'$'.repeat(parseInt(priceFilter))}</span>}
             {ratingFilter && <span class="filter-tag">Rating: {ratingFilter}+ stars</span>}

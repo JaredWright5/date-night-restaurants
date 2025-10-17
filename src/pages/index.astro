@@ -130,6 +130,15 @@ const structuredData = [
           <button id="searchBtn"><i class="fas fa-search"></i></button>
         </div>
         <div class="search-filters">
+          <select id="neighborhoodFilter">
+            <option value="">All Neighborhoods</option>
+            {(() => {
+              const neighborhoods = Array.from(new Set(restaurants.map(r => r.neighborhood))).sort();
+              return neighborhoods.map(neighborhood => (
+                <option value={neighborhood}>{neighborhood}</option>
+              ));
+            })()}
+          </select>
           <select id="cuisineFilter">
             <option value="">All Cuisines</option>
             {cuisines.map(cuisine => (
@@ -637,6 +646,7 @@ const structuredData = [
   function initializeSearchAndFilters() {
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
+    const neighborhoodFilter = document.getElementById('neighborhoodFilter');
     const cuisineFilter = document.getElementById('cuisineFilter');
     const priceFilter = document.getElementById('priceFilter');
     const ratingFilter = document.getElementById('ratingFilter');
@@ -660,12 +670,14 @@ const structuredData = [
     
     // Filter functionality
     function applyFilters() {
+      const neighborhood = neighborhoodFilter.value;
       const cuisine = cuisineFilter.value;
       const price = priceFilter.value;
       const rating = ratingFilter.value;
       
       // Build filter parameters
       const params = new URLSearchParams();
+      if (neighborhood) params.set('neighborhood', neighborhood);
       if (cuisine) params.set('cuisine', cuisine);
       if (price) params.set('price', price);
       if (rating) params.set('rating', rating);
@@ -683,6 +695,7 @@ const structuredData = [
       }
     });
     
+    neighborhoodFilter.addEventListener('change', applyFilters);
     cuisineFilter.addEventListener('change', applyFilters);
     priceFilter.addEventListener('change', applyFilters);
     ratingFilter.addEventListener('change', applyFilters);

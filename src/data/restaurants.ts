@@ -187,6 +187,12 @@ export function searchRestaurants(query: string, filters: any = {}): Restaurant[
     );
   }
   
+  if (filters.neighborhood) {
+    results = results.filter(restaurant => 
+      restaurant.neighborhood === filters.neighborhood
+    );
+  }
+  
   return results.sort((a, b) => b.dateNightScore - a.dateNightScore);
 }
 
