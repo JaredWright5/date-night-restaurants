@@ -11,16 +11,12 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('404'),
+      filter: (page) => !page.includes('404') && !page.includes('test'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
       customPages: [
         'https://datenightrestaurants.com/',
-        'https://datenightrestaurants.com/cities/',
-        'https://datenightrestaurants.com/cuisines/',
-        'https://datenightrestaurants.com/neighborhoods/',
-        'https://datenightrestaurants.com/sitemap-neighborhoods.xml',
       ]
     }),
     tailwind({
