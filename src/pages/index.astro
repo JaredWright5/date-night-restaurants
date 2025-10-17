@@ -6,7 +6,19 @@ import { getRandomRestaurants, restaurants } from '@/data/restaurants';
 import { getAllCities } from '@/data/cities';
 import { getPopularCuisines } from '@/data/cuisines';
 
-const topRestaurants = getRandomRestaurants(6, true);
+// Get all restaurants excluding featured ones for client-side randomization
+const allRestaurants = restaurants.filter(restaurant => {
+  const featuredNames = [
+    'Providence',
+    'République Café Bakery & République Restaurant', 
+    'Bestia',
+    'Osteria Mozza'
+  ];
+  return !featuredNames.includes(restaurant.name);
+});
+
+// Get initial 6 for server-side rendering (will be replaced by client-side JS)
+const topRestaurants = allRestaurants.slice(0, 6);
 const cities = getAllCities();
 const cuisines = getPopularCuisines(6);
 
@@ -140,7 +152,7 @@ const structuredData = [
         <p>Handpicked romantic dining experiences across Los Angeles</p>
       </div>
       
-      <div class="restaurants-grid">
+      <div class="restaurants-grid" id="restaurants-grid">
         {topRestaurants.map(restaurant => (
           <RestaurantCard restaurant={restaurant} showWebsite={false} />
         ))}
@@ -578,3 +590,67 @@ const structuredData = [
     }
   }
 </style>
+
+<script define:vars={{ allRestaurants }}>
+  // Client-side randomization for Top Date Night Restaurants
+  function randomizeRestaurants() {
+    const grid = document.getElementById('restaurants-grid');
+    if (!grid) return;
+    
+    // Shuffle the restaurants array
+    const shuffled = [...allRestaurants].sort(() => Math.random() - 0.5);
+    const selected = shuffled.slice(0, 6);
+    
+    // Clear the grid
+    grid.innerHTML = '';
+    
+    // Create restaurant cards for the selected restaurants
+    selected.forEach(restaurant => {
+      const card = document.createElement('div');
+      card.className = 'restaurant-card';
+      card.setAttribute('data-neighborhood', restaurant.neighborhood || '');
+      card.setAttribute('data-price', restaurant.priceLevel);
+      card.setAttribute('data-rating', restaurant.rating);
+      card.setAttribute('data-cuisine', restaurant.cuisineTypes.join(','));
+      
+      const priceSymbols = '$'.repeat(restaurant.priceLevel);
+      const stars = '★'.repeat(Math.floor(restaurant.rating));
+      const halfStar = restaurant.rating % 1 >= 0.5 ? '☆' : '';
+      
+      card.innerHTML = `
+        <div class="card-image">
+          <img src="${restaurant.photos[0]}" alt="${restaurant.name} - Romantic date night restaurant in ${restaurant.neighborhood || 'Los Angeles'}" loading="lazy" />
+          <div class="card-overlay">
+            <div class="card-rating">
+              <span class="stars">${stars}${halfStar}</span>
+              <span class="rating-number">${restaurant.rating}</span>
+            </div>
+            <div class="card-price">${priceSymbols}</div>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3>${restaurant.name}</h3>
+          <p class="card-location">
+            <i class="fas fa-map-marker-alt"></i>
+            ${restaurant.neighborhood || 'Los Angeles'}
+          </p>
+          <p class="card-cuisine">${restaurant.cuisineTypes.join(', ')}</p>
+          <div class="card-score">
+            <span class="score-label">Date Score</span>
+            <span class="score-value">${restaurant.dateNightScore}</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="/losangeles/${restaurant.slug}/" class="btn btn-primary">
+            <i class="fas fa-info-circle"></i> View Details
+          </a>
+        </div>
+      `;
+      
+      grid.appendChild(card);
+    });
+  }
+  
+  // Randomize on page load
+  document.addEventListener('DOMContentLoaded', randomizeRestaurants);
+</script>
