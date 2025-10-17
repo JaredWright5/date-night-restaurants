@@ -109,17 +109,19 @@ const mainImage = getRestaurantImage(restaurant);
 
 <style>
   .restaurant-card {
-    background: white;
+    background: #FFF8F0;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(232, 184, 109, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    border: 2px solid #E8B86D;
   }
   
   .restaurant-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 40px rgba(232, 184, 109, 0.3);
+    border-color: #D2691E;
   }
   
   .card-link {
@@ -162,8 +164,8 @@ const mainImage = getRestaurantImage(restaurant);
   }
   
   .card-rating {
-    background: rgba(0,0,0,0.8);
-    color: white;
+    background: #D2691E;
+    color: #FFF8F0;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     display: flex;
@@ -171,6 +173,7 @@ const mainImage = getRestaurantImage(restaurant);
     gap: 0.5rem;
     font-size: 0.9rem;
     font-weight: 500;
+    box-shadow: 0 2px 8px rgba(210, 105, 30, 0.3);
   }
   
   .card-rating .stars {
@@ -191,29 +194,30 @@ const mainImage = getRestaurantImage(restaurant);
   .restaurant-name {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #333;
+    color: #3E2723;
     margin: 0;
     flex: 1;
   }
   
   .restaurant-price {
-    background: #D4AF37;
-    color: #2C2C2C;
+    background: #E8B86D;
+    color: #3E2723;
     padding: 0.25rem 0.75rem;
     border-radius: 15px;
     font-size: 0.8rem;
     font-weight: 500;
     white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(232, 184, 109, 0.3);
   }
   
   .restaurant-cuisine {
-    color: #666;
+    color: #8B4513;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
   }
   
   .restaurant-address {
-    color: #888;
+    color: #5D4037;
     font-size: 0.85rem;
     margin-bottom: 1rem;
   }
@@ -223,20 +227,21 @@ const mainImage = getRestaurantImage(restaurant);
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
-    color: #666;
+    color: #8B4513;
     margin-bottom: 1rem;
   }
   
   .date-score i {
-    color: #D4AF37;
+    color: #D2691E;
   }
   
   .date-score strong {
-    background: linear-gradient(45deg, #D4AF37, #E6C547);
-    color: #2C2C2C;
+    background: #E8B86D;
+    color: #3E2723;
     padding: 0.25rem 0.5rem;
     border-radius: 10px;
     font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(232, 184, 109, 0.3);
   }
   
   .card-actions {
@@ -262,23 +267,27 @@ const mainImage = getRestaurantImage(restaurant);
   }
   
   .btn-primary {
-    background: #D4AF37;
-    color: #2C2C2C;
+    background: #D2691E;
+    color: #FFF8F0;
+    box-shadow: 0 2px 8px rgba(210, 105, 30, 0.3);
   }
   
   .btn-primary:hover {
-    background: #B8941F;
+    background: #B7410E;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(210, 105, 30, 0.4);
   }
   
   .btn-secondary {
-    background: #f8f9fa;
-    color: #333;
-    border: 1px solid #ddd;
+    background: #F4E4BC;
+    color: #3E2723;
+    border: 1px solid #E8B86D;
   }
   
   .btn-secondary:hover {
-    background: #e9ecef;
+    background: #E8B86D;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(232, 184, 109, 0.3);
   }
   
   @media (max-width: 480px) {

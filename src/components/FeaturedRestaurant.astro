@@ -11,25 +11,25 @@ const { restaurant, tier } = Astro.props;
 const priceSymbols = '$'.repeat(restaurant.priceLevel);
 const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
 
-// Tier-specific styling
+// Tier-specific styling with warm colors
 const tierStyles = {
   premium: {
-    borderColor: '#28a745',
-    badgeColor: '#28a745',
-    gradient: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)',
-    glowColor: 'rgba(40, 167, 69, 0.3)'
+    borderColor: '#9CAF88',
+    badgeColor: '#9CAF88',
+    gradient: '#9CAF88',
+    glowColor: 'rgba(156, 175, 136, 0.3)'
   },
   gold: {
-    borderColor: '#ffc107',
-    badgeColor: '#ffc107',
-    gradient: 'linear-gradient(135deg, #ffc107 0%, #ff8c00 100%)',
-    glowColor: 'rgba(255, 193, 7, 0.3)'
+    borderColor: '#E8B86D',
+    badgeColor: '#E8B86D',
+    gradient: '#E8B86D',
+    glowColor: 'rgba(232, 184, 109, 0.3)'
   },
   platinum: {
-    borderColor: '#6f42c1',
-    badgeColor: '#6f42c1',
-    gradient: 'linear-gradient(135deg, #6f42c1 0%, #d63384 100%)',
-    glowColor: 'rgba(111, 66, 193, 0.3)'
+    borderColor: '#D2691E',
+    badgeColor: '#D2691E',
+    gradient: '#D2691E',
+    glowColor: 'rgba(210, 105, 30, 0.3)'
   }
 };
 
@@ -92,15 +92,13 @@ const style = tierStyles[tier];
 
 <style>
   .featured-card {
-    background: white;
+    background: #FFF8F0;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(232, 184, 109, 0.2);
     transition: all 0.3s ease;
     position: relative;
     border: 3px solid var(--tier-color);
-    background: var(--tier-gradient);
-    background-clip: padding-box;
   }
   
   .featured-card::before {
@@ -173,8 +171,8 @@ const style = tierStyles[tier];
   }
   
   .restaurant-rating {
-    background: rgba(0,0,0,0.8);
-    color: white;
+    background: #D2691E;
+    color: #FFF8F0;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     display: flex;
