@@ -132,7 +132,9 @@ const structuredData = {
             <p><strong>Address:</strong> {restaurant.address}</p>
             <p><strong>Phone:</strong> <a href={`tel:${restaurant.phone}`}>{restaurant.phone}</a></p>
             <p><strong>Website:</strong> <a href={restaurant.website} target="_blank">{restaurant.website}</a></p>
-            <p><strong>Cuisine:</strong> {restaurant.cuisineTypes.join(', ')}</p>
+            <p><strong>Cuisine:</strong> {restaurant.cuisineTypes.map(cuisine => 
+              cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+            ).join(', ')}</p>
             <p><strong>Area:</strong> {restaurant.area}</p>
           </div>
           <div class="map-placeholder">

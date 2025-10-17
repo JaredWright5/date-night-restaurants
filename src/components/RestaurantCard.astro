@@ -81,7 +81,9 @@ const mainImage = getRestaurantImage(restaurant);
         <div class="restaurant-price">{priceSymbols}</div>
       </div>
       
-      <p class="restaurant-cuisine">{restaurant.cuisineTypes.join(', ')}</p>
+      <p class="restaurant-cuisine">{restaurant.cuisineTypes.map(cuisine => 
+        cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+      ).join(', ')}</p>
       <p class="restaurant-address">{restaurant.address}</p>
       
       {showDateScore && (

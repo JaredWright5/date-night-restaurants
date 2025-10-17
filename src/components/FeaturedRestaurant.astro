@@ -63,7 +63,9 @@ const style = tierStyles[tier];
         <div class="restaurant-price">{priceSymbols}</div>
       </div>
       
-      <p class="restaurant-cuisine">{restaurant.cuisineTypes.join(', ')}</p>
+      <p class="restaurant-cuisine">{restaurant.cuisineTypes.map(cuisine => 
+        cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+      ).join(', ')}</p>
       <p class="restaurant-address">{restaurant.area}</p>
       
       <div class="featured-highlights">
