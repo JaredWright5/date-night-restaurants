@@ -66,13 +66,13 @@ const mainImage = getRestaurantImage(restaurant);
             <span>{restaurant.dateNightScore}</span>
           </span>
         </div>
-        {restaurant.isTopRated && (
-          <div class="top-rated-badge">
-            <i class="fas fa-crown"></i>
-            <span>Top Rated</span>
-          </div>
-        )}
       </div>
+      {restaurant.isTopRated && (
+        <div class="top-rated-badge">
+          <i class="fas fa-crown"></i>
+          <span>Top Rated</span>
+        </div>
+      )}
     </div>
     
     <div class="card-content">
