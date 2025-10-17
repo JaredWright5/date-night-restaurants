@@ -1,0 +1,372 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+const italianRestaurants = restaurants.filter(r => 
+  r.cuisineTypes.includes('italian_restaurant')
+).slice(0, 8);
+
+const postDate = "2024-10-16";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Romantic Italian Restaurants in Los Angeles for the Perfect Date Night",
+  "description": "Indulge in the timeless romance of Italian cuisine. We've handpicked LA's most enchanting Italian restaurants, perfect for a memorable date night.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "mainEntityOfPage": "https://datenightrestaurants.com/blog/romantic-italian-restaurants-los-angeles/",
+  "image": "https://images.unsplash.com/photo-1551782450-a2132b4fd252?w=800&h=600&fit=crop"
+};
+---
+
+<BaseLayout
+  title="Romantic Italian Restaurants in Los Angeles | Perfect Date Night Dining"
+  description="Discover LA's most enchanting Italian restaurants for the perfect date night. From intimate trattorias to elegant fine dining, find your ideal romantic Italian experience."
+  keywords={['romantic Italian restaurants LA', 'date night Italian food Los Angeles', 'best Italian restaurants Beverly Hills', 'romantic dining West Hollywood', 'Italian date night spots']}
+  canonical="https://datenightrestaurants.com/blog/romantic-italian-restaurants-los-angeles/"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <!-- Blog Header -->
+    <header class="blog-header">
+      <div class="container">
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="separator">•</span>
+          <span class="post-author">by Date Night Experts</span>
+          <span class="separator">•</span>
+          <span class="post-category">Italian Dining</span>
+        </div>
+        <h1>Romantic Italian Restaurants in Los Angeles for the Perfect Date Night</h1>
+        <p class="post-excerpt">Indulge in the timeless romance of Italian cuisine. We've handpicked LA's most enchanting Italian restaurants, perfect for a memorable date night.</p>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="featured-image">
+      <img src="https://images.unsplash.com/photo-1551782450-a2132b4fd252?w=1200&h=600&fit=crop" alt="Romantic Italian restaurant interior" />
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <p class="lead">There's something inherently romantic about Italian cuisine—the way a perfectly crafted pasta dish can transport you to the cobblestone streets of Rome, or how a glass of Chianti can set the mood for an intimate conversation. In Los Angeles, we're fortunate to have some of the most authentic and romantic Italian restaurants outside of Italy itself.</p>
+
+          <p>Whether you're planning a first date, celebrating an anniversary, or simply want to impress someone special, these Italian restaurants offer the perfect blend of authentic cuisine, romantic ambiance, and impeccable service that will make your date night unforgettable.</p>
+
+          <h2>What Makes an Italian Restaurant Perfect for Date Night?</h2>
+          
+          <p>When choosing an Italian restaurant for a romantic evening, several factors come into play:</p>
+          
+          <ul>
+            <li><strong>Ambiance:</strong> Warm lighting, intimate seating, and authentic Italian decor create the perfect romantic atmosphere</li>
+            <li><strong>Authenticity:</strong> Traditional recipes and techniques that honor Italian culinary heritage</li>
+            <li><strong>Service:</strong> Attentive but not intrusive service that enhances the dining experience</li>
+            <li><strong>Wine Selection:</strong> A carefully curated wine list featuring Italian varietals</li>
+            <li><strong>Privacy:</strong> Tables positioned for intimate conversation without feeling crowded</li>
+          </ul>
+
+          <h2>LA's Most Romantic Italian Restaurants</h2>
+
+          <div class="restaurants-section">
+            <div class="restaurants-list">
+              {italianRestaurants.map((restaurant, index) => (
+                <div class="restaurant-feature">
+                  <div class="restaurant-number">{index + 1}</div>
+                  <div class="restaurant-content">
+                    <h3>{restaurant.name}</h3>
+                    <div class="restaurant-details">
+                      <span class="cuisine">{restaurant.cuisineTypes.join(', ').replace(/_/g, ' ')}</span>
+                      <span class="separator">•</span>
+                      <span class="rating">{restaurant.rating}★</span>
+                      <span class="separator">•</span>
+                      <span class="price">{'$'.repeat(restaurant.priceLevel)}</span>
+                      <span class="separator">•</span>
+                      <span class="neighborhood">{restaurant.neighborhood}</span>
+                    </div>
+                    <p class="restaurant-description">
+                      {restaurant.name.includes('Spago') && "Wolfgang Puck's flagship restaurant offers an elegant Italian-inspired menu with a sophisticated Beverly Hills setting. The outdoor patio is perfect for romantic dinners under the stars."}
+                      {restaurant.name.includes('Osteria') && "This intimate Italian eatery specializes in handmade pasta and traditional Northern Italian cuisine. The cozy atmosphere and candlelit tables create the perfect romantic setting."}
+                      {restaurant.name.includes('Bestia') && "A modern Italian restaurant with an industrial-chic vibe, featuring house-made pasta and an impressive wine selection. The open kitchen adds excitement to your date night."}
+                      {restaurant.name.includes('Felix') && "A charming Italian trattoria with authentic recipes and a warm, welcoming atmosphere. Perfect for couples who appreciate traditional Italian hospitality."}
+                      {restaurant.name.includes('Scopa') && "This Venice Beach gem offers creative Italian dishes with a California twist. The casual yet sophisticated setting is ideal for a relaxed romantic dinner."}
+                      {restaurant.name.includes('Giorgio') && "An upscale Italian restaurant known for its celebrity clientele and exceptional service. The elegant dining room provides an intimate setting for special occasions."}
+                      {restaurant.name.includes('Madeo') && "A family-owned Italian restaurant serving authentic recipes passed down through generations. The warm, family atmosphere makes it perfect for meaningful conversations."}
+                      {restaurant.name.includes('Angelini') && "This West Hollywood institution offers traditional Italian cuisine with a modern presentation. The romantic lighting and intimate seating create an unforgettable dining experience."}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <h2>Tips for the Perfect Italian Date Night</h2>
+
+          <h3>1. Make Reservations</h3>
+          <p>Popular Italian restaurants in LA often require reservations, especially on weekends. Book at least a week in advance for prime time slots.</p>
+
+          <h3>2. Dress Appropriately</h3>
+          <p>While most Italian restaurants in LA are casual-friendly, upscale establishments like Spago or Giorgio Baldi may have a dress code. When in doubt, smart casual is always appropriate.</p>
+
+          <h3>3. Consider Wine Pairings</h3>
+          <p>Italian cuisine is meant to be enjoyed with wine. Don't hesitate to ask your server for wine recommendations that complement your meal.</p>
+
+          <h3>4. Share Dishes</h3>
+          <p>Italian dining is often about sharing. Consider ordering appetizers to share and splitting a pasta dish for a more intimate experience.</p>
+
+          <h3>5. Save Room for Dessert</h3>
+          <p>No Italian meal is complete without dessert. Tiramisu, panna cotta, or gelato make for the perfect sweet ending to your romantic evening.</p>
+
+          <h2>Regional Italian Specialties to Try</h2>
+
+          <p>Los Angeles Italian restaurants represent various regions of Italy, each with its own specialties:</p>
+
+          <ul>
+            <li><strong>Northern Italy:</strong> Rich risottos, creamy polenta, and hearty meat dishes</li>
+            <li><strong>Central Italy:</strong> Classic Roman pastas like cacio e pepe and carbonara</li>
+            <li><strong>Southern Italy:</strong> Fresh seafood, bright tomato sauces, and Neapolitan-style pizzas</li>
+            <li><strong>Sicily:</strong> Unique flavors influenced by Arab and Greek cuisines</li>
+          </ul>
+
+          <h2>Conclusion</h2>
+
+          <p>Los Angeles offers an incredible variety of romantic Italian restaurants, each with its own unique charm and authentic flavors. Whether you prefer the elegance of Beverly Hills fine dining or the cozy intimacy of a neighborhood trattoria, there's an Italian restaurant in LA that's perfect for your date night.</p>
+
+          <p>Remember, the best Italian date night isn't just about the food—it's about the experience, the conversation, and the memories you create together. So take your time, savor each bite, and let the romance of Italian cuisine work its magic.</p>
+
+          <div class="cta-section">
+            <h3>Ready to Plan Your Italian Date Night?</h3>
+            <p>Explore our complete directory of <a href="/losangeles/restaurants/">Los Angeles restaurants</a> to find the perfect Italian spot for your romantic evening.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    background: #fff;
+  }
+
+  .blog-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .separator {
+    color: #D4AF37;
+  }
+
+  .post-category {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .blog-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  .post-excerpt {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-content {
+    padding: 4rem 0;
+  }
+
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2C2C2C;
+    margin: 3rem 0 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    color: #2C2C2C;
+    margin: 2rem 0 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #4A4A4A;
+  }
+
+  ul {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    color: #4A4A4A;
+  }
+
+  .restaurants-section {
+    margin: 3rem 0;
+  }
+
+  .restaurants-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .restaurant-feature {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: #F8F6F0;
+    border-radius: 15px;
+    border-left: 4px solid #D4AF37;
+  }
+
+  .restaurant-number {
+    background: #D4AF37;
+    color: #2C2C2C;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .restaurant-content {
+    flex: 1;
+  }
+
+  .restaurant-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #2C2C2C;
+  }
+
+  .restaurant-details {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .restaurant-details .separator {
+    color: #D4AF37;
+  }
+
+  .restaurant-description {
+    color: #4A4A4A;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta-section h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cta-section a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .blog-header h1 {
+      font-size: 2.5rem;
+    }
+
+    .post-excerpt {
+      font-size: 1.1rem;
+    }
+
+    .restaurant-feature {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .restaurant-details {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+</style>

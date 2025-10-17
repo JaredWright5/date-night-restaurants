@@ -1,0 +1,409 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+const rooftopRestaurants = restaurants.filter(r => 
+  r.cuisineTypes.includes('rooftop_restaurant')
+).slice(0, 8);
+
+const postDate = "2024-10-16";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Best Rooftop Date Night Restaurants in Los Angeles",
+  "description": "Elevate your date night with stunning city views and romantic rooftop dining. Discover LA's most breathtaking rooftop restaurants perfect for special occasions.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "mainEntityOfPage": "https://datenightrestaurants.com/blog/best-rooftop-date-night-restaurants-los-angeles/",
+  "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop"
+};
+---
+
+<BaseLayout
+  title="Best Rooftop Date Night Restaurants in Los Angeles | Elevated Dining with Stunning Views"
+  description="Discover LA's most romantic rooftop restaurants with breathtaking city views. From Downtown skyscrapers to beachside terraces, find the perfect elevated dining experience."
+  keywords={['rooftop restaurants LA', 'date night with city views', 'romantic rooftop dining Los Angeles', 'best rooftop bars LA', 'elevated dining experiences']}
+  canonical="https://datenightrestaurants.com/blog/best-rooftop-date-night-restaurants-los-angeles/"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <!-- Blog Header -->
+    <header class="blog-header">
+      <div class="container">
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="separator">•</span>
+          <span class="post-author">by Date Night Experts</span>
+          <span class="separator">•</span>
+          <span class="post-category">Rooftop Dining</span>
+        </div>
+        <h1>Best Rooftop Date Night Restaurants in Los Angeles</h1>
+        <p class="post-excerpt">Elevate your date night with stunning city views and romantic rooftop dining. Discover LA's most breathtaking rooftop restaurants perfect for special occasions.</p>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    <div class="featured-image">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=600&fit=crop" alt="Rooftop restaurant with city views" />
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <p class="lead">There's something magical about dining above the city lights—the way the twinkling skyline creates a romantic backdrop, the gentle breeze that carries the energy of Los Angeles, and the feeling of being on top of the world with someone special. LA's rooftop restaurant scene offers some of the most spectacular dining experiences in the world.</p>
+
+          <p>From Downtown LA's towering skyscrapers to the beachside terraces of Santa Monica, these elevated dining destinations combine world-class cuisine with breathtaking views that will make your date night truly unforgettable.</p>
+
+          <h2>Why Choose a Rooftop Restaurant for Date Night?</h2>
+          
+          <p>Rooftop dining offers unique advantages that make it perfect for romantic occasions:</p>
+          
+          <ul>
+            <li><strong>Stunning Views:</strong> Panoramic cityscapes and sunset vistas create an unforgettable backdrop</li>
+            <li><strong>Intimate Atmosphere:</strong> Elevated settings often feel more private and romantic</li>
+            <li><strong>Perfect Lighting:</strong> Natural light during golden hour and twinkling city lights at night</li>
+            <li><strong>Unique Experience:</strong> Something special that stands out from typical restaurant dates</li>
+            <li><strong>Photo Opportunities:</strong> Instagram-worthy moments that capture your special evening</li>
+          </ul>
+
+          <h2>LA's Most Spectacular Rooftop Restaurants</h2>
+
+          <div class="restaurants-section">
+            <div class="restaurants-list">
+              {rooftopRestaurants.map((restaurant, index) => (
+                <div class="restaurant-feature">
+                  <div class="restaurant-number">{index + 1}</div>
+                  <div class="restaurant-content">
+                    <h3>{restaurant.name}</h3>
+                    <div class="restaurant-details">
+                      <span class="cuisine">{restaurant.cuisineTypes.join(', ').replace(/_/g, ' ')}</span>
+                      <span class="separator">•</span>
+                      <span class="rating">{restaurant.rating}★</span>
+                      <span class="separator">•</span>
+                      <span class="price">{'$'.repeat(restaurant.priceLevel)}</span>
+                      <span class="separator">•</span>
+                      <span class="neighborhood">{restaurant.neighborhood}</span>
+                    </div>
+                    <p class="restaurant-description">
+                      {restaurant.name.includes('71Above') && "Perched on the 71st floor of the US Bank Tower, this is LA's highest rooftop restaurant. The 360-degree views of the city are absolutely breathtaking, especially at sunset. The contemporary American menu matches the sophisticated setting, making it perfect for special occasions."}
+                      {restaurant.name.includes('Perch') && "This French-inspired rooftop bistro in Downtown LA offers stunning views of the city skyline. The romantic ambiance is enhanced by fire pits, cozy seating, and a retractable roof. Perfect for a sophisticated date night with a European flair."}
+                      {restaurant.name.includes('Catch') && "A celebrity hotspot on the Melrose strip, Catch LA combines excellent seafood with a trendy rooftop scene. The lively atmosphere and Instagram-worthy setting make it ideal for a fun, energetic date night."}
+                      {restaurant.name.includes('Elephante') && "This Santa Monica rooftop gem offers coastal Italian cuisine with ocean views. The Mediterranean-inspired space features a beautiful terrace perfect for sunset dinners and romantic evenings by the beach."}
+                      {restaurant.name.includes('EP & LP') && "A dual-concept rooftop in West Hollywood offering Pan-Asian cuisine upstairs and Aussie-inspired fare downstairs. The vibrant atmosphere and creative cocktails make it perfect for adventurous couples."}
+                      {restaurant.name.includes('Cabra') && "Peruvian cuisine meets stunning Downtown LA views at this colorful rooftop restaurant. The lively atmosphere and shareable plates create a fun, interactive date night experience."}
+                      {restaurant.name.includes('Castaway') && "Nestled in the hills of Burbank, Castaway offers panoramic views of the San Fernando Valley and beyond. The elegant setting and exceptional service make it perfect for celebrating special moments."}
+                      {restaurant.name.includes('Yamashiro') && "This Hollywood Hills institution combines Japanese cuisine with some of the best views in LA. The traditional architecture and garden setting create a unique and romantic atmosphere."}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <h2>Best Times for Rooftop Date Nights</h2>
+
+          <h3>Golden Hour (6:00-7:30 PM)</h3>
+          <p>The warm, golden light during sunset creates the most romantic atmosphere. This is the perfect time for photos and enjoying the transition from day to night.</p>
+
+          <h3>Sunset (7:30-8:00 PM)</h3>
+          <p>Watching the sun set over the Pacific Ocean or behind the Hollywood Hills is one of LA's most magical experiences. Many rooftop restaurants offer special sunset menus during this time.</p>
+
+          <h3>Evening (8:00-10:00 PM)</h3>
+          <p>As the city lights begin to twinkle, the rooftop atmosphere becomes even more romantic. This is the ideal time for intimate conversations and enjoying the night sky.</p>
+
+          <h2>What to Wear for Rooftop Dining</h2>
+
+          <p>Rooftop restaurants often have a more elevated dress code, but comfort is key when dining outdoors:</p>
+
+          <ul>
+            <li><strong>For Her:</strong> A stylish dress or jumpsuit with a light jacket or shawl for the evening breeze</li>
+            <li><strong>For Him:</strong> Smart casual attire—a button-down shirt with dress pants or dark jeans</li>
+            <li><strong>Footwear:</strong> Comfortable shoes that can handle outdoor surfaces and potential walking</li>
+            <li><strong>Layers:</strong> Even in LA, rooftop temperatures can drop in the evening</li>
+          </ul>
+
+          <h2>Rooftop Dining Tips for the Perfect Date</h2>
+
+          <h3>1. Make Reservations Early</h3>
+          <p>Rooftop restaurants are extremely popular, especially during peak hours. Book at least two weeks in advance for prime sunset times.</p>
+
+          <h3>2. Check the Weather</h3>
+          <p>While most rooftop restaurants have covered areas, it's always good to check the forecast and have a backup plan.</p>
+
+          <h3>3. Arrive Early for Sunset</h3>
+          <p>If you want to catch the sunset, arrive 30-45 minutes before the scheduled time to secure the best views.</p>
+
+          <h3>4. Consider the Season</h3>
+          <p>Spring and fall offer the most comfortable temperatures, while summer can be warm and winter evenings may require extra layers.</p>
+
+          <h3>5. Plan for Parking</h3>
+          <p>Many rooftop restaurants are in busy areas with limited parking. Consider valet service or rideshare options.</p>
+
+          <h2>Special Occasions on Rooftops</h2>
+
+          <p>Rooftop restaurants are perfect for celebrating special moments:</p>
+
+          <ul>
+            <li><strong>Anniversaries:</strong> The elevated setting adds extra romance to milestone celebrations</li>
+            <li><strong>Proposals:</strong> Many rooftop restaurants can arrange special setups for memorable proposals</li>
+            <li><strong>Birthdays:</strong> The festive atmosphere and views make birthdays feel extra special</li>
+            <li><strong>First Dates:</strong> The unique setting helps create memorable first impressions</li>
+            <li><strong>Date Night:</strong> Any excuse to enjoy elevated dining with someone special</li>
+          </ul>
+
+          <h2>LA's Rooftop Restaurant Districts</h2>
+
+          <h3>Downtown LA</h3>
+          <p>Home to the city's tallest buildings and most dramatic skyline views. Perfect for urban romance and cityscape photography.</p>
+
+          <h3>West Hollywood</h3>
+          <p>Trendy rooftop spots with a more relaxed, party atmosphere. Great for couples who enjoy a vibrant social scene.</p>
+
+          <h3>Santa Monica</h3>
+          <p>Beachside rooftops offer ocean views and a more laid-back coastal vibe. Perfect for sunset dining by the sea.</p>
+
+          <h3>Hollywood Hills</h3>
+          <p>Elevated locations with panoramic city views and a more intimate, secluded atmosphere.</p>
+
+          <h2>Conclusion</h2>
+
+          <p>Los Angeles rooftop restaurants offer some of the most romantic and memorable dining experiences in the world. Whether you're celebrating a special occasion or simply want to elevate your date night, these elevated dining destinations combine exceptional cuisine with breathtaking views that will create lasting memories.</p>
+
+          <p>From the glittering lights of Downtown LA to the peaceful ocean views of Santa Monica, there's a rooftop restaurant in LA that's perfect for your romantic evening. So book your reservation, dress to impress, and get ready to dine above the city lights.</p>
+
+          <div class="cta-section">
+            <h3>Ready to Elevate Your Date Night?</h3>
+            <p>Explore our complete directory of <a href="/losangeles/restaurants/">Los Angeles restaurants</a> to find the perfect rooftop spot for your romantic evening.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    background: #fff;
+  }
+
+  .blog-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .separator {
+    color: #D4AF37;
+  }
+
+  .post-category {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .blog-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  .post-excerpt {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-content {
+    padding: 4rem 0;
+  }
+
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    color: #2C2C2C;
+    margin: 3rem 0 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    color: #2C2C2C;
+    margin: 2rem 0 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #4A4A4A;
+  }
+
+  ul {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    color: #4A4A4A;
+  }
+
+  .restaurants-section {
+    margin: 3rem 0;
+  }
+
+  .restaurants-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .restaurant-feature {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: #F8F6F0;
+    border-radius: 15px;
+    border-left: 4px solid #D4AF37;
+  }
+
+  .restaurant-number {
+    background: #D4AF37;
+    color: #2C2C2C;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .restaurant-content {
+    flex: 1;
+  }
+
+  .restaurant-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #2C2C2C;
+  }
+
+  .restaurant-details {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .restaurant-details .separator {
+    color: #D4AF37;
+  }
+
+  .restaurant-description {
+    color: #4A4A4A;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta-section h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cta-section a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .blog-header h1 {
+      font-size: 2.5rem;
+    }
+
+    .post-excerpt {
+      font-size: 1.1rem;
+    }
+
+    .restaurant-feature {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .restaurant-details {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+</style>
