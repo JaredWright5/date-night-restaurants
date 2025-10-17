@@ -95,7 +95,10 @@ const structuredData = {
           <div class="neighborhood-card">
             <a href={`/losangeles/neighborhoods/${neighborhood.toLowerCase().replace(/\s+/g, '-')}/`}>
               <h3>{neighborhood}</h3>
-              <p>{restaurants.filter(r => r.neighborhood === neighborhood).length} restaurants</p>
+              <p>{(() => {
+                const count = restaurants.filter(r => r.neighborhood === neighborhood).length;
+                return `${count} restaurants`;
+              })()}</p>
             </a>
           </div>
         ))}

@@ -111,7 +111,10 @@ const structuredData = {
           <span class="stat-label">Average Rating</span>
         </div>
         <div class="stat">
-          <span class="stat-number">{neighborhoodRestaurants.filter(r => r.priceLevel >= 3).length}</span>
+          <span class="stat-number">{(() => {
+            const fineDiningCount = neighborhoodRestaurants.filter(r => r.priceLevel >= 3).length;
+            return fineDiningCount;
+          })()}</span>
           <span class="stat-label">Fine Dining</span>
         </div>
       </div>
@@ -152,11 +155,21 @@ const structuredData = {
             {topRestaurants.slice(0,3).map(r => (
               <li>
                 <strong>{r.name}</strong> —
-                {r.cuisineTypes.includes('rooftop_restaurant') ? ' breathtaking views and golden-hour ambiance' : ''}
-                {r.cuisineTypes.includes('italian_restaurant') ? ' handmade pasta and candlelit romance' : ''}
-                {r.cuisineTypes.includes('french_restaurant') ? ' refined French technique in an intimate room' : ''}
-                {(!r.cuisineTypes.includes('rooftop_restaurant') && !r.cuisineTypes.includes('italian_restaurant') && !r.cuisineTypes.includes('french_restaurant')) ? ' exceptional cooking with true date-night atmosphere' : ''}
-                {r.priceLevel >= 3 ? ' with upscale service for special occasions' : ' with a relaxed vibe ideal for conversation'}
+                {(() => {
+                  const reasons = [];
+                  if (r.cuisineTypes.includes('rooftop_restaurant')) reasons.push('breathtaking views and golden-hour ambiance');
+                  if (r.cuisineTypes.includes('italian_restaurant')) reasons.push('handmade pasta and candlelit romance');
+                  if (r.cuisineTypes.includes('french_restaurant')) reasons.push('refined French technique in an intimate room');
+                  if (!r.cuisineTypes.includes('rooftop_restaurant') && !r.cuisineTypes.includes('italian_restaurant') && !r.cuisineTypes.includes('french_restaurant')) {
+                    reasons.push('exceptional cooking with true date-night atmosphere');
+                  }
+                  if (r.priceLevel >= 3) {
+                    reasons.push('upscale service for special occasions');
+                  } else {
+                    reasons.push('relaxed vibe ideal for conversation');
+                  }
+                  return reasons.join(' ');
+                })()}
                 {r.rating >= 4.6 ? ' and consistently stellar diner reviews.' : '.'}
               </li>
             ))}
