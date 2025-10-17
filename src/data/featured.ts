@@ -164,6 +164,57 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     specialOffer: 'Complimentary wine tasting with dinner',
     badge: 'Trending',
     priority: 90
+  },
+  {
+    id: 'featured-4',
+    name: 'Osteria Mozza',
+    slug: 'osteria-mozza',
+    address: '6602 Melrose Ave, Los Angeles, CA 90038, USA',
+    phone: '(323) 297-0100',
+    website: 'https://www.osteriamozza.com',
+    rating: 4.4,
+    priceLevel: 4,
+    cuisineTypes: ['italian_restaurant', 'fine_dining'],
+    openingHours: {
+      'Monday': 'Closed',
+      'Tuesday': '5:30 PM – 10:00 PM',
+      'Wednesday': '5:30 PM – 10:00 PM',
+      'Thursday': '5:30 PM – 10:00 PM',
+      'Friday': '5:30 PM – 11:00 PM',
+      'Saturday': '5:30 PM – 11:00 PM',
+      'Sunday': '5:30 PM – 10:00 PM'
+    },
+    reviews: [
+      {
+        author: 'Maria L.',
+        rating: 5,
+        text: 'This intimate Italian restaurant specializes in handmade pasta and traditional Northern Italian cuisine. The cozy atmosphere and candlelit tables create a romantic setting for celebrations.',
+        time: 1640390400
+      }
+    ],
+    photos: [
+      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop'
+    ],
+    placeId: 'ChIJd8BlQ2BZwokRAFQEcDlJRAI',
+    latitude: 34.0836,
+    longitude: -118.3236,
+    dateNightScore: 99.0,
+    city: 'Los Angeles',
+    area: 'Los Angeles',
+    zipCode: '90038',
+    description: 'This intimate Italian restaurant specializes in handmade pasta and traditional Northern Italian cuisine. The cozy atmosphere and candlelit tables create a romantic setting for celebrations.',
+    amenities: ['WiFi', 'Valet Parking', 'Reservations Required', 'Wine Bar', 'Private Dining'],
+    specialFeatures: ['Handmade Pasta', 'Traditional Italian', 'Intimate Setting', 'Wine Selection'],
+    lastUpdated: new Date().toISOString(),
+    featuredTier: 'premium',
+    featuredUntil: '2025-09-30T23:59:59Z',
+    featuredSince: '2024-03-01T00:00:00Z',
+    ctaText: 'View Details',
+    ctaUrl: '/losangeles/osteria-mozza/',
+    specialOffer: 'Complimentary amaro tasting with dinner',
+    badge: 'Featured',
+    priority: 85
   }
 ];
 
