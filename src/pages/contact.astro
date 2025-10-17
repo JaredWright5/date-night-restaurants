@@ -1,0 +1,524 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Date Night Restaurants",
+  "description": "Get in touch with Date Night Restaurants for restaurant recommendations, partnerships, or feedback.",
+  "url": "https://datenightrestaurants.com/contact/",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "description": "Your guide to the most romantic restaurants in Los Angeles",
+    "url": "https://datenightrestaurants.com",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-555-DATE-NIGHT",
+      "contactType": "customer service",
+      "areaServed": "Los Angeles",
+      "availableLanguage": "English"
+    }
+  }
+};
+---
+
+<BaseLayout 
+  title="Contact Us | Date Night Restaurants | Get in Touch"
+  description="Contact Date Night Restaurants for restaurant recommendations, partnerships, or feedback. We're here to help you find the perfect romantic dining experience."
+  keywords={['contact us', 'date night restaurants', 'restaurant recommendations', 'partnership', 'feedback', 'Los Angeles dining']}
+  canonical="https://datenightrestaurants.com/contact/"
+  structuredData={structuredData}
+>
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Get in Touch</h1>
+        <p class="hero-subtitle">We'd love to hear from you! Whether you're looking for restaurant recommendations, want to partner with us, or have feedback to share.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="contact-content">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form-section">
+          <h2>Send us a Message</h2>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a subject</option>
+                <option value="restaurant-recommendation">Restaurant Recommendation</option>
+                <option value="partnership">Partnership Opportunity</option>
+                <option value="feedback">Feedback</option>
+                <option value="technical-issue">Technical Issue</option>
+                <option value="general-inquiry">General Inquiry</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" rows="6" required placeholder="Tell us how we can help you..."></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <span class="checkmark"></span>
+                Subscribe to our newsletter for the latest restaurant recommendations
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info-section">
+          <h2>Contact Information</h2>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-details">
+                <h3>Email Us</h3>
+                <p>hello@datenightrestaurants.com</p>
+                <p>partnerships@datenightrestaurants.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-details">
+                <h3>Call Us</h3>
+                <p>+1 (555) DATE-NIGHT</p>
+                <p>Mon-Fri: 9AM-6PM PST</p>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-details">
+                <h3>Visit Us</h3>
+                <p>Los Angeles, California</p>
+                <p>We're a digital-first company</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Response Times -->
+          <div class="response-times">
+            <h3>Response Times</h3>
+            <ul>
+              <li><strong>General Inquiries:</strong> Within 24 hours</li>
+              <li><strong>Restaurant Recommendations:</strong> Within 12 hours</li>
+              <li><strong>Partnership Inquiries:</strong> Within 48 hours</li>
+              <li><strong>Technical Issues:</strong> Within 6 hours</li>
+            </ul>
+          </div>
+
+          <!-- Social Media -->
+          <div class="social-contact">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+                <span>@DateNightRestaurants</span>
+              </a>
+              <a href="#" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+                <span>Date Night Restaurants</span>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+                <span>@DateNightLA</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How do you choose restaurants for your directory?</h3>
+          <p>We personally visit and review each restaurant to ensure they meet our high standards for romantic atmosphere, food quality, and service. Every restaurant in our directory has been carefully curated for date night experiences.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>Can I suggest a restaurant for your directory?</h3>
+          <p>Absolutely! We love hearing about new romantic dining spots. Send us a message with the restaurant details and why you think it's perfect for date nights. We'll visit and consider it for our directory.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>Do you offer restaurant partnerships?</h3>
+          <p>Yes! We work with restaurants to help them reach couples looking for romantic dining experiences. Contact us at partnerships@datenightrestaurants.com to learn about our partnership opportunities.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>How often do you update your restaurant information?</h3>
+          <p>We regularly update our restaurant information, including hours, menus, and reviews. Our team visits restaurants quarterly to ensure all information is current and accurate.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>Can you help me plan a special date night?</h3>
+          <p>We'd love to help! Send us details about your preferences, budget, and location, and we'll provide personalized restaurant recommendations for your perfect date night.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>Do you cover restaurants outside of Los Angeles?</h3>
+          <p>Currently, we focus on Los Angeles, but we're planning to expand to other major cities. Sign up for our newsletter to be the first to know when we launch in your city!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .contact-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+  
+  .contact-content {
+    padding: 80px 0;
+    background: #fff;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  
+  .contact-form-section h2,
+  .contact-info-section h2 {
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  
+  .contact-form {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid #D4AF37;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2C2C2C;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #E8D5B7;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #D4AF37;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #4A4A4A;
+    line-height: 1.4;
+  }
+  
+  .checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+  }
+  
+  .btn {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn:hover {
+    background: #B8941F;
+  }
+  
+  .contact-methods {
+    margin-bottom: 3rem;
+  }
+  
+  .contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #F8F6F0;
+    border-radius: 12px;
+  }
+  
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    background: #D4AF37;
+    color: #2C2C2C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  .contact-details h3 {
+    color: #2C2C2C;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .contact-details p {
+    color: #4A4A4A;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .response-times {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+  
+  .response-times h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .response-times ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .response-times li {
+    color: #4A4A4A;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .social-contact {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 12px;
+  }
+  
+  .social-contact h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #4A4A4A;
+    text-decoration: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  
+  .social-link:hover {
+    background: #E8D5B7;
+    color: #2C2C2C;
+  }
+  
+  .social-link i {
+    width: 20px;
+    text-align: center;
+  }
+  
+  .faq-section {
+    padding: 80px 0;
+    background: #F8F6F0;
+  }
+  
+  .faq-section h2 {
+    text-align: center;
+    color: #2C2C2C;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .faq-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+  
+  .faq-item h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .faq-item p {
+    color: #4A4A4A;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .contact-form {
+      padding: 1.5rem;
+    }
+    
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Simple validation
+      if (!data.name || !data.email || !data.subject || !data.message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      
+      // Simulate form submission
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      submitBtn.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+        alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+        form.reset();
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 2000);
+    });
+  });
+</script>
