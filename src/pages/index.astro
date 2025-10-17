@@ -152,11 +152,12 @@ const structuredData = [
             <option value="3">$$$</option>
             <option value="4">$$$$</option>
           </select>
-          <select id="ratingFilter">
-            <option value="">All Ratings</option>
-            <option value="4.5">4.5+ Stars</option>
-            <option value="4.0">4.0+ Stars</option>
-            <option value="3.5">3.5+ Stars</option>
+          <select id="dateScoreFilter">
+            <option value="">All Date Scores</option>
+            <option value="95">95+ Date Score</option>
+            <option value="90">90+ Date Score</option>
+            <option value="85">85+ Date Score</option>
+            <option value="80">80+ Date Score</option>
           </select>
         </div>
       </div>
@@ -649,7 +650,7 @@ const structuredData = [
     const neighborhoodFilter = document.getElementById('neighborhoodFilter');
     const cuisineFilter = document.getElementById('cuisineFilter');
     const priceFilter = document.getElementById('priceFilter');
-    const ratingFilter = document.getElementById('ratingFilter');
+    const dateScoreFilter = document.getElementById('dateScoreFilter');
     
     if (!searchInput || !searchBtn) return;
     
@@ -673,14 +674,14 @@ const structuredData = [
       const neighborhood = neighborhoodFilter.value;
       const cuisine = cuisineFilter.value;
       const price = priceFilter.value;
-      const rating = ratingFilter.value;
+      const dateScore = dateScoreFilter.value;
       
       // Build filter parameters
       const params = new URLSearchParams();
       if (neighborhood) params.set('neighborhood', neighborhood);
       if (cuisine) params.set('cuisine', cuisine);
       if (price) params.set('price', price);
-      if (rating) params.set('rating', rating);
+      if (dateScore) params.set('dateScore', dateScore);
       
       // Redirect to restaurants page with filters
       const queryString = params.toString();
@@ -698,7 +699,7 @@ const structuredData = [
     neighborhoodFilter.addEventListener('change', applyFilters);
     cuisineFilter.addEventListener('change', applyFilters);
     priceFilter.addEventListener('change', applyFilters);
-    ratingFilter.addEventListener('change', applyFilters);
+    dateScoreFilter.addEventListener('change', applyFilters);
   }
   
   // Initialize on page load

@@ -10,7 +10,7 @@ const searchQuery = url.searchParams.get('search') || '';
 const neighborhoodFilter = url.searchParams.get('neighborhood') || '';
 const cuisineFilter = url.searchParams.get('cuisine') || '';
 const priceFilter = url.searchParams.get('price') || '';
-const ratingFilter = url.searchParams.get('rating') || '';
+const dateScoreFilter = url.searchParams.get('dateScore') || '';
 
 // Apply search and filters
 let filteredRestaurants = restaurants;
@@ -20,14 +20,14 @@ if (searchQuery) {
     neighborhood: neighborhoodFilter,
     cuisine: cuisineFilter,
     price: priceFilter,
-    rating: ratingFilter
+    dateScore: dateScoreFilter
   });
-} else if (neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter) {
+} else if (neighborhoodFilter || cuisineFilter || priceFilter || dateScoreFilter) {
   filteredRestaurants = searchRestaurants('', {
     neighborhood: neighborhoodFilter,
     cuisine: cuisineFilter,
     price: priceFilter,
-    rating: ratingFilter
+    dateScore: dateScoreFilter
   });
 }
 
@@ -46,12 +46,12 @@ const getPageTitle = () => {
   if (searchQuery) {
     return `Search Results for "${searchQuery}" | Date Night Restaurants in Los Angeles`;
   }
-  if (neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter) {
+  if (neighborhoodFilter || cuisineFilter || priceFilter || dateScoreFilter) {
     const filters = [];
     if (neighborhoodFilter) filters.push(neighborhoodFilter);
     if (cuisineFilter) filters.push(cuisineFilter.replace(/_/g, ' '));
     if (priceFilter) filters.push(`${'$'.repeat(parseInt(priceFilter))} restaurants`);
-    if (ratingFilter) filters.push(`${ratingFilter}+ star restaurants`);
+    if (dateScoreFilter) filters.push(`${dateScoreFilter}+ Date Score`);
     return `Filtered Date Night Restaurants: ${filters.join(', ')} | Los Angeles`;
   }
   return "All Date Night Restaurants in Los Angeles | Filter by Neighborhood, Cuisine, Price";
@@ -61,7 +61,7 @@ const getPageDescription = () => {
   if (searchQuery) {
     return `Search results for "${searchQuery}" in Los Angeles date night restaurants. Find the perfect romantic dining spot.`;
   }
-  if (neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter) {
+  if (neighborhoodFilter || cuisineFilter || priceFilter || dateScoreFilter) {
     return `Filtered date night restaurants in Los Angeles based on your criteria. Discover romantic dining spots that match your preferences.`;
   }
   return "Explore our complete directory of romantic date night restaurants in Los Angeles. Use our advanced filters to find the perfect spot by neighborhood, cuisine, or price.";
@@ -89,7 +89,7 @@ const structuredData = {
           <h1>Search Results for "{searchQuery}"</h1>
           <p>Found {allRestaurants.length} restaurant{allRestaurants.length !== 1 ? 's' : ''} matching your search.</p>
         </div>
-      ) : neighborhoodFilter || cuisineFilter || priceFilter || ratingFilter ? (
+      ) : neighborhoodFilter || cuisineFilter || priceFilter || dateScoreFilter ? (
         <div class="filter-results-header">
           <h1>Filtered Date Night Restaurants</h1>
           <p>Showing {allRestaurants.length} restaurant{allRestaurants.length !== 1 ? 's' : ''} matching your filters.</p>
@@ -97,7 +97,7 @@ const structuredData = {
             {neighborhoodFilter && <span class="filter-tag">Neighborhood: {neighborhoodFilter}</span>}
             {cuisineFilter && <span class="filter-tag">Cuisine: {cuisineFilter.replace(/_/g, ' ')}</span>}
             {priceFilter && <span class="filter-tag">Price: {'$'.repeat(parseInt(priceFilter))}</span>}
-            {ratingFilter && <span class="filter-tag">Rating: {ratingFilter}+ stars</span>}
+            {dateScoreFilter && <span class="filter-tag">Date Score: {dateScoreFilter}+</span>}
           </div>
         </div>
       ) : (
@@ -137,6 +137,14 @@ const structuredData = {
             {neighborhoods.map(neighborhood => (
               <option value={neighborhood}>{neighborhood}</option>
             ))}
+          </select>
+          
+          <select id="dateScoreFilter">
+            <option value="">All Date Scores</option>
+            <option value="95">95+ Date Score</option>
+            <option value="90">90+ Date Score</option>
+            <option value="85">85+ Date Score</option>
+            <option value="80">80+ Date Score</option>
           </select>
         </div>
       </div>
@@ -413,6 +421,7 @@ const structuredData = {
     const neighborhoodFilter = document.getElementById('neighborhoodFilter');
     const cuisineFilter = document.getElementById('cuisineFilter');
     const priceFilter = document.getElementById('priceFilter');
+    const dateScoreFilter = document.getElementById('dateScoreFilter');
     const restaurantsGrid = document.getElementById('restaurantsGrid');
     const noResults = document.getElementById('noResults');
     const resultsTitle = document.getElementById('resultsTitle');
@@ -427,8 +436,9 @@ const structuredData = {
       const neighborhood = restaurantCard.dataset.neighborhood || '';
       const price = restaurantCard.dataset.price || '';
       const rating = restaurantCard.dataset.rating || '';
+      const dateScore = restaurantCard.dataset.dateScore || '';
       
-      return { name, address, cuisine, neighborhood, price, rating };
+      return { name, address, cuisine, neighborhood, price, rating, dateScore };
     }
     
     function filterRestaurants() {
@@ -436,6 +446,7 @@ const structuredData = {
       const selectedNeighborhood = neighborhoodFilter.value;
       const selectedCuisine = cuisineFilter.value;
       const selectedPrice = priceFilter.value;
+      const selectedDateScore = dateScoreFilter.value;
       
       let visibleCount = 0;
       
@@ -466,6 +477,11 @@ const structuredData = {
           show = false;
         }
         
+        // Date Score filter
+        if (selectedDateScore && parseInt(restaurant.dateScore) < parseInt(selectedDateScore)) {
+          show = false;
+        }
+        
         if (show) {
           restaurantCard.style.display = 'block';
           visibleCount++;
@@ -489,6 +505,7 @@ const structuredData = {
     neighborhoodFilter.addEventListener('change', filterRestaurants);
     cuisineFilter.addEventListener('change', filterRestaurants);
     priceFilter.addEventListener('change', filterRestaurants);
+    dateScoreFilter.addEventListener('change', filterRestaurants);
     
     filterRestaurants();
   });

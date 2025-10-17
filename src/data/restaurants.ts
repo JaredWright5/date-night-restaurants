@@ -181,6 +181,12 @@ export function searchRestaurants(query: string, filters: any = {}): Restaurant[
     );
   }
   
+  if (filters.dateScore) {
+    results = results.filter(restaurant => 
+      restaurant.dateNightScore >= parseInt(filters.dateScore)
+    );
+  }
+  
   if (filters.area) {
     results = results.filter(restaurant => 
       restaurant.area === filters.area
@@ -194,6 +200,151 @@ export function searchRestaurants(query: string, filters: any = {}): Restaurant[
   }
   
   return results.sort((a, b) => b.dateNightScore - a.dateNightScore);
+}
+
+// Calculate Date Score based on weighted factors
+export function calculateDateScore(restaurant: Restaurant): number {
+  const {
+    name,
+    cuisineTypes,
+    priceLevel,
+    rating,
+    reviews,
+    photos,
+    area,
+    neighborhood,
+    website,
+    openingHours
+  } = restaurant;
+
+  let score = 0;
+
+  // 30%: Ambiance & Vibe Signals
+  const ambianceScore = calculateAmbianceScore(restaurant);
+  score += ambianceScore * 0.30;
+
+  // 20%: Social Buzz & Sentiment (placeholder - will be updated with real data)
+  const socialScore = calculateSocialScore(restaurant);
+  score += socialScore * 0.20;
+
+  // 15%: Occasion Fit
+  const occasionScore = calculateOccasionScore(restaurant);
+  score += occasionScore * 0.15;
+
+  // 15%: Quality and Popularity (Google/Yelp rating)
+  const qualityScore = calculateQualityScore(restaurant);
+  score += qualityScore * 0.15;
+
+  // 10%: Freshness & Momentum
+  const freshnessScore = calculateFreshnessScore(restaurant);
+  score += freshnessScore * 0.10;
+
+  // 10%: Practical Date Night Factors
+  const practicalScore = calculatePracticalScore(restaurant);
+  score += practicalScore * 0.10;
+
+  return Math.round(score);
+}
+
+// Helper functions for each scoring component
+function calculateAmbianceScore(restaurant: Restaurant): number {
+  let score = 50; // Base score
+  
+  // Cuisine type ambiance factors
+  const romanticCuisines = ['italian', 'french', 'japanese', 'mediterranean'];
+  const cuisineScore = restaurant.cuisineTypes.some(cuisine => 
+    romanticCuisines.includes(cuisine.toLowerCase())
+  ) ? 20 : 10;
+  score += cuisineScore;
+
+  // Price level ambiance (higher price = more romantic setting)
+  score += restaurant.priceLevel * 5;
+
+  // Neighborhood ambiance
+  const romanticNeighborhoods = ['Beverly Hills', 'West Hollywood', 'Malibu', 'Santa Monica'];
+  if (romanticNeighborhoods.includes(restaurant.neighborhood)) {
+    score += 15;
+  }
+
+  // Area ambiance
+  if (restaurant.area === 'Beverly Hills' || restaurant.area === 'West Hollywood') {
+    score += 10;
+  }
+
+  return Math.min(score, 100);
+}
+
+function calculateSocialScore(restaurant: Restaurant): number {
+  // Placeholder - will be updated with real social media data
+  // For now, use rating as proxy for social buzz
+  return Math.min(restaurant.rating * 20, 100);
+}
+
+function calculateOccasionScore(restaurant: Restaurant): number {
+  let score = 50; // Base score
+  
+  // Higher price restaurants are more likely to be used for special occasions
+  score += restaurant.priceLevel * 10;
+  
+  // Fine dining cuisines are more occasion-appropriate
+  const specialOccasionCuisines = ['french', 'italian', 'japanese', 'steakhouse'];
+  if (restaurant.cuisineTypes.some(cuisine => 
+    specialOccasionCuisines.includes(cuisine.toLowerCase())
+  )) {
+    score += 20;
+  }
+
+  // Upscale neighborhoods
+  if (['Beverly Hills', 'West Hollywood', 'Malibu'].includes(restaurant.neighborhood)) {
+    score += 15;
+  }
+
+  return Math.min(score, 100);
+}
+
+function calculateQualityScore(restaurant: Restaurant): number {
+  // Based on Google rating and review volume
+  const ratingScore = restaurant.rating * 20;
+  const reviewVolumeScore = Math.min(restaurant.reviews.length * 2, 20);
+  
+  return Math.min(ratingScore + reviewVolumeScore, 100);
+}
+
+function calculateFreshnessScore(restaurant: Restaurant): number {
+  // Placeholder - will be updated with real data about recent mentions
+  // For now, use a combination of rating and price level as proxy
+  return Math.min((restaurant.rating * 15) + (restaurant.priceLevel * 5), 100);
+}
+
+function calculatePracticalScore(restaurant: Restaurant): number {
+  let score = 50; // Base score
+  
+  // Price appropriateness for date night (not too cheap, not too expensive)
+  if (restaurant.priceLevel >= 2 && restaurant.priceLevel <= 4) {
+    score += 20;
+  } else if (restaurant.priceLevel === 1) {
+    score += 10; // Budget-friendly but still date-worthy
+  } else if (restaurant.priceLevel === 5) {
+    score += 15; // Very expensive but special occasion worthy
+  }
+
+  // Location accessibility (good neighborhoods)
+  const accessibleNeighborhoods = ['Beverly Hills', 'West Hollywood', 'Santa Monica', 'Downtown LA'];
+  if (accessibleNeighborhoods.includes(restaurant.neighborhood)) {
+    score += 15;
+  }
+
+  // Hours availability (restaurants open for dinner)
+  if (restaurant.openingHours && restaurant.openingHours.length > 0) {
+    score += 10;
+  }
+
+  // Website presence indicates professionalism
+  if (restaurant.website) {
+    score += 5;
+  }
+
+  return Math.min(score, 100);
 }
 
 // Generate customized date night descriptions

@@ -50,7 +50,8 @@ const mainImage = getRestaurantImage(restaurant);
      data-neighborhood={restaurant.neighborhood}
      data-price={restaurant.priceLevel}
      data-rating={restaurant.rating}
-     data-cuisine={restaurant.cuisineTypes.join(', ')}>
+     data-cuisine={restaurant.cuisineTypes.join(', ')}
+     data-date-score={restaurant.dateNightScore}>
       <a href={`/losangeles/${restaurant.slug}/`} class="card-link">
     <div class="card-image">
       <img 

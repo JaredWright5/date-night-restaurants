@@ -49,7 +49,9 @@
     "latitude": 34.050073459956,
     "longitude": -118.16530828031414,
     "neighborhood": "Hollywood",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 85,
+    "isTopRated": false
   },
   {
     "name": "République Café Bakery & République Restaurant",
@@ -103,7 +105,9 @@
     "latitude": 34.064158899999995,
     "longitude": -118.343697,
     "neighborhood": "Mid-Wilshire",
-    "date_night_score": 87
+    "date_night_score": 87,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Bestia",
@@ -154,7 +158,9 @@
     "latitude": 34.08510927860899,
     "longitude": -118.28002322017984,
     "neighborhood": "Downtown LA",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "Bavel",
@@ -207,7 +213,9 @@
     "latitude": 34.041487,
     "longitude": -118.23293129999998,
     "neighborhood": "Arts District",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 88,
+    "isTopRated": false
   },
   {
     "name": "Gjelina",
@@ -261,7 +269,9 @@
     "latitude": 33.990497,
     "longitude": -118.4649651,
     "neighborhood": "Venice",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "Osteria Mozza",
@@ -314,7 +324,9 @@
     "latitude": 34.083214,
     "longitude": -118.33896999999999,
     "neighborhood": "Hollywood",
-    "date_night_score": 86
+    "date_night_score": 86,
+    "dateNightScore": 86,
+    "isTopRated": false
   },
   {
     "name": "Spago Beverly Hills",
@@ -366,7 +378,9 @@
     "latitude": 33.95548839395949,
     "longitude": -118.19701089026948,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 95,
+    "isTopRated": true
   },
   {
     "name": "Nobu Los Angeles",
@@ -420,7 +434,9 @@
     "latitude": 34.087151899999995,
     "longitude": -118.3766041,
     "neighborhood": "West Hollywood",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 93,
+    "isTopRated": false
   },
   {
     "name": "Catch LA",
@@ -472,7 +488,9 @@
     "latitude": 34.14803567487166,
     "longitude": -118.20966880746712,
     "neighborhood": "West Hollywood",
-    "date_night_score": 97
+    "date_night_score": 97,
+    "dateNightScore": 95,
+    "isTopRated": true
   },
   {
     "name": "The Little Door",
@@ -526,7 +544,9 @@
     "latitude": 34.0720931,
     "longitude": -118.3675088,
     "neighborhood": "Beverly Grove",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 90,
+    "isTopRated": false
   },
   {
     "name": "A.O.C.",
@@ -580,7 +600,9 @@
     "latitude": 34.0734135,
     "longitude": -118.38192719999999,
     "neighborhood": "Mid-City",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 87,
+    "isTopRated": false
   },
   {
     "name": "Perch LA",
@@ -631,7 +653,9 @@
     "latitude": 33.96002956854862,
     "longitude": -118.17667535217119,
     "neighborhood": "Downtown LA",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "71Above",
@@ -683,7 +707,9 @@
     "latitude": 34.07594656507701,
     "longitude": -118.3359294309042,
     "neighborhood": "Downtown LA",
-    "date_night_score": 90
+    "date_night_score": 90,
+    "dateNightScore": 90,
+    "isTopRated": false
   },
   {
     "name": "The Strand House",
@@ -737,7 +763,9 @@
     "latitude": 33.8847744,
     "longitude": -118.41136979999999,
     "neighborhood": "Manhattan Beach",
-    "date_night_score": 97
+    "date_night_score": 97,
+    "dateNightScore": 87,
+    "isTopRated": false
   },
   {
     "name": "Nobu Malibu",
@@ -791,7 +819,9 @@
     "latitude": 34.0390391,
     "longitude": -118.66964770000001,
     "neighborhood": "Malibu",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 91,
+    "isTopRated": false
   },
   {
     "name": "Malibu Farm Restaurant at the Pier",
@@ -845,7 +875,9 @@
     "latitude": 34.037224099999996,
     "longitude": -118.6765344,
     "neighborhood": "Malibu",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 86,
+    "isTopRated": false
   },
   {
     "name": "Geoffrey's Malibu",
@@ -896,7 +928,9 @@
     "latitude": 34.141899541947765,
     "longitude": -118.25004933359872,
     "neighborhood": "Malibu",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 91,
+    "isTopRated": false
   },
   {
     "name": "Yamashiro Hollywood",
@@ -947,7 +981,9 @@
     "latitude": 34.020705644754564,
     "longitude": -118.25661497821115,
     "neighborhood": "Hollywood Hills",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 82,
+    "isTopRated": false
   },
   {
     "name": "Castaway Burbank",
@@ -998,7 +1034,9 @@
     "latitude": 34.03933530663733,
     "longitude": -118.26117194880462,
     "neighborhood": "Burbank",
-    "date_night_score": 90
+    "date_night_score": 90,
+    "dateNightScore": 86,
+    "isTopRated": false
   },
   {
     "name": "CUT by Wolfgang Puck",
@@ -1049,7 +1087,9 @@
     "latitude": 34.10222212615149,
     "longitude": -118.32667633930107,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 96,
+    "isTopRated": true
   },
   {
     "name": "Mastro's Steakhouse Beverly Hills",
@@ -1100,7 +1140,9 @@
     "latitude": 34.0842649161128,
     "longitude": -118.2704927071713,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 93,
+    "isTopRated": false
   },
   {
     "name": "Lawry's The Prime Rib",
@@ -1151,7 +1193,9 @@
     "latitude": 33.98072565653876,
     "longitude": -118.1818705671941,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 92,
+    "isTopRated": false
   },
   {
     "name": "Water Grill",
@@ -1202,7 +1246,9 @@
     "latitude": 34.06081901833803,
     "longitude": -118.27312964324241,
     "neighborhood": "Downtown LA",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 89,
+    "isTopRated": false
   },
   {
     "name": "BOA Steakhouse",
@@ -1253,7 +1299,9 @@
     "latitude": 33.98616427887557,
     "longitude": -118.18997156137353,
     "neighborhood": "West Hollywood",
-    "date_night_score": 98
+    "date_night_score": 98,
+    "dateNightScore": 96,
+    "isTopRated": true
   },
   {
     "name": "Rustic Canyon",
@@ -1307,7 +1355,9 @@
     "latitude": 34.041249199999996,
     "longitude": -118.5182633,
     "neighborhood": "Santa Monica",
-    "date_night_score": 95
+    "date_night_score": 95,
+    "dateNightScore": 92,
+    "isTopRated": false
   },
   {
     "name": "Mélisse Restaurant",
@@ -1360,7 +1410,9 @@
     "latitude": 34.0245221,
     "longitude": -118.49135629999999,
     "neighborhood": "Santa Monica",
-    "date_night_score": 97
+    "date_night_score": 97,
+    "dateNightScore": 93,
+    "isTopRated": false
   },
   {
     "name": "Vespertine",
@@ -1414,7 +1466,9 @@
     "latitude": 34.0241968,
     "longitude": -118.3818786,
     "neighborhood": "Culver City",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 87,
+    "isTopRated": false
   },
   {
     "name": "n/naka",
@@ -1467,7 +1521,9 @@
     "latitude": 34.0251279,
     "longitude": -118.4122016,
     "neighborhood": "Palms",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 90,
+    "isTopRated": false
   },
   {
     "name": "Hayato",
@@ -1518,7 +1574,9 @@
     "latitude": 34.112224583006736,
     "longitude": -118.26562313127339,
     "neighborhood": "Downtown LA",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 90,
+    "isTopRated": false
   },
   {
     "name": "Orsa & Winston",
@@ -1569,7 +1627,9 @@
     "latitude": 34.13503140076979,
     "longitude": -118.19291748613587,
     "neighborhood": "Downtown LA",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 86,
+    "isTopRated": false
   },
   {
     "name": "Lucques",
@@ -1622,7 +1682,9 @@
     "latitude": 34.0823465,
     "longitude": -118.3754196,
     "neighborhood": "West Hollywood",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 96,
+    "isTopRated": true
   },
   {
     "name": "Animal Restaurant",
@@ -1675,7 +1737,9 @@
     "latitude": 34.0792438,
     "longitude": -118.36177869999999,
     "neighborhood": "Fairfax",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Son of a Gun",
@@ -1728,7 +1792,9 @@
     "latitude": 34.07272,
     "longitude": -118.37250200000001,
     "neighborhood": "Mid-City",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "Connie and Ted's",
@@ -1778,7 +1844,9 @@
     "latitude": 33.96011141797898,
     "longitude": -118.19802633472644,
     "neighborhood": "West Hollywood",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 90,
+    "isTopRated": false
   },
   {
     "name": "Pasjoli",
@@ -1829,7 +1897,9 @@
     "latitude": 34.081376354670745,
     "longitude": -118.20415109528987,
     "neighborhood": "Santa Monica",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 92,
+    "isTopRated": false
   },
   {
     "name": "Otium",
@@ -1880,7 +1950,9 @@
     "latitude": 33.98912376923928,
     "longitude": -118.27083476676152,
     "neighborhood": "Downtown LA",
-    "date_night_score": 96
+    "date_night_score": 96,
+    "dateNightScore": 90,
+    "isTopRated": false
   },
   {
     "name": "Redbird",
@@ -1931,7 +2003,9 @@
     "latitude": 34.060296661658306,
     "longitude": -118.34310133953416,
     "neighborhood": "Downtown LA",
-    "date_night_score": 87
+    "date_night_score": 87,
+    "dateNightScore": 87,
+    "isTopRated": false
   },
   {
     "name": "Broken Spanish",
@@ -1983,7 +2057,9 @@
     "latitude": 34.07866292407196,
     "longitude": -118.21912198608976,
     "neighborhood": "Downtown LA",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 86,
+    "isTopRated": false
   },
   {
     "name": "Tesse Restaurant",
@@ -2036,7 +2112,9 @@
     "latitude": 34.09394530000001,
     "longitude": -118.37651059999999,
     "neighborhood": "West Hollywood",
-    "date_night_score": 97
+    "date_night_score": 97,
+    "dateNightScore": 97,
+    "isTopRated": true
   },
   {
     "name": "Petit Trois",
@@ -2089,7 +2167,9 @@
     "latitude": 34.0841618,
     "longitude": -118.3381893,
     "neighborhood": "Hollywood",
-    "date_night_score": 86
+    "date_night_score": 86,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Trois Mec",
@@ -2140,7 +2220,9 @@
     "latitude": 34.003166622305706,
     "longitude": -118.19675964650253,
     "neighborhood": "Hollywood",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 88,
+    "isTopRated": false
   },
   {
     "name": "Matsuhisa Beverly Hills",
@@ -2192,7 +2274,9 @@
     "latitude": 34.035731607476635,
     "longitude": -118.21799207230218,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 91,
+    "isTopRated": false
   },
   {
     "name": "Sushi Park",
@@ -2243,7 +2327,9 @@
     "latitude": 34.05097467468229,
     "longitude": -118.30801717981437,
     "neighborhood": "West Hollywood",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 92,
+    "isTopRated": false
   },
   {
     "name": "Asanebo",
@@ -2296,7 +2382,9 @@
     "latitude": 34.1435667,
     "longitude": -118.39186939999999,
     "neighborhood": "Studio City",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 85,
+    "isTopRated": false
   },
   {
     "name": "Urasawa",
@@ -2348,7 +2436,9 @@
     "latitude": 34.041683633875365,
     "longitude": -118.32399581362515,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 95
+    "date_night_score": 95,
+    "dateNightScore": 97,
+    "isTopRated": true
   },
   {
     "name": "Katsuya Brentwood",
@@ -2399,7 +2489,9 @@
     "latitude": 34.05098496414852,
     "longitude": -118.28020891366607,
     "neighborhood": "Brentwood",
-    "date_night_score": 87
+    "date_night_score": 87,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Élephante",
@@ -2452,7 +2544,9 @@
     "latitude": 34.0152447,
     "longitude": -118.4979996,
     "neighborhood": "Santa Monica",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 91,
+    "isTopRated": false
   },
   {
     "name": "EP & LP Rooftop",
@@ -2503,7 +2597,9 @@
     "latitude": 33.98072246585751,
     "longitude": -118.32290618816593,
     "neighborhood": "West Hollywood",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 93,
+    "isTopRated": false
   },
   {
     "name": "Cassia",
@@ -2554,7 +2650,9 @@
     "latitude": 33.951272911123674,
     "longitude": -118.33923637577918,
     "neighborhood": "Santa Monica",
-    "date_night_score": 95
+    "date_night_score": 95,
+    "dateNightScore": 86,
+    "isTopRated": false
   },
   {
     "name": "Forma Restaurant & Cheese Bar",
@@ -2605,7 +2703,9 @@
     "latitude": 33.96113148566813,
     "longitude": -118.30923234203726,
     "neighborhood": "Santa Monica",
-    "date_night_score": 97
+    "date_night_score": 97,
+    "dateNightScore": 94,
+    "isTopRated": false
   },
   {
     "name": "Felix Trattoria",
@@ -2657,7 +2757,9 @@
     "latitude": 33.9922429,
     "longitude": -118.47186579999999,
     "neighborhood": "Venice",
-    "date_night_score": 87
+    "date_night_score": 87,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Scopa Italian Roots",
@@ -2709,7 +2811,9 @@
     "latitude": 33.9883582,
     "longitude": -118.45154280000001,
     "neighborhood": "Venice",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "The Tasting Kitchen",
@@ -2760,7 +2864,9 @@
     "latitude": 34.028727015908515,
     "longitude": -118.18856165784435,
     "neighborhood": "Venice",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Tar & Roses",
@@ -2813,7 +2919,9 @@
     "latitude": 34.0179488,
     "longitude": -118.4930091,
     "neighborhood": "Santa Monica",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 91,
+    "isTopRated": false
   },
   {
     "name": "Birch",
@@ -2866,7 +2974,9 @@
     "latitude": 34.1009179,
     "longitude": -118.3293253,
     "neighborhood": "Santa Monica",
-    "date_night_score": 96
+    "date_night_score": 96,
+    "dateNightScore": 89,
+    "isTopRated": false
   },
   {
     "name": "Hatchet Hall",
@@ -2917,7 +3027,9 @@
     "latitude": 33.98099987407316,
     "longitude": -118.2733449036464,
     "neighborhood": "Culver City",
-    "date_night_score": 95
+    "date_night_score": 95,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Destroyer",
@@ -2970,7 +3082,9 @@
     "latitude": 34.0246417,
     "longitude": -118.3813241,
     "neighborhood": "Culver City",
-    "date_night_score": 87
+    "date_night_score": 87,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Manuela",
@@ -3023,7 +3137,9 @@
     "latitude": 34.046459899999995,
     "longitude": -118.23483369999998,
     "neighborhood": "Arts District",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Rossoblu DTLA",
@@ -3074,7 +3190,9 @@
     "latitude": 34.04787868477076,
     "longitude": -118.30031357552653,
     "neighborhood": "Downtown LA",
-    "date_night_score": 95
+    "date_night_score": 95,
+    "dateNightScore": 85,
+    "isTopRated": false
   },
   {
     "name": "Majordomo",
@@ -3128,7 +3246,9 @@
     "latitude": 34.0690822,
     "longitude": -118.2261672,
     "neighborhood": "Chinatown",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 85,
+    "isTopRated": false
   },
   {
     "name": "Guerrilla Tacos",
@@ -3180,7 +3300,9 @@
     "latitude": 33.992652688014694,
     "longitude": -118.28235918628528,
     "neighborhood": "Arts District",
-    "date_night_score": 96
+    "date_night_score": 96,
+    "dateNightScore": 77,
+    "isTopRated": false
   },
   {
     "name": "Cabra Los Angeles",
@@ -3234,7 +3356,9 @@
     "latitude": 34.039780799999996,
     "longitude": -118.2585555,
     "neighborhood": "Downtown LA",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 86,
+    "isTopRated": false
   },
   {
     "name": "Faith & Flower",
@@ -3287,7 +3411,9 @@
     "latitude": 34.046090899999996,
     "longitude": -118.2615236,
     "neighborhood": "Downtown LA",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Baltaire Restaurant",
@@ -3338,7 +3464,9 @@
     "latitude": 34.10656849433378,
     "longitude": -118.32203337468513,
     "neighborhood": "Brentwood",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 89,
+    "isTopRated": false
   },
   {
     "name": "The Grill on the Alley",
@@ -3391,7 +3519,9 @@
     "latitude": 34.067283499999995,
     "longitude": -118.4019281,
     "neighborhood": "Beverly Hills",
-    "date_night_score": 90
+    "date_night_score": 90,
+    "dateNightScore": 96,
+    "isTopRated": true
   },
   {
     "name": "Toscana Brentwood",
@@ -3442,7 +3572,9 @@
     "latitude": 34.09489924749761,
     "longitude": -118.29558892570033,
     "neighborhood": "Brentwood",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Giorgio Baldi",
@@ -3493,7 +3625,9 @@
     "latitude": 34.04409664392255,
     "longitude": -118.3032386813641,
     "neighborhood": "Santa Monica",
-    "date_night_score": 98
+    "date_night_score": 98,
+    "dateNightScore": 93,
+    "isTopRated": false
   },
   {
     "name": "Madeo Ristorante",
@@ -3543,7 +3677,9 @@
     "latitude": 34.09733200429042,
     "longitude": -118.24430984480978,
     "neighborhood": "West Hollywood",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 93,
+    "isTopRated": false
   },
   {
     "name": "Angelini Osteria",
@@ -3595,7 +3731,9 @@
     "latitude": 34.0763922,
     "longitude": -118.3491316,
     "neighborhood": "Fairfax",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Osteria La Buca",
@@ -3646,7 +3784,9 @@
     "latitude": 34.033177765213274,
     "longitude": -118.28771400702641,
     "neighborhood": "Hollywood",
-    "date_night_score": 95
+    "date_night_score": 95,
+    "dateNightScore": 85,
+    "isTopRated": false
   },
   {
     "name": "Cecconi's West Hollywood",
@@ -3697,7 +3837,9 @@
     "latitude": 33.982112856702955,
     "longitude": -118.29262939480024,
     "neighborhood": "West Hollywood",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 97,
+    "isTopRated": true
   },
   {
     "name": "Mother Wolf",
@@ -3750,7 +3892,9 @@
     "latitude": 34.0994241,
     "longitude": -118.33130980000001,
     "neighborhood": "Hollywood",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 82,
+    "isTopRated": false
   },
   {
     "name": "Osteria Mamma",
@@ -3800,7 +3944,9 @@
     "latitude": 34.03316039066585,
     "longitude": -118.32316566574778,
     "neighborhood": "Hollywood",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "Jon & Vinny's Fairfax",
@@ -3853,7 +3999,9 @@
     "latitude": 34.0786444,
     "longitude": -118.3612833,
     "neighborhood": "Fairfax",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 78,
+    "isTopRated": false
   },
   {
     "name": "Pizzana",
@@ -3906,7 +4054,9 @@
     "latitude": 34.0533058,
     "longitude": -118.4660211,
     "neighborhood": "Brentwood",
-    "date_night_score": 96
+    "date_night_score": 96,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Chinois on Main",
@@ -3957,7 +4107,9 @@
     "latitude": 34.071808859526406,
     "longitude": -118.24432001023578,
     "neighborhood": "Santa Monica",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 89,
+    "isTopRated": false
   },
   {
     "name": "Kali Steak",
@@ -4010,7 +4162,9 @@
     "latitude": 34.0833493,
     "longitude": -118.32449360000001,
     "neighborhood": "Hollywood",
-    "date_night_score": 96
+    "date_night_score": 96,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Kismet",
@@ -4061,7 +4215,9 @@
     "latitude": 34.101751558231285,
     "longitude": -118.18262947150522,
     "neighborhood": "Los Feliz",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 88,
+    "isTopRated": false
   },
   {
     "name": "Gracias Madre",
@@ -4114,7 +4270,9 @@
     "latitude": 34.0810234,
     "longitude": -118.38696649999999,
     "neighborhood": "West Hollywood",
-    "date_night_score": 96
+    "date_night_score": 96,
+    "dateNightScore": 88,
+    "isTopRated": false
   },
   {
     "name": "Crossroads Kitchen",
@@ -4167,7 +4325,9 @@
     "latitude": 34.083527,
     "longitude": -118.370157,
     "neighborhood": "West Hollywood",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 96,
+    "isTopRated": true
   },
   {
     "name": "Night + Market Weho",
@@ -4218,7 +4378,9 @@
     "latitude": 34.12879202448566,
     "longitude": -118.2546894141774,
     "neighborhood": "West Hollywood",
-    "date_night_score": 95
+    "date_night_score": 95,
+    "dateNightScore": 85,
+    "isTopRated": false
   },
   {
     "name": "Jitlada Thai",
@@ -4269,7 +4431,9 @@
     "latitude": 34.107526435571465,
     "longitude": -118.25242549313319,
     "neighborhood": "East Hollywood",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "Guelaguetza Restaurant",
@@ -4322,7 +4486,9 @@
     "latitude": 34.0524074,
     "longitude": -118.30066809999998,
     "neighborhood": "Koreatown",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 78,
+    "isTopRated": false
   },
   {
     "name": "Madre! Oaxacan Restaurant and Mezcaleria",
@@ -4375,7 +4541,9 @@
     "latitude": 33.8355173,
     "longitude": -118.3148352,
     "neighborhood": "Hollywood",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 82,
+    "isTopRated": false
   },
   {
     "name": "La Casita Mexicana",
@@ -4425,7 +4593,9 @@
     "latitude": 34.1279739471064,
     "longitude": -118.27723827231353,
     "neighborhood": "Culver City",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "Burrata House",
@@ -4477,7 +4647,9 @@
     "latitude": 34.072374599999996,
     "longitude": -118.36597970000001,
     "neighborhood": "Hollywood",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 80,
+    "isTopRated": false
   },
   {
     "name": "Bottega Louie",
@@ -4530,7 +4702,9 @@
     "latitude": 34.0470524,
     "longitude": -118.2565439,
     "neighborhood": "Downtown LA",
-    "date_night_score": 97
+    "date_night_score": 97,
+    "dateNightScore": 85,
+    "isTopRated": false
   },
   {
     "name": "Church & State",
@@ -4581,7 +4755,9 @@
     "latitude": 34.008950796643035,
     "longitude": -118.25973157869694,
     "neighborhood": "Downtown LA",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 82,
+    "isTopRated": false
   },
   {
     "name": "Lou Wine Shop",
@@ -4632,7 +4808,9 @@
     "latitude": 34.11035516738627,
     "longitude": -118.30879303068738,
     "neighborhood": "Hollywood",
-    "date_night_score": 85
+    "date_night_score": 85,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Esters Wine Shop & Oyster Bar",
@@ -4685,7 +4863,9 @@
     "latitude": 34.0195764,
     "longitude": -118.4935844,
     "neighborhood": "Santa Monica",
-    "date_night_score": 89
+    "date_night_score": 89,
+    "dateNightScore": 89,
+    "isTopRated": false
   },
   {
     "name": "Covell Wine Bar",
@@ -4735,7 +4915,9 @@
     "latitude": 34.04125980129745,
     "longitude": -118.18677790403925,
     "neighborhood": "Los Feliz",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 82,
+    "isTopRated": false
   },
   {
     "name": "The Must Wine Bar",
@@ -4786,7 +4968,9 @@
     "latitude": 34.09916141444532,
     "longitude": -118.34413798311928,
     "neighborhood": "Mid-City",
-    "date_night_score": 99
+    "date_night_score": 99,
+    "dateNightScore": 79,
+    "isTopRated": false
   },
   {
     "name": "Cliff's Edge Silver Lake",
@@ -4837,7 +5021,9 @@
     "latitude": 34.063202959141854,
     "longitude": -118.32023670144173,
     "neighborhood": "Silver Lake",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 83,
+    "isTopRated": false
   },
   {
     "name": "Botanica Restaurant and Market",
@@ -4890,7 +5076,9 @@
     "latitude": 34.0884858,
     "longitude": -118.2688688,
     "neighborhood": "Silver Lake",
-    "date_night_score": 93
+    "date_night_score": 93,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Josephine Eatery",
@@ -4941,7 +5129,9 @@
     "latitude": 34.00764364027082,
     "longitude": -118.31958128484447,
     "neighborhood": "Echo Park",
-    "date_night_score": 98
+    "date_night_score": 98,
+    "dateNightScore": 80,
+    "isTopRated": false
   },
   {
     "name": "Sqirl",
@@ -4995,7 +5185,9 @@
     "latitude": 34.0844653,
     "longitude": -118.2866952,
     "neighborhood": "Silver Lake",
-    "date_night_score": 91
+    "date_night_score": 91,
+    "dateNightScore": 79,
+    "isTopRated": false
   },
   {
     "name": "Nightshade Pasadena",
@@ -5046,7 +5238,9 @@
     "latitude": 34.13529336566985,
     "longitude": -118.22918726703826,
     "neighborhood": "Pasadena",
-    "date_night_score": 92
+    "date_night_score": 92,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "The Raymond 1886",
@@ -5097,7 +5291,9 @@
     "latitude": 33.991083520111744,
     "longitude": -118.34332685360042,
     "neighborhood": "Pasadena",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 81,
+    "isTopRated": false
   },
   {
     "name": "Vibrato Grill Jazz",
@@ -5148,7 +5344,9 @@
     "latitude": 34.098642669183384,
     "longitude": -118.33508279317255,
     "neighborhood": "Bel Air",
-    "date_night_score": 94
+    "date_night_score": 94,
+    "dateNightScore": 84,
+    "isTopRated": false
   },
   {
     "name": "Smoke House Restaurant",
@@ -5199,6 +5397,8 @@
     "latitude": 33.96843177462286,
     "longitude": -118.18605803419901,
     "neighborhood": "Burbank",
-    "date_night_score": 88
+    "date_night_score": 88,
+    "dateNightScore": 87,
+    "isTopRated": false
   }
 ]
