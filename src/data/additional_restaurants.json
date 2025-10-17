@@ -1,0 +1,3349 @@
+[
+  {
+    "id": "restaurant_101",
+    "name": "The Little Door",
+    "slug": "the-little-door",
+    "address": "8164 W 3rd St, Los Angeles, CA 90048",
+    "phone": "(323) 951-1210",
+    "website": "https://thelittledoor.com",
+    "rating": 4.5,
+    "reviewCount": 1247,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "West Hollywood",
+    "area": "West Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 11:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 12:00 PM",
+      "friday": "6:00 PM - 11:00 PM",
+      "saturday": "5:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 92,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-02-08"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-03-13"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2024-11-10"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2024-11-20"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-04-17"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-08-14"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2024-12-18"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at The Little Door in West Hollywood. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_102",
+    "name": "71Above",
+    "slug": "71above",
+    "address": "633 W 5th St, Los Angeles, CA 90071",
+    "phone": "(213) 712-2683",
+    "website": "https://71above.com",
+    "rating": 4.6,
+    "reviewCount": 2156,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Downtown LA",
+    "area": "Downtown LA",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "5:00 PM - 12:00 PM",
+      "friday": "7:00 PM - 10:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 94,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-03-31"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-08-21"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-07-11"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-08-13"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at 71Above in Downtown LA. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_103",
+    "name": "Nobu Malibu",
+    "slug": "nobu-malibu",
+    "address": "22706 Pacific Coast Hwy, Malibu, CA 90265",
+    "phone": "(310) 317-9140",
+    "website": "https://noburestaurants.com/malibu",
+    "rating": 4.4,
+    "reviewCount": 3421,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Malibu",
+    "area": "Malibu",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 11:00 PM",
+      "wednesday": "7:00 PM - 11:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 10:00 PM",
+      "saturday": "7:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 89,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-09-02"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-03-03"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-03-12"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-02-28"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-03-04"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-06-29"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Nobu Malibu in Malibu. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_104",
+    "name": "Giorgio Baldi",
+    "slug": "giorgio-baldi",
+    "address": "114 W Channel Rd, Santa Monica, CA 90402",
+    "phone": "(310) 573-1660",
+    "website": "https://giorgiobaldi.com",
+    "rating": 4.3,
+    "reviewCount": 1876,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "italian",
+      "fine_dining"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 12:00 PM",
+      "wednesday": "7:00 PM - 10:00 PM",
+      "thursday": "5:00 PM - 10:00 PM",
+      "friday": "5:00 PM - 11:00 PM",
+      "saturday": "7:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 87,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-12-16"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-06-18"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-12-21"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-07-09"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-09-29"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2024-10-19"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-09-13"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-04-06"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-04-30"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2024-12-29"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Giorgio Baldi in Santa Monica. This italian restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_105",
+    "name": "Madeo Ristorante",
+    "slug": "madeo-ristorante",
+    "address": "8897 Beverly Blvd, West Hollywood, CA 90048",
+    "phone": "(310) 859-4900",
+    "website": "https://madeorestaurant.com",
+    "rating": 4.4,
+    "reviewCount": 1234,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "italian",
+      "fine_dining"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 11:00 PM",
+      "wednesday": "6:00 PM - 11:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 10:00 PM",
+      "saturday": "7:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 91,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-04-09"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-07-17"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-02-05"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-10-04"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-07-22"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-10-07"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-01-01"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-03-29"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-08-01"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-08-12"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Madeo Ristorante in Beverly Hills. This italian restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_106",
+    "name": "Lawry's The Prime Rib",
+    "slug": "lawrys-the-prime-rib",
+    "address": "100 N La Cienega Blvd, Beverly Hills, CA 90211",
+    "phone": "(310) 652-2827",
+    "website": "https://lawrysonline.com",
+    "rating": 4.2,
+    "reviewCount": 3456,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "steakhouse",
+      "american"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 12:00 PM",
+      "wednesday": "7:00 PM - 11:00 PM",
+      "thursday": "6:00 PM - 12:00 PM",
+      "friday": "7:00 PM - 11:00 PM",
+      "saturday": "6:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 88,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-09-11"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-03-02"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-10-20"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-01-13"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-10-10"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-08-21"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-02-14"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-06-08"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Lawry's The Prime Rib in Beverly Hills. This steakhouse restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_107",
+    "name": "Rustic Canyon",
+    "slug": "rustic-canyon",
+    "address": "1119 Wilshire Blvd, Santa Monica, CA 90401",
+    "phone": "(310) 393-7050",
+    "website": "https://rusticcanyonwinebar.com",
+    "rating": 4.5,
+    "reviewCount": 987,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 10:00 PM",
+      "wednesday": "7:00 PM - 12:00 PM",
+      "thursday": "5:00 PM - 10:00 PM",
+      "friday": "5:00 PM - 11:00 PM",
+      "saturday": "7:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 90,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2024-12-09"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-08-03"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-06-15"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-08-26"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-07-26"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-07-31"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-04-14"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-03-18"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-12-02"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2024-10-29"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Rustic Canyon in Santa Monica. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_108",
+    "name": "Pasjoli",
+    "slug": "pasjoli",
+    "address": "2732 Main St, Santa Monica, CA 90405",
+    "phone": "(310) 396-9438",
+    "website": "https://pasjoli.com",
+    "rating": 4.6,
+    "reviewCount": 567,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 11:00 PM",
+      "thursday": "5:00 PM - 11:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "5:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 93,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-04-18"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-06-25"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-11-14"
+      }
+    ],
+    "isTopRated": true,
+    "description": "Experience the perfect date night at Pasjoli in Santa Monica. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_109",
+    "name": "Sushi Park",
+    "slug": "sushi-park",
+    "address": "8539 Sunset Blvd, West Hollywood, CA 90069",
+    "phone": "(323) 654-2143",
+    "website": "https://sushipark.com",
+    "rating": 4.7,
+    "reviewCount": 234,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "West Hollywood",
+    "area": "West Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 95,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-03-03"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-12-14"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-05-23"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-08-02"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-10-30"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-09-09"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-09-13"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-05-04"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-05-25"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-10-29"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Sushi Park in West Hollywood. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_110",
+    "name": "Nobu Los Angeles",
+    "slug": "nobu-los-angeles",
+    "address": "903 N La Cienega Blvd, West Hollywood, CA 90069",
+    "phone": "(310) 657-0400",
+    "website": "https://noburestaurants.com/los-angeles",
+    "rating": 4.3,
+    "reviewCount": 4567,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 11:00 PM",
+      "wednesday": "5:00 PM - 12:00 PM",
+      "thursday": "5:00 PM - 11:00 PM",
+      "friday": "6:00 PM - 10:00 PM",
+      "saturday": "7:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 86,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-03-07"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-08-03"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-03-05"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-11-30"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-08-16"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-06-12"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-04-27"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-07-22"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-09-02"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-02-23"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Nobu Los Angeles in Beverly Hills. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_111",
+    "name": "Geoffrey's Malibu",
+    "slug": "geoffreys-malibu",
+    "address": "27400 Pacific Coast Hwy, Malibu, CA 90265",
+    "phone": "(310) 457-1519",
+    "website": "https://geoffreysmalibu.com",
+    "rating": 4.4,
+    "reviewCount": 1890,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "seafood",
+      "fine_dining"
+    ],
+    "neighborhood": "Malibu",
+    "area": "Malibu",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 10:00 PM",
+      "wednesday": "6:00 PM - 11:00 PM",
+      "thursday": "6:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 10:00 PM",
+      "saturday": "5:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 89,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2024-12-20"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-08-28"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2024-10-25"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-07-09"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-06-20"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-01-14"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-08-01"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-02-08"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-03-15"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-05-13"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Geoffrey's Malibu in Malibu. This seafood restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_112",
+    "name": "Matsuhisa Beverly Hills",
+    "slug": "matsuhisa-beverly-hills",
+    "address": "129 N La Cienega Blvd, Beverly Hills, CA 90211",
+    "phone": "(310) 659-9639",
+    "website": "https://matsuhisabeverlyhills.com",
+    "rating": 4.5,
+    "reviewCount": 1234,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 10:00 PM",
+      "wednesday": "7:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 12:00 PM",
+      "friday": "5:00 PM - 10:00 PM",
+      "saturday": "5:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 92,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-04-22"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-02-01"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-10-15"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-10-31"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2024-11-14"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-08-12"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-09-07"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-03-06"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-02-26"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-07-23"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Matsuhisa Beverly Hills in Beverly Hills. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_113",
+    "name": "Le Comptoir",
+    "slug": "le-comptoir",
+    "address": "1716 N Vermont Ave, Los Angeles, CA 90027",
+    "phone": "(323) 665-6900",
+    "website": "https://lecomptoirla.com",
+    "rating": 4.6,
+    "reviewCount": 456,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "Hollywood",
+    "area": "Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 10:00 PM",
+      "thursday": "5:00 PM - 10:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "7:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 94,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-06-29"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-06-09"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2024-11-01"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-08-11"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2024-11-18"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-07-21"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2024-10-31"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-04-15"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Le Comptoir in Hollywood. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_114",
+    "name": "Tar & Roses",
+    "slug": "tar-roses",
+    "address": "602 Santa Monica Blvd, Santa Monica, CA 90401",
+    "phone": "(310) 587-0700",
+    "website": "https://tarandroses.com",
+    "rating": 4.3,
+    "reviewCount": 789,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 11:00 PM",
+      "wednesday": "5:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "5:00 PM - 10:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 87,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2024-11-23"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-01-07"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-08-11"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-04-04"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2024-12-20"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-12-10"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-10-11"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Tar & Roses in Santa Monica. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_115",
+    "name": "The Little Door",
+    "slug": "the-little-door",
+    "address": "8164 W 3rd St, Los Angeles, CA 90048",
+    "phone": "(323) 951-1210",
+    "website": "https://thelittledoor.com",
+    "rating": 4.5,
+    "reviewCount": 1247,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "West Hollywood",
+    "area": "West Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 10:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 92,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-05-20"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-12-13"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-06-19"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-03-03"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-05-11"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-08-16"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-01-11"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-03-07"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at The Little Door in West Hollywood. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_116",
+    "name": "71Above",
+    "slug": "71above",
+    "address": "633 W 5th St, Los Angeles, CA 90071",
+    "phone": "(213) 712-2683",
+    "website": "https://71above.com",
+    "rating": 4.6,
+    "reviewCount": 2156,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Downtown LA",
+    "area": "Downtown LA",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 10:00 PM",
+      "wednesday": "7:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "7:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 94,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-01-20"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-03-08"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2024-12-25"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-07-28"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-02-27"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at 71Above in Downtown LA. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_117",
+    "name": "Nobu Malibu",
+    "slug": "nobu-malibu",
+    "address": "22706 Pacific Coast Hwy, Malibu, CA 90265",
+    "phone": "(310) 317-9140",
+    "website": "https://noburestaurants.com/malibu",
+    "rating": 4.4,
+    "reviewCount": 3421,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Malibu",
+    "area": "Malibu",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 12:00 PM",
+      "wednesday": "7:00 PM - 10:00 PM",
+      "thursday": "5:00 PM - 12:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "5:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 89,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2024-12-17"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2024-12-01"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-06-05"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2024-11-09"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-09-16"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-11-27"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-06-06"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-03-09"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-04-21"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Nobu Malibu in Malibu. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_118",
+    "name": "Giorgio Baldi",
+    "slug": "giorgio-baldi",
+    "address": "114 W Channel Rd, Santa Monica, CA 90402",
+    "phone": "(310) 573-1660",
+    "website": "https://giorgiobaldi.com",
+    "rating": 4.3,
+    "reviewCount": 1876,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "italian",
+      "fine_dining"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 10:00 PM",
+      "wednesday": "5:00 PM - 11:00 PM",
+      "thursday": "7:00 PM - 11:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 87,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-05-25"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-04-29"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-08-26"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-09-03"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-10-09"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-10-01"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-11-12"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Giorgio Baldi in Santa Monica. This italian restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_119",
+    "name": "Madeo Ristorante",
+    "slug": "madeo-ristorante",
+    "address": "8897 Beverly Blvd, West Hollywood, CA 90048",
+    "phone": "(310) 859-4900",
+    "website": "https://madeorestaurant.com",
+    "rating": 4.4,
+    "reviewCount": 1234,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "italian",
+      "fine_dining"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 10:00 PM",
+      "wednesday": "6:00 PM - 10:00 PM",
+      "thursday": "5:00 PM - 12:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 91,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-03-31"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-04-24"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-02-25"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-03-01"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2024-11-25"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-08-24"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Madeo Ristorante in Beverly Hills. This italian restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_120",
+    "name": "Lawry's The Prime Rib",
+    "slug": "lawrys-the-prime-rib",
+    "address": "100 N La Cienega Blvd, Beverly Hills, CA 90211",
+    "phone": "(310) 652-2827",
+    "website": "https://lawrysonline.com",
+    "rating": 4.2,
+    "reviewCount": 3456,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "steakhouse",
+      "american"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 12:00 PM",
+      "friday": "6:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 88,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-03-23"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-10-09"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-07-13"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-11-10"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2024-12-31"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-05-19"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-08-26"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-07-09"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-05-26"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Lawry's The Prime Rib in Beverly Hills. This steakhouse restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_121",
+    "name": "Rustic Canyon",
+    "slug": "rustic-canyon",
+    "address": "1119 Wilshire Blvd, Santa Monica, CA 90401",
+    "phone": "(310) 393-7050",
+    "website": "https://rusticcanyonwinebar.com",
+    "rating": 4.5,
+    "reviewCount": 987,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "5:00 PM - 11:00 PM",
+      "thursday": "6:00 PM - 11:00 PM",
+      "friday": "7:00 PM - 12:00 PM",
+      "saturday": "5:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 90,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-05-29"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-08-01"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-11-22"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Rustic Canyon in Santa Monica. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_122",
+    "name": "Pasjoli",
+    "slug": "pasjoli",
+    "address": "2732 Main St, Santa Monica, CA 90405",
+    "phone": "(310) 396-9438",
+    "website": "https://pasjoli.com",
+    "rating": 4.6,
+    "reviewCount": 567,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "6:00 PM - 12:00 PM",
+      "friday": "7:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 93,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-02-20"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-01-16"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-05-30"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2024-12-01"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-09-17"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-04-12"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-06-05"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Pasjoli in Santa Monica. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_123",
+    "name": "Sushi Park",
+    "slug": "sushi-park",
+    "address": "8539 Sunset Blvd, West Hollywood, CA 90069",
+    "phone": "(323) 654-2143",
+    "website": "https://sushipark.com",
+    "rating": 4.7,
+    "reviewCount": 234,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "West Hollywood",
+    "area": "West Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 10:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "5:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 95,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-07-11"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2024-10-30"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-01-19"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2024-11-02"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-01-31"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Sushi Park in West Hollywood. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_124",
+    "name": "Nobu Los Angeles",
+    "slug": "nobu-los-angeles",
+    "address": "903 N La Cienega Blvd, West Hollywood, CA 90069",
+    "phone": "(310) 657-0400",
+    "website": "https://noburestaurants.com/los-angeles",
+    "rating": 4.3,
+    "reviewCount": 4567,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 12:00 PM",
+      "wednesday": "5:00 PM - 10:00 PM",
+      "thursday": "7:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 10:00 PM",
+      "saturday": "7:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 86,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-02-07"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-05-20"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-05-24"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-03-20"
+      }
+    ],
+    "isTopRated": true,
+    "description": "Experience the perfect date night at Nobu Los Angeles in Beverly Hills. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_125",
+    "name": "Geoffrey's Malibu",
+    "slug": "geoffreys-malibu",
+    "address": "27400 Pacific Coast Hwy, Malibu, CA 90265",
+    "phone": "(310) 457-1519",
+    "website": "https://geoffreysmalibu.com",
+    "rating": 4.4,
+    "reviewCount": 1890,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "seafood",
+      "fine_dining"
+    ],
+    "neighborhood": "Malibu",
+    "area": "Malibu",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 11:00 PM",
+      "wednesday": "6:00 PM - 10:00 PM",
+      "thursday": "6:00 PM - 11:00 PM",
+      "friday": "7:00 PM - 12:00 PM",
+      "saturday": "7:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 89,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2024-12-29"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-01-13"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-02-11"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-02-20"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-02-16"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-09-24"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2024-12-25"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Geoffrey's Malibu in Malibu. This seafood restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_126",
+    "name": "Matsuhisa Beverly Hills",
+    "slug": "matsuhisa-beverly-hills",
+    "address": "129 N La Cienega Blvd, Beverly Hills, CA 90211",
+    "phone": "(310) 659-9639",
+    "website": "https://matsuhisabeverlyhills.com",
+    "rating": 4.5,
+    "reviewCount": 1234,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 10:00 PM",
+      "thursday": "5:00 PM - 12:00 PM",
+      "friday": "5:00 PM - 10:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 92,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-08-12"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-07-15"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-05-16"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-08-24"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Matsuhisa Beverly Hills in Beverly Hills. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_127",
+    "name": "Le Comptoir",
+    "slug": "le-comptoir",
+    "address": "1716 N Vermont Ave, Los Angeles, CA 90027",
+    "phone": "(323) 665-6900",
+    "website": "https://lecomptoirla.com",
+    "rating": 4.6,
+    "reviewCount": 456,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "Hollywood",
+    "area": "Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 11:00 PM",
+      "thursday": "7:00 PM - 11:00 PM",
+      "friday": "7:00 PM - 11:00 PM",
+      "saturday": "6:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 94,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-05-25"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2025-02-18"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-08-25"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-02-27"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-08-05"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-07-27"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-10-16"
+      }
+    ],
+    "isTopRated": true,
+    "description": "Experience the perfect date night at Le Comptoir in Hollywood. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_128",
+    "name": "Tar & Roses",
+    "slug": "tar-roses",
+    "address": "602 Santa Monica Blvd, Santa Monica, CA 90401",
+    "phone": "(310) 587-0700",
+    "website": "https://tarandroses.com",
+    "rating": 4.3,
+    "reviewCount": 789,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 11:00 PM",
+      "thursday": "6:00 PM - 11:00 PM",
+      "friday": "6:00 PM - 12:00 PM",
+      "saturday": "5:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 87,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-06-08"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2024-12-04"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2024-11-30"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-10-03"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-01-20"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-06-30"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2024-12-14"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Tar & Roses in Santa Monica. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_129",
+    "name": "The Little Door",
+    "slug": "the-little-door",
+    "address": "8164 W 3rd St, Los Angeles, CA 90048",
+    "phone": "(323) 951-1210",
+    "website": "https://thelittledoor.com",
+    "rating": 4.5,
+    "reviewCount": 1247,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "West Hollywood",
+    "area": "West Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "5:00 PM - 10:00 PM",
+      "thursday": "6:00 PM - 10:00 PM",
+      "friday": "5:00 PM - 12:00 PM",
+      "saturday": "5:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 92,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-07-23"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-09-18"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-05-12"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-06-13"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at The Little Door in West Hollywood. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_130",
+    "name": "71Above",
+    "slug": "71above",
+    "address": "633 W 5th St, Los Angeles, CA 90071",
+    "phone": "(213) 712-2683",
+    "website": "https://71above.com",
+    "rating": 4.6,
+    "reviewCount": 2156,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Downtown LA",
+    "area": "Downtown LA",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 10:00 PM",
+      "wednesday": "5:00 PM - 11:00 PM",
+      "thursday": "5:00 PM - 11:00 PM",
+      "friday": "5:00 PM - 11:00 PM",
+      "saturday": "6:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 94,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-11-18"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-04-17"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-11-15"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-01-30"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-06-04"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2024-11-08"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-10-07"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-05-09"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at 71Above in Downtown LA. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_131",
+    "name": "Nobu Malibu",
+    "slug": "nobu-malibu",
+    "address": "22706 Pacific Coast Hwy, Malibu, CA 90265",
+    "phone": "(310) 317-9140",
+    "website": "https://noburestaurants.com/malibu",
+    "rating": 4.4,
+    "reviewCount": 3421,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Malibu",
+    "area": "Malibu",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 10:00 PM",
+      "wednesday": "5:00 PM - 10:00 PM",
+      "thursday": "6:00 PM - 10:00 PM",
+      "friday": "7:00 PM - 10:00 PM",
+      "saturday": "7:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 89,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-03-01"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-07-13"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-02-09"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-10-11"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-01-17"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-04-03"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-08-28"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2024-12-30"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-04-20"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Nobu Malibu in Malibu. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_132",
+    "name": "Giorgio Baldi",
+    "slug": "giorgio-baldi",
+    "address": "114 W Channel Rd, Santa Monica, CA 90402",
+    "phone": "(310) 573-1660",
+    "website": "https://giorgiobaldi.com",
+    "rating": 4.3,
+    "reviewCount": 1876,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "italian",
+      "fine_dining"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 12:00 PM",
+      "wednesday": "5:00 PM - 11:00 PM",
+      "thursday": "6:00 PM - 11:00 PM",
+      "friday": "7:00 PM - 11:00 PM",
+      "saturday": "7:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 87,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-07-20"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-05-09"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-06-02"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-10-11"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-06-17"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-08-18"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-07-31"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-02-28"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Giorgio Baldi in Santa Monica. This italian restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_133",
+    "name": "Madeo Ristorante",
+    "slug": "madeo-ristorante",
+    "address": "8897 Beverly Blvd, West Hollywood, CA 90048",
+    "phone": "(310) 859-4900",
+    "website": "https://madeorestaurant.com",
+    "rating": 4.4,
+    "reviewCount": 1234,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "italian",
+      "fine_dining"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "7:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 10:00 PM",
+      "thursday": "7:00 PM - 12:00 PM",
+      "friday": "7:00 PM - 11:00 PM",
+      "saturday": "6:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 91,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-02-06"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-02-18"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-02-25"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-10-30"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-06-03"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-11-02"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Madeo Ristorante in Beverly Hills. This italian restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_134",
+    "name": "Lawry's The Prime Rib",
+    "slug": "lawrys-the-prime-rib",
+    "address": "100 N La Cienega Blvd, Beverly Hills, CA 90211",
+    "phone": "(310) 652-2827",
+    "website": "https://lawrysonline.com",
+    "rating": 4.2,
+    "reviewCount": 3456,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "steakhouse",
+      "american"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 10:00 PM",
+      "wednesday": "7:00 PM - 12:00 PM",
+      "thursday": "5:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 11:00 PM",
+      "saturday": "5:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 88,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-03-20"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-02-24"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-10-02"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-05-09"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2024-11-06"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-04-05"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-06-29"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-03-27"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-03-15"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-01-27"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Lawry's The Prime Rib in Beverly Hills. This steakhouse restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_135",
+    "name": "Rustic Canyon",
+    "slug": "rustic-canyon",
+    "address": "1119 Wilshire Blvd, Santa Monica, CA 90401",
+    "phone": "(310) 393-7050",
+    "website": "https://rusticcanyonwinebar.com",
+    "rating": 4.5,
+    "reviewCount": 987,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 11:00 PM",
+      "wednesday": "6:00 PM - 11:00 PM",
+      "thursday": "5:00 PM - 12:00 PM",
+      "friday": "5:00 PM - 10:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 90,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-01-28"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-12-08"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2024-11-25"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-01-25"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-11-14"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Rustic Canyon in Santa Monica. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_136",
+    "name": "Pasjoli",
+    "slug": "pasjoli",
+    "address": "2732 Main St, Santa Monica, CA 90405",
+    "phone": "(310) 396-9438",
+    "website": "https://pasjoli.com",
+    "rating": 4.6,
+    "reviewCount": 567,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 10:00 PM",
+      "thursday": "6:00 PM - 11:00 PM",
+      "friday": "6:00 PM - 11:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 93,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-12-14"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2025-01-25"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2024-12-09"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Pasjoli in Santa Monica. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_137",
+    "name": "Sushi Park",
+    "slug": "sushi-park",
+    "address": "8539 Sunset Blvd, West Hollywood, CA 90069",
+    "phone": "(323) 654-2143",
+    "website": "https://sushipark.com",
+    "rating": 4.7,
+    "reviewCount": 234,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "West Hollywood",
+    "area": "West Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 11:00 PM",
+      "wednesday": "5:00 PM - 11:00 PM",
+      "thursday": "5:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 10:00 PM",
+      "saturday": "7:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 95,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-09-07"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-10-31"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2024-11-28"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-07-05"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-12-15"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2025-02-03"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2024-12-31"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-02-12"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Sushi Park in West Hollywood. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_138",
+    "name": "Nobu Los Angeles",
+    "slug": "nobu-los-angeles",
+    "address": "903 N La Cienega Blvd, West Hollywood, CA 90069",
+    "phone": "(310) 657-0400",
+    "website": "https://noburestaurants.com/los-angeles",
+    "rating": 4.3,
+    "reviewCount": 4567,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 10:00 PM",
+      "wednesday": "5:00 PM - 11:00 PM",
+      "thursday": "7:00 PM - 12:00 PM",
+      "friday": "5:00 PM - 10:00 PM",
+      "saturday": "5:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 86,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2024-12-16"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-06-28"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-07-10"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-01-12"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-10-01"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2024-11-26"
+      }
+    ],
+    "isTopRated": true,
+    "description": "Experience the perfect date night at Nobu Los Angeles in Beverly Hills. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_139",
+    "name": "Geoffrey's Malibu",
+    "slug": "geoffreys-malibu",
+    "address": "27400 Pacific Coast Hwy, Malibu, CA 90265",
+    "phone": "(310) 457-1519",
+    "website": "https://geoffreysmalibu.com",
+    "rating": 4.4,
+    "reviewCount": 1890,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "seafood",
+      "fine_dining"
+    ],
+    "neighborhood": "Malibu",
+    "area": "Malibu",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 11:00 PM",
+      "wednesday": "5:00 PM - 12:00 PM",
+      "thursday": "6:00 PM - 10:00 PM",
+      "friday": "7:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 89,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2024-10-26"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-08-23"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-05-20"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Amazing experience! The staff was attentive and the ambiance was perfect for a romantic dinner.",
+        "date": "2024-12-31"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-05-15"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2024-12-29"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-04-10"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-03-22"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-09-19"
+      }
+    ],
+    "isTopRated": true,
+    "description": "Experience the perfect date night at Geoffrey's Malibu in Malibu. This seafood restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_140",
+    "name": "Matsuhisa Beverly Hills",
+    "slug": "matsuhisa-beverly-hills",
+    "address": "129 N La Cienega Blvd, Beverly Hills, CA 90211",
+    "phone": "(310) 659-9639",
+    "website": "https://matsuhisabeverlyhills.com",
+    "rating": 4.5,
+    "reviewCount": 1234,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "japanese",
+      "sushi"
+    ],
+    "neighborhood": "Beverly Hills",
+    "area": "Beverly Hills",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "7:00 PM - 11:00 PM",
+      "thursday": "6:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 10:00 PM",
+      "saturday": "6:00 PM - 11:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 92,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-02-08"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2025-08-12"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-01-22"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-04-05"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-05-01"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2024-10-28"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Beautiful setting with great food. The wine pairing was spot on. Perfect for a special date night.",
+        "date": "2025-06-13"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Matsuhisa Beverly Hills in Beverly Hills. This japanese restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_141",
+    "name": "Le Comptoir",
+    "slug": "le-comptoir",
+    "address": "1716 N Vermont Ave, Los Angeles, CA 90027",
+    "phone": "(323) 665-6900",
+    "website": "https://lecomptoirla.com",
+    "rating": 4.6,
+    "reviewCount": 456,
+    "priceLevel": 4,
+    "cuisineTypes": [
+      "french",
+      "fine_dining"
+    ],
+    "neighborhood": "Hollywood",
+    "area": "Hollywood",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "5:00 PM - 10:00 PM",
+      "wednesday": "6:00 PM - 10:00 PM",
+      "thursday": "6:00 PM - 10:00 PM",
+      "friday": "6:00 PM - 12:00 PM",
+      "saturday": "6:00 PM - 12:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 94,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-02-14"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-10-05"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 4,
+        "text": "Intimate and romantic atmosphere. The food quality is outstanding and the service is top-notch.",
+        "date": "2024-12-01"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 4,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-07-27"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-09-30"
+      },
+      {
+        "author": "Reviewer6",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-01-08"
+      },
+      {
+        "author": "Reviewer7",
+        "rating": 4,
+        "text": "Loved the rooftop views and the cocktails were fantastic. Great atmosphere for a date night. Will definitely be back.",
+        "date": "2024-11-06"
+      },
+      {
+        "author": "Reviewer8",
+        "rating": 5,
+        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
+        "date": "2025-03-03"
+      },
+      {
+        "author": "Reviewer9",
+        "rating": 4,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2024-12-23"
+      },
+      {
+        "author": "Reviewer10",
+        "rating": 4,
+        "text": "Great place for a date! The lighting is perfect and the food is consistently excellent.",
+        "date": "2024-11-17"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Le Comptoir in Hollywood. This french restaurant offers an intimate atmosphere perfect for romantic dinners."
+  },
+  {
+    "id": "restaurant_142",
+    "name": "Tar & Roses",
+    "slug": "tar-roses",
+    "address": "602 Santa Monica Blvd, Santa Monica, CA 90401",
+    "phone": "(310) 587-0700",
+    "website": "https://tarandroses.com",
+    "rating": 4.3,
+    "reviewCount": 789,
+    "priceLevel": 3,
+    "cuisineTypes": [
+      "contemporary",
+      "american"
+    ],
+    "neighborhood": "Santa Monica",
+    "area": "Santa Monica",
+    "photos": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&h=600&fit=crop"
+    ],
+    "openingHours": {
+      "monday": "Closed",
+      "tuesday": "6:00 PM - 12:00 PM",
+      "wednesday": "6:00 PM - 12:00 PM",
+      "thursday": "5:00 PM - 11:00 PM",
+      "friday": "7:00 PM - 10:00 PM",
+      "saturday": "6:00 PM - 10:00 PM",
+      "sunday": "10:00 AM - 9:00 PM"
+    },
+    "dateNightScore": 87,
+    "reviews": [
+      {
+        "author": "Reviewer1",
+        "rating": 4,
+        "text": "Romantic setting with delicious food. The staff made our anniversary dinner very special.",
+        "date": "2025-04-17"
+      },
+      {
+        "author": "Reviewer2",
+        "rating": 5,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-06-18"
+      },
+      {
+        "author": "Reviewer3",
+        "rating": 5,
+        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
+        "date": "2025-03-13"
+      },
+      {
+        "author": "Reviewer4",
+        "rating": 5,
+        "text": "Excellent service and the food was delicious. The restaurant has a very romantic vibe, perfect for couples.",
+        "date": "2025-05-09"
+      },
+      {
+        "author": "Reviewer5",
+        "rating": 4,
+        "text": "Beautiful restaurant with intimate lighting. The chef's tasting menu was incredible. Perfect for anniversaries or romantic dinners.",
+        "date": "2025-06-06"
+      }
+    ],
+    "isTopRated": false,
+    "description": "Experience the perfect date night at Tar & Roses in Santa Monica. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners."
+  }
+]
