@@ -80,13 +80,9 @@ const style = tierStyles[tier];
       </div>
       
       <div class="featured-actions">
-        <a href={restaurant.ctaUrl} target="_blank" class="btn btn-featured">
-          <i class="fas fa-calendar-alt"></i>
-          {restaurant.ctaText}
-        </a>
-        <a href={`/restaurants/${restaurant.slug}/`} class="btn btn-secondary">
+        <a href={restaurant.ctaUrl} class="btn btn-featured">
           <i class="fas fa-info-circle"></i>
-          View Details
+          {restaurant.ctaText}
         </a>
       </div>
     </div>
