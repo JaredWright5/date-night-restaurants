@@ -59,7 +59,7 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredSince: '2024-01-01T00:00:00Z',
     ctaText: 'View Details',
     ctaUrl: '/losangeles/providence/',
-    specialOffer: 'Complimentary champagne for anniversary celebrations',
+    specialOffer: '',
     badge: 'Top Rated',
     priority: 100
   },
@@ -110,7 +110,7 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredSince: '2024-01-15T00:00:00Z',
     ctaText: 'View Details',
     ctaUrl: '/losangeles/r-publique-caf-bakery-r-publique-restaurant/',
-    specialOffer: 'Free pastry with brunch orders',
+    specialOffer: '',
     badge: 'Editor\'s Choice',
     priority: 95
   },
@@ -161,7 +161,7 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredSince: '2024-02-01T00:00:00Z',
     ctaText: 'View Details',
     ctaUrl: '/losangeles/bestia/',
-    specialOffer: 'Complimentary wine tasting with dinner',
+    specialOffer: '',
     badge: 'Trending',
     priority: 90
   },
@@ -212,7 +212,7 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredSince: '2024-03-01T00:00:00Z',
     ctaText: 'View Details',
     ctaUrl: '/losangeles/osteria-mozza/',
-    specialOffer: 'Complimentary amaro tasting with dinner',
+    specialOffer: '',
     badge: 'Featured',
     priority: 85
   }
