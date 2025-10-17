@@ -1,0 +1,279 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Get unique neighborhoods with restaurant counts
+const neighborhoodData = restaurants.reduce((acc, restaurant) => {
+  const neighborhood = restaurant.neighborhood;
+  if (!acc[neighborhood]) {
+    acc[neighborhood] = {
+      name: neighborhood,
+      count: 0,
+      restaurants: []
+    };
+  }
+  acc[neighborhood].count++;
+  acc[neighborhood].restaurants.push(restaurant);
+  return acc;
+}, {});
+
+const neighborhoods = Object.values(neighborhoodData)
+  .sort((a, b) => b.count - a.count);
+
+const totalRestaurants = restaurants.length;
+const totalNeighborhoods = neighborhoods.length;
+---
+
+<BaseLayout title="Los Angeles Neighborhoods | Date Night Restaurants" description="Explore romantic date night restaurants across Los Angeles neighborhoods. Find the perfect dining spot in Beverly Hills, West Hollywood, Santa Monica, and more.">
+  <main class="neighborhoods-page">
+    <div class="hero-section">
+      <div class="container">
+        <h1>Los Angeles Neighborhoods</h1>
+        <p class="hero-subtitle">Discover romantic date night restaurants across LA's most popular neighborhoods</p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">{totalNeighborhoods}</span>
+            <span class="stat-label">Neighborhoods</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{totalRestaurants}</span>
+            <span class="stat-label">Restaurants</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">87</span>
+            <span class="stat-label">Avg Date Score</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="neighborhoods-grid">
+      <div class="container">
+        <h2>Explore by Neighborhood</h2>
+        <div class="grid">
+          {neighborhoods.map(neighborhood => (
+            <div class="neighborhood-card">
+              <div class="neighborhood-header">
+                <h3>{neighborhood.name}</h3>
+                <span class="restaurant-count">{neighborhood.count} restaurant{neighborhood.count !== 1 ? 's' : ''}</span>
+              </div>
+              
+              <div class="top-restaurants">
+                <h4>Top Date Night Spots</h4>
+                <ul>
+                  {neighborhood.restaurants
+                    .sort((a, b) => b.dateNightScore - a.dateNightScore)
+                    .slice(0, 3)
+                    .map(restaurant => (
+                      <li>
+                        <a href={`/losangeles/${restaurant.slug}/`}>
+                          <span class="restaurant-name">{restaurant.name}</span>
+                          <span class="date-score">{restaurant.dateNightScore}</span>
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              
+              <div class="neighborhood-actions">
+                <a href={`/losangeles/restaurants/?neighborhood=${encodeURIComponent(neighborhood.name)}`} class="btn btn-primary">
+                  View All Restaurants
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .neighborhoods-page {
+    padding-top: 80px;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    color: #e0e0e0;
+  }
+  
+  .neighborhoods-grid {
+    padding: 4rem 0;
+  }
+  
+  .neighborhoods-grid h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2C2C2C;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .neighborhood-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .neighborhood-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+  
+  .neighborhood-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #D4AF37;
+  }
+  
+  .neighborhood-header h3 {
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin: 0;
+  }
+  
+  .restaurant-count {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .top-restaurants h4 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .top-restaurants ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  .top-restaurants li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .top-restaurants a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #2C2C2C;
+    transition: background-color 0.3s ease;
+  }
+  
+  .top-restaurants a:hover {
+    background: #F8F6F0;
+  }
+  
+  .restaurant-name {
+    font-weight: 500;
+  }
+  
+  .date-score {
+    background: #2C2C2C;
+    color: #D4AF37;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .neighborhood-actions {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .neighborhood-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>
