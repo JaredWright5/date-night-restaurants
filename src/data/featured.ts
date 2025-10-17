@@ -109,7 +109,7 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredUntil: '2025-11-30T23:59:59Z',
     featuredSince: '2024-01-15T00:00:00Z',
     ctaText: 'View Details',
-    ctaUrl: '/losangeles/republique-cafe-bakery-republique-restaurant/',
+    ctaUrl: '/losangeles/r-publique-caf-bakery-r-publique-restaurant/',
     specialOffer: 'Free pastry with brunch orders',
     badge: 'Editor\'s Choice',
     priority: 95
