@@ -57,8 +57,8 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredTier: 'platinum',
     featuredUntil: '2025-12-31T23:59:59Z',
     featuredSince: '2024-01-01T00:00:00Z',
-    ctaText: 'Reserve Your Table',
-    ctaUrl: 'https://www.providencela.com/reservations',
+    ctaText: 'View Details',
+    ctaUrl: '/losangeles/providence/',
     specialOffer: 'Complimentary champagne for anniversary celebrations',
     badge: 'Top Rated',
     priority: 100
@@ -108,8 +108,8 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredTier: 'gold',
     featuredUntil: '2025-11-30T23:59:59Z',
     featuredSince: '2024-01-15T00:00:00Z',
-    ctaText: 'Visit République',
-    ctaUrl: 'https://www.republiquela.com',
+    ctaText: 'View Details',
+    ctaUrl: '/losangeles/republique-cafe-bakery-republique-restaurant/',
     specialOffer: 'Free pastry with brunch orders',
     badge: 'Editor\'s Choice',
     priority: 95
@@ -159,8 +159,8 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     featuredTier: 'premium',
     featuredUntil: '2025-10-31T23:59:59Z',
     featuredSince: '2024-02-01T00:00:00Z',
-    ctaText: 'Reserve Table',
-    ctaUrl: 'https://www.bestiala.com/reservations',
+    ctaText: 'View Details',
+    ctaUrl: '/losangeles/bestia/',
     specialOffer: 'Complimentary wine tasting with dinner',
     badge: 'Trending',
     priority: 90
