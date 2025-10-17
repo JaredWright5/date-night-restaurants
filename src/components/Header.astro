@@ -13,7 +13,7 @@ const cuisines = getAllCuisines();
         <a href="/">
           <h1>
           <div class="logo">
-            <div class="logo-icon">D</div>
+            <div class="logo-icon">💕</div>
             <div class="logo-text">
               <span class="logo-main">Date Night</span>
               <span class="logo-sub">Restaurants</span>
@@ -58,13 +58,14 @@ const cuisines = getAllCuisines();
 
 <style>
   .header {
-    background: #fff;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    background: #FFF8F0;
+    box-shadow: 0 2px 20px rgba(212, 175, 55, 0.15);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    border-bottom: 2px solid #E8B86D;
   }
   
   .nav-container {
@@ -89,17 +90,17 @@ const cuisines = getAllCuisines();
   .logo-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #D4AF37, #E6C547);
-    color: #2C2C2C;
-    border-radius: 12px;
+    background: #E8B86D;
+    color: #FFF8F0;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    font-family: 'Playfair Display', serif;
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 12px rgba(232, 184, 109, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid #D2691E;
   }
   
   .logo-icon:hover {
@@ -114,14 +115,14 @@ const cuisines = getAllCuisines();
   }
   
   .logo-main {
-    color: #2C2C2C;
+    color: #3E2723;
     font-size: 1.4rem;
     font-weight: 700;
     font-family: 'Playfair Display', serif;
   }
   
   .logo-sub {
-    color: #6B7B7B;
+    color: #8B4513;
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -137,7 +138,7 @@ const cuisines = getAllCuisines();
   }
   
   .nav-menu a {
-    color: #2C2C2C;
+    color: #3E2723;
     font-weight: 500;
     transition: color 0.3s ease;
     display: flex;
@@ -146,7 +147,7 @@ const cuisines = getAllCuisines();
   }
   
   .nav-menu a:hover {
-    color: #D4AF37;
+    color: #D2691E;
   }
   
   .nav-dropdown {

@@ -8,23 +8,32 @@ export default {
         'sans': ['Inter', 'sans-serif'],
       },
       colors: {
-    // Sophisticated dining palette
-    'charcoal': '#2C2C2C',       // Deep charcoal - elegant & modern
-    'charcoal-light': '#4A4A4A',  // Lighter charcoal
-    'charcoal-dark': '#1A1A1A',   // Darker charcoal
-    'gold': '#D4AF37',           // Rich gold - luxury & warmth
-    'gold-light': '#E6C547',     // Lighter gold
-    'gold-dark': '#B8941F',      // Darker gold
-    'cream': '#F8F6F0',          // Warm cream - soft & inviting
-    'cream-dark': '#F0EDE5',     // Darker cream
-    'sage': '#8B9A8B',           // Muted sage - sophisticated green
-    'sage-light': '#A8B5A8',     // Lighter sage
-    'burgundy': '#722F37',       // Deep burgundy - rich & romantic
-    'burgundy-light': '#8B3A42',  // Lighter burgundy
-    'steel': '#6B7B7B',          // Steel blue-gray - modern & clean
-    'steel-light': '#8A9A9A',    // Lighter steel
-    'ivory': '#FDFCF8',          // Pure ivory - clean & elegant
-    'bronze': '#CD7F32',         // Bronze - warm & metallic
+        // Warm, food & love themed palette - no gradients, solid colors
+        'warm-cream': '#FFF8F0',      // Warm cream base - welcoming
+        'warm-butter': '#F4E4BC',     // Soft butter yellow - cozy
+        'warm-honey': '#E8B86D',      // Rich honey gold - sweet
+        'warm-terracotta': '#D2691E',  // Warm terracotta - earthy
+        'warm-rust': '#B7410E',       // Deep rust red - passionate
+        
+        // Food-inspired colors
+        'sage-green': '#9CAF88',      // Soft sage green - fresh
+        'olive': '#6B8E23',           // Warm olive - natural
+        'coffee': '#8B4513',          // Rich coffee brown - rich
+        'chocolate': '#5D4037',       // Deep chocolate - indulgent
+        'warm-charcoal': '#3E2723',   // Warm charcoal - sophisticated
+        
+        // Love & romance colors
+        'blush': '#FFE4E1',           // Soft blush pink - romantic
+        'rose': '#F8BBD9',            // Romantic rose - loving
+        'heart': '#E91E63',            // Heart red - passionate
+        'coral': '#FF7043',            // Vibrant coral - warm
+        'sunset': '#FF5722',           // Sunset orange - energetic
+        
+        // Accent colors
+        'amber': '#FFC107',           // Golden amber - luxurious
+        'gold': '#FFD700',            // Pure gold - premium
+        'warm-white': '#FFFEF7',     // Warm white - clean
+        'soft-gray': '#F5F5F5',       // Soft gray - neutral
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
