@@ -29,7 +29,6 @@ const relatedRestaurants = searchRestaurants('', { cuisine: restaurant.cuisineTy
   .slice(0, 4);
 
 const priceSymbols = '$'.repeat(restaurant.priceLevel);
-const stars = '★'.repeat(Math.floor(restaurant.rating));
 const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
 const dateNightDescription = generateDateNightDescription(restaurant);
 
@@ -94,11 +93,18 @@ const structuredData = {
         <h1>{restaurant.name}</h1>
         <div class="restaurant-meta">
           <div class="restaurant-rating">
-            <span class="stars">{stars}</span>
-            <span>{restaurant.rating}/5</span>
+            <div class="date-score-display">
+              <i class="fas fa-heart"></i>
+              <span>{restaurant.dateNightScore}</span>
+            </div>
           </div>
           <div class="restaurant-price">{priceSymbols}</div>
-          <div class="restaurant-score">Date Score: {restaurant.dateNightScore}</div>
+          {restaurant.isTopRated && (
+            <div class="top-rated-badge">
+              <i class="fas fa-crown"></i>
+              <span>Top Rated</span>
+            </div>
+          )}
         </div>
         <div class="restaurant-description">
           <h3>Perfect for Date Nights</h3>
@@ -254,8 +260,54 @@ const structuredData = {
     font-weight: 600;
   }
   
-  .restaurant-rating .stars {
-    color: #ffc107;
+  .date-score-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(44, 44, 44, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .date-score-display i {
+    color: #D4AF37;
+  }
+  
+  .date-score-display span {
+    color: white;
+  }
+  
+  .top-rated-badge {
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    animation: pulse 2s infinite;
+  }
+  
+  .top-rated-badge i {
+    font-size: 1rem;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+      box-shadow: 0 2px 20px rgba(212, 175, 55, 0.6);
+    }
+    100% {
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
   }
   
   .restaurant-price {
