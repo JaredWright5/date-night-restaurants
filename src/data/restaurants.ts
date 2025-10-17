@@ -125,6 +125,27 @@ export function getTopRestaurants(limit: number = 10): Restaurant[] {
     .slice(0, limit);
 }
 
+export function getRandomRestaurants(limit: number = 6, excludeFeatured: boolean = true): Restaurant[] {
+  let availableRestaurants = restaurants;
+  
+  if (excludeFeatured) {
+    // Exclude featured restaurants
+    const featuredNames = [
+      'Providence',
+      'République Café Bakery & République Restaurant', 
+      'Bestia',
+      'Osteria Mozza'
+    ];
+    availableRestaurants = restaurants.filter(restaurant => 
+      !featuredNames.includes(restaurant.name)
+    );
+  }
+  
+  // Shuffle the array and take the first 'limit' items
+  const shuffled = [...availableRestaurants].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, limit);
+}
+
 export function searchRestaurants(query: string, filters: any = {}): Restaurant[] {
   let results = restaurants;
   

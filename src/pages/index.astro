@@ -2,11 +2,11 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
 import FeaturedSection from '@/components/FeaturedSection.astro';
-import { getTopRestaurants, restaurants } from '@/data/restaurants';
+import { getRandomRestaurants, restaurants } from '@/data/restaurants';
 import { getAllCities } from '@/data/cities';
 import { getPopularCuisines } from '@/data/cuisines';
 
-const topRestaurants = getTopRestaurants(6);
+const topRestaurants = getRandomRestaurants(6, true);
 const cities = getAllCities();
 const cuisines = getPopularCuisines(6);
 
