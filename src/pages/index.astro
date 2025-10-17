@@ -618,33 +618,38 @@ const structuredData = [
       const halfStar = restaurant.rating % 1 >= 0.5 ? '☆' : '';
       
       card.innerHTML = `
-        <div class="card-image">
-          <img src="${restaurant.photos[0]}" alt="${restaurant.name} - Romantic date night restaurant in ${restaurant.neighborhood || 'Los Angeles'}" loading="lazy" />
-          <div class="card-overlay">
-            <div class="card-rating">
-              <span class="stars">${stars}${halfStar}</span>
-              <span class="rating-number">${restaurant.rating}</span>
+        <a href="/losangeles/${restaurant.slug}/" class="card-link">
+          <div class="card-image">
+            <img src="${restaurant.photos[0]}" alt="${restaurant.name} - ${restaurant.cuisineTypes[0].replace(/_/g, ' ')} restaurant in ${restaurant.neighborhood || 'Los Angeles'}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3'" />
+            <div class="card-overlay">
+              <div class="card-rating">
+                <span class="stars">${stars}</span>
+                <span>${restaurant.rating}/5</span>
+              </div>
             </div>
-            <div class="card-price">${priceSymbols}</div>
           </div>
-        </div>
-        <div class="card-content">
-          <h3>${restaurant.name}</h3>
-          <p class="card-location">
-            <i class="fas fa-map-marker-alt"></i>
-            ${restaurant.neighborhood || 'Los Angeles'}
-          </p>
-          <p class="card-cuisine">${restaurant.cuisineTypes.join(', ')}</p>
-          <div class="card-score">
-            <span class="score-label">Date Score</span>
-            <span class="score-value">${restaurant.dateNightScore}</span>
+          
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="restaurant-name">${restaurant.name}</h3>
+              <div class="restaurant-price">${priceSymbols}</div>
+            </div>
+            
+            <p class="restaurant-cuisine">${restaurant.cuisineTypes.join(', ')}</p>
+            <p class="restaurant-address">${restaurant.address}</p>
+            
+            <div class="date-score">
+              <i class="fas fa-heart"></i>
+              <span>Date Score: <strong>${restaurant.dateNightScore}</strong></span>
+            </div>
+            
+            <div class="card-actions">
+              <a href="/losangeles/${restaurant.slug}/" class="btn btn-primary">
+                <i class="fas fa-info-circle"></i> View Details
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="card-actions">
-          <a href="/losangeles/${restaurant.slug}/" class="btn btn-primary">
-            <i class="fas fa-info-circle"></i> View Details
-          </a>
-        </div>
+        </a>
       `;
       
       grid.appendChild(card);
