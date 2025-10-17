@@ -633,6 +633,64 @@ const structuredData = [
     sets[randomIndex].classList.add('active');
   }
   
-  // Rotate on page load
-  document.addEventListener('DOMContentLoaded', rotateRestaurantSets);
+  // Search and filter functionality
+  function initializeSearchAndFilters() {
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const cuisineFilter = document.getElementById('cuisineFilter');
+    const priceFilter = document.getElementById('priceFilter');
+    const ratingFilter = document.getElementById('ratingFilter');
+    
+    if (!searchInput || !searchBtn) return;
+    
+    // Search functionality
+    function performSearch() {
+      const query = searchInput.value.toLowerCase().trim();
+      if (query === '') {
+        // If no search query, redirect to restaurants page
+        window.location.href = '/losangeles/restaurants/';
+        return;
+      }
+      
+      // Redirect to restaurants page with search query
+      const searchParams = new URLSearchParams();
+      searchParams.set('search', query);
+      window.location.href = `/losangeles/restaurants/?${searchParams.toString()}`;
+    }
+    
+    // Filter functionality
+    function applyFilters() {
+      const cuisine = cuisineFilter.value;
+      const price = priceFilter.value;
+      const rating = ratingFilter.value;
+      
+      // Build filter parameters
+      const params = new URLSearchParams();
+      if (cuisine) params.set('cuisine', cuisine);
+      if (price) params.set('price', price);
+      if (rating) params.set('rating', rating);
+      
+      // Redirect to restaurants page with filters
+      const queryString = params.toString();
+      window.location.href = `/losangeles/restaurants/${queryString ? '?' + queryString : ''}`;
+    }
+    
+    // Event listeners
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+    
+    cuisineFilter.addEventListener('change', applyFilters);
+    priceFilter.addEventListener('change', applyFilters);
+    ratingFilter.addEventListener('change', applyFilters);
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    rotateRestaurantSets();
+    initializeSearchAndFilters();
+  });
 </script>

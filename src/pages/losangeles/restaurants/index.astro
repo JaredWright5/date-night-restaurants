@@ -4,7 +4,31 @@ import RestaurantCard from '@/components/RestaurantCard.astro';
 import { restaurants, searchRestaurants } from '@/data/restaurants';
 import { getAllCities } from '@/data/cities';
 
-const allRestaurants = restaurants
+// Get URL parameters
+const url = new URL(Astro.request.url);
+const searchQuery = url.searchParams.get('search') || '';
+const cuisineFilter = url.searchParams.get('cuisine') || '';
+const priceFilter = url.searchParams.get('price') || '';
+const ratingFilter = url.searchParams.get('rating') || '';
+
+// Apply search and filters
+let filteredRestaurants = restaurants;
+
+if (searchQuery) {
+  filteredRestaurants = searchRestaurants(searchQuery, {
+    cuisine: cuisineFilter,
+    price: priceFilter,
+    rating: ratingFilter
+  });
+} else if (cuisineFilter || priceFilter || ratingFilter) {
+  filteredRestaurants = searchRestaurants('', {
+    cuisine: cuisineFilter,
+    price: priceFilter,
+    rating: ratingFilter
+  });
+}
+
+const allRestaurants = filteredRestaurants
   .sort((a, b) => b.dateNightScore - a.dateNightScore);
 
 // Get unique neighborhoods for filtering
@@ -14,25 +38,69 @@ const neighborhoods = Array.from(new Set(restaurants.map(r => r.neighborhood))).
 const allCuisines = restaurants.flatMap(r => r.cuisineTypes);
 const uniqueCuisines = Array.from(new Set(allCuisines)).sort();
 
+// Generate dynamic title and description based on filters
+const getPageTitle = () => {
+  if (searchQuery) {
+    return `Search Results for "${searchQuery}" | Date Night Restaurants in Los Angeles`;
+  }
+  if (cuisineFilter || priceFilter || ratingFilter) {
+    const filters = [];
+    if (cuisineFilter) filters.push(cuisineFilter.replace(/_/g, ' '));
+    if (priceFilter) filters.push(`${'$'.repeat(parseInt(priceFilter))} restaurants`);
+    if (ratingFilter) filters.push(`${ratingFilter}+ star restaurants`);
+    return `Filtered Date Night Restaurants: ${filters.join(', ')} | Los Angeles`;
+  }
+  return "All Date Night Restaurants in Los Angeles | Filter by Neighborhood, Cuisine, Price";
+};
+
+const getPageDescription = () => {
+  if (searchQuery) {
+    return `Search results for "${searchQuery}" in Los Angeles date night restaurants. Find the perfect romantic dining spot.`;
+  }
+  if (cuisineFilter || priceFilter || ratingFilter) {
+    return `Filtered date night restaurants in Los Angeles based on your criteria. Discover romantic dining spots that match your preferences.`;
+  }
+  return "Explore our complete directory of romantic date night restaurants in Los Angeles. Use our advanced filters to find the perfect spot by neighborhood, cuisine, or price.";
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "All Date Night Restaurants in Los Angeles",
-  "description": "Browse all 100+ romantic date night restaurants in Los Angeles, with advanced filtering by neighborhood, cuisine, price, and rating.",
+  "name": searchQuery ? `Search Results for "${searchQuery}"` : "All Date Night Restaurants in Los Angeles",
+  "description": getPageDescription(),
   "url": "https://datenightrestaurants.com/losangeles/restaurants/",
 };
 ---
 
 <BaseLayout
-  title="All Date Night Restaurants in Los Angeles | Filter by Neighborhood, Cuisine, Price"
-  description="Explore our complete directory of romantic date night restaurants in Los Angeles. Use our advanced filters to find the perfect spot by neighborhood, cuisine, or price."
+  title={getPageTitle()}
+  description={getPageDescription()}
   keywords={['all date night restaurants LA', 'restaurants in Los Angeles', 'filter restaurants LA', 'romantic dining directory', 'LA restaurant guide']}
   structuredData={structuredData}
 >
   <section class="restaurants-listing-hero">
     <div class="container">
-      <h1>All Date Night Restaurants in Los Angeles</h1>
-      <p>Find your perfect romantic dining experience with our comprehensive list and advanced filters.</p>
+      {searchQuery ? (
+        <div class="search-results-header">
+          <h1>Search Results for "{searchQuery}"</h1>
+          <p>Found {allRestaurants.length} restaurant{allRestaurants.length !== 1 ? 's' : ''} matching your search.</p>
+        </div>
+      ) : cuisineFilter || priceFilter || ratingFilter ? (
+        <div class="filter-results-header">
+          <h1>Filtered Date Night Restaurants</h1>
+          <p>Showing {allRestaurants.length} restaurant{allRestaurants.length !== 1 ? 's' : ''} matching your filters.</p>
+          <div class="active-filters">
+            {cuisineFilter && <span class="filter-tag">Cuisine: {cuisineFilter.replace(/_/g, ' ')}</span>}
+            {priceFilter && <span class="filter-tag">Price: {'$'.repeat(parseInt(priceFilter))}</span>}
+            {ratingFilter && <span class="filter-tag">Rating: {ratingFilter}+ stars</span>}
+          </div>
+        </div>
+      ) : (
+        <div>
+          <h1>All Date Night Restaurants in Los Angeles</h1>
+          <p>Find your perfect romantic dining experience with our comprehensive list and advanced filters.</p>
+        </div>
+      )}
 
       <div class="search-filters-container">
         <div class="search-box">
@@ -306,6 +374,30 @@ const structuredData = {
     .restaurants-list h2, .neighborhoods-explore h2 {
       font-size: 1.8rem;
     }
+  }
+  
+  /* Search and Filter Results Styling */
+  .search-results-header,
+  .filter-results-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .filter-tag {
+    background: #D4AF37;
+    color: #2C2C2C;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
   }
 </style>
 
