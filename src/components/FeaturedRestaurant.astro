@@ -118,6 +118,9 @@ const style = tierStyles[tier];
     transition: all 0.3s ease;
     position: relative;
     border: 3px solid var(--tier-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   
   .featured-card::before {
@@ -160,7 +163,9 @@ const style = tierStyles[tier];
   .featured-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 300px;
+    min-height: 400px;
+    height: 100%;
+    flex: 1;
   }
   
   .featured-image {
@@ -221,6 +226,8 @@ const style = tierStyles[tier];
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    min-height: 300px;
   }
   
   .restaurant-header {
