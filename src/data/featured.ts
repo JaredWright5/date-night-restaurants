@@ -13,17 +13,119 @@ export interface FeaturedRestaurant extends Restaurant {
 
 export const featuredRestaurants: FeaturedRestaurant[] = [
   {
-    id: 'restaurant-1',
-    name: 'The Bazaar by José Andrés',
-    slug: 'the-bazaar-by-jose-andres',
-    address: '465 S La Cienega Blvd, Los Angeles, CA 90048',
-    phone: '(310) 246-5555',
-    website: 'https://www.thebazaar.com',
-    rating: 4.5,
+    id: 'featured-1',
+    name: 'Providence',
+    slug: 'providence',
+    address: '5955 Melrose Ave, Los Angeles, CA 90038, USA',
+    phone: '(323) 460-4170',
+    website: 'https://www.providencela.com',
+    rating: 4.7,
     priceLevel: 4,
-    cuisineTypes: ['fine_dining', 'spanish_restaurant', 'tapas'],
+    cuisineTypes: ['fine_dining', 'seafood_restaurant', 'contemporary'],
     openingHours: {
-      'Monday': '5:30 PM – 10:00 PM',
+      'Tuesday': '6:00 PM – 10:00 PM',
+      'Wednesday': '6:00 PM – 10:00 PM',
+      'Thursday': '6:00 PM – 10:00 PM',
+      'Friday': '6:00 PM – 10:00 PM',
+      'Saturday': '6:00 PM – 10:00 PM',
+      'Sunday': 'Closed',
+      'Monday': 'Closed'
+    },
+    reviews: [
+      {
+        author: 'Michael R.',
+        rating: 5,
+        text: 'An absolutely magical dining experience. The tasting menu was perfection, and the intimate setting made our anniversary unforgettable.',
+        time: 1640995200
+      }
+    ],
+    photos: [
+      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop'
+    ],
+    placeId: 'ChIJd8BlQ2BZwokRAFQEcDlJRAI',
+    latitude: 34.0836,
+    longitude: -118.3236,
+    dateNightScore: 99.0,
+    city: 'Los Angeles',
+    area: 'Los Angeles',
+    zipCode: '90038',
+    description: 'A culinary masterpiece offering an intimate fine dining experience with exceptional seafood and innovative presentations. The elegant dining room and impeccable service make it perfect for celebrating major milestones.',
+    amenities: ['WiFi', 'Valet Parking', 'Reservations Required', 'Wine Bar', 'Private Dining'],
+    specialFeatures: ['Highly Romantic', 'Perfect for Anniversaries', 'Chef\'s Tasting Menu', 'Wine Pairing'],
+    lastUpdated: new Date().toISOString(),
+    featuredTier: 'platinum',
+    featuredUntil: '2025-12-31T23:59:59Z',
+    featuredSince: '2024-01-01T00:00:00Z',
+    ctaText: 'Reserve Your Table',
+    ctaUrl: 'https://www.providencela.com/reservations',
+    specialOffer: 'Complimentary champagne for anniversary celebrations',
+    badge: 'Top Rated',
+    priority: 100
+  },
+  {
+    id: 'featured-2',
+    name: 'République Café Bakery & République Restaurant',
+    slug: 'republique-cafe-bakery-republique-restaurant',
+    address: '624 S La Brea Ave, Los Angeles, CA 90036, USA',
+    phone: '(310) 362-6115',
+    website: 'https://www.republiquela.com',
+    rating: 4.5,
+    priceLevel: 3,
+    cuisineTypes: ['french_restaurant', 'bakery', 'cafe'],
+    openingHours: {
+      'Monday': '8:00 AM – 3:00 PM',
+      'Tuesday': '8:00 AM – 3:00 PM',
+      'Wednesday': '8:00 AM – 3:00 PM',
+      'Thursday': '8:00 AM – 3:00 PM',
+      'Friday': '8:00 AM – 3:00 PM',
+      'Saturday': '8:00 AM – 3:00 PM',
+      'Sunday': '8:00 AM – 3:00 PM'
+    },
+    reviews: [
+      {
+        author: 'Sarah M.',
+        rating: 5,
+        text: 'The perfect blend of French elegance and California charm. The pastries are divine and the atmosphere is incredibly romantic.',
+        time: 1640736000
+      }
+    ],
+    photos: [
+      'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=800&h=600&fit=crop'
+    ],
+    placeId: 'ChIJd8BlQ2BZwokRAFQEcDlJRAI',
+    latitude: 34.0736,
+    longitude: -118.3400,
+    dateNightScore: 99.0,
+    city: 'Los Angeles',
+    area: 'Los Angeles',
+    zipCode: '90036',
+    description: 'A charming French café and bakery that perfectly captures the essence of Parisian romance in the heart of Los Angeles. Perfect for intimate brunch dates and romantic afternoon teas.',
+    amenities: ['WiFi', 'Street Parking', 'Outdoor Seating', 'Bakery', 'Coffee Bar'],
+    specialFeatures: ['French Pastries', 'Romantic Brunch', 'Outdoor Seating', 'Artisan Breads'],
+    lastUpdated: new Date().toISOString(),
+    featuredTier: 'gold',
+    featuredUntil: '2025-11-30T23:59:59Z',
+    featuredSince: '2024-01-15T00:00:00Z',
+    ctaText: 'Visit République',
+    ctaUrl: 'https://www.republiquela.com',
+    specialOffer: 'Free pastry with brunch orders',
+    badge: 'Editor\'s Choice',
+    priority: 95
+  },
+  {
+    id: 'featured-3',
+    name: 'Bestia',
+    slug: 'bestia',
+    address: '2121 E 7th Pl, Los Angeles, CA 90021, USA',
+    phone: '(213) 514-5724',
+    website: 'https://www.bestiala.com',
+    rating: 4.6,
+    priceLevel: 3,
+    cuisineTypes: ['italian_restaurant', 'wine_bar'],
+    openingHours: {
+      'Monday': 'Closed',
       'Tuesday': '5:30 PM – 10:00 PM',
       'Wednesday': '5:30 PM – 10:00 PM',
       'Thursday': '5:30 PM – 10:00 PM',
@@ -33,111 +135,9 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     },
     reviews: [
       {
-        author: 'Sarah M.',
-        rating: 5,
-        text: 'Perfect for a romantic dinner! The ambiance was incredible and the food was outstanding.',
-        time: 1640995200
-      }
-    ],
-    photos: [
-      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop'
-    ],
-    placeId: 'ChIJd8BlQ2BZwokRAFQEcDlJRAI',
-    latitude: 34.0736,
-    longitude: -118.4004,
-    dateNightScore: 95.0,
-    city: 'Los Angeles',
-    area: 'Beverly Hills',
-    zipCode: '90048',
-    description: 'Experience the magic of José Andrés at The Bazaar, where Spanish tapas meet innovative cuisine in an intimate Beverly Hills setting.',
-    amenities: ['WiFi', 'Valet Parking', 'Reservations Required', 'Wine Bar', 'Private Dining'],
-    specialFeatures: ['Highly Romantic', 'Perfect for Anniversaries', 'Chef\'s Tasting Menu', 'Wine Pairing'],
-    lastUpdated: new Date().toISOString(),
-    featuredTier: 'platinum',
-    featuredUntil: '2024-12-31T23:59:59Z',
-    featuredSince: '2024-01-01T00:00:00Z',
-    ctaText: 'Reserve Your Table',
-    ctaUrl: 'https://www.thebazaar.com/reservations',
-    specialOffer: 'Free dessert for date night reservations',
-    badge: 'Editor\'s Choice',
-    priority: 100
-  },
-  {
-    id: 'restaurant-2',
-    name: 'Nobu Los Angeles',
-    slug: 'nobu-los-angeles',
-    address: '903 N La Cienega Blvd, West Hollywood, CA 90069',
-    phone: '(310) 657-0400',
-    website: 'https://www.noburestaurants.com',
-    rating: 4.4,
-    priceLevel: 4,
-    cuisineTypes: ['japanese_restaurant', 'sushi', 'fine_dining'],
-    openingHours: {
-      'Monday': '6:00 PM – 10:00 PM',
-      'Tuesday': '6:00 PM – 10:00 PM',
-      'Wednesday': '6:00 PM – 10:00 PM',
-      'Thursday': '6:00 PM – 10:00 PM',
-      'Friday': '6:00 PM – 11:00 PM',
-      'Saturday': '6:00 PM – 11:00 PM',
-      'Sunday': '6:00 PM – 10:00 PM'
-    },
-    reviews: [
-      {
         author: 'David K.',
-        rating: 4,
-        text: 'Beautiful restaurant with amazing views. Perfect for special occasions.',
-        time: 1640736000
-      }
-    ],
-    photos: [
-      'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop',
-      'https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=800&h=600&fit=crop'
-    ],
-    placeId: 'ChIJd8BlQ2BZwokRAFQEcDlJRAI',
-    latitude: 34.0900,
-    longitude: -118.4000,
-    dateNightScore: 92.0,
-    city: 'Los Angeles',
-    area: 'West Hollywood',
-    zipCode: '90069',
-    description: 'World-renowned Japanese cuisine in an elegant West Hollywood setting, perfect for intimate date nights.',
-    amenities: ['WiFi', 'Valet Parking', 'Reservations Required', 'Sake Bar', 'Private Dining'],
-    specialFeatures: ['Critically Acclaimed', 'Award Winning', 'Sake Pairing', 'Omakase Menu'],
-    lastUpdated: new Date().toISOString(),
-    featuredTier: 'gold',
-    featuredUntil: '2024-11-30T23:59:59Z',
-    featuredSince: '2024-01-15T00:00:00Z',
-    ctaText: 'Book Now',
-    ctaUrl: 'https://www.noburestaurants.com/reservations',
-    specialOffer: 'Complimentary sake tasting',
-    badge: 'Featured',
-    priority: 90
-  },
-  {
-    id: 'restaurant-3',
-    name: 'Catch LA',
-    slug: 'catch-la',
-    address: '8715 Melrose Ave, West Hollywood, CA 90069',
-    phone: '(323) 347-6060',
-    website: 'https://www.catchrestaurants.com',
-    rating: 4.2,
-    priceLevel: 4,
-    cuisineTypes: ['seafood_restaurant', 'contemporary', 'rooftop_restaurant'],
-    openingHours: {
-      'Monday': '5:00 PM – 11:00 PM',
-      'Tuesday': '5:00 PM – 11:00 PM',
-      'Wednesday': '5:00 PM – 11:00 PM',
-      'Thursday': '5:00 PM – 11:00 PM',
-      'Friday': '5:00 PM – 12:00 AM',
-      'Saturday': '5:00 PM – 12:00 AM',
-      'Sunday': '5:00 PM – 11:00 PM'
-    },
-    reviews: [
-      {
-        author: 'James P.',
-        rating: 4,
-        text: 'Intimate and romantic setting. The chef\'s tasting menu was exceptional.',
+        rating: 5,
+        text: 'This industrial-chic Italian restaurant offers handmade pasta and an impressive wine selection. The open kitchen adds excitement while maintaining an intimate, romantic vibe perfect for celebrations.',
         time: 1640390400
       }
     ],
@@ -146,24 +146,24 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
       'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop'
     ],
     placeId: 'ChIJd8BlQ2BZwokRAFQEcDlJRAI',
-    latitude: 34.0836,
-    longitude: -118.3736,
-    dateNightScore: 88.0,
+    latitude: 34.0400,
+    longitude: -118.2300,
+    dateNightScore: 99.0,
     city: 'Los Angeles',
-    area: 'West Hollywood',
-    zipCode: '90069',
-    description: 'Stunning rooftop views and incredible seafood in the heart of West Hollywood.',
-    amenities: ['WiFi', 'Valet Parking', 'Rooftop Views', 'Outdoor Seating', 'Reservations Required'],
-    specialFeatures: ['City Views', 'Sunset Dining', 'Rooftop Views', 'Fresh Seafood'],
+    area: 'Los Angeles',
+    zipCode: '90021',
+    description: 'This industrial-chic Italian restaurant offers handmade pasta and an impressive wine selection. The open kitchen adds excitement while maintaining an intimate, romantic vibe perfect for celebrations.',
+    amenities: ['WiFi', 'Street Parking', 'Wine Bar', 'Open Kitchen', 'Reservations Recommended'],
+    specialFeatures: ['Handmade Pasta', 'Wine Selection', 'Open Kitchen', 'Industrial Chic'],
     lastUpdated: new Date().toISOString(),
     featuredTier: 'premium',
-    featuredUntil: '2024-10-31T23:59:59Z',
+    featuredUntil: '2025-10-31T23:59:59Z',
     featuredSince: '2024-02-01T00:00:00Z',
     ctaText: 'Reserve Table',
-    ctaUrl: 'https://www.catchrestaurants.com/reservations',
-    specialOffer: 'Sunset dining package available',
+    ctaUrl: 'https://www.bestiala.com/reservations',
+    specialOffer: 'Complimentary wine tasting with dinner',
     badge: 'Trending',
-    priority: 80
+    priority: 90
   }
 ];
 
