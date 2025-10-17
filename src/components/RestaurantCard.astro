@@ -11,7 +11,6 @@ export interface Props {
 const { restaurant, showDateScore = true, showActions = true, showWebsite = true } = Astro.props;
 
 const priceSymbols = '$'.repeat(restaurant.priceLevel);
-const stars = '★'.repeat(Math.floor(restaurant.rating));
 // Use a reliable fallback image and ensure we have a working photo
 const getRestaurantImage = (restaurant) => {
   // Try to get the first photo, or use a fallback
