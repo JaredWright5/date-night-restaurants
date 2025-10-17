@@ -318,10 +318,10 @@ const mainImage = getRestaurantImage(restaurant);
   /* Top Rated Badge */
   .top-rated-badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: linear-gradient(45deg, #D4AF37, #E6C547);
-    color: #2C2C2C;
+    top: 1rem;
+    right: 1rem;
+    background: #D2691E;
+    color: #FFF8F0;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -329,8 +329,9 @@ const mainImage = getRestaurantImage(restaurant);
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(210, 105, 30, 0.4);
     animation: pulse 2s infinite;
+    z-index: 10;
   }
   
   .top-rated-badge i {
