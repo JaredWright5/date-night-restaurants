@@ -5,9 +5,10 @@ export interface Props {
   restaurant: Restaurant;
   showDateScore?: boolean;
   showActions?: boolean;
+  showWebsite?: boolean;
 }
 
-const { restaurant, showDateScore = true, showActions = true } = Astro.props;
+const { restaurant, showDateScore = true, showActions = true, showWebsite = true } = Astro.props;
 
 const priceSymbols = '$'.repeat(restaurant.priceLevel);
 const stars = '★'.repeat(Math.floor(restaurant.rating));
@@ -87,9 +88,11 @@ const mainImage = getRestaurantImage(restaurant);
           <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">
             <i class="fas fa-info-circle"></i> View Details
           </a>
-          <a href={restaurant.website} target="_blank" class="btn btn-secondary" onclick="event.stopPropagation()">
-            <i class="fas fa-external-link-alt"></i> Website
-          </a>
+          {showWebsite && (
+            <a href={restaurant.website} target="_blank" class="btn btn-secondary" onclick="event.stopPropagation()">
+              <i class="fas fa-external-link-alt"></i> Website
+            </a>
+          )}
         </div>
       )}
     </div>
