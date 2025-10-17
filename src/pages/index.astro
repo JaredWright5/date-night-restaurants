@@ -162,22 +162,25 @@ const structuredData = [
       </div>
       
       <div class="neighborhoods-grid">
-        {Array.from(new Set(restaurants.map(r => r.neighborhood))).slice(0, 8).map(neighborhood => {
-          const neighborhoodRestaurants = restaurants.filter(r => r.neighborhood === neighborhood);
-          const avgRating = (neighborhoodRestaurants.reduce((sum, r) => sum + r.rating, 0) / neighborhoodRestaurants.length).toFixed(1);
-          return (
-            <div class="neighborhood-card">
-              <a href={`/neighborhoods/${neighborhood.toLowerCase().replace(/\s+/g, '-')}/`}>
-                <h3>{neighborhood}</h3>
-                <p>{neighborhoodRestaurants.length} restaurants</p>
-                <div class="neighborhood-rating">
-                  <span class="stars">{'★'.repeat(Math.floor(parseFloat(avgRating)))}</span>
-                  <span class="rating">{avgRating}</span>
-                </div>
-              </a>
-            </div>
-          );
-        })}
+        {(() => {
+          const uniqueNeighborhoods = Array.from(new Set(restaurants.map(r => r.neighborhood))).slice(0, 8);
+          return uniqueNeighborhoods.map(neighborhood => {
+            const neighborhoodRestaurants = restaurants.filter(r => r.neighborhood === neighborhood);
+            const avgRating = (neighborhoodRestaurants.reduce((sum, r) => sum + r.rating, 0) / neighborhoodRestaurants.length).toFixed(1);
+            return (
+              <div class="neighborhood-card">
+                <a href={`/neighborhoods/${neighborhood.toLowerCase().replace(/\s+/g, '-')}/`}>
+                  <h3>{neighborhood}</h3>
+                  <p>{neighborhoodRestaurants.length} restaurants</p>
+                  <div class="neighborhood-rating">
+                    <span class="stars">{'★'.repeat(Math.floor(parseFloat(avgRating)))}</span>
+                    <span class="rating">{avgRating}</span>
+                  </div>
+                </a>
+              </div>
+            );
+          });
+        })()}
       </div>
       
       <div class="section-actions">

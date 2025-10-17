@@ -205,10 +205,11 @@ const structuredData = {
     <div class="container">
       <h2>Explore Other Neighborhoods</h2>
       <div class="neighborhoods-grid">
-        {['Beverly Hills', 'Santa Monica', 'West Hollywood', 'Venice', 'Hollywood', 'Silver Lake']
-          .filter(n => n !== neighborhoodName)
-          .slice(0, 4)
-          .map(otherNeighborhood => {
+        {(() => {
+          const otherNeighborhoods = ['Beverly Hills', 'Santa Monica', 'West Hollywood', 'Venice', 'Hollywood', 'Silver Lake']
+            .filter(n => n !== neighborhoodName)
+            .slice(0, 4);
+          return otherNeighborhoods.map(otherNeighborhood => {
             const otherRestaurants = getRestaurantsByNeighborhood(otherNeighborhood);
             const otherSlug = otherNeighborhood.toLowerCase().replace(/\s+/g, '-');
             return (
@@ -223,7 +224,8 @@ const structuredData = {
                 </a>
               </div>
             );
-          })}
+          });
+        })()}
       </div>
     </div>
   </section>

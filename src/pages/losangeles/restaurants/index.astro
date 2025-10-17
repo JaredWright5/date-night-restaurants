@@ -43,9 +43,12 @@ const structuredData = {
         <div class="filter-group">
           <select id="cuisineFilter">
             <option value="">All Cuisines</option>
-            {uniqueCuisines.map(cuisine => (
-              <option value={cuisine}>{cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>
-            ))}
+            {(() => {
+              const capitalizeWords = (s) => s.replace(/_/g, ' ').replace(/\b\w/g, (ch) => ch.toUpperCase());
+              return uniqueCuisines.map(cuisine => (
+                <option value={cuisine}>{capitalizeWords(cuisine)}</option>
+              ));
+            })()}
           </select>
 
           <select id="priceFilter">
