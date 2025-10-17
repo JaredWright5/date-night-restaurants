@@ -6,7 +6,7 @@ import { getRandomRestaurants, restaurants } from '@/data/restaurants';
 import { getAllCities } from '@/data/cities';
 import { getPopularCuisines } from '@/data/cuisines';
 
-// Get all restaurants excluding featured ones for client-side randomization
+// Get all restaurants excluding featured ones
 const allRestaurants = restaurants.filter(restaurant => {
   const featuredNames = [
     'Providence',
@@ -17,8 +17,21 @@ const allRestaurants = restaurants.filter(restaurant => {
   return !featuredNames.includes(restaurant.name);
 });
 
-// Get initial 6 for server-side rendering (will be replaced by client-side JS)
-const topRestaurants = allRestaurants.slice(0, 6);
+// Get multiple random sets for rotation
+const getRandomSet = () => {
+  const shuffled = [...allRestaurants].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 6);
+};
+
+const restaurantSets = [
+  getRandomSet(),
+  getRandomSet(),
+  getRandomSet(),
+  getRandomSet()
+];
+
+// Use first set for initial render
+const topRestaurants = restaurantSets[0];
 const cities = getAllCities();
 const cuisines = getPopularCuisines(6);
 
@@ -152,9 +165,13 @@ const structuredData = [
         <p>Handpicked romantic dining experiences across Los Angeles</p>
       </div>
       
-      <div class="restaurants-grid" id="restaurants-grid">
-        {topRestaurants.map(restaurant => (
-          <RestaurantCard restaurant={restaurant} showWebsite={false} />
+      <div class="restaurants-grid">
+        {restaurantSets.map((set, setIndex) => (
+          <div class={`restaurant-set ${setIndex === 0 ? 'active' : ''}`} data-set={setIndex}>
+            {set.map(restaurant => (
+              <RestaurantCard restaurant={restaurant} showWebsite={false} />
+            ))}
+          </div>
         ))}
       </div>
       
@@ -590,256 +607,32 @@ const structuredData = [
     }
   }
   
-  /* Restaurant Card Styles for Dynamic Content */
-  .restaurant-card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+  /* Restaurant Set Rotation */
+  .restaurant-set {
+    display: none;
   }
   
-  .restaurant-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-  }
-  
-  .card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .card-image {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    background: #f8f9fa;
-  }
-  
-  .card-image img[src=""] {
-    opacity: 0;
-  }
-  
-  .card-image img:not([src=""]) {
-    opacity: 1;
-  }
-  
-  .restaurant-card:hover .card-image img {
-    transform: scale(1.05);
-  }
-  
-  .card-overlay {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-  }
-  
-  .card-rating {
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-  
-  .card-rating .stars {
-    color: #ffc107;
-  }
-  
-  .card-content {
-    padding: 1.5rem;
-  }
-  
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-  }
-  
-  .restaurant-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
-    flex: 1;
-  }
-  
-  .restaurant-price {
-    background: #D4AF37;
-    color: #2C2C2C;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  
-  .restaurant-cuisine {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .restaurant-address {
-    color: #888;
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-  
-  .date-score {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 1rem;
-  }
-  
-  .date-score i {
-    color: #D4AF37;
-  }
-  
-  .date-score strong {
-    background: linear-gradient(45deg, #D4AF37, #E6C547);
-    color: #2C2C2C;
-    padding: 0.25rem 0.5rem;
-    border-radius: 10px;
-    font-size: 0.8rem;
-  }
-  
-  .card-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-  
-  .btn {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex: 1;
-    justify-content: center;
-  }
-  
-  .btn-primary {
-    background: #D4AF37;
-    color: #2C2C2C;
-  }
-  
-  .btn-primary:hover {
-    background: #B8941F;
-    transform: translateY(-2px);
-  }
-  
-  .btn-secondary {
-    background: #f8f9fa;
-    color: #333;
-    border: 1px solid #ddd;
-  }
-  
-  .btn-secondary:hover {
-    background: #e9ecef;
-  }
-  
-  @media (max-width: 480px) {
-    .card-actions {
-      flex-direction: column;
-    }
-    
-    .btn {
-      flex: none;
-    }
+  .restaurant-set.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
   }
 </style>
 
-<script define:vars={{ allRestaurants }}>
-  // Client-side randomization for Top Date Night Restaurants
-  function randomizeRestaurants() {
-    const grid = document.getElementById('restaurants-grid');
-    if (!grid) return;
+<script>
+  // Simple restaurant set rotation
+  function rotateRestaurantSets() {
+    const sets = document.querySelectorAll('.restaurant-set');
+    if (sets.length === 0) return;
     
-    // Shuffle the restaurants array
-    const shuffled = [...allRestaurants].sort(() => Math.random() - 0.5);
-    const selected = shuffled.slice(0, 6);
+    // Hide all sets
+    sets.forEach(set => set.classList.remove('active'));
     
-    // Clear the grid
-    grid.innerHTML = '';
-    
-    // Create restaurant cards for the selected restaurants
-    selected.forEach(restaurant => {
-      const card = document.createElement('div');
-      card.className = 'restaurant-card';
-      card.setAttribute('data-neighborhood', restaurant.neighborhood || '');
-      card.setAttribute('data-price', restaurant.priceLevel);
-      card.setAttribute('data-rating', restaurant.rating);
-      card.setAttribute('data-cuisine', restaurant.cuisineTypes.join(','));
-      
-      const priceSymbols = '$'.repeat(restaurant.priceLevel);
-      const stars = '★'.repeat(Math.floor(restaurant.rating));
-      const halfStar = restaurant.rating % 1 >= 0.5 ? '☆' : '';
-      
-      card.innerHTML = `
-        <a href="/losangeles/${restaurant.slug}/" class="card-link">
-          <div class="card-image">
-            <img src="${restaurant.photos[0]}" alt="${restaurant.name} - ${restaurant.cuisineTypes[0].replace(/_/g, ' ')} restaurant in ${restaurant.neighborhood || 'Los Angeles'}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3'" />
-            <div class="card-overlay">
-              <div class="card-rating">
-                <span class="stars">${stars}</span>
-                <span>${restaurant.rating}/5</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="restaurant-name">${restaurant.name}</h3>
-              <div class="restaurant-price">${priceSymbols}</div>
-            </div>
-            
-            <p class="restaurant-cuisine">${restaurant.cuisineTypes.join(', ')}</p>
-            <p class="restaurant-address">${restaurant.address}</p>
-            
-            <div class="date-score">
-              <i class="fas fa-heart"></i>
-              <span>Date Score: <strong>${restaurant.dateNightScore}</strong></span>
-            </div>
-            
-            <div class="card-actions">
-              <a href="/losangeles/${restaurant.slug}/" class="btn btn-primary">
-                <i class="fas fa-info-circle"></i> View Details
-              </a>
-            </div>
-          </div>
-        </a>
-      `;
-      
-      grid.appendChild(card);
-    });
+    // Show a random set
+    const randomIndex = Math.floor(Math.random() * sets.length);
+    sets[randomIndex].classList.add('active');
   }
   
-  // Randomize on page load
-  document.addEventListener('DOMContentLoaded', randomizeRestaurants);
+  // Rotate on page load
+  document.addEventListener('DOMContentLoaded', rotateRestaurantSets);
 </script>
