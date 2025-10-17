@@ -208,7 +208,7 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
     specialFeatures: ['Handmade Pasta', 'Traditional Italian', 'Intimate Setting', 'Wine Selection'],
     lastUpdated: new Date().toISOString(),
     featuredTier: 'premium',
-    featuredUntil: '2025-09-30T23:59:59Z',
+    featuredUntil: '2025-12-31T23:59:59Z',
     featuredSince: '2024-03-01T00:00:00Z',
     ctaText: 'View Details',
     ctaUrl: '/losangeles/osteria-mozza/',
