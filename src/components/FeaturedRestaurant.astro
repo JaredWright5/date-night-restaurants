@@ -9,7 +9,6 @@ export interface Props {
 const { restaurant, tier } = Astro.props;
 
 const priceSymbols = '$'.repeat(restaurant.priceLevel);
-const stars = '★'.repeat(Math.floor(restaurant.rating));
 const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
 
 // Tier-specific styling
@@ -50,8 +49,10 @@ const style = tierStyles[tier];
       <img src={mainImage} alt={restaurant.name} />
       <div class="image-overlay">
         <div class="restaurant-rating">
-          <span class="stars">{stars}</span>
-          <span>{restaurant.rating}/5</span>
+          <div class="date-score-display">
+            <i class="fas fa-heart"></i>
+            <span>{restaurant.dateNightScore}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -183,8 +184,24 @@ const style = tierStyles[tier];
     font-weight: 500;
   }
   
-  .restaurant-rating .stars {
-    color: #ffc107;
+  .date-score-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(44, 44, 44, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .date-score-display i {
+    color: #D4AF37;
+  }
+  
+  .date-score-display span {
+    color: white;
   }
   
   .featured-info {
