@@ -62,9 +62,17 @@ const mainImage = getRestaurantImage(restaurant);
       />
       <div class="card-overlay">
         <div class="card-rating">
-          <span class="stars">{stars}</span>
-          <span>{restaurant.rating}/5</span>
+          <span class="date-score-display">
+            <i class="fas fa-heart"></i>
+            <span>{restaurant.dateNightScore}</span>
+          </span>
         </div>
+        {restaurant.isTopRated && (
+          <div class="top-rated-badge">
+            <i class="fas fa-crown"></i>
+            <span>Top Rated</span>
+          </div>
+        )}
       </div>
     </div>
     
@@ -281,6 +289,61 @@ const mainImage = getRestaurantImage(restaurant);
     
     .btn {
       flex: none;
+    }
+  }
+  
+  /* Date Score Display Styles */
+  .date-score-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(44, 44, 44, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .date-score-display i {
+    color: #D4AF37;
+  }
+  
+  .date-score-display span {
+    color: white;
+  }
+  
+  /* Top Rated Badge */
+  .top-rated-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    animation: pulse 2s infinite;
+  }
+  
+  .top-rated-badge i {
+    font-size: 0.9rem;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+      box-shadow: 0 2px 20px rgba(212, 175, 55, 0.6);
+    }
+    100% {
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
     }
   }
 </style>
