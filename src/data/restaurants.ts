@@ -23,7 +23,7 @@ export const restaurants: Restaurant[] = laRestaurants.map((restaurant, index) =
   isTopRated: restaurant.isTopRated,
   city: 'Los Angeles',
   area: extractAreaFromAddress(restaurant.address),
-  neighborhood: extractAreaFromAddress(restaurant.address),
+  neighborhood: restaurant.neighborhood || extractAreaFromAddress(restaurant.address),
   zipCode: extractZipCode(restaurant.address),
   description: generateDescription(restaurant),
   amenities: generateAmenities(restaurant),
