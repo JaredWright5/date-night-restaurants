@@ -6640,57 +6640,6 @@
     "longitude": -118.28153514686278
   },
   {
-    "name": "The Rose Cafe",
-    "address": "220 Rose Ave, Venice, CA 90291",
-    "phone": "(310) 399-0711",
-    "website": "https://therosevenice.com",
-    "rating": 4.3,
-    "reviewCount": 1876,
-    "neighborhood": "Venice",
-    "area": "Venice",
-    "photos": [
-      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AciIO2e-FRUoU2tSeSquuvEaQWVbRHu7FOz0sufsYcHNLD_1ug5Neog7g8xPfW_GAd6CCGqYcpyaqCmXNtDn9OVdFwzPwZUKJEilnDdRl-1Lr87I3dNxj1W4M-jnSlcL_YeeZqQs7_pR9cxEOTzkBQDRGnQVJ4XchwNgmYZxq3sXzW0YoRyVfsrUkH52zxVDZbrFr-kkDAtK0fUURUAi8t9PFDZdlyPLCTYZQrbxqdZQCjcl39XTn2ATq0uwspxZdKT1kWlAQ9PCsjPmEMAQzeFCq5-Deemv26vvtjG7pKUHbtitQA&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI",
-      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AciIO2cgEAXcEqiPRInwaIjgeFJq6PN-a0JAIFxjSrXjurScB3drxwxFHc9A1HSGDxUUF4RTKV7LwAFtJR11fk-fo30eSganBXw9W339-EsDAg7DOulUnfj4Rt4fktijkGvUn-1MrNSkoP9WGEvKDC3AN9nOCBzNZWzKZTbBi9NS-0_cgmkBNZZOygYr0RfcNcsEHtaSQ_EO19GWCi_zqXfIXSyPbFejUoxA9qb6XPBbIYHjzr8iaNeC9X591eHOawuviko9L2LLs8a4Rs5uzQQgtHTaKyVliitfHmSPj4hLN9LBSw&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI",
-      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AciIO2fnYa_60VcpsVdUNh1UKU7vNjr8Hbu0jc-i9PgZLoEBGuhPMXybgI60_8S4JaBh5VnMpvB5UWlTVs8E-IdNl9B5DSVWHIy6lRMt4HB1IE9QFI_hXO_9IyjM7dPcbS44C2nn6eOt4R9rAHT-bAb2TnbE3pbg7kKT2rfR7kq6-EPeHHy82T50aiyf5BUrNn1jtsY05jLYD5RNeR9ixUZfZPjZdbHJCeFr8WqAnDEax8ckHmuJBPB_-eD-aIGbwjCZ6RxWpR7Qm4ea-RWOnCF3tVThkbEjkXg15vW76spJ2SQvrSt1LYlReYG_HyhgO5ygOUfKwE7OBRsRALnr6b0ghJJupmS_iPqVhYrKmKYIc3V7Ii3I-5IPMmKmli5UnA4ZiQxqufShEB-0Ayxc1Mfnxb35gkmsEl9HbYDeWtzgBuP_G7CB&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI",
-      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AciIO2eSgm0lK7H-dhkyjtZPFtx9jaoIs1OMdbGndHNWXpldEyrmN8APicVU8t7xn1vLAZQ2IL9aooxe6-o77h1OtBntZHVKOEwdiuDsjJ65aI3ZgI8WigN599hC_8dFMGH7-ZMws1B3VISGZnvQzkEkOKNElKrtBIf_zTe8FwaSy7hF7b7APH67NO50whi_kc3m1JRUXU4R5tAdTvbZIBHQnCiaR3a5Cx7MElCn6SNHRTENyvcyt4ZtXqs8LeHPy-3-BGtCWL2Ch-hAcA4NMZYR-uIE73HXovYNvKrVJ39om2it3F5zchgfs4id6HlO26be6dsK5dSboeMI7omLzDJ2354MeStF5UKhFYs4BC0sWOMU8jKLjau5oVas2vdiQWQuuDvaza_9cEHfgxFu6NPdo6KNC7Z-I3-1bjd222HrhC3B5dX6&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI",
-      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AciIO2dqON_xAsvVNXgzWeJu5zyD2DEG3leT86hDUKpsKHxtDQy8J5f8wB4-c5axFKy5C4Kc0SQ9ADXBob-ljiG0eju_g3yVKeXG24yhm4pAVgimekqt5NjUCyXYZ98JtC_jE15epZcNkXv5jRHYVkXNShGhgWIE6vUvAYFi1ZxaCumJhMsa7O66nzLMVvMYQt-oSNlI_v6-uhUqni30aDKT8sjBujJltq1OHjVHqyNqmGI_LqsBBDPYQu-wKfd3c-AtBur_ACaNFbp57iDnG1fT5j47pyi2mVVlMBHGH7pK3kZ9Y5IOFgZZqjrLjQ7Am1DpLmSQeWaV1y-7ASxLX1WTVOZiLetjVyw5v1A_Wvp5RpK3RCviclKC0V0FPxDz35pgHUapgN3IEFAbQkK4jbsdva6QQ7_na8x5_Hy0SfhMXqc&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI"
-    ],
-    "reviews": [
-      {
-        "author": "Reviewer1",
-        "rating": 4,
-        "text": "Perfect date night spot! The ambiance is romantic and the food is exceptional. My partner and I had an amazing time here.",
-        "date": "2025-08-21"
-      },
-      {
-        "author": "Reviewer2",
-        "rating": 4,
-        "text": "Great for special occasions. The service was impeccable and the wine selection is outstanding. Highly recommend for couples.",
-        "date": "2025-04-28"
-      }
-    ],
-    "isTopRated": false,
-    "description": "Experience the perfect date night at The Rose Cafe in Venice. This contemporary restaurant offers an intimate atmosphere perfect for romantic dinners.",
-    "cuisine_types": [
-      "contemporary",
-      "american"
-    ],
-    "opening_hours": {
-      "monday": "Closed",
-      "tuesday": "5:00 PM - 10:00 PM",
-      "wednesday": "5:00 PM - 10:00 PM",
-      "thursday": "5:00 PM - 10:00 PM",
-      "friday": "5:00 PM - 11:00 PM",
-      "saturday": "5:00 PM - 11:00 PM",
-      "sunday": "10:00 AM - 9:00 PM"
-    },
-    "price_level": 3,
-    "date_night_score": 87,
-    "place_id": "ChIJl54_As-6woARoSxAAI2CKdA",
-    "latitude": 34.09009756700045,
-    "longitude": -118.25884240427433
-  },
-  {
     "name": "Gjelina To Go",
     "address": "1427 Abbot Kinney Blvd, Venice, CA 90291",
     "phone": "(310) 450-1429",
