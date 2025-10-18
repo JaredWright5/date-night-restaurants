@@ -19,7 +19,7 @@ export const restaurants: Restaurant[] = laRestaurants.map((restaurant, index) =
   placeId: restaurant.place_id,
   latitude: restaurant.latitude,
   longitude: restaurant.longitude,
-  dateNightScore: restaurant.dateNightScore,
+  dateNightScore: restaurant.date_night_score,
   isTopRated: restaurant.isTopRated,
   city: 'Los Angeles',
   area: extractAreaFromAddress(restaurant.address),
