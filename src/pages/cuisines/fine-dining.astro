@@ -1,0 +1,251 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { restaurants } from '@/data/restaurants';
+
+const cuisineName = 'Fine Dining';
+const cuisineSlug = 'fine-dining';
+const fineDiningRestaurants = restaurants.filter(r => 
+  r.cuisineTypes.includes('fine_dining')
+);
+
+const topRestaurants = fineDiningRestaurants
+  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .slice(0, 8);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Fine Dining Date Night Restaurants in Los Angeles",
+  "description": `Discover the best fine dining restaurants in Los Angeles for romantic date nights. ${fineDiningRestaurants.length} upscale dining spots perfect for special occasions.`,
+  "url": "https://datenightrestaurants.com/cuisines/fine-dining/",
+  "numberOfItems": fineDiningRestaurants.length,
+  "itemListElement": fineDiningRestaurants.map((restaurant, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Restaurant",
+      "name": restaurant.name,
+      "url": `https://datenightrestaurants.com/losangeles/${restaurant.slug}/`,
+      "description": restaurant.description
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title={`Fine Dining Date Night Restaurants in Los Angeles | ${fineDiningRestaurants.length} Upscale Romantic Spots`}
+  description={`Discover the best fine dining restaurants in Los Angeles for romantic date nights. ${fineDiningRestaurants.length} upscale dining spots perfect for special occasions, anniversaries, and memorable date nights.`}
+  keywords={['fine dining Los Angeles', 'upscale restaurants LA', 'romantic fine dining', 'special occasion restaurants', 'anniversary restaurants LA', 'Michelin star restaurants LA']}
+  canonical="https://datenightrestaurants.com/cuisines/fine-dining/"
+  structuredData={structuredData}
+>
+  <main class="cuisine-page">
+    <div class="hero-section">
+      <div class="container">
+        <h1>Fine Dining Date Night Restaurants in Los Angeles</h1>
+        <p class="hero-subtitle">Upscale restaurants offering exceptional cuisine, service, and ambiance perfect for special occasions and romantic date nights</p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">{fineDiningRestaurants.length}</span>
+            <span class="stat-label">Fine Dining Restaurants</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{Math.round(fineDiningRestaurants.reduce((sum, r) => sum + r.dateNightScore, 0) / fineDiningRestaurants.length)}</span>
+            <span class="stat-label">Avg Date Score</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{fineDiningRestaurants.filter(r => r.priceLevel === 4).length}</span>
+            <span class="stat-label">$$$$ Restaurants</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurants-section">
+      <div class="container">
+        <h2>Top Fine Dining Restaurants for Date Nights</h2>
+        <div class="restaurants-grid">
+          {topRestaurants.map(restaurant => (
+            <RestaurantCard restaurant={restaurant} />
+          ))}
+        </div>
+        
+        {fineDiningRestaurants.length > 8 && (
+          <div class="view-all">
+            <a href="/losangeles/restaurants/?cuisine=fine_dining" class="btn btn-primary">
+              View All {fineDiningRestaurants.length} Fine Dining Restaurants
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="cuisine-info">
+      <div class="container">
+        <h2>About Fine Dining for Date Nights in Los Angeles</h2>
+        <p>Los Angeles is home to some of the world's most prestigious fine dining establishments, offering exceptional cuisine, impeccable service, and romantic atmospheres perfect for special date nights. From Michelin-starred restaurants to celebrity chef establishments, LA's fine dining scene provides unforgettable experiences for couples.</p>
+        
+        <h3>What Makes Fine Dining Perfect for Date Nights:</h3>
+        <ul>
+          <li><strong>Exceptional Service:</strong> Attentive, professional service that makes you feel special</li>
+          <li><strong>Intimate Atmosphere:</strong> Quiet, elegant settings perfect for conversation</li>
+          <li><strong>Artisanal Cuisine:</strong> Carefully crafted dishes using premium ingredients</li>
+          <li><strong>Wine Pairings:</strong> Expert sommelier recommendations for perfect wine pairings</li>
+          <li><strong>Memorable Experience:</strong> Unique dining experiences that create lasting memories</li>
+        </ul>
+        
+        <h3>Best Neighborhoods for Fine Dining:</h3>
+        <ul>
+          <li><strong>Beverly Hills:</strong> Classic elegance and celebrity chef restaurants</li>
+          <li><strong>West Hollywood:</strong> Trendy upscale dining with modern flair</li>
+          <li><strong>Downtown LA:</strong> Contemporary fine dining with city views</li>
+          <li><strong>Santa Monica:</strong> Oceanfront fine dining with Pacific views</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .cuisine-page {
+    padding-top: 80px;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    color: #e0e0e0;
+  }
+  
+  .restaurants-section {
+    padding: 4rem 0;
+    background: #FFF8F0;
+  }
+  
+  .restaurants-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .view-all {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  }
+  
+  .cuisine-info {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .cuisine-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .cuisine-info h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .cuisine-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cuisine-info ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+  
+  .cuisine-info li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cuisine-info strong {
+    color: #2C2C2C;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

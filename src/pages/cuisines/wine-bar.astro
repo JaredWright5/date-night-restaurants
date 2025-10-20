@@ -1,0 +1,251 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { restaurants } from '@/data/restaurants';
+
+const cuisineName = 'Wine Bar';
+const cuisineSlug = 'wine-bar';
+const wineBarRestaurants = restaurants.filter(r => 
+  r.cuisineTypes.includes('wine_bar')
+);
+
+const topRestaurants = wineBarRestaurants
+  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .slice(0, 8);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Wine Bar Date Night Restaurants in Los Angeles",
+  "description": `Discover the best wine bars in Los Angeles for romantic date nights. ${wineBarRestaurants.length} intimate wine bars perfect for couples.`,
+  "url": "https://datenightrestaurants.com/cuisines/wine-bar/",
+  "numberOfItems": wineBarRestaurants.length,
+  "itemListElement": wineBarRestaurants.map((restaurant, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Restaurant",
+      "name": restaurant.name,
+      "url": `https://datenightrestaurants.com/losangeles/${restaurant.slug}/`,
+      "description": restaurant.description
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title={`Wine Bar Date Night Restaurants in Los Angeles | ${wineBarRestaurants.length} Intimate Wine Bars`}
+  description={`Discover the best wine bars in Los Angeles for romantic date nights. ${wineBarRestaurants.length} intimate wine bars offering curated selections, small plates, and romantic ambiance perfect for couples.`}
+  keywords={['wine bars Los Angeles', 'romantic wine bars LA', 'date night wine bars', 'intimate wine bars', 'wine tasting LA', 'couples wine bars']}
+  canonical="https://datenightrestaurants.com/cuisines/wine-bar/"
+  structuredData={structuredData}
+>
+  <main class="cuisine-page">
+    <div class="hero-section">
+      <div class="container">
+        <h1>Wine Bar Date Night Restaurants in Los Angeles</h1>
+        <p class="hero-subtitle">Intimate wine bars offering curated selections, small plates, and romantic ambiance perfect for couples</p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">{wineBarRestaurants.length}</span>
+            <span class="stat-label">Wine Bars</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{Math.round(wineBarRestaurants.reduce((sum, r) => sum + r.dateNightScore, 0) / wineBarRestaurants.length)}</span>
+            <span class="stat-label">Avg Date Score</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{wineBarRestaurants.filter(r => r.priceLevel >= 3).length}</span>
+            <span class="stat-label">Upscale Options</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurants-section">
+      <div class="container">
+        <h2>Top Wine Bars for Date Nights</h2>
+        <div class="restaurants-grid">
+          {topRestaurants.map(restaurant => (
+            <RestaurantCard restaurant={restaurant} />
+          ))}
+        </div>
+        
+        {wineBarRestaurants.length > 8 && (
+          <div class="view-all">
+            <a href="/losangeles/restaurants/?cuisine=wine_bar" class="btn btn-primary">
+              View All {wineBarRestaurants.length} Wine Bars
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="cuisine-info">
+      <div class="container">
+        <h2>About Wine Bars for Date Nights in Los Angeles</h2>
+        <p>Los Angeles offers an exceptional selection of wine bars that provide the perfect intimate setting for romantic date nights. From cozy neighborhood spots to sophisticated wine lounges, these establishments offer curated wine selections, expertly paired small plates, and an atmosphere that encourages conversation and connection.</p>
+        
+        <h3>What Makes Wine Bars Perfect for Date Nights:</h3>
+        <ul>
+          <li><strong>Intimate Atmosphere:</strong> Cozy, romantic settings perfect for conversation</li>
+          <li><strong>Expert Wine Selection:</strong> Curated wines from around the world</li>
+          <li><strong>Small Plates:</strong> Perfect for sharing and trying new flavors together</li>
+          <li><strong>Knowledgeable Staff:</strong> Sommeliers who can guide your wine journey</li>
+          <li><strong>Relaxed Pace:</strong> No rush, perfect for long conversations</li>
+        </ul>
+        
+        <h3>Best Neighborhoods for Wine Bars:</h3>
+        <ul>
+          <li><strong>Silver Lake:</strong> Hip wine bars with creative small plates</li>
+          <li><strong>Los Feliz:</strong> Cozy neighborhood wine spots</li>
+          <li><strong>West Hollywood:</strong> Sophisticated wine lounges</li>
+          <li><strong>Venice:</strong> Casual wine bars with beach vibes</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .cuisine-page {
+    padding-top: 80px;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    color: #e0e0e0;
+  }
+  
+  .restaurants-section {
+    padding: 4rem 0;
+    background: #FFF8F0;
+  }
+  
+  .restaurants-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .view-all {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  }
+  
+  .cuisine-info {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .cuisine-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .cuisine-info h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .cuisine-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cuisine-info ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+  
+  .cuisine-info li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cuisine-info strong {
+    color: #2C2C2C;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

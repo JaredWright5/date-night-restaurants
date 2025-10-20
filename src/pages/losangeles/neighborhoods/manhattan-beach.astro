@@ -1,0 +1,243 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { restaurants } from '@/data/restaurants';
+
+const neighborhoodName = 'Manhattan Beach';
+const neighborhoodRestaurants = restaurants.filter(r => 
+  r.neighborhood.toLowerCase().includes('manhattan beach') || 
+  r.address.toLowerCase().includes('manhattan beach')
+);
+
+const topRestaurants = neighborhoodRestaurants
+  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .slice(0, 6);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Manhattan Beach, Los Angeles",
+  "description": `Discover the best date night restaurants in Manhattan Beach, Los Angeles. ${neighborhoodRestaurants.length} romantic dining spots perfect for couples.`,
+  "url": "https://datenightrestaurants.com/losangeles/neighborhoods/manhattan-beach/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Manhattan Beach",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "containsPlace": neighborhoodRestaurants.map(restaurant => ({
+    "@type": "Restaurant",
+    "name": restaurant.name,
+    "url": `https://datenightrestaurants.com/losangeles/${restaurant.slug}/`
+  }))
+};
+---
+
+<BaseLayout
+  title={`Date Night Restaurants in Manhattan Beach | ${neighborhoodRestaurants.length} Romantic Dining Spots`}
+  description={`Discover the best date night restaurants in Manhattan Beach, Los Angeles. ${neighborhoodRestaurants.length} romantic dining spots perfect for couples, from beachside cafes to upscale fine dining.`}
+  keywords={['date night restaurants Manhattan Beach', 'romantic dining Manhattan Beach', 'couples restaurants Manhattan Beach', 'fine dining Manhattan Beach', 'beach restaurants LA']}
+  canonical="https://datenightrestaurants.com/losangeles/neighborhoods/manhattan-beach/"
+  structuredData={structuredData}
+>
+  <main class="neighborhood-page">
+    <div class="hero-section">
+      <div class="container">
+        <h1>Date Night Restaurants in Manhattan Beach</h1>
+        <p class="hero-subtitle">Discover romantic dining spots in this beautiful beachside neighborhood</p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">{neighborhoodRestaurants.length}</span>
+            <span class="stat-label">Restaurants</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{Math.round(neighborhoodRestaurants.reduce((sum, r) => sum + r.dateNightScore, 0) / neighborhoodRestaurants.length)}</span>
+            <span class="stat-label">Avg Date Score</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{neighborhoodRestaurants.filter(r => r.priceLevel >= 3).length}</span>
+            <span class="stat-label">Upscale Options</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurants-section">
+      <div class="container">
+        <h2>Top Date Night Restaurants in Manhattan Beach</h2>
+        <div class="restaurants-grid">
+          {topRestaurants.map(restaurant => (
+            <RestaurantCard restaurant={restaurant} />
+          ))}
+        </div>
+        
+        {neighborhoodRestaurants.length > 6 && (
+          <div class="view-all">
+            <a href="/losangeles/restaurants/?neighborhood=Manhattan Beach" class="btn btn-primary">
+              View All {neighborhoodRestaurants.length} Manhattan Beach Restaurants
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="neighborhood-info">
+      <div class="container">
+        <h2>About Manhattan Beach Date Night Dining</h2>
+        <p>Manhattan Beach offers a perfect blend of beachside charm and sophisticated dining. From casual beachfront cafes to upscale restaurants with ocean views, this neighborhood provides an ideal setting for romantic date nights. The area is known for its fresh seafood, California cuisine, and intimate dining experiences that capture the essence of coastal Los Angeles.</p>
+        
+        <h3>What Makes Manhattan Beach Special for Date Nights:</h3>
+        <ul>
+          <li><strong>Ocean Views:</strong> Many restaurants offer stunning Pacific Ocean views</li>
+          <li><strong>Beachside Ambiance:</strong> Casual yet romantic atmosphere perfect for couples</li>
+          <li><strong>Fresh Seafood:</strong> Access to the freshest seafood in Los Angeles</li>
+          <li><strong>Walkable Neighborhood:</strong> Easy to explore multiple dining spots</li>
+          <li><strong>Sunset Dining:</strong> Perfect timing for romantic sunset dinners</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .neighborhood-page {
+    padding-top: 80px;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    color: #e0e0e0;
+  }
+  
+  .restaurants-section {
+    padding: 4rem 0;
+    background: #FFF8F0;
+  }
+  
+  .restaurants-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .view-all {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  }
+  
+  .neighborhood-info {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .neighborhood-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .neighborhood-info h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .neighborhood-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .neighborhood-info ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+  
+  .neighborhood-info li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .neighborhood-info strong {
+    color: #2C2C2C;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
