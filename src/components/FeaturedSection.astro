@@ -144,40 +144,195 @@ const featuredRestaurants = getFeaturedRestaurants(4);
       // Clear existing content
       featuredGrid.innerHTML = '';
 
-      // Create featured cards for each restaurant
+      // Create featured cards for each restaurant with proper styling
       featuredSlugs.forEach((slug, index) => {
-        // Create a featured card that matches the design
-        const restaurantCard = document.createElement('div');
-        restaurantCard.className = 'featured-card featured-premium';
+        const restaurantCard = document.createElement('a');
+        restaurantCard.href = `/losangeles/${slug}/`;
+        restaurantCard.className = 'featured-card-link';
         restaurantCard.style.cssText = `
-          background: white;
-          border-radius: 15px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-          overflow: hidden;
-          border: 2px solid #D4AF37;
-          position: relative;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: block;
+          text-decoration: none;
+          color: inherit;
+          transition: transform 0.3s ease;
         `;
         
         restaurantCard.innerHTML = `
-          <div style="padding: 2rem; text-align: center;">
-            <div style="background: #D4AF37; color: white; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; font-weight: 600;">
-              ✨ Featured
-            </div>
-            <h3 style="margin: 0 0 0.5rem 0; color: #3E2723; font-size: 1.5rem;">${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
-            <p style="color: #666; margin: 0 0 1rem 0;">Featured Restaurant</p>
-            <a href="/losangeles/${slug}/" style="
-              background: #D4AF37;
+          <div class="featured-card featured-premium" style="
+            background: #FFF8F0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(232, 184, 109, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 3px solid #9CAF88;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+          ">
+            <div class="featured-badge" style="
+              position: absolute;
+              bottom: 1rem;
+              left: 1rem;
+              background: #9CAF88;
               color: white;
-              padding: 0.75rem 1.5rem;
-              border-radius: 25px;
-              text-decoration: none;
+              padding: 0.5rem 1rem;
+              border-radius: 20px;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
               font-weight: 600;
-              display: inline-block;
-              transition: background 0.3s ease;
-            " onmouseover="this.style.background='#B8941F'" onmouseout="this.style.background='#D4AF37'">
-              View Restaurant
-            </a>
+              font-size: 0.9rem;
+              z-index: 10;
+              box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            ">
+              <span class="badge-icon">✨</span>
+              <span class="badge-text">Featured</span>
+            </div>
+            
+            <div class="featured-content" style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              min-height: 400px;
+              height: 100%;
+              flex: 1;
+            ">
+              <div class="featured-image" style="
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 1.2rem;
+              ">
+                <div style="text-align: center;">
+                  <div style="font-size: 3rem; margin-bottom: 1rem;">🍽️</div>
+                  <div>Restaurant Image</div>
+                </div>
+                <div class="image-overlay" style="
+                  position: absolute;
+                  top: 1rem;
+                  left: 1rem;
+                ">
+                  <div class="restaurant-rating" style="
+                    color: #3E2723;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                  ">
+                    <div class="date-score-display" style="
+                      display: flex;
+                      align-items: center;
+                      gap: 0.5rem;
+                      background: rgba(44, 44, 44, 0.9);
+                      color: white;
+                      padding: 0.5rem 1rem;
+                      border-radius: 20px;
+                      font-weight: 600;
+                      font-size: 0.9rem;
+                      border: 2px solid #D2691E;
+                    ">
+                      <i class="fas fa-heart" style="color: #D4AF37;"></i>
+                      <span>85</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="featured-info" style="
+                padding: 2rem;
+                background: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                min-height: 300px;
+              ">
+                <div class="restaurant-header" style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  margin-bottom: 1rem;
+                ">
+                  <h3 class="restaurant-name" style="
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: #333;
+                    margin: 0;
+                    flex: 1;
+                  ">${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
+                  <div class="restaurant-price" style="
+                    background: #9CAF88;
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border-radius: 20px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    white-space: nowrap;
+                  ">$$$</div>
+                </div>
+                
+                <p class="restaurant-cuisine" style="
+                  color: #666;
+                  font-size: 1rem;
+                  margin-bottom: 0.5rem;
+                  font-weight: 500;
+                ">Featured Restaurant</p>
+                <p class="restaurant-address" style="
+                  color: #888;
+                  font-size: 0.9rem;
+                  margin-bottom: 1.5rem;
+                ">Los Angeles, CA</p>
+                
+                <div class="featured-highlights" style="margin-bottom: 1.5rem;">
+                  <div class="date-score" style="
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.9rem;
+                    color: #666;
+                    margin-bottom: 0.5rem;
+                  ">
+                    <i class="fas fa-heart" style="color: #d63384;"></i>
+                    <span>Date Score: <strong style="
+                      background: linear-gradient(45deg, #d63384, #ff6b6b);
+                      color: white;
+                      padding: 0.25rem 0.5rem;
+                      border-radius: 10px;
+                      font-size: 0.8rem;
+                    ">85</strong></span>
+                  </div>
+                </div>
+                
+                <div class="featured-actions" style="display: flex; gap: 0.75rem;">
+                  <div class="btn btn-featured" style="
+                    padding: 0.75rem 1.5rem;
+                    border: none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.9rem;
+                    flex: 1;
+                    justify-content: center;
+                    background: #9CAF88;
+                    color: white;
+                    box-shadow: 0 4px 15px rgba(156, 175, 136, 0.3);
+                    pointer-events: none;
+                  ">
+                    <i class="fas fa-info-circle"></i>
+                    View Restaurant Details
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         `;
         
