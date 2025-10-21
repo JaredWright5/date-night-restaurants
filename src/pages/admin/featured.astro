@@ -29,9 +29,9 @@ const featuredRestaurants = restaurants.filter(r => r.isTopRated).slice(0, 6);
         <!-- Current Featured Restaurants -->
         <section class="current-featured">
           <h2>Currently Featured Restaurants</h2>
-          <div class="featured-grid">
+          <div class="featured-grid" id="featured-grid">
             {featuredRestaurants.map((restaurant, index) => (
-              <div class="featured-card">
+              <div class="featured-card" data-restaurant-id={restaurant.slug}>
                 <div class="restaurant-info">
                   <h3>{restaurant.name}</h3>
                   <p class="neighborhood">{restaurant.neighborhood}</p>
@@ -376,39 +376,94 @@ const featuredRestaurants = restaurants.filter(r => r.isTopRated).slice(0, 6);
   }
 
   // Add event listeners
-  searchInput.addEventListener('input', filterRestaurants);
-  neighborhoodFilter.addEventListener('change', filterRestaurants);
-  cuisineFilter.addEventListener('change', filterRestaurants);
+  if (searchInput) searchInput.addEventListener('input', filterRestaurants);
+  if (neighborhoodFilter) neighborhoodFilter.addEventListener('change', filterRestaurants);
+  if (cuisineFilter) cuisineFilter.addEventListener('change', filterRestaurants);
 
   // Add/Remove from featured functionality
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-add')) {
+      e.preventDefault();
       const restaurantId = e.target.dataset.restaurantId;
       if (!featuredRestaurants.has(restaurantId)) {
         featuredRestaurants.add(restaurantId);
-        e.target.textContent = 'Added to Featured';
-        e.target.classList.remove('btn-add');
-        e.target.classList.add('btn-remove');
-        e.target.onclick = removeFromFeatured;
+        updateButtonState(e.target, restaurantId, true);
         updateFeaturedDisplay();
+        showNotification('Restaurant added to featured!', 'success');
       }
+    } else if (e.target.classList.contains('btn-remove')) {
+      e.preventDefault();
+      const restaurantId = e.target.dataset.restaurantId;
+      featuredRestaurants.delete(restaurantId);
+      updateButtonState(e.target, restaurantId, false);
+      updateFeaturedDisplay();
+      showNotification('Restaurant removed from featured!', 'info');
     }
   });
 
-  function removeFromFeatured(e) {
-    const restaurantId = e.target.dataset.restaurantId;
-    featuredRestaurants.delete(restaurantId);
-    e.target.textContent = 'Add to Featured';
-    e.target.classList.remove('btn-remove');
-    e.target.classList.add('btn-add');
-    e.target.onclick = null;
-    updateFeaturedDisplay();
+  function updateButtonState(button, restaurantId, isFeatured) {
+    if (isFeatured) {
+      button.textContent = 'Remove from Featured';
+      button.classList.remove('btn-add');
+      button.classList.add('btn-remove');
+    } else {
+      button.textContent = 'Add to Featured';
+      button.classList.remove('btn-remove');
+      button.classList.add('btn-add');
+    }
   }
 
   function updateFeaturedDisplay() {
-    // This would update the featured section on the homepage
-    // For now, we'll just show a success message
-    console.log('Featured restaurants updated:', Array.from(featuredRestaurants));
+    // Update the featured section display
+    const featuredGrid = document.querySelector('#featured-grid');
+    if (featuredGrid) {
+      // Remove featured cards that are no longer in the set
+      const featuredCards = featuredGrid.querySelectorAll('.featured-card');
+      featuredCards.forEach(card => {
+        const restaurantId = card.dataset.restaurantId;
+        if (!featuredRestaurants.has(restaurantId)) {
+          card.style.animation = 'fadeOut 0.3s ease';
+          setTimeout(() => {
+            if (card.parentNode) {
+              card.parentNode.removeChild(card);
+            }
+          }, 300);
+        }
+      });
+      
+      console.log('Featured restaurants updated:', Array.from(featuredRestaurants));
+    }
+  }
+
+  function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${type === 'success' ? '#28a745' : '#17a2b8'};
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+      notification.style.animation = 'slideOut 0.3s ease';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+      }, 300);
+    }, 3000);
   }
 
   // Initialize button states
@@ -417,11 +472,26 @@ const featuredRestaurants = restaurants.filter(r => r.isTopRated).slice(0, 6);
     addButtons.forEach(button => {
       const restaurantId = button.dataset.restaurantId;
       if (featuredRestaurants.has(restaurantId)) {
-        button.textContent = 'Added to Featured';
-        button.classList.remove('btn-add');
-        button.classList.add('btn-remove');
-        button.onclick = removeFromFeatured;
+        updateButtonState(button, restaurantId, true);
       }
     });
   });
+
+  // Add CSS for animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.95); }
+    }
+  `;
+  document.head.appendChild(style);
 </script>
