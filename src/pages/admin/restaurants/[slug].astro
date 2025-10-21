@@ -1,12 +1,18 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { restaurants } from '@/data/restaurants';
+import { AdminDatabase } from '@/lib/admin-database';
 
 export async function getStaticPaths() {
-  return restaurants.map(restaurant => ({
-    params: { slug: restaurant.slug },
-    props: { restaurant }
-  }));
+  try {
+    const restaurants = await AdminDatabase.getRestaurants();
+    return restaurants.map(restaurant => ({
+      params: { slug: restaurant.slug },
+      props: { restaurant }
+    }));
+  } catch (error) {
+    console.error('Error fetching restaurants for static paths:', error);
+    return [];
+  }
 }
 
 const { restaurant } = Astro.props;

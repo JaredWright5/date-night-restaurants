@@ -1,9 +1,18 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { restaurants } from '@/data/restaurants';
+import { AdminDatabase } from '@/lib/admin-database';
 
-// Get all restaurants sorted by date night score
-const allRestaurants = restaurants.sort((a, b) => b.dateNightScore - a.dateNightScore);
+// Fetch restaurants from Supabase
+let allRestaurants = [];
+
+try {
+  const restaurantsData = await AdminDatabase.getRestaurants();
+  allRestaurants = restaurantsData.sort((a, b) => b.dateNightScore - a.dateNightScore);
+} catch (error) {
+  console.error('Error fetching restaurants from Supabase:', error);
+  // Fallback to empty array if Supabase is not available
+  allRestaurants = [];
+}
 ---
 
 <BaseLayout
