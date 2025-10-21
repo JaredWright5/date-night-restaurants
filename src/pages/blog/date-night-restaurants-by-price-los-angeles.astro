@@ -1,0 +1,539 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Categorize restaurants by price level
+const budgetRestaurants = restaurants.filter(r => r.priceLevel <= 2 && r.dateNightScore >= 75).slice(0, 6);
+const midRangeRestaurants = restaurants.filter(r => r.priceLevel === 3 && r.dateNightScore >= 80).slice(0, 6);
+const upscaleRestaurants = restaurants.filter(r => r.priceLevel === 4 && r.dateNightScore >= 85).slice(0, 6);
+
+const postDate = "2024-10-18";
+const author = "Date Night Experts";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Date Night Restaurants by Price in Los Angeles: From Budget to Luxury",
+  "description": "Find the perfect date night restaurant for your budget in Los Angeles. From budget-friendly spots under $50 to luxury dining experiences, discover romantic restaurants at every price point.",
+  "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop",
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Date Night Restaurants by Price in Los Angeles (2024) | From Budget to Luxury"
+  description="Find the perfect date night restaurant for your budget in Los Angeles. From budget-friendly spots under $50 to luxury dining experiences, discover romantic restaurants at every price point."
+  keywords={['date night restaurants by price LA', 'budget date night Los Angeles', 'luxury restaurants Los Angeles', 'affordable romantic dining LA', 'expensive date night restaurants', 'mid-range date spots LA']}
+  canonical="https://datenightrestaurants.com/blog/date-night-restaurants-by-price-los-angeles/"
+  ogImage="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="/">Home</a> / <a href="/blog/">Blog</a> / <span>Restaurants by Price</span>
+        </div>
+        <h1>Date Night Restaurants by Price in Los Angeles: From Budget to Luxury</h1>
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="post-author">by {author}</span>
+          <span class="read-time">14 min read</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <section class="content-section">
+            <p class="lead">
+              Romance doesn't have to break the bank, but sometimes you want to splurge for that special someone. Los Angeles offers incredible date night restaurants at every price point, from cozy neighborhood spots under $50 per person to world-class dining experiences that rival the best restaurants globally.
+            </p>
+
+            <p>
+              Whether you're a college student planning a <a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">budget-friendly date</a> or celebrating a milestone anniversary at a <a href="/blog/top-anniversary-restaurants-los-angeles/">luxury establishment</a>, LA's diverse dining scene has something perfect for every budget and occasion.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Budget-Friendly Date Night ($20-$50 per person)</h2>
+            <p>Great date nights don't require a big budget. LA offers plenty of romantic spots where you can enjoy excellent food and intimate atmosphere without spending a fortune.</p>
+            
+            <div class="restaurants-grid">
+              {budgetRestaurants.map((restaurant, index) => (
+                <div class="restaurant-card">
+                  <div class="restaurant-image">
+                    <img src={restaurant.photos[0]} alt={restaurant.name} loading="lazy" />
+                    <div class="restaurant-overlay">
+                      <div class="date-score">{restaurant.dateNightScore}</div>
+                    </div>
+                  </div>
+                  <div class="restaurant-info">
+                    <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+                    <p class="restaurant-location">{restaurant.neighborhood} • {restaurant.cuisineTypes.map(cuisine => cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())).join(', ')}</p>
+                    <p class="restaurant-rating">★ {restaurant.rating} • $$</p>
+                    <p class="restaurant-description">{restaurant.description}</p>
+                    <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <h3>Budget Date Night Tips</h3>
+            <p>Look for happy hour specials, early bird menus, and restaurants that offer great value. Many LA restaurants offer excellent food and romantic ambiance at reasonable prices. Consider sharing appetizers or ordering from the bar menu to keep costs down while still enjoying a romantic evening.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Mid-Range Date Night ($50-$100 per person)</h2>
+            <p>The sweet spot for most date nights, mid-range restaurants offer excellent food, romantic ambiance, and professional service without the premium price tag of fine dining establishments.</p>
+            
+            <div class="restaurants-grid">
+              {midRangeRestaurants.map((restaurant, index) => (
+                <div class="restaurant-card">
+                  <div class="restaurant-image">
+                    <img src={restaurant.photos[0]} alt={restaurant.name} loading="lazy" />
+                    <div class="restaurant-overlay">
+                      <div class="date-score">{restaurant.dateNightScore}</div>
+                    </div>
+                  </div>
+                  <div class="restaurant-info">
+                    <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+                    <p class="restaurant-location">{restaurant.neighborhood} • {restaurant.cuisineTypes.map(cuisine => cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())).join(', ')}</p>
+                    <p class="restaurant-rating">★ {restaurant.rating} • $$$</p>
+                    <p class="restaurant-description">{restaurant.description}</p>
+                    <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <h3>Mid-Range Advantages</h3>
+            <p>Mid-range restaurants often provide the best value for romantic dining. You get excellent food, professional service, and romantic ambiance without the premium prices of fine dining. These restaurants are perfect for regular date nights, birthdays, and special occasions that don't require the full fine dining experience.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Luxury Date Night ($100+ per person)</h2>
+            <p>For special occasions, anniversaries, and when you want to create an unforgettable experience, LA's luxury dining scene offers world-class restaurants that rival the best establishments globally.</p>
+            
+            <div class="restaurants-grid">
+              {upscaleRestaurants.map((restaurant, index) => (
+                <div class="restaurant-card">
+                  <div class="restaurant-image">
+                    <img src={restaurant.photos[0]} alt={restaurant.name} loading="lazy" />
+                    <div class="restaurant-overlay">
+                      <div class="date-score">{restaurant.dateNightScore}</div>
+                    </div>
+                  </div>
+                  <div class="restaurant-info">
+                    <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+                    <p class="restaurant-location">{restaurant.neighborhood} • {restaurant.cuisineTypes.map(cuisine => cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())).join(', ')}</p>
+                    <p class="restaurant-rating">★ {restaurant.rating} • $$$$</p>
+                    <p class="restaurant-description">{restaurant.description}</p>
+                    <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <h3>Luxury Dining Experience</h3>
+            <p>Luxury restaurants offer more than just great food—they provide an entire experience. From impeccable service to stunning presentations, these establishments create memorable moments that justify their premium prices. Perfect for <a href="/blog/romantic-dinner-ideas-los-angeles/">special occasions</a> and milestone celebrations.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Choosing the Right Price Point</h2>
+            
+            <h3>Consider the Occasion</h3>
+            <p>First dates might be better suited for mid-range restaurants that are impressive but not intimidating. Anniversaries and special occasions often call for luxury experiences, while regular date nights can be perfect for budget-friendly options.</p>
+            
+            <h3>Factor in Extras</h3>
+            <p>Remember to budget for drinks, dessert, and tip when planning your date night. A $50 per person restaurant can easily become $75-100 per person with drinks and dessert.</p>
+            
+            <h3>Value vs. Price</h3>
+            <p>Sometimes spending a bit more can provide significantly better value. A $75 per person restaurant might offer much better food, service, and ambiance than a $50 per person spot, making it worth the extra investment.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Money-Saving Tips for Date Night</h2>
+            
+            <h3>Happy Hour Dining</h3>
+            <p>Many LA restaurants offer excellent happy hour menus with discounted food and drinks. This can be a great way to enjoy upscale dining at a fraction of the cost.</p>
+            
+            <h3>Early Bird Specials</h3>
+            <p>Some restaurants offer early bird specials for diners who arrive before 6 PM. This can provide significant savings while still enjoying the full restaurant experience.</p>
+            
+            <h3>Weekday Dining</h3>
+            <p>Weekday dining is often less expensive than weekend dining, and many restaurants offer special weekday promotions and menus.</p>
+            
+            <h3>Shared Plates</h3>
+            <p>Consider sharing appetizers and entrees to reduce costs while still enjoying a variety of dishes. Many restaurants are designed for sharing, especially in the <a href="/cuisines/italian/">Italian</a> and <a href="/cuisines/mediterranean/">Mediterranean</a> categories.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Neighborhood Considerations by Budget</h2>
+            
+            <h3>Budget-Friendly Neighborhoods</h3>
+            <p><a href="/losangeles/neighborhoods/venice/">Venice</a> and <a href="/losangeles/neighborhoods/silver-lake/">Silver Lake</a> offer many casual, romantic spots perfect for budget date nights. These neighborhoods have a relaxed vibe that's perfect for low-pressure, affordable dining.</p>
+            
+            <h3>Mid-Range Neighborhoods</h3>
+            <p><a href="/losangeles/neighborhoods/west-hollywood/">West Hollywood</a> and <a href="/losangeles/neighborhoods/santa-monica/">Santa Monica</a> provide excellent mid-range options with great atmosphere and reasonable prices. These areas offer a good balance of quality and value.</p>
+            
+            <h3>Luxury Neighborhoods</h3>
+            <p><a href="/losangeles/neighborhoods/beverly-hills/">Beverly Hills</a> and <a href="/losangeles/neighborhoods/malibu/">Malibu</a> are home to many of LA's most luxurious restaurants. These areas offer the ultimate in fine dining experiences for special occasions.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Special Occasions by Budget</h2>
+            
+            <h3>Budget Celebrations</h3>
+            <p>For budget-friendly celebrations, consider <a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">restaurants that offer great value</a> without compromising on romance. Many LA restaurants provide intimate atmospheres and excellent food at reasonable prices.</p>
+            
+            <h3>Mid-Range Special Occasions</h3>
+            <p>Birthdays, anniversaries, and other special occasions often call for mid-range restaurants that offer excellent food and service without the premium prices of fine dining.</p>
+            
+            <h3>Luxury Celebrations</h3>
+            <p>For milestone anniversaries, proposals, and other once-in-a-lifetime occasions, <a href="/blog/romantic-dinner-ideas-los-angeles/">luxury restaurants</a> provide unforgettable experiences that justify their premium prices.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Final Thoughts</h2>
+            <p>The perfect date night restaurant isn't just about the price—it's about finding the right balance of food, atmosphere, and service that matches your budget and occasion. LA's diverse dining scene offers excellent options at every price point, ensuring that every couple can find the perfect romantic dining experience.</p>
+            
+            <p>Remember, the most important part of any date night is spending quality time together. Whether you're enjoying a casual meal at a neighborhood spot or indulging in a luxury dining experience, focus on the connection and conversation that makes your relationship special.</p>
+
+            <div class="cta-box">
+              <h3>Find Your Perfect Date Night Restaurant</h3>
+              <p>Explore our complete directory of {restaurants.length}+ restaurants across all price points in Los Angeles.</p>
+              <a href="/losangeles/restaurants/" class="btn btn-primary">View All Restaurants</a>
+            </div>
+          </section>
+
+          <section class="related-posts">
+            <h2>Related Articles</h2>
+            <div class="related-grid">
+              <div class="related-item">
+                <a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">
+                  <h4>Budget-Friendly Date Spots Under $50</h4>
+                  <p>Romantic dining experiences that won't break the bank.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/romantic-dinner-ideas-los-angeles/">
+                  <h4>Romantic Dinner Ideas in Los Angeles</h4>
+                  <p>Perfect spots for special occasions and romantic evenings.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/los-angeles-date-night-guide/">
+                  <h4>Los Angeles Date Night Guide</h4>
+                  <p>Complete guide to romantic dining across LA.</p>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 80px;
+  }
+  
+  .post-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .breadcrumbs {
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .breadcrumbs a {
+    color: #D4AF37;
+    text-decoration: none;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  .post-content {
+    padding: 4rem 0;
+    background: #fff;
+  }
+  
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .content-section {
+    margin-bottom: 3rem;
+  }
+  
+  .lead {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  
+  .content-section h2 {
+    font-size: 2.2rem;
+    color: #2C2C2C;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .content-section h3 {
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin: 2rem 0 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .content-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4A4A4A;
+    margin-bottom: 1.5rem;
+  }
+  
+  .content-section a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .content-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .restaurant-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  
+  .restaurant-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .restaurant-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .date-score {
+    background: rgba(0,0,0,0.8);
+    color: #D4AF37;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .restaurant-info {
+    padding: 1.5rem;
+  }
+  
+  .restaurant-info h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+  
+  .restaurant-info h3 a {
+    color: #2C2C2C;
+    text-decoration: none;
+  }
+  
+  .restaurant-info h3 a:hover {
+    color: #D4AF37;
+  }
+  
+  .restaurant-location {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .restaurant-rating {
+    color: #D4AF37;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .restaurant-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #D4AF37;
+    color: #2C2C2C;
+  }
+  
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline {
+    border: 2px solid #D4AF37;
+    color: #D4AF37;
+  }
+  
+  .btn-outline:hover {
+    background: #D4AF37;
+    color: #2C2C2C;
+  }
+  
+  .cta-box {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin: 3rem 0;
+  }
+  
+  .cta-box h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+  
+  .related-posts {
+    background: #F8F6F0;
+    padding: 3rem 0;
+    margin-top: 4rem;
+  }
+  
+  .related-posts h2 {
+    text-align: center;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .related-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .related-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .related-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .related-item h4 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .related-item p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  @media (max-width: 768px) {
+    .post-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .post-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,493 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Select romantic restaurants for special occasions
+const romanticRestaurants = restaurants.filter(r => 
+  r.dateNightScore >= 85 && r.priceLevel >= 3
+).slice(0, 8);
+
+const postDate = "2024-10-18";
+const author = "Date Night Experts";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Romantic Dinner Ideas in Los Angeles: Perfect Spots for Special Occasions",
+  "description": "Discover the most romantic dinner spots in Los Angeles for anniversaries, proposals, and special occasions. From intimate fine dining to rooftop views, find your perfect romantic evening.",
+  "image": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&h=630&fit=crop",
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Romantic Dinner Ideas in Los Angeles (2024) | Perfect Spots for Special Occasions"
+  description="Discover the most romantic dinner spots in Los Angeles for anniversaries, proposals, and special occasions. From intimate fine dining to rooftop views, find your perfect romantic evening."
+  keywords={['romantic dinner Los Angeles', 'anniversary restaurants LA', 'proposal restaurants Los Angeles', 'romantic fine dining LA', 'special occasion restaurants', 'romantic date night LA']}
+  canonical="https://datenightrestaurants.com/blog/romantic-dinner-ideas-los-angeles/"
+  ogImage="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&h=630&fit=crop"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="/">Home</a> / <a href="/blog/">Blog</a> / <span>Romantic Dinner Ideas</span>
+        </div>
+        <h1>Romantic Dinner Ideas in Los Angeles: Perfect Spots for Special Occasions</h1>
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="post-author">by {author}</span>
+          <span class="read-time">12 min read</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <section class="content-section">
+            <p class="lead">
+              Los Angeles offers some of the most romantic dining experiences in the world, perfect for anniversaries, proposals, and those special moments that deserve to be celebrated in style. From intimate candlelit corners to breathtaking rooftop views, the City of Angels provides the perfect backdrop for love.
+            </p>
+
+            <p>
+              Whether you're planning a <a href="/blog/top-anniversary-restaurants-los-angeles/">milestone anniversary celebration</a> or looking for the perfect spot to pop the question, LA's romantic restaurant scene has something extraordinary for every couple. These carefully curated establishments combine exceptional cuisine, intimate ambiance, and impeccable service to create unforgettable dining experiences.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>What Makes a Restaurant Truly Romantic?</h2>
+            
+            <h3>Intimate Ambiance</h3>
+            <p>Soft lighting, comfortable seating, and a quiet atmosphere that encourages conversation and connection. The best romantic restaurants create a sense of privacy and intimacy, even in bustling Los Angeles.</p>
+            
+            <h3>Exceptional Service</h3>
+            <p>Attentive but unobtrusive service that anticipates your needs without interrupting your special moments. The staff should understand the importance of your occasion and enhance the experience.</p>
+            
+            <h3>Memorable Cuisine</h3>
+            <p>Food that's not just delicious, but thoughtfully prepared and beautifully presented. Each dish should be a work of art that adds to the romantic atmosphere.</p>
+            
+            <h3>Special Touches</h3>
+            <p>From complimentary champagne to personalized desserts, the little details that make your evening feel truly special and unique.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Top Romantic Restaurants in Los Angeles</h2>
+            
+            <div class="restaurants-grid">
+              {romanticRestaurants.map((restaurant, index) => (
+                <div class="restaurant-card">
+                  <div class="restaurant-image">
+                    <img src={restaurant.photos[0]} alt={restaurant.name} loading="lazy" />
+                    <div class="restaurant-overlay">
+                      <div class="date-score">{restaurant.dateNightScore}</div>
+                    </div>
+                  </div>
+                  <div class="restaurant-info">
+                    <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+                    <p class="restaurant-location">{restaurant.neighborhood} • {restaurant.cuisineTypes.map(cuisine => cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())).join(', ')}</p>
+                    <p class="restaurant-rating">★ {restaurant.rating} • {restaurant.priceLevel === 4 ? '$$$$' : restaurant.priceLevel === 3 ? '$$$' : '$$'}</p>
+                    <p class="restaurant-description">{restaurant.description}</p>
+                    <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="content-section">
+            <h2>Romantic Dining by Occasion</h2>
+            
+            <h3>Anniversary Celebrations</h3>
+            <p>For milestone anniversaries, consider <a href="/losangeles/providence/">Providence</a> or <a href="/losangeles/spago-beverly-hills/">Spago Beverly Hills</a>. These establishments offer tasting menus and wine pairings that create a truly special experience.</p>
+            
+            <h3>Proposal Spots</h3>
+            <p>Looking for the perfect place to propose? <a href="/blog/best-rooftop-restaurants-los-angeles-date-night/">Rooftop restaurants</a> like 71Above or Perch LA offer stunning city views that will make your proposal unforgettable.</p>
+            
+            <h3>Valentine's Day</h3>
+            <p>For Valentine's Day, book early at intimate spots like <a href="/losangeles/the-little-door/">The Little Door</a> or <a href="/losangeles/lucques/">Lucques</a>, which offer special menus and romantic ambiance.</p>
+            
+            <h3>Birthday Celebrations</h3>
+            <p>Celebrate another year together at <a href="/losangeles/nobu-malibu/">Nobu Malibu</a> or <a href="/losangeles/geoffrey-s-malibu/">Geoffrey's Malibu</a> for ocean views and exceptional cuisine.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Planning Your Romantic Evening</h2>
+            
+            <h3>Make Reservations Early</h3>
+            <p>Popular romantic restaurants book up quickly, especially for special occasions. Reserve your table at least 2-3 weeks in advance for weekend evenings.</p>
+            
+            <h3>Consider the Timing</h3>
+            <p>Sunset dinners offer the most romantic lighting, while later evening reservations provide a more intimate atmosphere. Consider your partner's preferences and the restaurant's ambiance.</p>
+            
+            <h3>Special Requests</h3>
+            <p>Don't hesitate to mention your special occasion when making reservations. Many restaurants will go out of their way to make your evening extra special with complimentary treats or special seating.</p>
+            
+            <h3>Dress Code</h3>
+            <p>Most romantic restaurants have smart casual to formal dress codes. When in doubt, it's better to be slightly overdressed than underdressed for such special occasions.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Romantic Neighborhoods for Dining</h2>
+            
+            <h3>Beverly Hills</h3>
+            <p>Home to some of LA's most elegant restaurants, Beverly Hills offers a sophisticated dining scene perfect for special occasions. Explore our <a href="/losangeles/neighborhoods/beverly-hills/">Beverly Hills restaurant guide</a> for the best options.</p>
+            
+            <h3>Malibu</h3>
+            <p>Oceanfront dining with stunning sunset views. Malibu's restaurants offer a relaxed yet luxurious atmosphere perfect for romantic evenings.</p>
+            
+            <h3>West Hollywood</h3>
+            <p>Trendy and sophisticated, West Hollywood's dining scene combines great food with vibrant atmosphere. Perfect for couples who enjoy a more energetic romantic setting.</p>
+            
+            <h3>Santa Monica</h3>
+            <p>Beachside romance with a variety of dining options from casual to upscale. Santa Monica offers the perfect blend of relaxation and sophistication.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Budget-Friendly Romantic Options</h3>
+            <p>Romance doesn't have to break the bank. Check out our guide to <a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">budget-friendly date night restaurants</a> for romantic options under $50 per person that still offer intimate ambiance and great food.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Final Thoughts</h2>
+            <p>The perfect romantic dinner in Los Angeles is about more than just great food—it's about creating a memorable experience that celebrates your love. Whether you're marking a special milestone or simply want to show your partner how much they mean to you, LA's romantic restaurant scene offers endless possibilities for creating those perfect moments together.</p>
+            
+            <p>Remember, the most romantic evenings are those where you can focus on each other in a beautiful setting with exceptional food and service. Choose a restaurant that matches your style and occasion, and let the magic of Los Angeles dining create an unforgettable experience.</p>
+
+            <div class="cta-box">
+              <h3>Ready to Plan Your Romantic Evening?</h3>
+              <p>Explore our complete directory of {restaurants.length}+ romantic restaurants across Los Angeles.</p>
+              <a href="/losangeles/restaurants/" class="btn btn-primary">View All Restaurants</a>
+            </div>
+          </section>
+
+          <section class="related-posts">
+            <h2>Related Articles</h2>
+            <div class="related-grid">
+              <div class="related-item">
+                <a href="/blog/top-anniversary-restaurants-los-angeles/">
+                  <h4>Top Anniversary Restaurants in Los Angeles</h4>
+                  <p>Celebrate your love with the most romantic anniversary dining spots.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/best-rooftop-restaurants-los-angeles-date-night/">
+                  <h4>Best Rooftop Restaurants for Date Night</h4>
+                  <p>Stunning views and romantic ambiance at LA's best rooftops.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/best-first-date-restaurants-los-angeles/">
+                  <h4>Best First Date Restaurants in LA</h4>
+                  <p>Perfect spots for getting to know someone special.</p>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 80px;
+  }
+  
+  .post-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .breadcrumbs {
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .breadcrumbs a {
+    color: #D4AF37;
+    text-decoration: none;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  .post-content {
+    padding: 4rem 0;
+    background: #fff;
+  }
+  
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .content-section {
+    margin-bottom: 3rem;
+  }
+  
+  .lead {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  
+  .content-section h2 {
+    font-size: 2.2rem;
+    color: #2C2C2C;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .content-section h3 {
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin: 2rem 0 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .content-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4A4A4A;
+    margin-bottom: 1.5rem;
+  }
+  
+  .content-section a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .content-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .restaurant-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  
+  .restaurant-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .restaurant-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .date-score {
+    background: rgba(0,0,0,0.8);
+    color: #D4AF37;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .restaurant-info {
+    padding: 1.5rem;
+  }
+  
+  .restaurant-info h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+  
+  .restaurant-info h3 a {
+    color: #2C2C2C;
+    text-decoration: none;
+  }
+  
+  .restaurant-info h3 a:hover {
+    color: #D4AF37;
+  }
+  
+  .restaurant-location {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .restaurant-rating {
+    color: #D4AF37;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .restaurant-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #D4AF37;
+    color: #2C2C2C;
+  }
+  
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline {
+    border: 2px solid #D4AF37;
+    color: #D4AF37;
+  }
+  
+  .btn-outline:hover {
+    background: #D4AF37;
+    color: #2C2C2C;
+  }
+  
+  .cta-box {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin: 3rem 0;
+  }
+  
+  .cta-box h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+  
+  .related-posts {
+    background: #F8F6F0;
+    padding: 3rem 0;
+    margin-top: 4rem;
+  }
+  
+  .related-posts h2 {
+    text-align: center;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .related-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .related-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .related-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .related-item h4 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .related-item p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  @media (max-width: 768px) {
+    .post-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .post-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

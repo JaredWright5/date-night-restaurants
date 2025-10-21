@@ -1,0 +1,523 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Get diverse restaurant selection for comprehensive guide
+const featuredRestaurants = restaurants.filter(r => r.dateNightScore >= 80).slice(0, 12);
+
+const postDate = "2024-10-18";
+const author = "Date Night Experts";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Los Angeles Date Night Guide: Complete Guide to Romantic Dining in LA",
+  "description": "Your complete guide to date night dining in Los Angeles. From first dates to anniversaries, discover the best romantic restaurants, neighborhoods, and dining experiences across LA.",
+  "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop",
+  "datePublished": postDate,
+  "dateModified": postDate,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Los Angeles Date Night Guide (2024) | Complete Guide to Romantic Dining in LA"
+  description="Your complete guide to date night dining in Los Angeles. From first dates to anniversaries, discover the best romantic restaurants, neighborhoods, and dining experiences across LA."
+  keywords={['Los Angeles date night guide', 'LA romantic restaurants', 'date night dining Los Angeles', 'romantic restaurants guide LA', 'best date spots Los Angeles', 'LA dining guide']}
+  canonical="https://datenightrestaurants.com/blog/los-angeles-date-night-guide/"
+  ogImage="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="/">Home</a> / <a href="/blog/">Blog</a> / <span>LA Date Night Guide</span>
+        </div>
+        <h1>Los Angeles Date Night Guide: Complete Guide to Romantic Dining in LA</h1>
+        <div class="post-meta">
+          <time datetime={postDate}>{new Date(postDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <span class="post-author">by {author}</span>
+          <span class="read-time">15 min read</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <section class="content-section">
+            <p class="lead">
+              Los Angeles is a city built for romance, with its perfect weather, stunning views, and world-class dining scene. Whether you're planning a first date, celebrating an anniversary, or simply want to impress someone special, LA offers endless possibilities for creating the perfect romantic evening.
+            </p>
+
+            <p>
+              From the beaches of <a href="/losangeles/neighborhoods/malibu/">Malibu</a> to the hills of <a href="/losangeles/neighborhoods/beverly-hills/">Beverly Hills</a>, from the trendy streets of <a href="/losangeles/neighborhoods/west-hollywood/">West Hollywood</a> to the artistic vibes of <a href="/losangeles/neighborhoods/venice/">Venice</a>, Los Angeles provides the perfect backdrop for every type of romantic dining experience.
+            </p>
+          </section>
+
+          <section class="content-section">
+            <h2>Planning the Perfect Date Night in LA</h2>
+            
+            <h3>Consider the Occasion</h3>
+            <p>Different occasions call for different types of restaurants. For <a href="/blog/best-first-date-restaurants-los-angeles/">first dates</a>, choose comfortable, conversation-friendly spots. For anniversaries, consider <a href="/blog/top-anniversary-restaurants-los-angeles/">upscale establishments</a> with special touches. For casual date nights, explore <a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">budget-friendly options</a> that still offer great ambiance.</p>
+            
+            <h3>Choose the Right Neighborhood</h3>
+            <p>Each LA neighborhood has its own personality and dining scene. <a href="/losangeles/neighborhoods/santa-monica/">Santa Monica</a> offers beachside romance, while <a href="/losangeles/neighborhoods/hollywood/">Hollywood</a> provides classic glamour. <a href="/losangeles/neighborhoods/downtown/">Downtown LA</a> features modern sophistication, and <a href="/losangeles/neighborhoods/venice/">Venice</a> offers bohemian charm.</p>
+            
+            <h3>Timing is Everything</h3>
+            <p>Consider the time of day and season when planning your date night. Sunset dinners offer the most romantic lighting, while late-night spots provide intimate ambiance. LA's year-round perfect weather means outdoor dining is always an option.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Top Date Night Restaurants by Category</h2>
+            
+            <h3>Fine Dining Excellence</h3>
+            <p>For special occasions, LA's fine dining scene is unmatched. <a href="/losangeles/providence/">Providence</a> offers an intimate seafood experience, while <a href="/losangeles/spago-beverly-hills/">Spago Beverly Hills</a> provides celebrity-worthy dining. <a href="/losangeles/cut-by-wolfgang-puck/">Cut by Wolfgang Puck</a> delivers exceptional steaks in a sophisticated setting.</p>
+            
+            <h3>Rooftop Romance</h3>
+            <p>Nothing beats dining with a view in LA. <a href="/blog/best-rooftop-restaurants-los-angeles-date-night/">Rooftop restaurants</a> like <a href="/losangeles/71above/">71Above</a> and <a href="/losangeles/perch-la/">Perch LA</a> offer stunning city views that create unforgettable romantic moments.</p>
+            
+            <h3>Intimate Neighborhood Spots</h3>
+            <p>Sometimes the best romantic experiences come from hidden gems. <a href="/losangeles/the-little-door/">The Little Door</a> offers a secret garden atmosphere, while <a href="/losangeles/lucques/">Lucques</a> provides cozy Mediterranean charm.</p>
+            
+            <h3>Beachside Dining</h3>
+            <p>LA's coastline provides some of the most romantic dining backdrops. <a href="/losangeles/nobu-malibu/">Nobu Malibu</a> and <a href="/losangeles/geoffrey-s-malibu/">Geoffrey's Malibu</a> offer ocean views and exceptional cuisine for the perfect beachside date night.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Featured Date Night Restaurants</h2>
+            
+            <div class="restaurants-grid">
+              {featuredRestaurants.map((restaurant, index) => (
+                <div class="restaurant-card">
+                  <div class="restaurant-image">
+                    <img src={restaurant.photos[0]} alt={restaurant.name} loading="lazy" />
+                    <div class="restaurant-overlay">
+                      <div class="date-score">{restaurant.dateNightScore}</div>
+                    </div>
+                  </div>
+                  <div class="restaurant-info">
+                    <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+                    <p class="restaurant-location">{restaurant.neighborhood} • {restaurant.cuisineTypes.map(cuisine => cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())).join(', ')}</p>
+                    <p class="restaurant-rating">★ {restaurant.rating} • {restaurant.priceLevel === 4 ? '$$$$' : restaurant.priceLevel === 3 ? '$$$' : '$$'}</p>
+                    <p class="restaurant-description">{restaurant.description}</p>
+                    <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="content-section">
+            <h2>Date Night Ideas by Cuisine</h2>
+            
+            <h3>Italian Romance</h3>
+            <p>Italian restaurants are perfect for romantic dining. <a href="/cuisines/italian/">Italian cuisine</a> offers comfort food that encourages sharing and conversation. From <a href="/losangeles/felix-trattoria/">Felix Trattoria</a> in Venice to <a href="/losangeles/scopa-italian-roots/">Scopa Italian Roots</a>, LA's Italian scene provides authentic flavors in romantic settings.</p>
+            
+            <h3>French Sophistication</h3>
+            <p>For an elegant evening, <a href="/cuisines/french/">French restaurants</a> offer the perfect combination of sophistication and romance. <a href="/losangeles/r-publique-caf-bakery-r-publique-restaurant/">République</a> provides a stunning space with exceptional French cuisine.</p>
+            
+            <h3>Japanese Intimacy</h3>
+            <p><a href="/cuisines/japanese/">Japanese restaurants</a> often provide intimate dining experiences perfect for date nights. From sushi bars to kaiseki experiences, Japanese cuisine offers a unique romantic dining experience.</p>
+            
+            <h3>Seafood Freshness</h3>
+            <p>LA's proximity to the ocean means exceptional seafood options. <a href="/losangeles/the-lobster/">The Lobster</a> in Santa Monica and <a href="/losangeles/water-grill/">Water Grill</a> offer fresh seafood in romantic settings.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Special Occasion Planning</h2>
+            
+            <h3>Anniversary Celebrations</h3>
+            <p>For milestone anniversaries, consider restaurants with special touches like <a href="/losangeles/providence/">Providence</a> or <a href="/losangeles/spago-beverly-hills/">Spago Beverly Hills</a>. These establishments understand the importance of special occasions and will go the extra mile to make your celebration memorable.</p>
+            
+            <h3>Proposal Spots</h3>
+            <p>When planning a proposal, choose a restaurant with a special atmosphere. <a href="/blog/best-rooftop-restaurants-los-angeles-date-night/">Rooftop restaurants</a> offer stunning views, while intimate fine dining establishments provide privacy and elegance.</p>
+            
+            <h3>Birthday Celebrations</h3>
+            <p>Make birthdays special with restaurants that offer celebratory touches. Many LA restaurants will provide complimentary desserts or special decorations for birthday celebrations.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Budget Considerations</h2>
+            
+            <h3>Splurge-Worthy Experiences</h3>
+            <p>For special occasions, LA offers world-class dining experiences worth the investment. <a href="/losangeles/providence/">Providence</a>, <a href="/losangeles/spago-beverly-hills/">Spago Beverly Hills</a>, and <a href="/losangeles/cut-by-wolfgang-puck/">Cut by Wolfgang Puck</a> provide exceptional experiences for those special moments.</p>
+            
+            <h3>Mid-Range Options</h3>
+            <p>Many excellent date night restaurants offer great value without compromising on romance or quality. <a href="/losangeles/the-little-door/">The Little Door</a> and <a href="/losangeles/lucques/">Lucques</a> provide intimate atmospheres at reasonable prices.</p>
+            
+            <h3>Budget-Friendly Romance</h3>
+            <p>Romance doesn't have to be expensive. <a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">Budget-friendly options</a> like <a href="/losangeles/gjelina/">Gjelina</a> and <a href="/losangeles/felix-trattoria/">Felix Trattoria</a> offer great food and atmosphere without breaking the bank.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Seasonal Date Night Ideas</h2>
+            
+            <h3>Spring Romance</h3>
+            <p>Spring in LA is perfect for outdoor dining. Patio restaurants and rooftop bars come alive with perfect weather and beautiful sunsets.</p>
+            
+            <h3>Summer Evenings</h3>
+            <p>Summer offers the longest days and best weather for extended date nights. Beachside restaurants and outdoor dining become especially appealing.</p>
+            
+            <h3>Fall Coziness</h3>
+            <p>Fall brings cooler evenings perfect for intimate indoor dining. Cozy restaurants with fireplaces and warm lighting create romantic atmospheres.</p>
+            
+            <h3>Winter Intimacy</h3>
+            <p>Even LA winters offer opportunities for romantic dining. Indoor restaurants with warm atmospheres and holiday decorations create cozy date night experiences.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Making Reservations</h2>
+            
+            <h3>Popular Restaurants</h3>
+            <p>LA's most popular date night restaurants book up quickly, especially on weekends. Make reservations at least 2-3 weeks in advance for prime time slots.</p>
+            
+            <h3>Special Requests</h3>
+            <p>Don't hesitate to mention special occasions when making reservations. Many restaurants will accommodate special requests and may offer complimentary touches for celebrations.</p>
+            
+            <h3>Backup Plans</h3>
+            <p>Always have a backup restaurant in mind, especially for popular spots. LA's dining scene is vast, so there are always excellent alternatives available.</p>
+          </section>
+
+          <section class="content-section">
+            <h2>Final Tips for the Perfect Date Night</h2>
+            
+            <p>Choose a restaurant that matches both your tastes and the occasion. Consider the atmosphere, cuisine, and location when making your selection. Don't forget to factor in parking, traffic, and timing when planning your evening.</p>
+            
+            <p>Most importantly, focus on enjoying each other's company. The best date nights are those where you can relax, connect, and create lasting memories together. LA's incredible dining scene provides the perfect backdrop for these special moments.</p>
+
+            <div class="cta-box">
+              <h3>Explore More Date Night Options</h3>
+              <p>Discover our complete directory of {restaurants.length}+ romantic restaurants across Los Angeles.</p>
+              <a href="/losangeles/restaurants/" class="btn btn-primary">View All Restaurants</a>
+            </div>
+          </section>
+
+          <section class="related-posts">
+            <h2>Related Articles</h2>
+            <div class="related-grid">
+              <div class="related-item">
+                <a href="/blog/romantic-dinner-ideas-los-angeles/">
+                  <h4>Romantic Dinner Ideas in Los Angeles</h4>
+                  <p>Perfect spots for special occasions and romantic evenings.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/best-first-date-restaurants-los-angeles/">
+                  <h4>Best First Date Restaurants in LA</h4>
+                  <p>Low-pressure spots perfect for getting to know someone.</p>
+                </a>
+              </div>
+              <div class="related-item">
+                <a href="/blog/best-date-night-restaurants-by-neighborhood-los-angeles/">
+                  <h4>Best Date Night Restaurants by Neighborhood</h4>
+                  <p>Explore romantic dining across LA's diverse neighborhoods.</p>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 80px;
+  }
+  
+  .post-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .breadcrumbs {
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .breadcrumbs a {
+    color: #D4AF37;
+    text-decoration: none;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  
+  .post-content {
+    padding: 4rem 0;
+    background: #fff;
+  }
+  
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .content-section {
+    margin-bottom: 3rem;
+  }
+  
+  .lead {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  
+  .content-section h2 {
+    font-size: 2.2rem;
+    color: #2C2C2C;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .content-section h3 {
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin: 2rem 0 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .content-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4A4A4A;
+    margin-bottom: 1.5rem;
+  }
+  
+  .content-section a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .content-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .restaurant-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  
+  .restaurant-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .restaurant-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .date-score {
+    background: rgba(0,0,0,0.8);
+    color: #D4AF37;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .restaurant-info {
+    padding: 1.5rem;
+  }
+  
+  .restaurant-info h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+  
+  .restaurant-info h3 a {
+    color: #2C2C2C;
+    text-decoration: none;
+  }
+  
+  .restaurant-info h3 a:hover {
+    color: #D4AF37;
+  }
+  
+  .restaurant-location {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .restaurant-rating {
+    color: #D4AF37;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .restaurant-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #D4AF37;
+    color: #2C2C2C;
+  }
+  
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline {
+    border: 2px solid #D4AF37;
+    color: #D4AF37;
+  }
+  
+  .btn-outline:hover {
+    background: #D4AF37;
+    color: #2C2C2C;
+  }
+  
+  .cta-box {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin: 3rem 0;
+  }
+  
+  .cta-box h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+  
+  .related-posts {
+    background: #F8F6F0;
+    padding: 3rem 0;
+    margin-top: 4rem;
+  }
+  
+  .related-posts h2 {
+    text-align: center;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .related-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .related-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .related-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .related-item h4 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .related-item p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  @media (max-width: 768px) {
+    .post-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .post-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
