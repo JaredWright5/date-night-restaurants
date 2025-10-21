@@ -251,6 +251,61 @@ const structuredData = [
     </div>
   </section>
 
+  <!-- Blog Section -->
+  <section class="blog-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2>Latest Date Night Guides</h2>
+        <p>Expert tips and curated recommendations for unforgettable romantic experiences</p>
+      </div>
+      
+      <div class="blog-grid">
+        <article class="blog-card">
+          <a href="/blog/best-first-date-restaurants-los-angeles/">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop" alt="First Date Restaurants" />
+            </div>
+            <div class="blog-content">
+              <h3>Best First Date Restaurants in LA</h3>
+              <p>Low-pressure spots that impress without intimidating</p>
+              <span class="read-more">Read Guide →</span>
+            </div>
+          </a>
+        </article>
+        
+        <article class="blog-card">
+          <a href="/blog/best-rooftop-restaurants-los-angeles-date-night/">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=250&fit=crop" alt="Rooftop Restaurants" />
+            </div>
+            <div class="blog-content">
+              <h3>Best Rooftop Restaurants for Date Night</h3>
+              <p>Stunning views and romantic ambiance at LA's best rooftops</p>
+              <span class="read-more">Read Guide →</span>
+            </div>
+          </a>
+        </article>
+        
+        <article class="blog-card">
+          <a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=250&fit=crop" alt="Budget Date Spots" />
+            </div>
+            <div class="blog-content">
+              <h3>Budget-Friendly Date Spots Under $50</h3>
+              <p>Romantic dining experiences that won't break the bank</p>
+              <span class="read-more">Read Guide →</span>
+            </div>
+          </a>
+        </article>
+      </div>
+      
+      <div class="section-actions">
+        <a href="/blog/" class="btn">View All Guides</a>
+      </div>
+    </div>
+  </section>
+
   <!-- About Section -->
   <section class="about">
     <div class="container">
@@ -459,6 +514,78 @@ const structuredData = [
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+  }
+
+  .blog-preview {
+    background: #F8F6F0;
+    padding: 4rem 0;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .blog-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+
+  .blog-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .blog-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .blog-card:hover .blog-image img {
+    transform: scale(1.05);
+  }
+
+  .blog-content {
+    padding: 1.5rem;
+  }
+
+  .blog-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .blog-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .read-more {
+    color: #D4AF37;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
   
   .city-card, .cuisine-card {
