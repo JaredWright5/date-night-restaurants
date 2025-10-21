@@ -347,7 +347,7 @@ const featuredRestaurants = restaurants.filter(r => r.isTopRated).slice(0, 6);
   }
 </style>
 
-<script>
+<script is:inline>
   // Featured restaurants management - limited to 4 restaurants
   let featuredRestaurants = new Set(['providence', 'r-publique-caf-bakery-r-publique-restaurant', 'spago-beverly-hills', 'the-little-door']);
 
