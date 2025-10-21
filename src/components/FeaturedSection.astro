@@ -199,6 +199,8 @@
     if (!savedFeatured) {
       console.log('No featured restaurants saved, using default');
       featuredSlugs = ['felix-trattoria', 'gjelina-on-abbot-kinney', 'fishing-with-dynamite', 'bavel'];
+      // Save the default featured restaurants to localStorage
+      localStorage.setItem('featuredRestaurants', JSON.stringify(featuredSlugs));
     } else {
       featuredSlugs = JSON.parse(savedFeatured);
     }
