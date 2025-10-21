@@ -191,14 +191,18 @@
     // Get saved featured restaurants from localStorage
     const savedFeatured = localStorage.getItem('featuredRestaurants');
     console.log('Saved featured from localStorage:', savedFeatured);
+    
+    // Use default featured restaurants if none are saved
+    let featuredSlugs;
     if (!savedFeatured) {
       console.log('No featured restaurants saved, using default');
-      return;
+      featuredSlugs = ['felix-trattoria', 'gjelina-on-abbot-kinney', 'fishing-with-dynamite', 'bavel'];
+    } else {
+      featuredSlugs = JSON.parse(savedFeatured);
     }
 
     try {
-      const featuredSlugs = JSON.parse(savedFeatured);
-      console.log('Loading featured restaurants from localStorage:', featuredSlugs);
+      console.log('Loading featured restaurants:', featuredSlugs);
 
       // Fetch restaurant data from Supabase API
       console.log('Fetching restaurant data from API...');
