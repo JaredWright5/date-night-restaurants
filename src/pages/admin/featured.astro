@@ -461,6 +461,9 @@ const featuredRestaurants = restaurants.filter(r => r.isTopRated).slice(0, 6);
     const featuredArray = Array.from(featuredRestaurants);
     localStorage.setItem('featuredRestaurants', JSON.stringify(featuredArray));
     
+    // Also save to a global variable that can be accessed by other pages
+    window.featuredRestaurants = featuredArray;
+    
     // In a real application, you would also save to your database here
     // For now, we'll use localStorage as a simple persistence layer
     console.log('Featured restaurants saved:', featuredArray);

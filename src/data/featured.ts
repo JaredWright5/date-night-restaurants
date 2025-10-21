@@ -1,4 +1,5 @@
 import type { Restaurant } from '@/types';
+import { restaurants } from './restaurants';
 
 export interface FeaturedRestaurant extends Restaurant {
   featuredTier: 'premium' | 'gold' | 'platinum';
@@ -9,6 +10,18 @@ export interface FeaturedRestaurant extends Restaurant {
   specialOffer?: string;
   badge?: string;
   priority: number; // Higher number = higher priority
+}
+
+// Function to get featured restaurants from localStorage or fallback to default
+export function getFeaturedRestaurants(limit: number = 4): FeaturedRestaurant[] {
+  // This will be handled by client-side JavaScript
+  // For now, return the default featured restaurants
+  return getDefaultFeaturedRestaurants(limit);
+}
+
+// Default featured restaurants (fallback)
+function getDefaultFeaturedRestaurants(limit: number): FeaturedRestaurant[] {
+  return featuredRestaurants.slice(0, limit);
 }
 
 export const featuredRestaurants: FeaturedRestaurant[] = [
@@ -218,13 +231,14 @@ export const featuredRestaurants: FeaturedRestaurant[] = [
   }
 ];
 
-export function getFeaturedRestaurants(limit: number = 3): FeaturedRestaurant[] {
-  const now = new Date();
-  return featuredRestaurants
-    .filter(restaurant => new Date(restaurant.featuredUntil) > now)
-    .sort((a, b) => b.priority - a.priority)
-    .slice(0, limit);
-}
+// This function is now handled by the client-side JavaScript
+// export function getFeaturedRestaurants(limit: number = 3): FeaturedRestaurant[] {
+//   const now = new Date();
+//   return featuredRestaurants
+//     .filter(restaurant => new Date(restaurant.featuredUntil) > now)
+//     .sort((a, b) => b.priority - a.priority)
+//     .slice(0, limit);
+// }
 
 export function getFeaturedByTier(tier: 'premium' | 'gold' | 'platinum'): FeaturedRestaurant[] {
   const now = new Date();

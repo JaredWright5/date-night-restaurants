@@ -123,3 +123,70 @@ const featuredRestaurants = getFeaturedRestaurants(4);
     }
   }
 </style>
+
+<script is:inline>
+  // Load featured restaurants from localStorage and update the display
+  document.addEventListener('DOMContentLoaded', () => {
+    const featuredGrid = document.querySelector('.featured-grid');
+    if (!featuredGrid) return;
+
+    // Get saved featured restaurants from localStorage
+    const savedFeatured = localStorage.getItem('featuredRestaurants');
+    if (!savedFeatured) {
+      console.log('No featured restaurants saved, using default');
+      return;
+    }
+
+    try {
+      const featuredSlugs = JSON.parse(savedFeatured);
+      console.log('Loading featured restaurants from localStorage:', featuredSlugs);
+
+      // Clear existing content
+      featuredGrid.innerHTML = '';
+
+      // Create featured cards for each restaurant
+      featuredSlugs.forEach((slug, index) => {
+        // Create a featured card that matches the design
+        const restaurantCard = document.createElement('div');
+        restaurantCard.className = 'featured-card featured-premium';
+        restaurantCard.style.cssText = `
+          background: white;
+          border-radius: 15px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+          overflow: hidden;
+          border: 2px solid #D4AF37;
+          position: relative;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        `;
+        
+        restaurantCard.innerHTML = `
+          <div style="padding: 2rem; text-align: center;">
+            <div style="background: #D4AF37; color: white; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; font-weight: 600;">
+              ✨ Featured
+            </div>
+            <h3 style="margin: 0 0 0.5rem 0; color: #3E2723; font-size: 1.5rem;">${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
+            <p style="color: #666; margin: 0 0 1rem 0;">Featured Restaurant</p>
+            <a href="/losangeles/${slug}/" style="
+              background: #D4AF37;
+              color: white;
+              padding: 0.75rem 1.5rem;
+              border-radius: 25px;
+              text-decoration: none;
+              font-weight: 600;
+              display: inline-block;
+              transition: background 0.3s ease;
+            " onmouseover="this.style.background='#B8941F'" onmouseout="this.style.background='#D4AF37'">
+              View Restaurant
+            </a>
+          </div>
+        `;
+        
+        featuredGrid.appendChild(restaurantCard);
+      });
+
+      console.log('Updated featured section with', featuredSlugs.length, 'restaurants');
+    } catch (error) {
+      console.error('Error loading featured restaurants:', error);
+    }
+  });
+</script>
