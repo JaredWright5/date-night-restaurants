@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Debug Featured Section</title>
+    <title>Test Featured Section</title>
 </head>
 <body>
-    <h1>Debug Featured Section</h1>
+    <h1>Test Featured Section</h1>
     
     <div>
         <h2>Step 1: Set Featured Restaurants</h2>
@@ -19,13 +19,7 @@
     </div>
     
     <div>
-        <h2>Step 3: Test Featured Section</h2>
-        <button onclick="testFeaturedSection()">Test Featured Section</button>
-        <div id="featured-status"></div>
-    </div>
-    
-    <div>
-        <h2>Step 4: Go to Home Page</h2>
+        <h2>Step 3: Go to Home Page</h2>
         <a href="http://localhost:4321/" target="_blank">Open Home Page</a>
     </div>
     
@@ -55,33 +49,10 @@
                 const restaurantCount = data.restaurants ? data.restaurants.length : 0;
                 document.getElementById('api-status').innerHTML = '<p style="color: green;">✅ API working - ' + restaurantCount + ' restaurants loaded</p>';
                 
-                // Check for specific restaurants
-                const featuredSlugs = ['felix-trattoria', 'gjelina-on-abbot-kinney', 'fishing-with-dynamite', 'bavel'];
-                const found = featuredSlugs.filter(slug => 
-                    data.restaurants.some(r => r.slug === slug)
-                );
-                
-                document.getElementById('api-status').innerHTML += '<p>Featured restaurants found: ' + found.join(', ') + '</p>';
-                
             } catch (error) {
                 document.getElementById('api-status').innerHTML = '<p style="color: red;">❌ API Error: ' + error.message + '</p>';
             }
         }
-        
-        function testFeaturedSection() {
-            const saved = localStorage.getItem('featuredRestaurants');
-            if (saved) {
-                const featured = JSON.parse(saved);
-                document.getElementById('featured-status').innerHTML = '<p style="color: green;">✅ Featured restaurants in localStorage: ' + featured.join(', ') + '</p>';
-            } else {
-                document.getElementById('featured-status').innerHTML = '<p style="color: red;">❌ No featured restaurants in localStorage</p>';
-            }
-        }
-        
-        // Auto-run tests on load
-        window.addEventListener('load', () => {
-            testFeaturedSection();
-        });
     </script>
 </body>
 </html>

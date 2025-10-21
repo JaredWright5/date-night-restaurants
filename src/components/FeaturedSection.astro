@@ -187,6 +187,8 @@
       console.error('Featured grid not found');
       return;
     }
+    
+    console.log('Featured grid found:', featuredGrid);
 
     // Get saved featured restaurants from localStorage
     const savedFeatured = localStorage.getItem('featuredRestaurants');
