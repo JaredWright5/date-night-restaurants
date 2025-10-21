@@ -8,11 +8,15 @@
 import fs from 'fs';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config({ path: '.env.local' });
 
 // Configuration
 const CONFIG = {
-  supabaseUrl: process.env.SUPABASE_URL || 'your-supabase-url',
-  supabaseKey: process.env.SUPABASE_ANON_KEY || 'your-supabase-key',
+  supabaseUrl: process.env.SUPABASE_URL,
+  supabaseKey: process.env.SUPABASE_ANON_KEY,
   dataFile: path.join(process.cwd(), 'la_date_night_restaurants_real.json')
 };
 

@@ -1,15 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { RestaurantDatabase, CityDatabase, AnalyticsDatabase } from '@/lib/database/supabase';
+import { AdminDatabase } from '@/lib/admin-database';
 
 // Get dashboard data
 const [restaurants, cities, stats] = await Promise.all([
-  RestaurantDatabase.getRestaurants({ limit: 10 }),
-  CityDatabase.getCities(),
-  AnalyticsDatabase.getRestaurantStats()
+  AdminDatabase.getRestaurants(10, 0),
+  AdminDatabase.getCities(),
+  AdminDatabase.getRestaurantStats('los-angeles')
 ]);
 
-const popularCuisines = await AnalyticsDatabase.getPopularCuisines('los-angeles', 5);
+const popularCuisines = await AdminDatabase.getPopularCuisines('los-angeles', 5);
 ---
 
 <BaseLayout

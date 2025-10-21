@@ -12,7 +12,7 @@
     "generate": "node scripts/generate-data.js",
     "fetch-photos": "node scripts/fetch-restaurant-photos.js",
     "setup-database": "node scripts/setup-database-infrastructure.js",
-    "migrate-data": "node scripts/setup-database-infrastructure.js",
+    "migrate-data": "node scripts/migrate-data-simple.js",
     "test-supabase": "node scripts/test-supabase-connection.js"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "astro": "^4.0.0",
     "dotenv": "^17.2.3",
     "tailwindcss": "^3.0.0",
+    "tslib": "^2.8.1",
     "typescript": "^5.0.0"
   },
   "devDependencies": {
