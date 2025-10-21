@@ -1,0 +1,18 @@
+---
+import { restaurants } from '@/data/restaurants';
+
+const totalRestaurants = restaurants.length;
+const averageRating = restaurants.reduce((sum, r) => sum + r.rating, 0) / totalRestaurants;
+const averageDateScore = restaurants.reduce((sum, r) => sum + r.dateNightScore, 0) / totalRestaurants;
+---
+
+<html>
+<head><title>Admin Test</title></head>
+<body>
+  <h1>Admin Test</h1>
+  <p>Total Restaurants: {totalRestaurants}</p>
+  <p>Average Rating: {averageRating.toFixed(1)}</p>
+  <p>Average Date Score: {averageDateScore.toFixed(0)}</p>
+  <p>First Restaurant: {restaurants[0]?.name}</p>
+</body>
+</html>

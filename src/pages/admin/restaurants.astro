@@ -1,0 +1,325 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Get all restaurants sorted by date night score
+const allRestaurants = restaurants.sort((a, b) => b.dateNightScore - a.dateNightScore);
+---
+
+<BaseLayout
+  title="All Restaurants | Admin Dashboard"
+  description="Manage all restaurants in the database"
+>
+  <div class="admin-dashboard">
+    <header class="admin-header">
+      <div class="container">
+        <h1>All Restaurants</h1>
+        <nav class="admin-nav">
+          <a href="/admin/" class="nav-link">← Back to Dashboard</a>
+          <a href="/admin/featured" class="nav-link">Featured Restaurants</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <div class="container">
+        <!-- Search and Filter Controls -->
+        <div class="controls">
+          <div class="search-controls">
+            <input type="text" id="search-input" placeholder="Search restaurants..." class="search-input">
+            <select id="neighborhood-filter" class="filter-select">
+              <option value="">All Neighborhoods</option>
+              {Array.from(new Set(restaurants.map(r => r.neighborhood))).sort().map(neighborhood => (
+                <option value={neighborhood}>{neighborhood}</option>
+              ))}
+            </select>
+            <select id="cuisine-filter" class="filter-select">
+              <option value="">All Cuisines</option>
+              {Array.from(new Set(restaurants.flatMap(r => r.cuisineTypes))).sort().map(cuisine => (
+                <option value={cuisine}>{cuisine.replace(/_/g, ' ')}</option>
+              ))}
+            </select>
+            <select id="price-filter" class="filter-select">
+              <option value="">All Price Levels</option>
+              <option value="1">$ (Budget)</option>
+              <option value="2">$$ (Moderate)</option>
+              <option value="3">$$$ (Expensive)</option>
+              <option value="4">$$$$ (Very Expensive)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Restaurants Table -->
+        <div class="restaurants-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Neighborhood</th>
+                <th>Rating</th>
+                <th>Date Score</th>
+                <th>Price</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="restaurants-tbody">
+              {allRestaurants.map(restaurant => (
+                <tr data-restaurant-id={restaurant.slug} data-neighborhood={restaurant.neighborhood} data-cuisines={restaurant.cuisineTypes.join(',')} data-price={restaurant.priceLevel}>
+                  <td>
+                    <a href={`/admin/restaurants/${restaurant.slug}/`} class="restaurant-link">
+                      {restaurant.name}
+                    </a>
+                  </td>
+                  <td>{restaurant.neighborhood}</td>
+                  <td>
+                    <span class="rating">★ {restaurant.rating}</span>
+                  </td>
+                  <td>
+                    <span class="date-score">{restaurant.dateNightScore}</span>
+                  </td>
+                  <td>
+                    <span class="price-level">{'$'.repeat(restaurant.priceLevel)}</span>
+                  </td>
+                  <td>
+                    <span class={`featured-badge ${restaurant.isTopRated ? 'featured' : 'not-featured'}`}>
+                      {restaurant.isTopRated ? 'Featured' : 'Not Featured'}
+                    </span>
+                  </td>
+                  <td>
+                    <a href={`/admin/restaurants/${restaurant.slug}/`} class="btn btn-sm">Edit</a>
+                    <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-sm btn-outline" target="_blank">View</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .admin-dashboard {
+    min-height: 100vh;
+    background: #f8f9fa;
+  }
+
+  .admin-header {
+    background: #2C2C2C;
+    color: white;
+    padding: 1rem 0;
+    border-bottom: 3px solid #D4AF37;
+  }
+
+  .admin-header h1 {
+    margin: 0 0 1rem 0;
+    color: #D4AF37;
+  }
+
+  .admin-nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(212, 175, 55, 0.2);
+  }
+
+  .admin-content {
+    padding: 2rem 0;
+  }
+
+  .controls {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+  }
+
+  .search-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .search-input, .filter-select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .search-input {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .filter-select {
+    min-width: 150px;
+  }
+
+  .restaurants-table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #2C2C2C;
+  }
+
+  .restaurant-link {
+    color: #2C2C2C;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .restaurant-link:hover {
+    color: #D4AF37;
+  }
+
+  .rating {
+    color: #D4AF37;
+    font-weight: 600;
+  }
+
+  .date-score {
+    background: #D4AF37;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .price-level {
+    color: #666;
+    font-weight: 600;
+  }
+
+  .featured-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .featured-badge.featured {
+    background: #28a745;
+    color: white;
+  }
+
+  .featured-badge.not-featured {
+    background: #6c757d;
+    color: white;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+  }
+
+  .btn-outline:hover {
+    background: #D4AF37;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .search-controls {
+      flex-direction: column;
+    }
+    
+    .restaurants-table {
+      overflow-x: auto;
+    }
+    
+    table {
+      min-width: 600px;
+    }
+  }
+</style>
+
+<script>
+  // Search and filter functionality
+  const searchInput = document.getElementById('search-input');
+  const neighborhoodFilter = document.getElementById('neighborhood-filter');
+  const cuisineFilter = document.getElementById('cuisine-filter');
+  const priceFilter = document.getElementById('price-filter');
+  const restaurantsTbody = document.getElementById('restaurants-tbody');
+
+  function filterRestaurants() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedNeighborhood = neighborhoodFilter.value;
+    const selectedCuisine = cuisineFilter.value;
+    const selectedPrice = priceFilter.value;
+
+    const restaurantRows = restaurantsTbody.querySelectorAll('tr');
+    
+    restaurantRows.forEach(row => {
+      const restaurantName = row.querySelector('.restaurant-link').textContent.toLowerCase();
+      const neighborhood = row.dataset.neighborhood;
+      const cuisines = row.dataset.cuisines.toLowerCase();
+      const price = row.dataset.price;
+      
+      const matchesSearch = restaurantName.includes(searchTerm);
+      const matchesNeighborhood = !selectedNeighborhood || neighborhood === selectedNeighborhood;
+      const matchesCuisine = !selectedCuisine || cuisines.includes(selectedCuisine.toLowerCase());
+      const matchesPrice = !selectedPrice || price === selectedPrice;
+      
+      if (matchesSearch && matchesNeighborhood && matchesCuisine && matchesPrice) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  // Add event listeners
+  searchInput.addEventListener('input', filterRestaurants);
+  neighborhoodFilter.addEventListener('change', filterRestaurants);
+  cuisineFilter.addEventListener('change', filterRestaurants);
+  priceFilter.addEventListener('change', filterRestaurants);
+</script>

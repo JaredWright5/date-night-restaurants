@@ -1,15 +1,43 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { AdminDatabase } from '@/lib/admin-database';
+import { restaurants } from '@/data/restaurants';
 
-// Get dashboard data
-const [restaurants, cities, stats] = await Promise.all([
-  AdminDatabase.getRestaurants(10, 0),
-  AdminDatabase.getCities(),
-  AdminDatabase.getRestaurantStats('los-angeles')
-]);
+// Use JSON data for admin dashboard (database will be used in production)
+const restaurantsData = restaurants.slice(0, 10);
+const citiesData = [{ name: 'Los Angeles', slug: 'los-angeles', restaurant_count: restaurants.length }];
 
-const popularCuisines = await AdminDatabase.getPopularCuisines('los-angeles', 5);
+// Calculate stats from JSON data
+const totalRestaurants = restaurants.length;
+const averageRating = restaurants.reduce((sum, r) => sum + r.rating, 0) / totalRestaurants;
+const averageDateScore = restaurants.reduce((sum, r) => sum + r.dateNightScore, 0) / totalRestaurants;
+const topRatedCount = restaurants.filter(r => r.rating >= 4.5).length;
+
+const statsInfo = {
+  totalRestaurants,
+  averageRating,
+  averageDateScore,
+  topRatedCount,
+  highDateScoreCount: restaurants.filter(r => r.dateNightScore >= 90).length
+};
+
+// Calculate popular cuisines from JSON data
+const cuisineCounts = {};
+restaurants.forEach(restaurant => {
+  restaurant.cuisineTypes.forEach(cuisine => {
+    cuisineCounts[cuisine] = (cuisineCounts[cuisine] || 0) + 1;
+  });
+});
+
+const popularCuisinesData = Object.entries(cuisineCounts)
+  .map(([name, count]) => ({ name: name.replace(/_/g, ' '), count }))
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 5);
+
+const restaurantsList = restaurantsData;
+const citiesList = citiesData;
+const stats = statsInfo;
+const popularCuisinesList = popularCuisinesData;
 ---
 
 <BaseLayout
@@ -21,7 +49,8 @@ const popularCuisines = await AdminDatabase.getPopularCuisines('los-angeles', 5)
       <div class="container">
         <h1>Admin Dashboard</h1>
         <nav class="admin-nav">
-          <a href="/admin/restaurants" class="nav-link">Restaurants</a>
+          <a href="/admin/featured" class="nav-link">Featured Restaurants</a>
+          <a href="/admin/restaurants" class="nav-link">All Restaurants</a>
           <a href="/admin/cities" class="nav-link">Cities</a>
           <a href="/admin/neighborhoods" class="nav-link">Neighborhoods</a>
           <a href="/admin/analytics" class="nav-link">Analytics</a>
@@ -70,25 +99,25 @@ const popularCuisines = await AdminDatabase.getPopularCuisines('los-angeles', 5)
                 </tr>
               </thead>
               <tbody>
-                {restaurants.map(restaurant => (
+                {restaurantsList.map(restaurant => (
                   <tr>
                     <td>
-                      <a href={`/admin/restaurants/${restaurant.id}`} class="restaurant-link">
+                      <a href={`/admin/restaurants/${restaurant.id || restaurant.slug}`} class="restaurant-link">
                         {restaurant.name}
                       </a>
                     </td>
-                    <td>{restaurant.neighborhoods?.name || 'N/A'}</td>
+                    <td>{restaurant.neighborhoods?.name || restaurant.neighborhood || 'N/A'}</td>
                     <td>
                       <span class="rating">★ {restaurant.rating}</span>
                     </td>
                     <td>
-                      <span class="date-score">{restaurant.date_night_score}</span>
+                      <span class="date-score">{restaurant.date_night_score || restaurant.dateNightScore}</span>
                     </td>
                     <td>
-                      <span class="price-level">{'$'.repeat(restaurant.price_level)}</span>
+                      <span class="price-level">{'$'.repeat(restaurant.price_level || restaurant.priceLevel)}</span>
                     </td>
                     <td>
-                      <a href={`/admin/restaurants/${restaurant.id}/edit`} class="btn btn-sm">Edit</a>
+                      <a href={`/admin/restaurants/${restaurant.slug}/`} class="btn btn-sm">Edit</a>
                       <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-sm btn-outline" target="_blank">View</a>
                     </td>
                   </tr>
@@ -102,7 +131,7 @@ const popularCuisines = await AdminDatabase.getPopularCuisines('los-angeles', 5)
         <section class="popular-cuisines">
           <h2>Popular Cuisines</h2>
           <div class="cuisines-list">
-            {popularCuisines.map(cuisine => (
+            {popularCuisinesList.map(cuisine => (
               <div class="cuisine-item">
                 <span class="cuisine-name">{cuisine.name}</span>
                 <span class="cuisine-count">{cuisine.count} restaurants</span>
@@ -115,7 +144,7 @@ const popularCuisines = await AdminDatabase.getPopularCuisines('los-angeles', 5)
         <section class="cities-overview">
           <h2>Cities</h2>
           <div class="cities-grid">
-            {cities.map(city => (
+            {citiesList.map(city => (
               <div class="city-card">
                 <h3>{city.name}</h3>
                 <p>{city.restaurant_count} restaurants</p>

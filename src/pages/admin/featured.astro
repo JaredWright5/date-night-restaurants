@@ -1,0 +1,427 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Get all restaurants sorted by date night score
+const allRestaurants = restaurants.sort((a, b) => b.dateNightScore - a.dateNightScore);
+
+// For now, we'll use the existing featured logic
+const featuredRestaurants = restaurants.filter(r => r.isTopRated).slice(0, 6);
+---
+
+<BaseLayout
+  title="Featured Restaurants Management | Date Night Restaurants"
+  description="Manage which restaurants appear in the featured section"
+>
+  <div class="admin-dashboard">
+    <header class="admin-header">
+      <div class="container">
+        <h1>Featured Restaurants Management</h1>
+        <nav class="admin-nav">
+          <a href="/admin/" class="nav-link">← Back to Dashboard</a>
+          <a href="/admin/restaurants" class="nav-link">All Restaurants</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <div class="container">
+        <!-- Current Featured Restaurants -->
+        <section class="current-featured">
+          <h2>Currently Featured Restaurants</h2>
+          <div class="featured-grid">
+            {featuredRestaurants.map((restaurant, index) => (
+              <div class="featured-card">
+                <div class="restaurant-info">
+                  <h3>{restaurant.name}</h3>
+                  <p class="neighborhood">{restaurant.neighborhood}</p>
+                  <div class="stats">
+                    <span class="rating">★ {restaurant.rating}</span>
+                    <span class="date-score">{restaurant.dateNightScore}</span>
+                    <span class="price-level">{'$'.repeat(restaurant.priceLevel)}</span>
+                  </div>
+                </div>
+                <div class="actions">
+                  <button class="btn btn-sm btn-remove" data-restaurant-id={restaurant.slug}>
+                    Remove from Featured
+                  </button>
+                  <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-sm btn-outline" target="_blank">
+                    View Restaurant
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Available Restaurants -->
+        <section class="available-restaurants">
+          <h2>Available Restaurants</h2>
+          <div class="search-controls">
+            <input type="text" id="search-input" placeholder="Search restaurants..." class="search-input">
+            <select id="neighborhood-filter" class="filter-select">
+              <option value="">All Neighborhoods</option>
+              {Array.from(new Set(restaurants.map(r => r.neighborhood))).sort().map(neighborhood => (
+                <option value={neighborhood}>{neighborhood}</option>
+              ))}
+            </select>
+            <select id="cuisine-filter" class="filter-select">
+              <option value="">All Cuisines</option>
+              {Array.from(new Set(restaurants.flatMap(r => r.cuisineTypes))).sort().map(cuisine => (
+                <option value={cuisine}>{cuisine.replace(/_/g, ' ')}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div class="restaurants-grid" id="restaurants-grid">
+            {allRestaurants.map(restaurant => (
+              <div class="restaurant-card" data-restaurant-id={restaurant.slug} data-neighborhood={restaurant.neighborhood} data-cuisines={restaurant.cuisineTypes.join(',')}>
+                <div class="restaurant-info">
+                  <h3>{restaurant.name}</h3>
+                  <p class="neighborhood">{restaurant.neighborhood}</p>
+                  <div class="stats">
+                    <span class="rating">★ {restaurant.rating}</span>
+                    <span class="date-score">{restaurant.dateNightScore}</span>
+                    <span class="price-level">{'$'.repeat(restaurant.priceLevel)}</span>
+                  </div>
+                  <div class="cuisines">
+                    {restaurant.cuisineTypes.slice(0, 3).map(cuisine => (
+                      <span class="cuisine-tag">{cuisine.replace(/_/g, ' ')}</span>
+                    ))}
+                  </div>
+                </div>
+                <div class="actions">
+                  <button class="btn btn-sm btn-add" data-restaurant-id={restaurant.slug}>
+                    Add to Featured
+                  </button>
+                  <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-sm btn-outline" target="_blank">
+                    View
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .admin-dashboard {
+    min-height: 100vh;
+    background: #f8f9fa;
+  }
+
+  .admin-header {
+    background: #2C2C2C;
+    color: white;
+    padding: 1rem 0;
+    border-bottom: 3px solid #D4AF37;
+  }
+
+  .admin-header h1 {
+    margin: 0 0 1rem 0;
+    color: #D4AF37;
+  }
+
+  .admin-nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(212, 175, 55, 0.2);
+  }
+
+  .admin-content {
+    padding: 2rem 0;
+  }
+
+  .current-featured {
+    margin-bottom: 3rem;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .featured-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid #D4AF37;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .restaurant-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2C2C2C;
+  }
+
+  .neighborhood {
+    color: #666;
+    margin: 0 0 1rem 0;
+  }
+
+  .stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .rating {
+    color: #D4AF37;
+    font-weight: 600;
+  }
+
+  .date-score {
+    background: #D4AF37;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .price-level {
+    color: #666;
+    font-weight: 600;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  .available-restaurants {
+    margin-bottom: 3rem;
+  }
+
+  .search-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .search-input, .filter-select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .search-input {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .filter-select {
+    min-width: 150px;
+  }
+
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .restaurant-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .restaurant-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  .cuisines {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .cuisine-tag {
+    background: #f0f0f0;
+    color: #666;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-add {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .btn-add:hover {
+    background: #B8941F;
+  }
+
+  .btn-remove {
+    background: #dc3545;
+    color: white;
+  }
+
+  .btn-remove:hover {
+    background: #c82333;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+  }
+
+  .btn-outline:hover {
+    background: #D4AF37;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .featured-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .search-controls {
+      flex-direction: column;
+    }
+    
+    .featured-card {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .actions {
+      flex-direction: row;
+      margin-top: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Featured restaurants management
+  let featuredRestaurants = new Set(['providence', 'r-publique-caf-bakery-r-publique-restaurant', 'spago-beverly-hills', 'the-little-door', 'the-strand-house', 'nobu-malibu']);
+
+  // Search and filter functionality
+  const searchInput = document.getElementById('search-input');
+  const neighborhoodFilter = document.getElementById('neighborhood-filter');
+  const cuisineFilter = document.getElementById('cuisine-filter');
+  const restaurantsGrid = document.getElementById('restaurants-grid');
+
+  function filterRestaurants() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedNeighborhood = neighborhoodFilter.value;
+    const selectedCuisine = cuisineFilter.value;
+
+    const restaurantCards = restaurantsGrid.querySelectorAll('.restaurant-card');
+    
+    restaurantCards.forEach(card => {
+      const restaurantName = card.querySelector('h3').textContent.toLowerCase();
+      const neighborhood = card.dataset.neighborhood;
+      const cuisines = card.dataset.cuisines.toLowerCase();
+      
+      const matchesSearch = restaurantName.includes(searchTerm);
+      const matchesNeighborhood = !selectedNeighborhood || neighborhood === selectedNeighborhood;
+      const matchesCuisine = !selectedCuisine || cuisines.includes(selectedCuisine.toLowerCase());
+      
+      if (matchesSearch && matchesNeighborhood && matchesCuisine) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Add event listeners
+  searchInput.addEventListener('input', filterRestaurants);
+  neighborhoodFilter.addEventListener('change', filterRestaurants);
+  cuisineFilter.addEventListener('change', filterRestaurants);
+
+  // Add/Remove from featured functionality
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-add')) {
+      const restaurantId = e.target.dataset.restaurantId;
+      if (!featuredRestaurants.has(restaurantId)) {
+        featuredRestaurants.add(restaurantId);
+        e.target.textContent = 'Added to Featured';
+        e.target.classList.remove('btn-add');
+        e.target.classList.add('btn-remove');
+        e.target.onclick = removeFromFeatured;
+        updateFeaturedDisplay();
+      }
+    }
+  });
+
+  function removeFromFeatured(e) {
+    const restaurantId = e.target.dataset.restaurantId;
+    featuredRestaurants.delete(restaurantId);
+    e.target.textContent = 'Add to Featured';
+    e.target.classList.remove('btn-remove');
+    e.target.classList.add('btn-add');
+    e.target.onclick = null;
+    updateFeaturedDisplay();
+  }
+
+  function updateFeaturedDisplay() {
+    // This would update the featured section on the homepage
+    // For now, we'll just show a success message
+    console.log('Featured restaurants updated:', Array.from(featuredRestaurants));
+  }
+
+  // Initialize button states
+  document.addEventListener('DOMContentLoaded', () => {
+    const addButtons = document.querySelectorAll('.btn-add');
+    addButtons.forEach(button => {
+      const restaurantId = button.dataset.restaurantId;
+      if (featuredRestaurants.has(restaurantId)) {
+        button.textContent = 'Added to Featured';
+        button.classList.remove('btn-add');
+        button.classList.add('btn-remove');
+        button.onclick = removeFromFeatured;
+      }
+    });
+  });
+</script>
