@@ -136,53 +136,53 @@
 </style>
 
 <script is:inline>
-  // Restaurant data - this would normally come from an API or be passed from the server
-  const restaurantData = {
-    'felix-trattoria': {
-      name: 'Felix Trattoria',
-      slug: 'felix-trattoria',
-      dateNightScore: 88,
-      rating: 4.4,
-      priceLevel: 3,
-      cuisineTypes: ['Italian', 'Fine Dining'],
-      area: 'Venice',
-      photos: ['https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop'],
-      address: 'Venice, CA'
-    },
-    'gjelina-on-abbot-kinney': {
-      name: 'Gjelina on Abbot Kinney',
-      slug: 'gjelina-on-abbot-kinney',
-      dateNightScore: 92,
-      rating: 4.6,
-      priceLevel: 3,
-      cuisineTypes: ['Californian', 'Mediterranean'],
-      area: 'Venice',
-      photos: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop'],
-      address: 'Venice, CA'
-    },
-    'fishing-with-dynamite': {
-      name: 'Fishing with Dynamite',
-      slug: 'fishing-with-dynamite',
-      dateNightScore: 85,
-      rating: 4.3,
-      priceLevel: 3,
-      cuisineTypes: ['Seafood', 'Contemporary'],
-      area: 'Manhattan Beach',
-      photos: ['https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&h=600&fit=crop'],
-      address: 'Manhattan Beach, CA'
-    },
-    'bavel': {
-      name: 'Bavel',
-      slug: 'bavel',
-      dateNightScore: 90,
-      rating: 4.5,
-      priceLevel: 3,
-      cuisineTypes: ['Middle Eastern', 'Contemporary'],
-      area: 'Arts District',
-      photos: ['https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop'],
-      address: 'Arts District, CA'
-    }
-  };
+      // Restaurant data with real Google Places API photos
+      const restaurantData = {
+        'felix-trattoria': {
+          name: 'Felix Trattoria',
+          slug: 'felix-trattoria',
+          dateNightScore: 88,
+          rating: 4.4,
+          priceLevel: 3,
+          cuisineTypes: ['Italian', 'Fine Dining'],
+          area: 'Venice',
+          photos: ['https://places.googleapis.com/v1/places/ChIJaUBtetO-woARqyrV4ASPECg/photos/AciIO2euek7N00qVvj3sovGkROPx-XilR9AiuJYxiAb2xMZXBrMoa3xx7za6VpvcmXKKP17p37sBPN3sz-5h_yWH0POsLaPiTgvO9E_OOHiR9UbIWOgqxkhe8uHsesbB9pXvafQtoPK6HBqY9UhbmftB24zO58QW80oNVRaj2_4nLBRxf61X-azEPakRtWDDLJ1cgp5eUicNSWZ3k8bmuMmlswre5GEzeweXD4JGC_60brbncPdLxwH38oqe4Vc_HY53Oa2-QbXojTUm0zAfx4dnK3qokO6o6fN65L9kXV_etMEHMg/media?key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI&maxWidthPx=800'],
+          address: 'Venice, CA'
+        },
+        'gjelina-on-abbot-kinney': {
+          name: 'Gjelina on Abbot Kinney',
+          slug: 'gjelina-on-abbot-kinney',
+          dateNightScore: 92,
+          rating: 4.6,
+          priceLevel: 3,
+          cuisineTypes: ['Californian', 'Mediterranean'],
+          area: 'Venice',
+          photos: ['https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=AciIO2eiRDUwgE1ZXmSi0ztax3a6szxM73W2odzF7UPD6dFjX_16_FDy3u7qzz_-a2_hZ80LzpD1Imux-Ch7XtzdO4rZ17nGlMXhsiW97ph5fgC9lEb95_pqVl1uO3lOHzW_EJkHYJYQwQWdckhxXQyNmiojmspQ7FaF3FkHYRwSgOZ5tY1fB518HAhxqom1oTSyj1H0c3YhxsUfpqalGWZwjWM5ierh5x1iGLmkMLb-ZwI7H5y68GihaK6xeSkH4-G9j2ooac1VoAI6oeclsZZ4kFPwFoafcH9WPifOdWrWcCVAoQ&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI'],
+          address: 'Venice, CA'
+        },
+        'fishing-with-dynamite': {
+          name: 'Fishing with Dynamite',
+          slug: 'fishing-with-dynamite',
+          dateNightScore: 85,
+          rating: 4.3,
+          priceLevel: 3,
+          cuisineTypes: ['Seafood', 'Contemporary'],
+          area: 'Manhattan Beach',
+          photos: ['https://places.googleapis.com/v1/places/ChIJSRvZ1yHGwoARcLrfvc-APl4/photos/AciIO2dB0_cnF19c5nrNmOw1KCBF3CuqsV90tj8P98PVsW-3b8P6HuGXqNMO4WsEpae1W1v7e-eYGs2hNoTDLDFFbwTU0loOKiW4rTu0Gek3Q5OxLXMkckJoyMmGZ7G6iwj-OtIESqgo9RzVz9LAp2KaMvf9Cz_vL-c7xXlKfgf2aQCflhmvf3ahI1rqy5y-WfQuIz_eXy0QrfpW8Cclwx7jPlz6h7X-1LEPlZQGRqTiHuTTfMv9fFBBq9_29YAxP0o1sJgiY_O9_pgoVwazcef2mMOZn45I7KI7m7XHKWctjzD-JQ/media?key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI&maxWidthPx=800'],
+          address: 'Manhattan Beach, CA'
+        },
+        'bavel': {
+          name: 'Bavel',
+          slug: 'bavel',
+          dateNightScore: 90,
+          rating: 4.5,
+          priceLevel: 3,
+          cuisineTypes: ['Middle Eastern', 'Contemporary'],
+          area: 'Arts District',
+          photos: ['https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=AciIO2d-yXpL7rqk9VfzG0jNknbmwxg86HvBraaYO6UzS4J8Vr1rfRfR9DaM4nVSs-EqkEQodETKRGWJXXdsp9mtWOUPQDw8ouBxknb5nfEiKoDnq0rsP65b1_vmscx9CUmdFKf9gVvsK0ZMN0v80ebgSTchDV7eKAwaH64pYb_DAqxpVi4oZ1ZqdQGLC8mmtKR1GMg8P6uP48mT6YH9VTIgNyYwHzDe1fW9Ha7eiymvxXGQTeC_U0tjHSSZEAYXZh9PWJF3ZzfvIeXoyJ71aX9Tze0PTmXc6_2G5V2CkELgJCUP2LR0Af4d4rci6sKqArq0uEkPUJM1xM8x9YOrZaCSwiitphqWKuuQ4KFdXWEBxdPCcImK_6MsxeIpJRYDXhj5xOj0SqfR8uWRAzYDXAcvj9is3QOn6o9z6VzKRxPVfa8R5O8y&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI'],
+          address: 'Arts District, CA'
+        }
+      };
 
   // Load featured restaurants from localStorage and update the display
   document.addEventListener('DOMContentLoaded', () => {
