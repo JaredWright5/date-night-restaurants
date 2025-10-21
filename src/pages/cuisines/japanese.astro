@@ -1,0 +1,251 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { restaurants } from '@/data/restaurants';
+
+const cuisineName = 'Japanese';
+const cuisineSlug = 'japanese';
+const japaneseRestaurants = restaurants.filter(r => 
+  r.cuisineTypes.includes('japanese_restaurant')
+);
+
+const topRestaurants = japaneseRestaurants
+  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .slice(0, 8);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Japanese Date Night Restaurants in Los Angeles",
+  "description": `Discover the best Japanese restaurants in Los Angeles for romantic date nights. ${japaneseRestaurants.length} authentic Japanese dining spots perfect for couples.`,
+  "url": "https://datenightrestaurants.com/cuisines/japanese/",
+  "numberOfItems": japaneseRestaurants.length,
+  "itemListElement": japaneseRestaurants.map((restaurant, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Restaurant",
+      "name": restaurant.name,
+      "url": `https://datenightrestaurants.com/losangeles/${restaurant.slug}/`,
+      "description": restaurant.description
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title={`Japanese Date Night Restaurants in Los Angeles | ${japaneseRestaurants.length} Authentic Japanese Dining Spots`}
+  description={`Discover the best Japanese restaurants in Los Angeles for romantic date nights. ${japaneseRestaurants.length} authentic Japanese dining spots including sushi, sashimi, and traditional dishes in intimate settings.`}
+  keywords={['Japanese restaurants Los Angeles', 'sushi restaurants LA', 'romantic Japanese dining', 'authentic Japanese LA', 'sashimi restaurants', 'kaiseki restaurants LA']}
+  canonical="https://datenightrestaurants.com/cuisines/japanese/"
+  structuredData={structuredData}
+>
+  <main class="cuisine-page">
+    <div class="hero-section">
+      <div class="container">
+        <h1>Japanese Date Night Restaurants in Los Angeles</h1>
+        <p class="hero-subtitle">Authentic Japanese cuisine including sushi, sashimi, and traditional dishes in intimate settings</p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">{japaneseRestaurants.length}</span>
+            <span class="stat-label">Japanese Restaurants</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{Math.round(japaneseRestaurants.reduce((sum, r) => sum + r.dateNightScore, 0) / japaneseRestaurants.length)}</span>
+            <span class="stat-label">Avg Date Score</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{japaneseRestaurants.filter(r => r.priceLevel >= 3).length}</span>
+            <span class="stat-label">Upscale Options</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="restaurants-section">
+      <div class="container">
+        <h2>Top Japanese Restaurants for Date Nights</h2>
+        <div class="restaurants-grid">
+          {topRestaurants.map(restaurant => (
+            <RestaurantCard restaurant={restaurant} />
+          ))}
+        </div>
+        
+        {japaneseRestaurants.length > 8 && (
+          <div class="view-all">
+            <a href="/losangeles/restaurants/?cuisine=japanese_restaurant" class="btn btn-primary">
+              View All {japaneseRestaurants.length} Japanese Restaurants
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="cuisine-info">
+      <div class="container">
+        <h2>About Japanese Restaurants for Date Nights in Los Angeles</h2>
+        <p>Los Angeles offers an exceptional selection of Japanese restaurants that provide the perfect intimate setting for romantic date nights. From traditional sushi bars to modern kaiseki experiences, these establishments offer authentic Japanese cuisine, expert preparation, and an atmosphere that encourages quiet conversation and appreciation of culinary artistry.</p>
+        
+        <h3>What Makes Japanese Restaurants Perfect for Date Nights:</h3>
+        <ul>
+          <li><strong>Intimate Atmosphere:</strong> Quiet, focused settings perfect for conversation</li>
+          <li><strong>Artisanal Cuisine:</strong> Carefully prepared dishes that are works of art</li>
+          <li><strong>Fresh Ingredients:</strong> Premium fish and ingredients flown in daily</li>
+          <li><strong>Expert Preparation:</strong> Skilled chefs with years of training</li>
+          <li><strong>Cultural Experience:</strong> Authentic Japanese dining traditions</li>
+        </ul>
+        
+        <h3>Types of Japanese Dining Experiences:</h3>
+        <ul>
+          <li><strong>Sushi Bars:</strong> Intimate counter seating with chef interaction</li>
+          <li><strong>Kaiseki:</strong> Multi-course traditional Japanese fine dining</li>
+          <li><strong>Izakaya:</strong> Casual Japanese pub-style dining</li>
+          <li><strong>Teppanyaki:</strong> Interactive cooking experiences</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .cuisine-page {
+    padding-top: 80px;
+  }
+  
+  .hero-section {
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    color: #e0e0e0;
+  }
+  
+  .restaurants-section {
+    padding: 4rem 0;
+    background: #FFF8F0;
+  }
+  
+  .restaurants-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .view-all {
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #D4AF37, #E6C547);
+    color: #2C2C2C;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  }
+  
+  .cuisine-info {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .cuisine-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .cuisine-info h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .cuisine-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cuisine-info ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+  
+  .cuisine-info li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cuisine-info strong {
+    color: #2C2C2C;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
