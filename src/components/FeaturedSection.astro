@@ -181,11 +181,16 @@
 
   // Load featured restaurants from localStorage and update the display
   document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Featured section script loaded');
     const featuredGrid = document.querySelector('.featured-grid');
-    if (!featuredGrid) return;
+    if (!featuredGrid) {
+      console.error('Featured grid not found');
+      return;
+    }
 
     // Get saved featured restaurants from localStorage
     const savedFeatured = localStorage.getItem('featuredRestaurants');
+    console.log('Saved featured from localStorage:', savedFeatured);
     if (!savedFeatured) {
       console.log('No featured restaurants saved, using default');
       return;
@@ -195,9 +200,11 @@
       const featuredSlugs = JSON.parse(savedFeatured);
       console.log('Loading featured restaurants from localStorage:', featuredSlugs);
 
-      // Fetch restaurant data from JSON file
+      // Fetch restaurant data from Supabase API
+      console.log('Fetching restaurant data from API...');
       const restaurantData = await fetchRestaurantData();
       console.log('Fetched restaurant data:', restaurantData);
+      console.log('Number of restaurants fetched:', Object.keys(restaurantData).length);
 
       // Clear existing content
       featuredGrid.innerHTML = '';

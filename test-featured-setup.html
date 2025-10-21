@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Featured Setup</title>
+</head>
+<body>
+    <h1>Featured Restaurants Test Setup</h1>
+    <p>This page will set up test featured restaurants in localStorage.</p>
+    
+    <button onclick="setupFeatured()">Set Featured Restaurants</button>
+    <button onclick="checkFeatured()">Check Featured Restaurants</button>
+    <button onclick="clearFeatured()">Clear Featured Restaurants</button>
+    
+    <div id="status"></div>
+    
+    <script>
+        function setupFeatured() {
+            const featuredSlugs = [
+                'felix-trattoria',
+                'gjelina-on-abbot-kinney', 
+                'fishing-with-dynamite',
+                'bavel'
+            ];
+            
+            localStorage.setItem('featuredRestaurants', JSON.stringify(featuredSlugs));
+            document.getElementById('status').innerHTML = '<p style="color: green;">Featured restaurants set: ' + featuredSlugs.join(', ') + '</p>';
+        }
+        
+        function checkFeatured() {
+            const saved = localStorage.getItem('featuredRestaurants');
+            if (saved) {
+                const featured = JSON.parse(saved);
+                document.getElementById('status').innerHTML = '<p style="color: blue;">Current featured: ' + featured.join(', ') + '</p>';
+            } else {
+                document.getElementById('status').innerHTML = '<p style="color: red;">No featured restaurants found</p>';
+            }
+        }
+        
+        function clearFeatured() {
+            localStorage.removeItem('featuredRestaurants');
+            document.getElementById('status').innerHTML = '<p style="color: orange;">Featured restaurants cleared</p>';
+        }
+        
+        // Check on load
+        checkFeatured();
+    </script>
+</body>
+</html>
