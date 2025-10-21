@@ -1,13 +1,18 @@
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.SUPABASE_URL;
-const supabaseKey = import.meta.env.SUPABASE_ANON_KEY;
+// Get environment variables
+const supabaseUrl = import.meta.env.SUPABASE_URL || process.env.SUPABASE_URL;
+const supabaseKey = import.meta.env.SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
 export const GET: APIRoute = async ({ request }) => {
   try {
+    console.log('API called - Supabase URL:', supabaseUrl ? 'Present' : 'Missing');
+    console.log('API called - Supabase Key:', supabaseKey ? 'Present' : 'Missing');
+    
     // Check if Supabase is configured
     if (!supabaseUrl || !supabaseKey) {
+      console.log('Supabase not configured, returning empty data');
       return new Response(JSON.stringify({ 
         error: 'Supabase not configured',
         restaurants: []
