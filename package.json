@@ -10,7 +10,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "generate": "node scripts/generate-data.js",
-    "fetch-photos": "node scripts/fetch-restaurant-photos.js"
+    "fetch-photos": "node scripts/fetch-restaurant-photos.js",
+    "setup-database": "node scripts/setup-database-infrastructure.js",
+    "migrate-data": "node scripts/setup-database-infrastructure.js"
   },
   "dependencies": {
     "astro": "^4.0.0",

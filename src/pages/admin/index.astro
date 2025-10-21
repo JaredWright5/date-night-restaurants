@@ -1,0 +1,368 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { RestaurantDatabase, CityDatabase, AnalyticsDatabase } from '@/lib/database/supabase';
+
+// Get dashboard data
+const [restaurants, cities, stats] = await Promise.all([
+  RestaurantDatabase.getRestaurants({ limit: 10 }),
+  CityDatabase.getCities(),
+  AnalyticsDatabase.getRestaurantStats()
+]);
+
+const popularCuisines = await AnalyticsDatabase.getPopularCuisines('los-angeles', 5);
+---
+
+<BaseLayout
+  title="Admin Dashboard | Date Night Restaurants"
+  description="Manage restaurants, cities, and content for Date Night Restaurants"
+>
+  <div class="admin-dashboard">
+    <header class="admin-header">
+      <div class="container">
+        <h1>Admin Dashboard</h1>
+        <nav class="admin-nav">
+          <a href="/admin/restaurants" class="nav-link">Restaurants</a>
+          <a href="/admin/cities" class="nav-link">Cities</a>
+          <a href="/admin/neighborhoods" class="nav-link">Neighborhoods</a>
+          <a href="/admin/analytics" class="nav-link">Analytics</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <div class="container">
+        <!-- Stats Overview -->
+        <section class="stats-overview">
+          <h2>Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Total Restaurants</h3>
+              <div class="stat-number">{stats.totalRestaurants}</div>
+            </div>
+            <div class="stat-card">
+              <h3>Average Rating</h3>
+              <div class="stat-number">{stats.averageRating.toFixed(1)}</div>
+            </div>
+            <div class="stat-card">
+              <h3>Average Date Score</h3>
+              <div class="stat-number">{stats.averageDateScore.toFixed(0)}</div>
+            </div>
+            <div class="stat-card">
+              <h3>Top Rated</h3>
+              <div class="stat-number">{stats.topRatedCount}</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recent Restaurants -->
+        <section class="recent-restaurants">
+          <h2>Recent Restaurants</h2>
+          <div class="restaurants-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Neighborhood</th>
+                  <th>Rating</th>
+                  <th>Date Score</th>
+                  <th>Price Level</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {restaurants.map(restaurant => (
+                  <tr>
+                    <td>
+                      <a href={`/admin/restaurants/${restaurant.id}`} class="restaurant-link">
+                        {restaurant.name}
+                      </a>
+                    </td>
+                    <td>{restaurant.neighborhoods?.name || 'N/A'}</td>
+                    <td>
+                      <span class="rating">★ {restaurant.rating}</span>
+                    </td>
+                    <td>
+                      <span class="date-score">{restaurant.date_night_score}</span>
+                    </td>
+                    <td>
+                      <span class="price-level">{'$'.repeat(restaurant.price_level)}</span>
+                    </td>
+                    <td>
+                      <a href={`/admin/restaurants/${restaurant.id}/edit`} class="btn btn-sm">Edit</a>
+                      <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-sm btn-outline" target="_blank">View</a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Popular Cuisines -->
+        <section class="popular-cuisines">
+          <h2>Popular Cuisines</h2>
+          <div class="cuisines-list">
+            {popularCuisines.map(cuisine => (
+              <div class="cuisine-item">
+                <span class="cuisine-name">{cuisine.name}</span>
+                <span class="cuisine-count">{cuisine.count} restaurants</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Cities Overview -->
+        <section class="cities-overview">
+          <h2>Cities</h2>
+          <div class="cities-grid">
+            {cities.map(city => (
+              <div class="city-card">
+                <h3>{city.name}</h3>
+                <p>{city.restaurant_count} restaurants</p>
+                <a href={`/admin/cities/${city.slug}`} class="btn btn-sm">Manage</a>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .admin-dashboard {
+    min-height: 100vh;
+    background: #f8f9fa;
+  }
+
+  .admin-header {
+    background: #2C2C2C;
+    color: white;
+    padding: 1rem 0;
+    border-bottom: 3px solid #D4AF37;
+  }
+
+  .admin-header h1 {
+    margin: 0 0 1rem 0;
+    color: #D4AF37;
+  }
+
+  .admin-nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(212, 175, 55, 0.2);
+  }
+
+  .admin-content {
+    padding: 2rem 0;
+  }
+
+  .stats-overview {
+    margin-bottom: 3rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #D4AF37;
+  }
+
+  .recent-restaurants {
+    margin-bottom: 3rem;
+  }
+
+  .restaurants-table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #2C2C2C;
+  }
+
+  .restaurant-link {
+    color: #2C2C2C;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .restaurant-link:hover {
+    color: #D4AF37;
+  }
+
+  .rating {
+    color: #D4AF37;
+    font-weight: 600;
+  }
+
+  .date-score {
+    background: #D4AF37;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .price-level {
+    color: #666;
+    font-weight: 600;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+  }
+
+  .btn-outline:hover {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .popular-cuisines {
+    margin-bottom: 3rem;
+  }
+
+  .cuisines-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .cuisine-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cuisine-name {
+    font-weight: 500;
+    color: #2C2C2C;
+  }
+
+  .cuisine-count {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .cities-overview {
+    margin-bottom: 3rem;
+  }
+
+  .cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .city-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .city-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2C2C2C;
+  }
+
+  .city-card p {
+    margin: 0 0 1rem 0;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .admin-nav {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .restaurants-table {
+      overflow-x: auto;
+    }
+
+    table {
+      min-width: 600px;
+    }
+  }
+</style>
