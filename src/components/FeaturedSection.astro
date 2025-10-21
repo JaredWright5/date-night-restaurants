@@ -125,6 +125,54 @@ const featuredRestaurants = getFeaturedRestaurants(4);
 </style>
 
 <script is:inline>
+  // Restaurant data - this would normally come from an API or be passed from the server
+  const restaurantData = {
+    'felix-trattoria': {
+      name: 'Felix Trattoria',
+      slug: 'felix-trattoria',
+      dateNightScore: 88,
+      rating: 4.4,
+      priceLevel: 3,
+      cuisineTypes: ['Italian', 'Fine Dining'],
+      area: 'Venice',
+      photos: ['https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=600&fit=crop'],
+      address: 'Venice, CA'
+    },
+    'gjelina-on-abbot-kinney': {
+      name: 'Gjelina on Abbot Kinney',
+      slug: 'gjelina-on-abbot-kinney',
+      dateNightScore: 92,
+      rating: 4.6,
+      priceLevel: 3,
+      cuisineTypes: ['Californian', 'Mediterranean'],
+      area: 'Venice',
+      photos: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop'],
+      address: 'Venice, CA'
+    },
+    'fishing-with-dynamite': {
+      name: 'Fishing with Dynamite',
+      slug: 'fishing-with-dynamite',
+      dateNightScore: 85,
+      rating: 4.3,
+      priceLevel: 3,
+      cuisineTypes: ['Seafood', 'Contemporary'],
+      area: 'Manhattan Beach',
+      photos: ['https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&h=600&fit=crop'],
+      address: 'Manhattan Beach, CA'
+    },
+    'bavel': {
+      name: 'Bavel',
+      slug: 'bavel',
+      dateNightScore: 90,
+      rating: 4.5,
+      priceLevel: 3,
+      cuisineTypes: ['Middle Eastern', 'Contemporary'],
+      area: 'Arts District',
+      photos: ['https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop'],
+      address: 'Arts District, CA'
+    }
+  };
+
   // Load featured restaurants from localStorage and update the display
   document.addEventListener('DOMContentLoaded', () => {
     const featuredGrid = document.querySelector('.featured-grid');
@@ -144,8 +192,18 @@ const featuredRestaurants = getFeaturedRestaurants(4);
       // Clear existing content
       featuredGrid.innerHTML = '';
 
-      // Create featured cards for each restaurant with proper styling
+      // Create featured cards for each restaurant with real data
       featuredSlugs.forEach((slug, index) => {
+        const restaurant = restaurantData[slug];
+        if (!restaurant) {
+          console.warn('Restaurant data not found for:', slug);
+          return;
+        }
+
+        const priceSymbols = '$'.repeat(restaurant.priceLevel);
+        const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
+        const cuisineText = restaurant.cuisineTypes.join(', ');
+
         const restaurantCard = document.createElement('a');
         restaurantCard.href = `/losangeles/${slug}/`;
         restaurantCard.className = 'featured-card-link';
@@ -200,16 +258,13 @@ const featuredRestaurants = getFeaturedRestaurants(4);
                 position: relative;
                 overflow: hidden;
                 background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #666;
-                font-size: 1.2rem;
               ">
-                <div style="text-align: center;">
-                  <div style="font-size: 3rem; margin-bottom: 1rem;">🍽️</div>
-                  <div>Restaurant Image</div>
-                </div>
+                <img src="${mainImage}" alt="${restaurant.name}" style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.3s ease;
+                " />
                 <div class="image-overlay" style="
                   position: absolute;
                   top: 1rem;
@@ -236,7 +291,7 @@ const featuredRestaurants = getFeaturedRestaurants(4);
                       border: 2px solid #D2691E;
                     ">
                       <i class="fas fa-heart" style="color: #D4AF37;"></i>
-                      <span>85</span>
+                      <span>${restaurant.dateNightScore}</span>
                     </div>
                   </div>
                 </div>
@@ -263,7 +318,7 @@ const featuredRestaurants = getFeaturedRestaurants(4);
                     color: #333;
                     margin: 0;
                     flex: 1;
-                  ">${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
+                  ">${restaurant.name}</h3>
                   <div class="restaurant-price" style="
                     background: #9CAF88;
                     color: white;
@@ -272,7 +327,7 @@ const featuredRestaurants = getFeaturedRestaurants(4);
                     font-size: 0.9rem;
                     font-weight: 600;
                     white-space: nowrap;
-                  ">$$$</div>
+                  ">${priceSymbols}</div>
                 </div>
                 
                 <p class="restaurant-cuisine" style="
@@ -280,12 +335,12 @@ const featuredRestaurants = getFeaturedRestaurants(4);
                   font-size: 1rem;
                   margin-bottom: 0.5rem;
                   font-weight: 500;
-                ">Featured Restaurant</p>
+                ">${cuisineText}</p>
                 <p class="restaurant-address" style="
                   color: #888;
                   font-size: 0.9rem;
                   margin-bottom: 1.5rem;
-                ">Los Angeles, CA</p>
+                ">${restaurant.address}</p>
                 
                 <div class="featured-highlights" style="margin-bottom: 1.5rem;">
                   <div class="date-score" style="
@@ -303,7 +358,7 @@ const featuredRestaurants = getFeaturedRestaurants(4);
                       padding: 0.25rem 0.5rem;
                       border-radius: 10px;
                       font-size: 0.8rem;
-                    ">85</strong></span>
+                    ">${restaurant.dateNightScore}</strong></span>
                   </div>
                 </div>
                 
