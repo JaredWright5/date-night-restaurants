@@ -12,13 +12,16 @@
     "generate": "node scripts/generate-data.js",
     "fetch-photos": "node scripts/fetch-restaurant-photos.js",
     "setup-database": "node scripts/setup-database-infrastructure.js",
-    "migrate-data": "node scripts/setup-database-infrastructure.js"
+    "migrate-data": "node scripts/setup-database-infrastructure.js",
+    "test-supabase": "node scripts/test-supabase-connection.js"
   },
   "dependencies": {
-    "astro": "^4.0.0",
+    "@astrojs/partytown": "^2.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
-    "@astrojs/partytown": "^2.0.0",
+    "@supabase/supabase-js": "^2.76.0",
+    "astro": "^4.0.0",
+    "dotenv": "^17.2.3",
     "tailwindcss": "^3.0.0",
     "typescript": "^5.0.0"
   },
