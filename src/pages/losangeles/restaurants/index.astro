@@ -2,5 +2,9 @@
 // Redirect old URL structure to new one, preserving query parameters
 const url = new URL(Astro.request.url);
 const queryString = url.search;
-return Astro.redirect(`/restaurants${queryString}`, 301);
+if (queryString) {
+  return Astro.redirect(`/restaurants/query-redirect${queryString}`, 301);
+} else {
+  return Astro.redirect('/restaurants/', 301);
+}
 ---
