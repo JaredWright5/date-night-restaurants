@@ -4,7 +4,7 @@ const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
 const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Missing Supabase environment variables');
+  throw new Error('Missing Supabase environment variables. Please set PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your .env.local file.');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
@@ -66,10 +66,14 @@ export async function getAllRestaurants(): Promise<Restaurant[]> {
 
   if (error) {
     console.error('Error fetching restaurants:', error);
-    return [];
+    throw new Error(`Failed to fetch restaurants: ${error.message}`);
   }
 
-  return data || [];
+  if (!data || data.length === 0) {
+    throw new Error('No restaurants found in database. Please ensure your Supabase database is properly configured.');
+  }
+
+  return data;
 }
 
 export async function getRestaurantsByNeighborhood(neighborhoodSlug: string): Promise<Restaurant[]> {
@@ -86,7 +90,7 @@ export async function getRestaurantsByNeighborhood(neighborhoodSlug: string): Pr
 
   if (error) {
     console.error('Error fetching restaurants by neighborhood:', error);
-    return [];
+    throw new Error(`Failed to fetch restaurants for neighborhood ${neighborhoodSlug}: ${error.message}`);
   }
 
   return data || [];
@@ -125,7 +129,7 @@ export async function getAllNeighborhoods(): Promise<Neighborhood[]> {
 
   if (error) {
     console.error('Error fetching neighborhoods:', error);
-    return [];
+    throw new Error(`Failed to fetch neighborhoods: ${error.message}`);
   }
 
   return data || [];
@@ -194,8 +198,29 @@ export async function searchRestaurants(query: string, filters: {
 
   if (error) {
     console.error('Error searching restaurants:', error);
-    return [];
+    throw new Error(`Failed to search restaurants: ${error.message}`);
   }
 
   return data || [];
+}
+
+// Test connection function
+export async function testSupabaseConnection(): Promise<boolean> {
+  try {
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('count')
+      .limit(1);
+
+    if (error) {
+      console.error('Supabase connection test failed:', error);
+      return false;
+    }
+
+    console.log('✅ Supabase connection successful');
+    return true;
+  } catch (error) {
+    console.error('Supabase connection test failed:', error);
+    return false;
+  }
 }

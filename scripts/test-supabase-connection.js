@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Test Supabase Connection Script
- * This script tests your Supabase connection and environment setup
+ * Test Supabase Connection
+ * This script tests the connection to your Supabase database
  */
 
 import { createClient } from '@supabase/supabase-js';
@@ -11,132 +11,137 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config({ path: '.env.local' });
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.PUBLIC_SUPABASE_ANON_KEY;
 
-console.log('🔍 Testing Supabase Connection...\n');
+console.log('🔗 Testing Supabase Connection...\n');
 
-// Check environment variables
-if (!supabaseUrl || supabaseUrl === 'your-project-url-here') {
-  console.error('❌ SUPABASE_URL not set or still using placeholder');
-  console.error('   Please set SUPABASE_URL in your .env.local file');
+if (!supabaseUrl || !supabaseKey) {
+  console.log('❌ Missing Supabase environment variables');
+  console.log('Please set the following in your .env.local file:');
+  console.log('PUBLIC_SUPABASE_URL=your_supabase_url_here');
+  console.log('PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here');
   process.exit(1);
 }
 
-if (!supabaseKey || supabaseKey === 'your-anon-key-here') {
-  console.error('❌ SUPABASE_ANON_KEY not set or still using placeholder');
-  console.error('   Please set SUPABASE_ANON_KEY in your .env.local file');
-  process.exit(1);
-}
-
-console.log('✅ Environment variables found');
-console.log(`   URL: ${supabaseUrl}`);
-console.log(`   Key: ${supabaseKey.substring(0, 20)}...`);
-
-// Test connection
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function testConnection() {
   try {
-    console.log('\n🔗 Testing database connection...');
+    console.log('1. Testing basic connection...');
     
     // Test basic connection
     const { data, error } = await supabase
-      .from('cities')
+      .from('restaurants')
       .select('count')
       .limit(1);
-    
+
     if (error) {
-      console.error('❌ Database connection failed:');
-      console.error(`   ${error.message}`);
-      
-      if (error.message.includes('relation "cities" does not exist')) {
-        console.log('\n💡 The database tables haven\'t been created yet.');
-        console.log('   Run: npm run setup-database');
-        return;
-      }
-      
-      if (error.message.includes('Invalid API key')) {
-        console.log('\n💡 Check your SUPABASE_ANON_KEY in .env.local');
-        return;
-      }
-      
-      if (error.message.includes('Invalid URL')) {
-        console.log('\n💡 Check your SUPABASE_URL in .env.local');
-        return;
-      }
-      
-      return;
+      console.log('❌ Connection failed:', error.message);
+      return false;
     }
-    
-    console.log('✅ Database connection successful!');
-    
-    // Test if tables exist
-    console.log('\n📊 Checking database tables...');
-    
-    const tables = ['cities', 'neighborhoods', 'restaurants', 'cuisines'];
-    const tableStatus = {};
-    
-    for (const table of tables) {
-      try {
-        const { error } = await supabase
-          .from(table)
-          .select('count')
-          .limit(1);
-        
-        tableStatus[table] = error ? '❌ Missing' : '✅ Exists';
-      } catch (err) {
-        tableStatus[table] = '❌ Error';
-      }
+
+    console.log('✅ Basic connection successful');
+
+    // Test restaurants table
+    console.log('\n2. Testing restaurants table...');
+    const { data: restaurants, error: restaurantsError } = await supabase
+      .from('restaurants')
+      .select('id, name, neighborhood')
+      .limit(5);
+
+    if (restaurantsError) {
+      console.log('❌ Restaurants table error:', restaurantsError.message);
+      return false;
     }
+
+    console.log(`✅ Found ${restaurants.length} restaurants`);
+    if (restaurants.length > 0) {
+      console.log('   Sample restaurants:');
+      restaurants.forEach(r => console.log(`   - ${r.name} (${r.neighborhood})`));
+    }
+
+    // Test neighborhoods table
+    console.log('\n3. Testing neighborhoods table...');
+    const { data: neighborhoods, error: neighborhoodsError } = await supabase
+      .from('neighborhoods')
+      .select('name, slug, restaurant_count')
+      .limit(5);
+
+    if (neighborhoodsError) {
+      console.log('❌ Neighborhoods table error:', neighborhoodsError.message);
+      return false;
+    }
+
+    console.log(`✅ Found ${neighborhoods.length} neighborhoods`);
+    if (neighborhoods.length > 0) {
+      console.log('   Sample neighborhoods:');
+      neighborhoods.forEach(n => console.log(`   - ${n.name} (${n.restaurant_count} restaurants)`));
+    }
+
+    // Test cities table
+    console.log('\n4. Testing cities table...');
+    const { data: cities, error: citiesError } = await supabase
+      .from('cities')
+      .select('name, slug, restaurant_count');
+
+    if (citiesError) {
+      console.log('❌ Cities table error:', citiesError.message);
+      return false;
+    }
+
+    console.log(`✅ Found ${cities.length} cities`);
+    if (cities.length > 0) {
+      console.log('   Cities:');
+      cities.forEach(c => console.log(`   - ${c.name} (${c.restaurant_count} restaurants)`));
+    }
+
+    // Test specific queries
+    console.log('\n5. Testing specific queries...');
     
-    console.log('\n📋 Table Status:');
-    Object.entries(tableStatus).forEach(([table, status]) => {
-      console.log(`   ${table}: ${status}`);
-    });
-    
-    const missingTables = Object.entries(tableStatus)
-      .filter(([_, status]) => status.includes('❌'))
-      .map(([table, _]) => table);
-    
-    if (missingTables.length > 0) {
-      console.log('\n💡 Some tables are missing. Run: npm run setup-database');
+    // Test neighborhood filtering
+    const { data: veniceRestaurants, error: veniceError } = await supabase
+      .from('restaurants')
+      .select('name, neighborhood')
+      .eq('neighborhood', 'Venice')
+      .limit(3);
+
+    if (veniceError) {
+      console.log('❌ Venice filtering error:', veniceError.message);
     } else {
-      console.log('\n🎉 All tables exist! Your database is ready.');
-      
-      // Test data count
-      console.log('\n📊 Checking data...');
-      
-      try {
-        const { count: cityCount } = await supabase
-          .from('cities')
-          .select('*', { count: 'exact', head: true });
-        
-        const { count: restaurantCount } = await supabase
-          .from('restaurants')
-          .select('*', { count: 'exact', head: true });
-        
-        console.log(`   Cities: ${cityCount || 0}`);
-        console.log(`   Restaurants: ${restaurantCount || 0}`);
-        
-        if (restaurantCount === 0) {
-          console.log('\n💡 No restaurants found. Run: npm run setup-database');
-        } else {
-          console.log('\n🎉 Database is fully set up and ready to use!');
-          console.log('\n📋 Next steps:');
-          console.log('1. Visit /admin to see your admin dashboard');
-          console.log('2. Test your existing pages to make sure they work');
-          console.log('3. Start planning your next city expansion!');
-        }
-      } catch (err) {
-        console.log('   Could not check data counts');
-      }
+      console.log(`✅ Venice filtering works: ${veniceRestaurants.length} restaurants found`);
     }
-    
+
+    // Test search functionality
+    const { data: searchResults, error: searchError } = await supabase
+      .from('restaurants')
+      .select('name, neighborhood')
+      .ilike('name', '%pizza%')
+      .limit(3);
+
+    if (searchError) {
+      console.log('❌ Search error:', searchError.message);
+    } else {
+      console.log(`✅ Search functionality works: ${searchResults.length} results for "pizza"`);
+    }
+
+    console.log('\n🎉 All tests passed! Your Supabase database is properly configured.');
+    return true;
+
   } catch (error) {
-    console.error('❌ Unexpected error:', error.message);
+    console.log('❌ Connection test failed:', error.message);
+    return false;
   }
 }
 
 // Run the test
-testConnection();
+testConnection().then(success => {
+  if (success) {
+    console.log('\n✅ Supabase connection is working correctly!');
+    console.log('You can now run your application with: npm run dev');
+  } else {
+    console.log('\n❌ Supabase connection failed.');
+    console.log('Please check your database setup and try again.');
+    process.exit(1);
+  }
+});
