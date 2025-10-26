@@ -1,0 +1,48 @@
+---
+// This page handles neighborhood query parameter redirects
+export const prerender = false;
+
+// Get URL parameters
+const url = new URL(Astro.request.url);
+const neighborhood = url.searchParams.get('neighborhood');
+
+// Neighborhood name to slug mapping
+const neighborhoodMap = {
+  'Arts District': 'arts-district',
+  'Bel Air': 'bel-air',
+  'Beverly Hills': 'beverly-hills',
+  'Brentwood': 'brentwood',
+  'Burbank': 'burbank',
+  'Chinatown': 'chinatown',
+  'Culver City': 'culver-city',
+  'Downtown LA': 'downtown-la',
+  'Echo Park': 'echo-park',
+  'Fairfax': 'fairfax',
+  'Hollywood': 'hollywood',
+  'Hollywood Hills': 'hollywood-hills',
+  'Koreatown': 'koreatown',
+  'Los Feliz': 'los-feliz',
+  'Malibu': 'malibu',
+  'Manhattan Beach': 'manhattan-beach',
+  'Mid-City': 'mid-city',
+  'Mid-Wilshire': 'mid-wilshire',
+  'Palms': 'palms',
+  'Pasadena': 'pasadena',
+  'Santa Monica': 'santa-monica',
+  'Silver Lake': 'silver-lake',
+  'Studio City': 'studio-city',
+  'Venice': 'venice',
+  'West Hollywood': 'west-hollywood'
+};
+
+if (neighborhood && neighborhood.trim() !== '') {
+  // Check if we have a direct mapping
+  const neighborhoodSlug = neighborhoodMap[neighborhood] || neighborhood.toLowerCase().replace(/\s+/g, '-');
+  console.log(`Redirecting ${neighborhood} to /restaurants/${neighborhoodSlug}/`);
+  return Astro.redirect(`/restaurants/${neighborhoodSlug}/`, 301);
+} else {
+  // No neighborhood filter, redirect to main restaurants page
+  console.log('No neighborhood, redirecting to main page');
+  return Astro.redirect('/restaurants/', 301);
+}
+---
