@@ -3,33 +3,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
 import { getAllRestaurants, searchRestaurants, getRestaurantsByNeighborhood } from '@/lib/supabase';
 
-// Get URL parameters - Astro has fundamental issues with query parameter parsing
-const url = new URL(Astro.request.url);
-const searchQuery = url.searchParams.get('search') || '';
-const neighborhoodFilter = url.searchParams.get('neighborhood') || '';
-const cuisineFilter = url.searchParams.get('cuisine') || '';
-const priceFilter = url.searchParams.get('price') || '';
-const dateScoreFilter = url.searchParams.get('dateScore') || '';
-
-// Handle neighborhood redirects
-if (neighborhoodFilter && neighborhoodFilter.trim() !== '') {
-  const neighborhoodSlug = neighborhoodFilter.toLowerCase().replace(/\s+/g, '-');
-  return Astro.redirect(`/restaurants/${neighborhoodSlug}/`, 301);
-}
-
-// Get restaurants data from Supabase
+// Get restaurants data from Supabase - always get all restaurants
 let restaurants;
 try {
-  if (searchQuery || cuisineFilter || priceFilter || dateScoreFilter) {
-    const filters = {
-      cuisine: cuisineFilter || undefined,
-      priceLevel: priceFilter ? parseInt(priceFilter) : undefined,
-      minDateScore: dateScoreFilter ? parseInt(dateScoreFilter) : undefined,
-    };
-    restaurants = await searchRestaurants(searchQuery, filters);
-  } else {
-    restaurants = await getAllRestaurants();
-  }
+  restaurants = await getAllRestaurants();
 } catch (error) {
   console.error('Error fetching restaurants:', error);
   return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
@@ -460,7 +437,7 @@ const structuredData = {
     
     if (neighborhood && neighborhood.trim() !== '') {
       const neighborhoodSlug = neighborhood.toLowerCase().replace(/\s+/g, '-');
-      console.log('Client-side redirect to:', `/restaurants/${neighborhoodSlug}/`);
+      console.log('Redirecting to:', `/restaurants/${neighborhoodSlug}/`);
       window.location.replace(`/restaurants/${neighborhoodSlug}/`);
       return;
     }
