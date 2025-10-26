@@ -1,35 +1,435 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { getAllRestaurants } from '@/lib/supabase';
 
-// This page handles query parameter redirects using client-side JavaScript
-// since Astro cannot reliably parse query parameters in server-side rendering
+// Get all restaurants data from Supabase
+let restaurants;
+try {
+  restaurants = await getAllRestaurants();
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
+// Get unique values for filters
+const neighborhoods = Array.from(new Set(restaurants.map(r => r.neighborhood))).sort();
+const cuisines = Array.from(new Set(restaurants.flatMap(r => r.cuisine_types))).sort();
+
+// Generate page title and description
+const pageTitle = `All Date Night Restaurants in Los Angeles | ${restaurants.length} Romantic Dining Spots`;
+const pageDescription = `Find your perfect romantic dining experience with our comprehensive list of ${restaurants.length} date night restaurants in Los Angeles. Advanced filters by neighborhood, cuisine, and price.`;
+
+// Structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "numberOfItems": restaurants.length,
+  "itemListElement": restaurants.map((restaurant, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Restaurant",
+      "name": restaurant.name,
+      "url": `https://datenightrestaurants.com/restaurants/${restaurant.neighborhood_slug}/${restaurant.slug}/`,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": restaurant.address,
+        "addressLocality": restaurant.neighborhood,
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": restaurant.rating,
+        "reviewCount": 0
+      }
+    }
+  }))
+};
 ---
 <BaseLayout
-  title="Redirecting..."
-  description="Redirecting to the correct page..."
-  noIndex={true}
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://datenightrestaurants.com/losangeles/restaurants/"
+  keywords={['date night restaurants Los Angeles', 'romantic dining LA', 'couples restaurants LA']}
+  structuredData={structuredData}
 >
-  <main style="padding: 4rem 2rem; text-align: center;">
-    <h1>Redirecting...</h1>
-    <p>Please wait while we redirect you to the correct page.</p>
-  </main>
+  <div class="restaurants-page">
+    <div class="container">
+      <!-- Header -->
+      <header class="page-header">
+        <h1>All Date Night Restaurants in Los Angeles</h1>
+        <p class="page-description">
+          Find your perfect romantic dining experience with our comprehensive list and advanced filters.
+        </p>
+      </header>
+
+      <!-- Filters -->
+      <section class="filters-section">
+        <div class="container">
+          <div class="filters-grid">
+            <div class="filter-group">
+              <label for="searchInput">Search Restaurants</label>
+              <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search by name, cuisine, or location..."
+              />
+            </div>
+            
+            <div class="filter-group">
+              <label for="neighborhoodFilter">Neighborhood</label>
+              <select id="neighborhoodFilter">
+                <option value="">All Neighborhoods</option>
+                {neighborhoods.map(neighborhood => (
+                  <option value={neighborhood}>{neighborhood}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="cuisineFilter">Cuisine</label>
+              <select id="cuisineFilter">
+                <option value="">All Cuisines</option>
+                {cuisines.map(cuisine => (
+                  <option value={cuisine}>{cuisine}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="priceFilter">Price Level</label>
+              <select id="priceFilter">
+                <option value="">All Price Levels</option>
+                <option value="1">$ (Budget)</option>
+                <option value="2">$$ (Moderate)</option>
+                <option value="3">$$$ (Expensive)</option>
+                <option value="4">$$$$ (Very Expensive)</option>
+              </select>
+            </div>
+            
+            <div class="filter-group">
+              <label for="dateScoreFilter">Date Score</label>
+              <select id="dateScoreFilter">
+                <option value="">All Date Scores</option>
+                <option value="95">95+ Date Score</option>
+                <option value="90">90+ Date Score</option>
+                <option value="85">85+ Date Score</option>
+                <option value="80">80+ Date Score</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section class="restaurants-list">
+        <div class="container">
+          <h2 id="resultsTitle">Showing <span id="resultsCount">{restaurants.length}</span> Restaurants</h2>
+          <div class="restaurants-grid" id="restaurantsGrid">
+            {restaurants.map(restaurant => (
+              <RestaurantCard restaurant={restaurant} />
+            ))}
+          </div>
+          <div id="noResults" class="no-results" style="display: none;">
+            <h3>No Restaurants Found</h3>
+            <p>Try adjusting your filters or search terms.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Neighborhoods Section -->
+      <section class="neighborhoods-section">
+        <div class="container">
+          <h2>Explore by Neighborhood</h2>
+          <p>Discover romantic dining experiences in specific areas of Los Angeles.</p>
+          <div class="neighborhoods-grid">
+            {neighborhoods.map(neighborhood => {
+              const neighborhoodRestaurants = restaurants.filter(r => r.neighborhood === neighborhood);
+              return (
+                <div class="neighborhood-card">
+                  <h3>{neighborhood}</h3>
+                  <p>{neighborhoodRestaurants.length} restaurant{neighborhoodRestaurants.length !== 1 ? 's' : ''}</p>
+                  <a href={`/losangeles/restaurants/${neighborhood.toLowerCase().replace(/\s+/g, '-')}/`} class="btn">
+                    View Restaurants
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </BaseLayout>
 
+<style>
+  .restaurants-page {
+    padding-top: 80px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .page-header {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    margin-bottom: 3rem;
+  }
+  
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .page-description {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .filters-section {
+    padding: 3rem 0;
+    background: #FFF8F0;
+    margin-bottom: 3rem;
+  }
+  
+  .filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter-group label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2C2C2C;
+  }
+  
+  .filter-group input,
+  .filter-group select {
+    padding: 0.75rem;
+    border: 2px solid #E8B86D;
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+  }
+  
+  .restaurants-list {
+    padding: 2rem 0;
+  }
+  
+  .restaurants-list h2 {
+    font-size: 2rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .neighborhoods-section {
+    padding: 4rem 0;
+    background: #F8F6F0;
+    margin-top: 4rem;
+  }
+  
+  .neighborhoods-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+  
+  .neighborhoods-section p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+  
+  .neighborhoods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .neighborhood-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .neighborhood-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .neighborhood-card h3 {
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin-bottom: 0.5rem;
+  }
+  
+  .neighborhood-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #D4AF37;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+  
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
+  }
+  
+  .no-results h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .filters-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 <script>
-  // Handle query parameter redirects on the client side
+  // Handle query parameter redirects immediately
   (function() {
     const urlParams = new URLSearchParams(window.location.search);
     const neighborhood = urlParams.get('neighborhood');
     
     if (neighborhood && neighborhood.trim() !== '') {
-      // Convert neighborhood name to slug format and redirect to clean URL
       const neighborhoodSlug = neighborhood.toLowerCase().replace(/\s+/g, '-');
-      console.log('Redirecting to:', `/losangeles/restaurants/${neighborhoodSlug}/`);
-      window.location.replace(`/losangeles/restaurants/${neighborhoodSlug}/`);
-    } else {
-      // No neighborhood filter, redirect to main restaurants page
-      console.log('Redirecting to main restaurants page');
-      window.location.replace('/restaurants/');
+      console.log('Redirecting to:', `/restaurants/neighborhoods/${neighborhoodSlug}`);
+      window.location.replace(`/restaurants/neighborhoods/${neighborhoodSlug}`);
+      return;
     }
   })();
+</script>
+
+<script>
+  // Handle other query parameter filtering after page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const search = urlParams.get('search');
+    const cuisine = urlParams.get('cuisine');
+    const price = urlParams.get('price');
+    const dateScore = urlParams.get('dateScore');
+    
+    if (search || cuisine || price || dateScore) {
+      console.log('Applying client-side filters:', { search, cuisine, price, dateScore });
+      
+      // Apply filters to restaurant cards
+      const restaurantCards = document.querySelectorAll('.restaurant-card');
+      let visibleCount = 0;
+      
+      restaurantCards.forEach(card => {
+        let shouldShow = true;
+        
+        // Search filter
+        if (search) {
+          const name = card.querySelector('.restaurant-name')?.textContent?.toLowerCase() || '';
+          const cuisine = card.querySelector('.restaurant-cuisine')?.textContent?.toLowerCase() || '';
+          const address = card.querySelector('.restaurant-address')?.textContent?.toLowerCase() || '';
+          const searchTerm = search.toLowerCase();
+          
+          if (!name.includes(searchTerm) && !cuisine.includes(searchTerm) && !address.includes(searchTerm)) {
+            shouldShow = false;
+          }
+        }
+        
+        // Cuisine filter
+        if (cuisine && shouldShow) {
+          const cardCuisine = card.querySelector('.restaurant-cuisine')?.textContent?.toLowerCase() || '';
+          if (!cardCuisine.includes(cuisine.toLowerCase())) {
+            shouldShow = false;
+          }
+        }
+        
+        // Price filter
+        if (price && shouldShow) {
+          const priceLevel = parseInt(price);
+          const cardPrice = card.querySelector('.restaurant-price')?.textContent?.length || 0;
+          if (cardPrice !== priceLevel) {
+            shouldShow = false;
+          }
+        }
+        
+        // Date score filter
+        if (dateScore && shouldShow) {
+          const minScore = parseInt(dateScore);
+          const cardScore = parseInt(card.querySelector('.date-score strong')?.textContent || '0');
+          if (cardScore < minScore) {
+            shouldShow = false;
+          }
+        }
+        
+        if (shouldShow) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Update the results count
+      const resultsCount = document.querySelector('#resultsCount');
+      if (resultsCount) {
+        resultsCount.textContent = visibleCount;
+      }
+      
+      // Show no results message if needed
+      const noResults = document.querySelector('#noResults');
+      if (visibleCount === 0) {
+        if (noResults) {
+          noResults.style.display = 'block';
+        }
+      } else {
+        if (noResults) {
+          noResults.style.display = 'none';
+        }
+      }
+    }
+  });
 </script>

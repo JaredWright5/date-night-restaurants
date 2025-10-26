@@ -1,0 +1,272 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RestaurantCard from '@/components/RestaurantCard.astro';
+import { getRestaurantsByNeighborhood } from '@/lib/supabase';
+
+// Get Santa Monica restaurants from Supabase
+let restaurants;
+try {
+  restaurants = await getRestaurantsByNeighborhood('santa-monica');
+} catch (error) {
+  console.error('Error fetching Santa Monica restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
+// Generate page title and description
+const pageTitle = `Date Night Restaurants in Santa Monica | ${restaurants.length} Romantic Dining Spots`;
+const pageDescription = `Discover the best date night restaurants in Santa Monica, Los Angeles. ${restaurants.length} romantic dining spots perfect for couples, from cozy neighborhood spots to upscale fine dining.`;
+
+// Structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "numberOfItems": restaurants.length,
+  "itemListElement": restaurants.map((restaurant, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Restaurant",
+      "name": restaurant.name,
+      "url": `https://datenightrestaurants.com/restaurants/${restaurant.neighborhood_slug}/${restaurant.slug}/`,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": restaurant.address,
+        "addressLocality": restaurant.neighborhood,
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": restaurant.rating,
+        "reviewCount": 0
+      }
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://datenightrestaurants.com/restaurants/neighborhoods/santa-monica"
+  keywords={['date night restaurants Santa Monica', 'romantic dining Santa Monica', 'couples restaurants Santa Monica', 'Santa Monica restaurants']}
+  structuredData={structuredData}
+>
+  <div class="restaurants-page">
+    <div class="container">
+      <!-- Header -->
+      <header class="page-header">
+        <h1>Date Night Restaurants in Santa Monica</h1>
+        <p class="page-description">
+          Discover romantic dining spots in Santa Monica, Los Angeles
+        </p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">${restaurants.length}</span>
+            <span class="stat-label">Restaurants</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">${Math.round(restaurants.reduce((sum, r) => sum + r.date_night_score, 0) / restaurants.length)}</span>
+            <span class="stat-label">Avg Date Score</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">${restaurants.filter(r => r.price_level >= 3).length}</span>
+            <span class="stat-label">Upscale Options</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Results -->
+      <section class="restaurants-list">
+        <div class="container">
+          <h2>Showing ${restaurants.length} Restaurants in Santa Monica</h2>
+          <div class="restaurants-grid">
+            {restaurants.map(restaurant => (
+              <RestaurantCard restaurant={restaurant} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Other Neighborhoods -->
+      <section class="neighborhoods-section">
+        <div class="container">
+          <h2>Explore Other Neighborhoods</h2>
+          <p>Discover romantic dining experiences in other areas of Los Angeles.</p>
+          <div class="neighborhoods-grid">
+            <div class="neighborhood-card">
+              <h3>Santa Monica</h3>
+              <p>15 restaurants</p>
+              <a href="/restaurants/neighborhoods/santa-monica" class="btn">View Restaurants</a>
+            </div>
+            <div class="neighborhood-card">
+              <h3>West Hollywood</h3>
+              <p>17 restaurants</p>
+              <a href="/restaurants/neighborhoods/west-hollywood" class="btn">View Restaurants</a>
+            </div>
+            <div class="neighborhood-card">
+              <h3>Beverly Hills</h3>
+              <p>7 restaurants</p>
+              <a href="/restaurants/neighborhoods/beverly-hills" class="btn">View Restaurants</a>
+            </div>
+            <div class="neighborhood-card">
+              <h3>Downtown LA</h3>
+              <p>14 restaurants</p>
+              <a href="/restaurants/neighborhoods/downtown-la" class="btn">View Restaurants</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .restaurants-page {
+    padding-top: 80px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .page-header {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    margin-bottom: 3rem;
+  }
+  
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .page-description {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 3rem;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #D4AF37;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    color: #e0e0e0;
+  }
+  
+  .restaurants-list {
+    padding: 2rem 0;
+  }
+  
+  .restaurants-list h2 {
+    font-size: 2rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+  }
+  
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .neighborhoods-section {
+    padding: 4rem 0;
+    background: #F8F6F0;
+    margin-top: 4rem;
+  }
+  
+  .neighborhoods-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+  
+  .neighborhoods-section p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+  
+  .neighborhoods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .neighborhood-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .neighborhood-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .neighborhood-card h3 {
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin-bottom: 0.5rem;
+  }
+  
+  .neighborhood-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #D4AF37;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
