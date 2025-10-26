@@ -3,8 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
 import { getAllRestaurants, searchRestaurants, getRestaurantsByNeighborhood } from '@/lib/supabase';
 
-// Get URL parameters - Astro has issues with query parameter parsing
-// We'll handle this with client-side JavaScript instead
+// Get URL parameters - Astro has fundamental issues with query parameter parsing
 const url = new URL(Astro.request.url);
 const searchQuery = url.searchParams.get('search') || '';
 const neighborhoodFilter = url.searchParams.get('neighborhood') || '';
@@ -12,14 +11,27 @@ const cuisineFilter = url.searchParams.get('cuisine') || '';
 const priceFilter = url.searchParams.get('price') || '';
 const dateScoreFilter = url.searchParams.get('dateScore') || '';
 
+// Handle neighborhood redirects
+if (neighborhoodFilter && neighborhoodFilter.trim() !== '') {
+  const neighborhoodSlug = neighborhoodFilter.toLowerCase().replace(/\s+/g, '-');
+  return Astro.redirect(`/restaurants/${neighborhoodSlug}/`, 301);
+}
+
 // Get restaurants data from Supabase
 let restaurants;
 try {
-  // Always get all restaurants - client-side JavaScript will handle filtering
-  restaurants = await getAllRestaurants();
+  if (searchQuery || cuisineFilter || priceFilter || dateScoreFilter) {
+    const filters = {
+      cuisine: cuisineFilter || undefined,
+      priceLevel: priceFilter ? parseInt(priceFilter) : undefined,
+      minDateScore: dateScoreFilter ? parseInt(dateScoreFilter) : undefined,
+    };
+    restaurants = await searchRestaurants(searchQuery, filters);
+  } else {
+    restaurants = await getAllRestaurants();
+  }
 } catch (error) {
   console.error('Error fetching restaurants:', error);
-  // Return 500 error page
   return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
 }
 
