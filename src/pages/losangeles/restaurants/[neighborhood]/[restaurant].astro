@@ -1,0 +1,5 @@
+---
+// Redirect old restaurant URL structure to new one
+const { neighborhood, restaurant } = Astro.params;
+return Astro.redirect(`/restaurants/${neighborhood}/${restaurant}/`, 301);
+---
