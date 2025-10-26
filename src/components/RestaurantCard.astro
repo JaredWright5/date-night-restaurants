@@ -30,22 +30,24 @@ const priceSymbols = '$'.repeat(restaurant.price_level);
 const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3';
 
 // Format cuisine types
-const cuisineDisplay = restaurant.cuisine_types.map(cuisine => 
-  cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
-).join(', ');
+const cuisineDisplay = restaurant.cuisine_types && Array.isArray(restaurant.cuisine_types) 
+  ? restaurant.cuisine_types.map(cuisine => 
+      cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+    ).join(', ')
+  : 'Restaurant';
 ---
 
 <div class="restaurant-card" 
      data-neighborhood={restaurant.neighborhood}
      data-price={restaurant.price_level}
      data-rating={restaurant.rating}
-     data-cuisine={restaurant.cuisine_types.join(', ')}
+     data-cuisine={restaurant.cuisine_types && Array.isArray(restaurant.cuisine_types) ? restaurant.cuisine_types.join(', ') : ''}
      data-date-score={restaurant.date_night_score}>
   <a href={`/restaurants/${restaurant.neighborhood_slug}/${restaurant.slug}/`} class="card-link">
     <div class="card-image">
       <img 
         src={mainImage} 
-        alt={`${restaurant.name} - ${restaurant.cuisine_types[0].replace(/_/g, ' ')} restaurant in ${restaurant.neighborhood}, Los Angeles`}
+        alt={`${restaurant.name} - ${restaurant.cuisine_types && restaurant.cuisine_types[0] ? restaurant.cuisine_types[0].replace(/_/g, ' ') : 'restaurant'} in ${restaurant.neighborhood}, Los Angeles`}
         loading="lazy"
         onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&ixlib=rb-4.0.3'"
       />

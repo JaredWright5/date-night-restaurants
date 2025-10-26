@@ -1,5 +1,9 @@
 ---
 // Redirect old neighborhood URL structure to new one
+export function getStaticPaths() {
+  return [];
+}
+
 const { neighborhood } = Astro.params;
 return Astro.redirect(`/restaurants/${neighborhood}/`, 301);
 ---

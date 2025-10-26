@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
-import { getRestaurantBySlug, searchRestaurants, generateDateNightDescription } from '@/data/restaurants';
-import { getAllCities } from '@/data/cities';
+import { getRestaurantBySlug, searchRestaurants } from '@/lib/supabase';
 
 export async function getStaticPaths() {
-  const { restaurants } = await import('@/data/restaurants');
+  const { getAllRestaurants } = await import('@/lib/supabase');
+  const restaurants = await getAllRestaurants();
   return restaurants.map((restaurant) => ({
     params: { restaurant: restaurant.slug },
     props: { restaurant },
@@ -24,13 +24,16 @@ if (!restaurant.name || !restaurant.slug) {
   return Astro.redirect('/404');
 }
 
-const relatedRestaurants = searchRestaurants('', { cuisine: restaurant.cuisineTypes[0] })
-  .filter(r => r.id !== restaurant.id)
+// Get related restaurants by fetching all and filtering
+const { getAllRestaurants } = await import('@/lib/supabase');
+const allRestaurants = await getAllRestaurants();
+const relatedRestaurants = allRestaurants
+  .filter(r => r.cuisine_types?.includes(restaurant.cuisine_types?.[0]) && r.id !== restaurant.id)
   .slice(0, 4);
 
-const priceSymbols = '$'.repeat(restaurant.priceLevel);
-const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
-const dateNightDescription = generateDateNightDescription(restaurant);
+const priceSymbols = '$'.repeat(restaurant.price_level);
+const mainImage = restaurant.photos?.[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
+const dateNightDescription = `Perfect for a romantic date night with ${restaurant.cuisine_types?.join(', ') || 'excellent cuisine'} in ${restaurant.neighborhood}. ${restaurant.description || 'An intimate dining experience.'}`;
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -42,43 +45,27 @@ const structuredData = {
   "address": {
     "@type": "PostalAddress",
     "streetAddress": restaurant.address,
-    "addressLocality": restaurant.area,
+    "addressLocality": restaurant.neighborhood,
     "addressRegion": "CA",
-    "postalCode": restaurant.zipCode,
     "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": restaurant.latitude,
-    "longitude": restaurant.longitude
   },
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": restaurant.rating || 0,
-    "reviewCount": restaurant.reviews?.length || 0
+    "reviewCount": 0
   },
   "priceRange": priceSymbols,
-  "servesCuisine": restaurant.cuisineTypes,
-  "openingHoursSpecification": Object.entries(restaurant.openingHours || {}).map(([day, hours]) => {
-    if (!hours || typeof hours !== 'string') return null;
-    const timeParts = hours.split('–');
-    if (timeParts.length !== 2) return null;
-    return {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": day,
-      "opens": timeParts[0].trim(),
-      "closes": timeParts[1].trim()
-    };
-  }).filter(Boolean),
-  "image": restaurant.photos,
+  "servesCuisine": restaurant.cuisine_types || [],
+  "openingHoursSpecification": [],
+  "image": restaurant.photos || [],
   "sameAs": restaurant.website
 };
 ---
 
 <BaseLayout 
-  title={`${restaurant.name} | Date Night Restaurant in ${restaurant.area} | Date Night Restaurants`}
+  title={`${restaurant.name} | Date Night Restaurant in ${restaurant.neighborhood} | Date Night Restaurants`}
   description={dateNightDescription}
-  keywords={[restaurant.name, `date night restaurant ${restaurant.area}`, `romantic dining ${restaurant.area}`, ...restaurant.cuisineTypes, `fine dining ${restaurant.area}`]}
+  keywords={[restaurant.name, `date night restaurant ${restaurant.neighborhood}`, `romantic dining ${restaurant.neighborhood}`, ...(restaurant.cuisine_types || []), `fine dining ${restaurant.neighborhood}`]}
   canonical={`https://datenightrestaurants.com/losangeles/${restaurant.slug}/`}
   ogImage={mainImage}
   structuredData={structuredData}
@@ -132,10 +119,10 @@ const structuredData = {
             <p><strong>Address:</strong> {restaurant.address}</p>
             <p><strong>Phone:</strong> <a href={`tel:${restaurant.phone}`}>{restaurant.phone}</a></p>
             <p><strong>Website:</strong> <a href={restaurant.website} target="_blank">{restaurant.website}</a></p>
-            <p><strong>Cuisine:</strong> {restaurant.cuisineTypes.map(cuisine => 
+            <p><strong>Cuisine:</strong> {restaurant.cuisine_types?.map(cuisine => 
               cuisine.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
             ).join(', ')}</p>
-            <p><strong>Area:</strong> {restaurant.area}</p>
+            <p><strong>Area:</strong> {restaurant.neighborhood}</p>
           </div>
           <div class="map-placeholder">
             <iframe

@@ -1,7 +1,9 @@
 ---
 // Redirect all city pages to main page
-import { redirect } from 'astro:actions';
-
 // This will redirect any /cities/* URL to the main page
-return redirect('/');
+export function getStaticPaths() {
+  return [];
+}
+
+return Astro.redirect('/');
 ---

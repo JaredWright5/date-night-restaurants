@@ -1,12 +1,27 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
-import { getTopRestaurants, restaurants } from '@/data/restaurants';
-import { getAllCities } from '@/data/cities';
-import { neighborhoods } from '@/data/neighborhoods';
+import { getAllRestaurants } from '@/lib/supabase';
 
-const topRestaurants = getTopRestaurants(6);
-const laNeighborhoodsCount = new Set(restaurants.map(r => r.neighborhood)).size;
+// Get all restaurants from Supabase
+let restaurants;
+try {
+  restaurants = await getAllRestaurants();
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
+    const topRestaurants = restaurants
+      .sort((a, b) => b.date_night_score - a.date_night_score)
+      .slice(0, 6);
+    const laNeighborhoodsCount = new Set(restaurants.map(r => r.neighborhood)).size;
+    
+    // Get unique neighborhoods for the explore section
+    const neighborhoods = Array.from(new Set(restaurants.map(r => ({
+      name: r.neighborhood,
+      slug: r.neighborhood_slug
+    })))).slice(0, 6);
 
 const structuredData = {
   "@context": "https://schema.org",

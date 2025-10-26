@@ -1,7 +1,9 @@
 ---
 // Redirect all cuisine pages to main restaurants page
-import { redirect } from 'astro:actions';
-
 // This will redirect any /cuisines/* URL to the main restaurants page
-return redirect('/losangeles/restaurants/');
+export function getStaticPaths() {
+  return [];
+}
+
+return Astro.redirect('/losangeles/restaurants/');
 ---

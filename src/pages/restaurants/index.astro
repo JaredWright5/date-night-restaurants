@@ -18,16 +18,10 @@ const cuisines = Array.from(new Set(restaurants.flatMap(r => r.cuisine_types))).
 
 // Generate dynamic content
 const getPageTitle = () => {
-  if (searchQuery) {
-    return `Search Results for "${searchQuery}" | Date Night Restaurants`;
-  }
   return 'All Date Night Restaurants | Find Your Perfect Romantic Dining Spot';
 };
 
 const getPageDescription = () => {
-  if (searchQuery) {
-    return `Find romantic date night restaurants matching "${searchQuery}". Discover the perfect dining spot for your special evening.`;
-  }
   return 'Explore our complete directory of romantic date night restaurants. Use our advanced filters to find the perfect spot by neighborhood, cuisine, or price.';
 };
 
@@ -96,7 +90,6 @@ const structuredData = {
                 type="text" 
                 id="searchInput" 
                 placeholder="Search by name, cuisine, or location..."
-                value={searchQuery}
               />
             </div>
             
@@ -105,7 +98,7 @@ const structuredData = {
               <select id="neighborhoodFilter">
                 <option value="">All Neighborhoods</option>
                 {neighborhoods.map(neighborhood => (
-                  <option value={neighborhood} selected={neighborhood === neighborhoodFilter}>{neighborhood}</option>
+                  <option value={neighborhood}>{neighborhood}</option>
                 ))}
               </select>
             </div>
@@ -115,7 +108,7 @@ const structuredData = {
               <select id="cuisineFilter">
                 <option value="">All Cuisines</option>
                 {cuisines.map(cuisine => (
-                  <option value={cuisine} selected={cuisine === cuisineFilter}>{cuisine}</option>
+                  <option value={cuisine}>{cuisine}</option>
                 ))}
               </select>
             </div>
@@ -124,10 +117,10 @@ const structuredData = {
               <label for="priceFilter">Price Level</label>
               <select id="priceFilter">
                 <option value="">All Price Levels</option>
-                <option value="1" selected={priceFilter === '1'}>$ (Budget)</option>
-                <option value="2" selected={priceFilter === '2'}>$$ (Moderate)</option>
-                <option value="3" selected={priceFilter === '3'}>$$$ (Expensive)</option>
-                <option value="4" selected={priceFilter === '4'}>$$$$ (Very Expensive)</option>
+                <option value="1">$ (Budget)</option>
+                <option value="2">$$ (Moderate)</option>
+                <option value="3">$$$ (Expensive)</option>
+                <option value="4">$$$$ (Very Expensive)</option>
               </select>
             </div>
             
@@ -135,10 +128,10 @@ const structuredData = {
               <label for="dateScoreFilter">Date Score</label>
               <select id="dateScoreFilter">
                 <option value="">All Date Scores</option>
-                <option value="95" selected={dateScoreFilter === '95'}>95+ Date Score</option>
-                <option value="90" selected={dateScoreFilter === '90'}>90+ Date Score</option>
-                <option value="85" selected={dateScoreFilter === '85'}>85+ Date Score</option>
-                <option value="80" selected={dateScoreFilter === '80'}>80+ Date Score</option>
+                <option value="95">95+ Date Score</option>
+                <option value="90">90+ Date Score</option>
+                <option value="85">85+ Date Score</option>
+                <option value="80">80+ Date Score</option>
               </select>
             </div>
           </div>

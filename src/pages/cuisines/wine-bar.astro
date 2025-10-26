@@ -1,16 +1,26 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
-import { restaurants } from '@/data/restaurants';
+import { getAllRestaurants } from '@/lib/supabase';
 
 const cuisineName = 'Wine Bar';
 const cuisineSlug = 'wine-bar';
+
+// Get all restaurants from Supabase
+let restaurants;
+try {
+  restaurants = await getAllRestaurants();
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
 const wineBarRestaurants = restaurants.filter(r => 
-  r.cuisineTypes.includes('wine_bar')
+  r.cuisine_types && r.cuisine_types.includes('Wine Bar')
 );
 
 const topRestaurants = wineBarRestaurants
-  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .sort((a, b) => b.date_night_score - a.date_night_score)
   .slice(0, 8);
 
 const structuredData = {
