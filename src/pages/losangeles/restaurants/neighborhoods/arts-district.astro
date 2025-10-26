@@ -3,18 +3,18 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
 import { getRestaurantsByNeighborhood } from '@/lib/supabase';
 
-// Get Brentwood restaurants from Supabase
+// Get Arts District restaurants from Supabase
 let restaurants;
 try {
-  restaurants = await getRestaurantsByNeighborhood('brentwood');
+  restaurants = await getRestaurantsByNeighborhood('arts-district');
 } catch (error) {
-  console.error('Error fetching Brentwood restaurants:', error);
+  console.error('Error fetching Arts District restaurants:', error);
   return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
 }
 
 // Generate page title and description
-const pageTitle = `Date Night Restaurants in Brentwood | ${restaurants.length} Romantic Dining Spots`;
-const pageDescription = `Discover the best date night restaurants in Brentwood, Los Angeles. ${restaurants.length} romantic dining spots perfect for couples, from cozy neighborhood spots to upscale fine dining.`;
+const pageTitle = `Date Night Restaurants in Arts District | ${restaurants.length} Romantic Dining Spots`;
+const pageDescription = `Discover the best date night restaurants in Arts District, Los Angeles. ${restaurants.length} romantic dining spots perfect for couples, from cozy neighborhood spots to upscale fine dining.`;
 
 // Structured data
 const structuredData = {
@@ -48,17 +48,17 @@ const structuredData = {
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  canonical="https://datenightrestaurants.com/restaurants/neighborhoods/brentwood"
-  keywords={['date night restaurants Brentwood', 'romantic dining Brentwood', 'couples restaurants Brentwood', 'Brentwood restaurants']}
+  canonical="https://datenightrestaurants.com/losangeles/restaurants/neighborhoods/arts-district"
+  keywords={['date night restaurants Arts District', 'romantic dining Arts District', 'couples restaurants Arts District', 'Arts District restaurants']}
   structuredData={structuredData}
 >
   <div class="restaurants-page">
     <div class="container">
       <!-- Header -->
       <header class="page-header">
-        <h1>Date Night Restaurants in Brentwood</h1>
+        <h1>Date Night Restaurants in Arts District</h1>
         <p class="page-description">
-          Discover romantic dining spots in Brentwood, Los Angeles
+          Discover romantic dining spots in Arts District, Los Angeles
         </p>
         
         <div class="hero-stats">
@@ -80,7 +80,7 @@ const structuredData = {
       <!-- Results -->
       <section class="restaurants-list">
         <div class="container">
-          <h2>Showing ${restaurants.length} Restaurants in Brentwood</h2>
+          <h2>Showing ${restaurants.length} Restaurants in Arts District</h2>
           <div class="restaurants-grid">
             {restaurants.map(restaurant => (
               <RestaurantCard restaurant={restaurant} />
@@ -98,22 +98,22 @@ const structuredData = {
             <div class="neighborhood-card">
               <h3>Santa Monica</h3>
               <p>15 restaurants</p>
-              <a href="/restaurants/neighborhoods/santa-monica" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/santa-monica" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>West Hollywood</h3>
               <p>17 restaurants</p>
-              <a href="/restaurants/neighborhoods/west-hollywood" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/west-hollywood" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>Beverly Hills</h3>
               <p>7 restaurants</p>
-              <a href="/restaurants/neighborhoods/beverly-hills" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/beverly-hills" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>Downtown LA</h3>
               <p>14 restaurants</p>
-              <a href="/restaurants/neighborhoods/downtown-la" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/downtown-la" class="btn">View Restaurants</a>
             </div>
           </div>
         </div>

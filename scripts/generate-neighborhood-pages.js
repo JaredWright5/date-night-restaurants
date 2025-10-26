@@ -67,7 +67,7 @@ const structuredData = {
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  canonical="https://datenightrestaurants.com/restaurants/neighborhoods/${neighborhood.slug}"
+  canonical="https://datenightrestaurants.com/losangeles/restaurants/neighborhoods/${neighborhood.slug}"
   keywords={['date night restaurants ${neighborhood.name}', 'romantic dining ${neighborhood.name}', 'couples restaurants ${neighborhood.name}', '${neighborhood.name} restaurants']}
   structuredData={structuredData}
 >
@@ -117,22 +117,22 @@ const structuredData = {
             <div class="neighborhood-card">
               <h3>Santa Monica</h3>
               <p>15 restaurants</p>
-              <a href="/restaurants/neighborhoods/santa-monica" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/santa-monica" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>West Hollywood</h3>
               <p>17 restaurants</p>
-              <a href="/restaurants/neighborhoods/west-hollywood" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/west-hollywood" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>Beverly Hills</h3>
               <p>7 restaurants</p>
-              <a href="/restaurants/neighborhoods/beverly-hills" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/beverly-hills" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>Downtown LA</h3>
               <p>14 restaurants</p>
-              <a href="/restaurants/neighborhoods/downtown-la" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/downtown-la" class="btn">View Restaurants</a>
             </div>
           </div>
         </div>
@@ -292,7 +292,7 @@ const structuredData = {
 };
 
 // Create the neighborhoods directory
-const neighborhoodsDir = join(process.cwd(), 'src', 'pages', 'restaurants', 'neighborhoods');
+const neighborhoodsDir = join(process.cwd(), 'src', 'pages', 'losangeles', 'restaurants', 'neighborhoods');
 mkdirSync(neighborhoodsDir, { recursive: true });
 
 // Generate pages for each neighborhood
@@ -304,4 +304,4 @@ for (const neighborhood of neighborhoods) {
 }
 
 console.log(`\n✅ Generated ${neighborhoods.length} neighborhood pages!`);
-console.log('Pages are available at: /restaurants/neighborhoods/[neighborhood-name]');
+console.log('Pages are available at: /losangeles/restaurants/neighborhoods/[neighborhood-name]');

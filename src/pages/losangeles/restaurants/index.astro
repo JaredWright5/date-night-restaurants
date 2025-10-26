@@ -341,8 +341,8 @@ const structuredData = {
     
     if (neighborhood && neighborhood.trim() !== '') {
       const neighborhoodSlug = neighborhood.toLowerCase().replace(/\s+/g, '-');
-      console.log('Redirecting to:', `/restaurants/neighborhoods/${neighborhoodSlug}`);
-      window.location.replace(`/restaurants/neighborhoods/${neighborhoodSlug}`);
+      console.log('Redirecting to:', `/losangeles/restaurants/neighborhoods/${neighborhoodSlug}`);
+      window.location.replace(`/losangeles/restaurants/neighborhoods/${neighborhoodSlug}`);
       return;
     }
   })();

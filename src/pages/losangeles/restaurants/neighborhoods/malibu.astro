@@ -3,18 +3,18 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import RestaurantCard from '@/components/RestaurantCard.astro';
 import { getRestaurantsByNeighborhood } from '@/lib/supabase';
 
-// Get Pasadena restaurants from Supabase
+// Get Malibu restaurants from Supabase
 let restaurants;
 try {
-  restaurants = await getRestaurantsByNeighborhood('pasadena');
+  restaurants = await getRestaurantsByNeighborhood('malibu');
 } catch (error) {
-  console.error('Error fetching Pasadena restaurants:', error);
+  console.error('Error fetching Malibu restaurants:', error);
   return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
 }
 
 // Generate page title and description
-const pageTitle = `Date Night Restaurants in Pasadena | ${restaurants.length} Romantic Dining Spots`;
-const pageDescription = `Discover the best date night restaurants in Pasadena, Los Angeles. ${restaurants.length} romantic dining spots perfect for couples, from cozy neighborhood spots to upscale fine dining.`;
+const pageTitle = `Date Night Restaurants in Malibu | ${restaurants.length} Romantic Dining Spots`;
+const pageDescription = `Discover the best date night restaurants in Malibu, Los Angeles. ${restaurants.length} romantic dining spots perfect for couples, from cozy neighborhood spots to upscale fine dining.`;
 
 // Structured data
 const structuredData = {
@@ -48,17 +48,17 @@ const structuredData = {
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  canonical="https://datenightrestaurants.com/restaurants/neighborhoods/pasadena"
-  keywords={['date night restaurants Pasadena', 'romantic dining Pasadena', 'couples restaurants Pasadena', 'Pasadena restaurants']}
+  canonical="https://datenightrestaurants.com/losangeles/restaurants/neighborhoods/malibu"
+  keywords={['date night restaurants Malibu', 'romantic dining Malibu', 'couples restaurants Malibu', 'Malibu restaurants']}
   structuredData={structuredData}
 >
   <div class="restaurants-page">
     <div class="container">
       <!-- Header -->
       <header class="page-header">
-        <h1>Date Night Restaurants in Pasadena</h1>
+        <h1>Date Night Restaurants in Malibu</h1>
         <p class="page-description">
-          Discover romantic dining spots in Pasadena, Los Angeles
+          Discover romantic dining spots in Malibu, Los Angeles
         </p>
         
         <div class="hero-stats">
@@ -80,7 +80,7 @@ const structuredData = {
       <!-- Results -->
       <section class="restaurants-list">
         <div class="container">
-          <h2>Showing ${restaurants.length} Restaurants in Pasadena</h2>
+          <h2>Showing ${restaurants.length} Restaurants in Malibu</h2>
           <div class="restaurants-grid">
             {restaurants.map(restaurant => (
               <RestaurantCard restaurant={restaurant} />
@@ -98,22 +98,22 @@ const structuredData = {
             <div class="neighborhood-card">
               <h3>Santa Monica</h3>
               <p>15 restaurants</p>
-              <a href="/restaurants/neighborhoods/santa-monica" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/santa-monica" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>West Hollywood</h3>
               <p>17 restaurants</p>
-              <a href="/restaurants/neighborhoods/west-hollywood" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/west-hollywood" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>Beverly Hills</h3>
               <p>7 restaurants</p>
-              <a href="/restaurants/neighborhoods/beverly-hills" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/beverly-hills" class="btn">View Restaurants</a>
             </div>
             <div class="neighborhood-card">
               <h3>Downtown LA</h3>
               <p>14 restaurants</p>
-              <a href="/restaurants/neighborhoods/downtown-la" class="btn">View Restaurants</a>
+              <a href="/losangeles/restaurants/neighborhoods/downtown-la" class="btn">View Restaurants</a>
             </div>
           </div>
         </div>
