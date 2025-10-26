@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { AdminDatabase } from '@/lib/admin-database';
+import { restaurants } from '@/data/restaurants';
 
 // Fetch restaurants from Supabase
 let allRestaurants = [];
@@ -21,6 +22,8 @@ try {
 <BaseLayout
   title="Featured Restaurants Management | Date Night Restaurants"
   description="Manage which restaurants appear in the featured section"
+  noIndex={true}
+  canonical="https://datenightrestaurants.com/admin/featured"
 >
   <div class="admin-dashboard">
     <header class="admin-header">
@@ -358,7 +361,7 @@ try {
 
 <script is:inline>
   // Featured restaurants management - limited to 4 restaurants
-  let featuredRestaurants = new Set(['providence', 'r-publique-caf-bakery-r-publique-restaurant', 'spago-beverly-hills', 'the-little-door']);
+  let featuredRestaurants = new Set(['cabra-los-angeles', 'otium', 'vibrato-grill-jazz', 'the-raymond-1886']);
 
   // Search and filter functionality
   const searchInput = document.getElementById('search-input');

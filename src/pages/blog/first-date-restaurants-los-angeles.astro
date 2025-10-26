@@ -1,0 +1,359 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getRandomRestaurants } from '@/data/restaurants';
+
+const restaurants = getRandomRestaurants(6);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "First Date Restaurants in Los Angeles: Perfect Spots for Memorable First Encounters",
+  "description": "Discover the best first date restaurants in Los Angeles. From casual coffee shops to upscale dining, find the perfect venue to make a great first impression and create lasting memories.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-12-08",
+  "dateModified": "2024-12-08",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/first-date-restaurants-los-angeles"
+  },
+  "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=630&fit=crop",
+  "articleSection": "Dating Guides"
+};
+---
+
+<BaseLayout title="First Date Restaurants in Los Angeles: Perfect Spots for Memorable First Encounters" description="Discover the best first date restaurants in Los Angeles. From casual coffee shops to upscale dining, find the perfect venue to make a great first impression and create lasting memories." structuredData={structuredData}>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="2024-12-08">December 8, 2024</time>
+        <span class="reading-time">7 min read</span>
+      </div>
+      <h1 class="post-title">First Date Restaurants in Los Angeles: Perfect Spots for Memorable First Encounters</h1>
+      <p class="post-excerpt">Make a lasting first impression with our curated selection of Los Angeles restaurants perfect for first dates. From intimate cafes to trendy hotspots, find the ideal setting for your first encounter.</p>
+    </header>
+
+    <div class="post-content">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=600&fit=crop" alt="Couple on first date at romantic restaurant in Los Angeles" class="featured-image" loading="eager" />
+
+      <p>First dates can be nerve-wracking, but choosing the right restaurant can set the perfect tone for a memorable evening. Los Angeles offers an incredible variety of dining options, from intimate neighborhood gems to trendy hotspots that provide the ideal backdrop for getting to know someone special.</p>
+
+      <p>Whether you're looking for a casual coffee date or an upscale dining experience, the key is finding a place that's comfortable, conversation-friendly, and memorable enough to create a lasting impression.</p>
+
+      <h2>What Makes a Great First Date Restaurant?</h2>
+      
+      <p>Choosing the perfect first date restaurant involves considering several important factors:</p>
+      
+      <h3>Atmosphere</h3>
+      <p>The right ambiance can make or break a first date. Look for restaurants with:</p>
+      <ul>
+        <li><strong>Comfortable seating</strong> - Booths or tables that allow for intimate conversation</li>
+        <li><strong>Appropriate noise levels</strong> - Loud enough to feel comfortable, quiet enough to hear each other</li>
+        <li><strong>Good lighting</strong> - Not too bright, not too dim</li>
+        <li><strong>Interesting decor</strong> - Something to talk about if conversation lags</li>
+      </ul>
+
+      <h3>Location Considerations</h3>
+      <p>Location matters more than you might think:</p>
+      <ul>
+        <li><strong>Easy to find</strong> - Clear directions and good signage</li>
+        <li><strong>Safe neighborhood</strong> - Well-lit streets and good parking</li>
+        <li><strong>Convenient parking</strong> - Or easy access to public transportation</li>
+        <li><strong>Nearby activities</strong> - Options for extending the date if it goes well</li>
+      </ul>
+
+      <h2>Best First Date Restaurants by Vibe</h2>
+
+      <h3>Casual and Comfortable</h3>
+      <p>For those who prefer a relaxed, low-pressure environment:</p>
+      
+      <p><strong>Neighborhood Cafes:</strong> Cozy coffee shops with great food and comfortable seating. Perfect for afternoon dates or casual evening meetups.</p>
+      
+      <p><strong>Gastropubs:</strong> Trendy spots with excellent food and a wide selection of drinks. The casual atmosphere helps ease first-date nerves.</p>
+
+      <h3>Trendy and Modern</h3>
+      <p>For couples who want to be seen at the latest hotspots:</p>
+      
+      <p><strong>Rooftop Bars:</strong> Elevated dining with stunning city views. Perfect for sunset dates and Instagram-worthy moments.</p>
+      
+      <p><strong>Farm-to-Table Restaurants:</strong> Fresh, seasonal menus in stylish settings. Great for food lovers and those who appreciate quality ingredients.</p>
+
+      <h3>Intimate and Romantic</h3>
+      <p>For those seeking a more traditional romantic setting:</p>
+      
+      <p><strong>Wine Bars:</strong> Sophisticated atmospheres with extensive wine lists and small plates. Perfect for conversation and getting to know each other.</p>
+      
+      <p><strong>Fine Dining:</strong> Upscale restaurants with exceptional service and cuisine. Ideal for special occasions or when you want to make a strong impression.</p>
+
+      <h2>Neighborhood Guide for First Dates</h2>
+
+      <h3>West Hollywood</h3>
+      <p>Trendy and vibrant with plenty of dining options and nightlife. Great for couples who enjoy the energy of the city.</p>
+
+      <h3>Santa Monica</h3>
+      <p>Beachside charm with ocean views and a more relaxed atmosphere. Perfect for couples who love the beach and outdoor activities.</p>
+
+      <h3>Downtown LA</h3>
+      <p>Urban sophistication with rooftop dining and cultural attractions nearby. Ideal for couples who appreciate art, architecture, and city life.</p>
+
+      <h3>Beverly Hills</h3>
+      <p>Luxury and elegance with upscale dining options. Perfect for special occasions or when you want to impress.</p>
+
+      <h2>Budget-Friendly First Date Options</h2>
+
+      <p>Great first dates don't have to break the bank. Los Angeles offers excellent dining options at every price point:</p>
+
+      <h3>Under $30 per person</h3>
+      <ul>
+        <li>Casual cafes with excellent coffee and light meals</li>
+        <li>Food trucks and outdoor markets</li>
+        <li>Happy hour specials at trendy bars</li>
+        <li>Neighborhood restaurants with great value</li>
+      </ul>
+
+      <h3>$30-60 per person</h3>
+      <ul>
+        <li>Mid-range restaurants with quality food and service</li>
+        <li>Wine bars with small plates and drinks</li>
+        <li>Trendy gastropubs with creative menus</li>
+        <li>Ethnic restaurants with authentic cuisine</li>
+      </ul>
+
+      <h2>Conversation Starters and Date Extensions</h2>
+
+      <h3>Great Conversation Topics</h3>
+      <p>Choose restaurants that provide natural conversation starters:</p>
+      <ul>
+        <li><strong>Unique cuisine</strong> - Try something new together</li>
+        <li><strong>Interesting decor</strong> - Art, architecture, or design elements to discuss</li>
+        <li><strong>Live music</strong> - Entertainment that doesn't require constant conversation</li>
+        <li><strong>Open kitchens</strong> - Watch the chefs work and discuss the food</li>
+      </ul>
+
+      <h3>Extending Your Date</h3>
+      <p>Choose locations near other activities:</p>
+      <ul>
+        <li><strong>Nearby bars</strong> - For drinks after dinner</li>
+        <li><strong>Walking areas</strong> - Parks, beaches, or shopping districts</li>
+        <li><strong>Entertainment venues</strong> - Theaters, comedy clubs, or live music</li>
+        <li><strong>Cultural attractions</strong> - Museums, galleries, or historic sites</li>
+      </ul>
+
+      <h2>Special Dietary Considerations</h2>
+
+      <p>When planning your first date, consider dietary restrictions and preferences:</p>
+
+      <h3>Vegetarian and Vegan Options</h3>
+      <p>Los Angeles has an incredible variety of plant-based dining options, from casual cafes to upscale restaurants with creative vegan cuisine.</p>
+
+      <h3>Gluten-Free Friendly</h3>
+      <p>Many restaurants now offer extensive gluten-free menus, making it easy to accommodate dietary needs without compromising on taste or experience.</p>
+
+      <h3>Allergy Considerations</h3>
+      <p>Choose restaurants with knowledgeable staff who can accommodate food allergies and provide detailed ingredient information.</p>
+
+      <h2>Timing Your First Date</h2>
+
+      <h3>Best Times for First Dates</h3>
+      <ul>
+        <li><strong>Weekday evenings</strong> - Less crowded, more intimate atmosphere</li>
+        <li><strong>Weekend brunch</strong> - Casual, relaxed, and plenty of time to talk</li>
+        <li><strong>Early dinner</strong> - 6-7 PM allows for extended conversation</li>
+        <li><strong>Late afternoon</strong> - Coffee or drinks with the option to extend</li>
+      </ul>
+
+      <h3>Duration Considerations</h3>
+      <p>Plan for flexibility in your first date:</p>
+      <ul>
+        <li><strong>Short dates</strong> - Coffee or drinks (1-2 hours)</li>
+        <li><strong>Medium dates</strong> - Dinner (2-3 hours)</li>
+        <li><strong>Extended dates</strong> - Multiple activities (3+ hours)</li>
+      </ul>
+
+      <h2>Making Reservations</h2>
+
+      <h3>When to Book</h3>
+      <p>Popular restaurants book up quickly, especially on weekends. Reserve your table:</p>
+      <ul>
+        <li><strong>Weekdays</strong> - 3-5 days in advance</li>
+        <li><strong>Weekends</strong> - 1-2 weeks in advance</li>
+        <li><strong>Holiday periods</strong> - 2-3 weeks in advance</li>
+      </ul>
+
+      <h3>What to Request</h3>
+      <p>When making your reservation, consider asking for:</p>
+      <ul>
+        <li><strong>Quiet table</strong> - Away from the kitchen or high-traffic areas</li>
+        <li><strong>Booth seating</strong> - More intimate than table seating</li>
+        <li><strong>Window table</strong> - Natural light and interesting views</li>
+        <li><strong>Special occasions</strong> - Mention it's a first date for special attention</li>
+      </ul>
+
+      <h2>First Date Etiquette</h2>
+
+      <h3>Arrival and Greeting</h3>
+      <ul>
+        <li><strong>Be on time</strong> - Punctuality shows respect and interest</li>
+        <li><strong>Dress appropriately</strong> - Match the restaurant's dress code</li>
+        <li><strong>Be polite to staff</strong> - How you treat others says a lot about you</li>
+        <li><strong>Put away your phone</strong> - Give your date your full attention</li>
+      </ul>
+
+      <h3>During the Meal</h3>
+      <ul>
+        <li><strong>Share dishes</strong> - Great way to try new things together</li>
+        <li><strong>Ask questions</strong> - Show genuine interest in your date</li>
+        <li><strong>Listen actively</strong> - Pay attention to what they're saying</li>
+        <li><strong>Be yourself</strong> - Authenticity is more attractive than pretense</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+
+      <p>Choosing the right restaurant for your first date can set the stage for a memorable evening and potentially the beginning of something special. Los Angeles offers an incredible variety of dining options to suit every personality, budget, and preference.</p>
+
+      <p>Remember, the best first date restaurant is one where both of you feel comfortable, can have great conversation, and create lasting memories. Whether you choose a casual cafe or an upscale restaurant, the most important ingredient is genuine connection and mutual interest.</p>
+
+      <div class="related-posts">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="/blog/best-date-night-restaurants-west-hollywood">Best Date Night Restaurants in West Hollywood</a></li>
+          <li><a href="/blog/romantic-dinner-ideas-los-angeles">Romantic Dinner Ideas in Los Angeles</a></li>
+          <li><a href="/blog/los-angeles-date-night-guide">Complete Los Angeles Date Night Guide</a></li>
+          <li><a href="/blog/date-night-restaurants-by-price-los-angeles">Date Night Restaurants by Price in Los Angeles</a></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.7;
+  }
+
+  .post-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .post-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .post-excerpt {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+
+  .post-content h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin: 2.5rem 0 1rem 0;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 0.5rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.4rem;
+    color: #34495e;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .post-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .post-content li {
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+
+  .related-posts {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #e74c3c;
+  }
+
+  .related-posts h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-posts li {
+    margin-bottom: 0.8rem;
+  }
+
+  .related-posts a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .related-posts a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1rem;
+    }
+
+    .post-title {
+      font-size: 2rem;
+    }
+
+    .post-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

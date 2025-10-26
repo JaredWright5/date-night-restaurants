@@ -1,21 +1,33 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getRestaurantBySlug, getRestaurantsByNeighborhood } from '@/lib/supabase';
+import { getRestaurantBySlug, getRestaurantsByNeighborhood, getAllRestaurants } from '@/lib/supabase';
 
 export async function getStaticPaths() {
-  const { getAllRestaurants } = await import('@/lib/supabase');
-  const restaurants = await getAllRestaurants();
-  
-  return restaurants.map(restaurant => ({
-    params: { 
-      neighborhood: restaurant.neighborhood_slug,
-      restaurant: restaurant.slug 
-    }
-  }));
+  try {
+    const restaurants = await getAllRestaurants();
+    
+    return restaurants.map(restaurant => ({
+      params: { 
+        neighborhood: restaurant.neighborhood_slug,
+        restaurant: restaurant.slug 
+      }
+    }));
+  } catch (error) {
+    console.error('Error generating static paths:', error);
+    return [];
+  }
 }
 
 const { neighborhood, restaurant } = Astro.params;
-const restaurantData = await getRestaurantBySlug(neighborhood, restaurant);
+
+// Get restaurant data from Supabase
+let restaurantData;
+try {
+  restaurantData = await getRestaurantBySlug(neighborhood, restaurant);
+} catch (error) {
+  console.error('Error fetching restaurant:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
 
 if (!restaurantData) {
   return Astro.redirect('/restaurants/', 404);

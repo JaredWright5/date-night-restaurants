@@ -1,0 +1,629 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Filter top-rated restaurants for Valentine's Day
+const valentinesRestaurants = restaurants
+  .filter(restaurant => restaurant.dateNightScore >= 85)
+  .sort((a, b) => b.dateNightScore - a.dateNightScore)
+  .slice(0, 12);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Valentine's Day Restaurants in Los Angeles 2024: Most Romantic Dining Spots",
+  "description": "Discover the most romantic Valentine's Day restaurants in Los Angeles for 2024. From intimate fine dining to rooftop celebrations, find the perfect spot for your special evening.",
+  "author": {
+    "@type": "Person",
+    "name": "Date Night Experts"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/valentines-day-restaurants-los-angeles-2024/"
+  },
+  "image": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&h=630&fit=crop"
+};
+---
+
+<BaseLayout
+  title="Valentine's Day Restaurants in Los Angeles 2024: Most Romantic Dining Spots"
+  description="Discover the most romantic Valentine's Day restaurants in Los Angeles for 2024. From intimate fine dining to rooftop celebrations, find the perfect spot for your special evening."
+  keywords={['Valentine\'s Day restaurants Los Angeles', 'romantic Valentine\'s Day dinner LA', 'Valentine\'s Day 2024 Los Angeles', 'romantic restaurants Valentine\'s Day', 'Valentine\'s Day date night LA']}
+  canonical="https://datenightrestaurants.com/blog/valentines-day-restaurants-los-angeles-2024/"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="/">Home</a> / 
+          <a href="/blog/">Blog</a> / 
+          <span>Valentine's Day 2024 Guide</span>
+        </div>
+        
+        <h1>Valentine's Day Restaurants in Los Angeles 2024: Most Romantic Dining Spots</h1>
+        
+        <div class="post-meta">
+          <time datetime="2024-01-15">January 15, 2024</time>
+          <span class="author">by Date Night Experts</span>
+          <span class="category">Valentine's Day Guide</span>
+        </div>
+        
+        <div class="post-excerpt">
+          <p>Make Valentine's Day 2024 unforgettable with our curated selection of Los Angeles' most romantic restaurants. From intimate fine dining to breathtaking rooftop views, discover the perfect spot for your special evening.</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <div class="main-content">
+            <section class="intro-section">
+              <h2>Plan the Perfect Valentine's Day 2024 in Los Angeles</h2>
+              <p>Valentine's Day is the most romantic day of the year, and Los Angeles offers an incredible array of dining options to make your celebration unforgettable. From intimate candlelit dinners to stunning rooftop celebrations, LA's restaurant scene provides the perfect backdrop for romance.</p>
+              
+              <p>Whether you're planning a first Valentine's Day together or celebrating decades of love, our carefully curated selection of restaurants ensures you'll find the ideal setting for your special evening. Many restaurants offer special Valentine's Day menus, wine pairings, and romantic ambiance that transforms an ordinary dinner into an extraordinary experience.</p>
+            </section>
+
+            <section class="restaurants-section">
+              <h2>Most Romantic Valentine's Day Restaurants in LA</h2>
+              
+              {valentinesRestaurants.map((restaurant, index) => (
+                <div class="restaurant-feature">
+                  <div class="restaurant-header">
+                    <h3>{index + 1}. {restaurant.name}</h3>
+                    <div class="restaurant-rating">
+                      <div class="stars">★★★★★</div>
+                      <span class="rating">{restaurant.rating}/5</span>
+                      <span class="date-score">Date Score: {restaurant.dateNightScore}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="restaurant-details">
+                    <p class="restaurant-description">
+                      {restaurant.description || `Experience exceptional ${restaurant.cuisineTypes.join(', ')} cuisine in a romantic setting perfect for Valentine's Day. This restaurant offers an intimate atmosphere and exceptional service for your special evening.`}
+                    </p>
+                    
+                    <div class="restaurant-info">
+                      <div class="info-item">
+                        <strong>Address:</strong> {restaurant.address}
+                      </div>
+                      <div class="info-item">
+                        <strong>Phone:</strong> {restaurant.phone}
+                      </div>
+                      <div class="info-item">
+                        <strong>Price Level:</strong> {'$'.repeat(restaurant.priceLevel)}
+                      </div>
+                      <div class="info-item">
+                        <strong>Cuisine:</strong> {restaurant.cuisineTypes.join(', ')}
+                      </div>
+                    </div>
+                    
+                    <div class="valentines-special">
+                      <h4>💕 Valentine's Day Special Features:</h4>
+                      <ul>
+                        <li>Special Valentine's Day menu with wine pairings</li>
+                        <li>Romantic candlelit ambiance</li>
+                        <li>Live music or entertainment</li>
+                        <li>Complimentary dessert for couples</li>
+                        <li>Valet parking available</li>
+                      </ul>
+                    </div>
+                    
+                    <div class="restaurant-actions">
+                      <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Restaurant Details</a>
+                      {restaurant.website && (
+                        <a href={restaurant.website} target="_blank" rel="noopener" class="btn btn-secondary">Make Reservation</a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </section>
+
+            <section class="valentines-tips">
+              <h2>Valentine's Day Dining Tips for 2024</h2>
+              
+              <div class="tips-grid">
+                <div class="tip-card">
+                  <h3>📅 Book Early</h3>
+                  <p>Valentine's Day is the busiest restaurant night of the year. Make reservations at least 2-3 weeks in advance for the best restaurants and time slots.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>💐 Special Menus</h3>
+                  <p>Many restaurants offer special Valentine's Day prix fixe menus with wine pairings. These often provide the best value and most romantic experience.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>🕯️ Ambiance Matters</h3>
+                  <p>Look for restaurants with dim lighting, candles, and romantic decor. Consider rooftop venues for city views or intimate dining rooms for privacy.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>🍷 Wine Pairings</h3>
+                  <p>Enhance your romantic dinner with wine pairings. Many restaurants offer sommelier-selected wines to complement your meal.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="valentines-ideas">
+              <h2>Valentine's Day Date Ideas in Los Angeles</h2>
+              
+              <div class="ideas-grid">
+                <div class="idea-card">
+                  <h3>🌅 Sunset Dinner</h3>
+                  <p>Book a 6:30-7:00 PM reservation to catch the sunset during your meal. Rooftop restaurants offer the best views of LA's skyline.</p>
+                </div>
+                
+                <div class="idea-card">
+                  <h3>🍽️ Multi-Course Experience</h3>
+                  <p>Choose restaurants offering 5-7 course tasting menus for an extended romantic experience. These often include wine pairings and take 2-3 hours.</p>
+                </div>
+                
+                <div class="idea-card">
+                  <h3>🎵 Live Music</h3>
+                  <p>Many restaurants feature live music on Valentine's Day. Look for venues with jazz, acoustic, or classical performances.</p>
+                </div>
+                
+                <div class="idea-card">
+                  <h3>🌊 Ocean Views</h3>
+                  <p>Consider restaurants in Santa Monica, Malibu, or Venice for romantic ocean views during your Valentine's Day dinner.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="price-ranges">
+              <h2>Valentine's Day Restaurants by Price Range</h2>
+              
+              <div class="price-grid">
+                <div class="price-card">
+                  <h3>💚 Budget-Friendly ($50-100 per person)</h3>
+                  <p>Romantic restaurants that won't break the bank but still offer special Valentine's Day ambiance and menu options.</p>
+                  <ul>
+                    <li>Intimate neighborhood restaurants</li>
+                    <li>Wine bars with small plates</li>
+                    <li>Cozy cafes with special menus</li>
+                  </ul>
+                </div>
+                
+                <div class="price-card">
+                  <h3>💛 Mid-Range ($100-200 per person)</h3>
+                  <p>Upscale restaurants with special Valentine's Day menus, wine pairings, and romantic atmosphere.</p>
+                  <ul>
+                    <li>Fine dining establishments</li>
+                    <li>Rooftop restaurants with views</li>
+                    <li>Celebrity chef restaurants</li>
+                  </ul>
+                </div>
+                
+                <div class="price-card">
+                  <h3>❤️ Luxury ($200+ per person)</h3>
+                  <p>Michelin-starred restaurants and ultra-luxury dining experiences for the most special Valentine's Day celebration.</p>
+                  <ul>
+                    <li>Michelin-starred fine dining</li>
+                    <li>Private dining rooms</li>
+                    <li>Exclusive chef's table experiences</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="conclusion">
+              <h2>Make Valentine's Day 2024 Unforgettable</h2>
+              <p>Los Angeles offers an incredible variety of romantic dining options for Valentine's Day 2024. Whether you prefer intimate fine dining, stunning rooftop views, or cozy neighborhood gems, you'll find the perfect restaurant to celebrate your love.</p>
+              
+              <p>Remember to book early, consider special Valentine's Day menus, and don't forget to make the evening even more special with flowers, a thoughtful gift, or a romantic activity after dinner. LA's vibrant restaurant scene ensures your Valentine's Day will be a memorable celebration of love.</p>
+            </section>
+          </div>
+          
+          <aside class="sidebar">
+            <div class="related-posts">
+              <h3>Related Articles</h3>
+              <ul>
+                <li><a href="/blog/romantic-dinner-ideas-los-angeles/">Romantic Dinner Ideas</a></li>
+                <li><a href="/blog/anniversary-dinner-ideas-los-angeles/">Anniversary Dinner Ideas</a></li>
+                <li><a href="/blog/best-date-night-restaurants-los-angeles/">Best Date Night Restaurants</a></li>
+                <li><a href="/blog/romantic-restaurants-santa-monica-ocean-view/">Santa Monica Ocean View</a></li>
+              </ul>
+            </div>
+            
+            <div class="newsletter-signup">
+              <h3>Get More Romantic Ideas</h3>
+              <p>Subscribe for the latest restaurant recommendations and romantic dining tips.</p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required />
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    background: white;
+    min-height: 100vh;
+  }
+
+  .post-header {
+    background: linear-gradient(135deg, #E91E63 0%, #F06292 50%, #F8BBD9 100%);
+    color: white;
+    padding: 4rem 0 3rem;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .breadcrumb a {
+    color: #F8BBD9;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .post-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .post-meta .author {
+    color: #F8BBD9;
+  }
+
+  .post-meta .category {
+    background: rgba(248, 187, 217, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+  }
+
+  .post-excerpt {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 800px;
+  }
+
+  .post-content {
+    padding: 4rem 0;
+  }
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .main-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .main-content h2 {
+    font-size: 2.2rem;
+    margin: 3rem 0 1.5rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .main-content h3 {
+    font-size: 1.6rem;
+    margin: 2rem 0 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .main-content p {
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+
+  .restaurant-feature {
+    background: #FDF2F8;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #E91E63;
+  }
+
+  .restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .restaurant-header h3 {
+    margin: 0;
+    color: #2C2C2C;
+    font-size: 1.4rem;
+  }
+
+  .restaurant-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .stars {
+    color: #E91E63;
+    font-size: 1.1rem;
+  }
+
+  .date-score {
+    background: #E91E63;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+  }
+
+  .restaurant-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-item {
+    font-size: 0.95rem;
+    color: #666;
+  }
+
+  .valentines-special {
+    background: rgba(233, 30, 99, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #E91E63;
+  }
+
+  .valentines-special h4 {
+    margin: 0 0 1rem;
+    color: #E91E63;
+    font-size: 1.1rem;
+  }
+
+  .valentines-special ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .valentines-special li {
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+
+  .restaurant-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: #E91E63;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #C2185B;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #E91E63;
+    border: 2px solid #E91E63;
+  }
+
+  .btn-secondary:hover {
+    background: #E91E63;
+    color: white;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .tip-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-top: 3px solid #E91E63;
+  }
+
+  .tip-card h3 {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+    color: #2C2C2C;
+  }
+
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .idea-card {
+    background: #FDF2F8;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #E91E63;
+  }
+
+  .idea-card h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+  }
+
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .price-card {
+    background: #FDF2F8;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #E91E63;
+  }
+
+  .price-card h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+  }
+
+  .price-card ul {
+    margin: 1rem 0 0;
+    padding-left: 1.5rem;
+  }
+
+  .price-card li {
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+
+  .sidebar {
+    background: #FDF2F8;
+    padding: 2rem;
+    border-radius: 15px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .sidebar h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+    font-size: 1.3rem;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-posts li {
+    margin-bottom: 0.75rem;
+  }
+
+  .related-posts a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .related-posts a:hover {
+    color: #E91E63;
+  }
+
+  .newsletter-signup {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .newsletter-form input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form button {
+    padding: 0.75rem;
+    background: #E91E63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .content-wrapper {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .post-header h1 {
+      font-size: 2.2rem;
+    }
+
+    .restaurant-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .restaurant-actions {
+      flex-direction: column;
+    }
+
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ideas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .price-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,375 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getRandomRestaurants } from '@/data/restaurants';
+
+const restaurants = getRandomRestaurants(6);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Anniversary Restaurants in Los Angeles: Celebrating Love with Memorable Dining",
+  "description": "Discover the most romantic anniversary restaurants in Los Angeles. From intimate fine dining to rooftop celebrations, find the perfect venue to celebrate your special milestone.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-11-25",
+  "dateModified": "2024-11-25",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/anniversary-restaurants-los-angeles"
+  },
+  "image": "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1200&h=630&fit=crop",
+  "articleSection": "Special Occasions"
+};
+---
+
+<BaseLayout title="Anniversary Restaurants in Los Angeles: Celebrating Love with Memorable Dining" description="Discover the most romantic anniversary restaurants in Los Angeles. From intimate fine dining to rooftop celebrations, find the perfect venue to celebrate your special milestone." structuredData={structuredData}>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="2024-11-25">November 25, 2024</time>
+        <span class="reading-time">9 min read</span>
+      </div>
+      <h1 class="post-title">Anniversary Restaurants in Los Angeles: Celebrating Love with Memorable Dining</h1>
+      <p class="post-excerpt">Celebrate your special milestone with Los Angeles' most romantic anniversary restaurants. From intimate fine dining to rooftop celebrations, create unforgettable memories at these exceptional venues.</p>
+    </header>
+
+    <div class="post-content">
+      <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1200&h=600&fit=crop" alt="Romantic anniversary dinner with candlelight in Los Angeles" class="featured-image" loading="eager" />
+
+      <p>Anniversaries are special milestones that deserve to be celebrated in style. Los Angeles offers an incredible array of romantic restaurants perfect for commemorating your love story, whether you're celebrating your first year together or your golden anniversary.</p>
+
+      <p>From intimate candlelit dinners to rooftop celebrations with city views, the perfect anniversary restaurant should reflect your relationship and create memories that will last a lifetime.</p>
+
+      <h2>What Makes a Perfect Anniversary Restaurant?</h2>
+      
+      <p>Choosing the right restaurant for your anniversary involves considering several key factors:</p>
+      
+      <h3>Romantic Atmosphere</h3>
+      <p>The perfect anniversary restaurant should provide:</p>
+      <ul>
+        <li><strong>Intimate lighting</strong> - Candlelight or soft, warm illumination</li>
+        <li><strong>Quiet ambiance</strong> - Peaceful enough for meaningful conversation</li>
+        <li><strong>Beautiful decor</strong> - Elegant surroundings that enhance the mood</li>
+        <li><strong>Comfortable seating</strong> - Cozy booths or tables for two</li>
+      </ul>
+
+      <h3>Exceptional Service</h3>
+      <p>Anniversary dining requires attentive, professional service:</p>
+      <ul>
+        <li><strong>Knowledgeable staff</strong> - Well-trained servers who understand special occasions</li>
+        <li><strong>Personal touches</strong> - Special attention to dietary preferences and requests</li>
+        <li><strong>Timing</strong> - Well-paced service that doesn't rush your evening</li>
+        <li><strong>Discretion</strong> - Professional service that respects your privacy</li>
+      </ul>
+
+      <h2>Anniversary Restaurants by Occasion</h2>
+
+      <h3>First Anniversary</h3>
+      <p>Celebrate your first year together with restaurants that offer:</p>
+      <ul>
+        <li><strong>Memorable experiences</strong> - Unique dining concepts or stunning views</li>
+        <li><strong>Photo-worthy settings</strong> - Beautiful backdrops for anniversary photos</li>
+        <li><strong>Special touches</strong> - Complimentary desserts or champagne</li>
+        <li><strong>Flexible timing</strong> - Options for both early and late dining</li>
+      </ul>
+
+      <h3>Milestone Anniversaries (5, 10, 25+ years)</h3>
+      <p>For significant milestones, consider:</p>
+      <ul>
+        <li><strong>Fine dining establishments</strong> - Exceptional cuisine and service</li>
+        <li><strong>Private dining rooms</strong> - Intimate spaces for special celebrations</li>
+        <li><strong>Wine pairings</strong> - Sommelier-selected wines to complement your meal</li>
+        <li><strong>Custom menus</strong> - Personalized dining experiences</li>
+      </ul>
+
+      <h2>Neighborhood Guide for Anniversary Dining</h2>
+
+      <h3>Beverly Hills</h3>
+      <p>Luxury and elegance define Beverly Hills' dining scene. Perfect for couples who appreciate fine dining, exceptional service, and sophisticated atmospheres.</p>
+
+      <h3>Santa Monica</h3>
+      <p>Ocean views and beachside charm create romantic backdrops for anniversary celebrations. Ideal for couples who love the water and outdoor dining.</p>
+
+      <h3>West Hollywood</h3>
+      <p>Trendy and vibrant with rooftop dining and modern cuisine. Great for couples who enjoy contemporary dining and city views.</p>
+
+      <h3>Downtown LA</h3>
+      <p>Urban sophistication with rooftop restaurants and cultural attractions. Perfect for couples who appreciate art, architecture, and city life.</p>
+
+      <h2>Special Anniversary Packages and Services</h2>
+
+      <h3>Romantic Packages</h3>
+      <p>Many restaurants offer special anniversary packages including:</p>
+      <ul>
+        <li><strong>Champagne service</strong> - Complimentary or premium champagne options</li>
+        <li><strong>Dessert presentations</strong> - Special anniversary desserts with personalized touches</li>
+        <li><strong>Flower arrangements</strong> - Fresh flowers for your table</li>
+        <li><strong>Photography services</strong> - Professional photos of your celebration</li>
+      </ul>
+
+      <h3>Private Dining Options</h3>
+      <p>For intimate celebrations, consider:</p>
+      <ul>
+        <li><strong>Private dining rooms</strong> - Exclusive spaces for your celebration</li>
+        <li><strong>Chef's table experiences</strong> - Interactive dining with the culinary team</li>
+        <li><strong>Custom menus</strong> - Personalized dishes based on your preferences</li>
+        <li><strong>Wine tastings</strong> - Sommelier-led wine experiences</li>
+      </ul>
+
+      <h2>Seasonal Anniversary Considerations</h2>
+
+      <h3>Spring Anniversaries (March-May)</h3>
+      <p>Perfect weather for outdoor dining and garden settings. Consider restaurants with:</p>
+      <ul>
+        <li><strong>Outdoor patios</strong> - Fresh air and natural beauty</li>
+        <li><strong>Garden settings</strong> - Blooming flowers and lush greenery</li>
+        <li><strong>Rooftop dining</strong> - Comfortable temperatures and clear views</li>
+        <li><strong>Seasonal menus</strong> - Fresh, spring ingredients</li>
+      </ul>
+
+      <h3>Summer Anniversaries (June-August)</h3>
+      <p>Long days and warm evenings perfect for extended celebrations. Look for:</p>
+      <ul>
+        <li><strong>Sunset dining</strong> - Restaurants with west-facing views</li>
+        <li><strong>Outdoor seating</strong> - Patios and terraces with cooling systems</li>
+        <li><strong>Beachside venues</strong> - Ocean views and sea breezes</li>
+        <li><strong>Late-night options</strong> - Extended dining hours for summer evenings</li>
+      </ul>
+
+      <h3>Fall Anniversaries (September-November)</h3>
+      <p>Comfortable temperatures and beautiful lighting. Consider:</p>
+      <ul>
+        <li><strong>Cozy interiors</strong> - Warm, inviting atmospheres</li>
+        <li><strong>Fireplace dining</strong> - Intimate settings with fire features</li>
+        <li><strong>Seasonal cuisine</strong> - Fall ingredients and comfort foods</li>
+        <li><strong>Wine-focused menus</strong> - Perfect for wine lovers</li>
+      </ul>
+
+      <h3>Winter Anniversaries (December-February)</h3>
+      <p>Intimate and romantic with holiday charm. Look for:</p>
+      <ul>
+        <li><strong>Holiday decorations</strong> - Festive atmospheres</li>
+        <li><strong>Indoor dining</strong> - Comfortable, climate-controlled spaces</li>
+        <li><strong>Special holiday menus</strong> - Seasonal specialties and treats</li>
+        <li><strong>Private dining</strong> - Intimate spaces away from crowds</li>
+      </ul>
+
+      <h2>Budget Considerations for Anniversary Dining</h2>
+
+      <h3>Luxury Celebrations ($200+ per couple)</h3>
+      <p>For special milestone anniversaries, consider:</p>
+      <ul>
+        <li><strong>Michelin-starred restaurants</strong> - Exceptional cuisine and service</li>
+        <li><strong>Private dining experiences</strong> - Exclusive spaces and personalized service</li>
+        <li><strong>Wine pairings</strong> - Sommelier-selected wines</li>
+        <li><strong>Special packages</strong> - All-inclusive anniversary experiences</li>
+      </ul>
+
+      <h3>Mid-Range Celebrations ($100-200 per couple)</h3>
+      <p>Excellent options for memorable celebrations:</p>
+      <ul>
+        <li><strong>Upscale restaurants</strong> - Quality food and service</li>
+        <li><strong>Rooftop dining</strong> - Stunning views with great atmosphere</li>
+        <li><strong>Wine bars</strong> - Sophisticated settings with excellent wine lists</li>
+        <li><strong>Special occasion restaurants</strong> - Venues that excel at celebrations</li>
+      </ul>
+
+      <h3>Budget-Friendly Celebrations ($50-100 per couple)</h3>
+      <p>Romantic options that don't break the bank:</p>
+      <ul>
+        <li><strong>Neighborhood gems</strong> - Local favorites with great atmosphere</li>
+        <li><strong>Happy hour specials</strong> - Quality dining at reduced prices</li>
+        <li><strong>Brunch celebrations</strong> - Delicious food in relaxed settings</li>
+        <li><strong>Ethnic restaurants</strong> - Authentic cuisine in romantic settings</li>
+      </ul>
+
+      <h2>Making Your Anniversary Reservation</h2>
+
+      <h3>When to Book</h3>
+      <p>Popular restaurants book up quickly for special occasions:</p>
+      <ul>
+        <li><strong>Weekend anniversaries</strong> - Book 2-3 weeks in advance</li>
+        <li><strong>Holiday periods</strong> - Book 4-6 weeks in advance</li>
+        <li><strong>Special requests</strong> - Book 3-4 weeks in advance</li>
+        <li><strong>Private dining</strong> - Book 4-8 weeks in advance</li>
+      </ul>
+
+      <h3>What to Request</h3>
+      <p>When making your reservation, consider asking for:</p>
+      <ul>
+        <li><strong>Special occasion mention</strong> - Let them know it's your anniversary</li>
+        <li><strong>Preferred seating</strong> - Window tables, booths, or quiet areas</li>
+        <li><strong>Dietary restrictions</strong> - Any allergies or preferences</li>
+        <li><strong>Special touches</strong> - Flowers, champagne, or dessert</li>
+      </ul>
+
+      <h2>Creating Memorable Anniversary Experiences</h2>
+
+      <h3>Personal Touches</h3>
+      <p>Make your anniversary dinner special with:</p>
+      <ul>
+        <li><strong>Custom menus</strong> - Personalized dishes or wine selections</li>
+        <li><strong>Special decorations</strong> - Flowers, candles, or personal items</li>
+        <li><strong>Photography</strong> - Professional photos or selfie opportunities</li>
+        <li><strong>Keepsakes</strong> - Menu cards, wine corks, or other mementos</li>
+      </ul>
+
+      <h3>Extending Your Celebration</h3>
+      <p>Plan activities before or after dinner:</p>
+      <ul>
+        <li><strong>Pre-dinner drinks</strong> - Cocktails at a nearby bar</li>
+        <li><strong>Post-dinner activities</strong> - Walking, dancing, or entertainment</li>
+        <li><strong>Weekend getaways</strong> - Extended celebrations</li>
+        <li><strong>Cultural experiences</strong> - Museums, theaters, or galleries</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+
+      <p>Your anniversary is a special milestone that deserves to be celebrated in a memorable way. Los Angeles offers an incredible variety of romantic restaurants perfect for commemorating your love story, from intimate fine dining to rooftop celebrations with stunning city views.</p>
+
+      <p>Whether you're celebrating your first anniversary or your golden anniversary, the perfect restaurant will provide the ideal setting for creating new memories and honoring the journey you've shared together. Choose a venue that reflects your relationship and creates an experience you'll treasure for years to come.</p>
+
+      <div class="related-posts">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="/blog/valentines-day-restaurants-los-angeles-2024">Valentine's Day Restaurants in Los Angeles 2024</a></li>
+          <li><a href="/blog/romantic-dinner-ideas-los-angeles">Romantic Dinner Ideas in Los Angeles</a></li>
+          <li><a href="/blog/best-french-restaurants-los-angeles-date-night">Best French Restaurants in Los Angeles for Date Night</a></li>
+          <li><a href="/blog/best-date-night-restaurants-beverly-hills">Best Date Night Restaurants in Beverly Hills</a></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.7;
+  }
+
+  .post-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .post-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .post-excerpt {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+
+  .post-content h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin: 2.5rem 0 1rem 0;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 0.5rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.4rem;
+    color: #34495e;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .post-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .post-content li {
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+
+  .related-posts {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #e74c3c;
+  }
+
+  .related-posts h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-posts li {
+    margin-bottom: 0.8rem;
+  }
+
+  .related-posts a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .related-posts a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1rem;
+    }
+
+    .post-title {
+      font-size: 2rem;
+    }
+
+    .post-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

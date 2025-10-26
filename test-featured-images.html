@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Featured Images</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .image-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+        .image-item { border: 1px solid #ccc; padding: 10px; border-radius: 8px; }
+        .image-item img { max-width: 300px; height: 200px; object-fit: cover; display: block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Test Featured Images from API</h1>
+    <p>This page fetches restaurant data from `/api/restaurants` and displays the first photo for each of the default featured restaurants.</p>
+    <div id="image-display" class="image-container">
+        Loading images...
+    </div>
+
+    <script>
+        async function fetchRestaurantData() {
+            try {
+                const response = await fetch('/api/restaurants');
+                const data = await response.json();
+                if (data.error) {
+                    console.warn('API error:', data.error);
+                    return {};
+                }
+                const restaurantLookup = {};
+                data.restaurants.forEach(restaurant => {
+                    restaurantLookup[restaurant.slug] = restaurant;
+                });
+                return restaurantLookup;
+            } catch (error) {
+                console.error('Error fetching restaurant data from Supabase:', error);
+                return {};
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const imageDisplay = document.getElementById('image-display');
+                const defaultFeaturedSlugs = ['cabra-los-angeles', 'otium', 'vibrato-grill-jazz', 'the-raymond-1886'];
+
+            const restaurantData = await fetchRestaurantData();
+
+            if (Object.keys(restaurantData).length === 0) {
+                imageDisplay.innerHTML = '<p style="color: red;">Could not fetch restaurant data from API.</p>';
+                return;
+            }
+
+            imageDisplay.innerHTML = ''; // Clear loading message
+
+            defaultFeaturedSlugs.forEach(slug => {
+                const restaurant = restaurantData[slug];
+                if (restaurant && restaurant.photos && restaurant.photos.length > 0) {
+                    const imgUrl = restaurant.photos[0];
+                    const imgItem = document.createElement('div');
+                    imgItem.className = 'image-item';
+                    imgItem.innerHTML = `
+                        <h3>${restaurant.name}</h3>
+                        <p>Slug: ${restaurant.slug}</p>
+                        <img src="${imgUrl}" alt="${restaurant.name}">
+                        <p>Image URL: <a href="${imgUrl}" target="_blank">${imgUrl}</a></p>
+                    `;
+                    imageDisplay.appendChild(imgItem);
+                } else {
+                    const imgItem = document.createElement('div');
+                    imgItem.className = 'image-item';
+                    imgItem.innerHTML = `
+                        <h3>${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h3>
+                        <p style="color: orange;">No photo found or restaurant data missing.</p>
+                    `;
+                    imageDisplay.appendChild(imgItem);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

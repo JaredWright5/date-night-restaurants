@@ -1,0 +1,20 @@
+---
+// Test environment variables
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
+console.log('Environment variables:');
+console.log('SUPABASE_URL:', supabaseUrl);
+console.log('SUPABASE_KEY:', supabaseKey ? 'Present' : 'Missing');
+---
+
+<html>
+<head>
+  <title>Environment Test</title>
+</head>
+<body>
+  <h1>Environment Variables Test</h1>
+  <p>SUPABASE_URL: {supabaseUrl || 'Missing'}</p>
+  <p>SUPABASE_KEY: {supabaseKey ? 'Present' : 'Missing'}</p>
+</body>
+</html>

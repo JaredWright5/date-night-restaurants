@@ -17,18 +17,25 @@ if (neighborhoodFilter && neighborhoodFilter.trim() !== '') {
   return Astro.redirect(`/restaurants/${neighborhoodSlug}/`, 301);
 }
 
-// Get restaurants data
-let restaurants = await getAllRestaurants();
-
-// Apply filters if not a neighborhood redirect
-if (searchQuery || cuisineFilter || priceFilter || dateScoreFilter) {
-  const filters = {
-    cuisine: cuisineFilter || undefined,
-    priceLevel: priceFilter ? parseInt(priceFilter) : undefined,
-    minDateScore: dateScoreFilter ? parseInt(dateScoreFilter) : undefined,
-  };
-  
-  restaurants = await searchRestaurants(searchQuery, filters);
+// Get restaurants data from Supabase
+let restaurants;
+try {
+  if (searchQuery || cuisineFilter || priceFilter || dateScoreFilter || neighborhoodFilter) {
+    const filters = {
+      neighborhood: neighborhoodFilter || undefined,
+      cuisine: cuisineFilter || undefined,
+      priceLevel: priceFilter ? parseInt(priceFilter) : undefined,
+      minDateScore: dateScoreFilter ? parseInt(dateScoreFilter) : undefined,
+    };
+    
+    restaurants = await searchRestaurants(searchQuery, filters);
+  } else {
+    restaurants = await getAllRestaurants();
+  }
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  // Return 500 error page
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
 }
 
 // Get unique values for filters
@@ -447,3 +454,17 @@ const structuredData = {
     margin-bottom: 1rem;
   }
 </style>
+
+<script>
+  // Handle query parameter redirects on the client side
+  (function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const neighborhood = urlParams.get('neighborhood');
+    
+    if (neighborhood && neighborhood.trim() !== '') {
+      const neighborhoodSlug = neighborhood.toLowerCase().replace(/\s+/g, '-');
+      console.log('Client-side redirect to:', `/restaurants/${neighborhoodSlug}/`);
+      window.location.replace(`/restaurants/${neighborhoodSlug}/`);
+    }
+  })();
+</script>

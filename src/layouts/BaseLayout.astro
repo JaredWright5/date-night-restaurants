@@ -10,6 +10,7 @@ export interface Props {
   ogImage?: string;
   structuredData?: any;
   keywords?: string[];
+  noIndex?: boolean;
 }
 
 const { 
@@ -18,7 +19,8 @@ const {
   canonical, 
   ogImage = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop',
   structuredData,
-  keywords = ['date night restaurants', 'romantic dining', 'couples restaurants']
+  keywords = ['date night restaurants', 'romantic dining', 'couples restaurants'],
+  noIndex = false
 } = Astro.props;
 
 const siteTitle = 'Date Night Restaurants';
@@ -43,6 +45,9 @@ const canonicalURL = canonical || Astro.url.href;
     <meta name="keywords" content={keywords.join(', ')} />
     <link rel="canonical" href={canonicalURL} />
     
+    <!-- No Index for Admin Pages -->
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
@@ -63,13 +68,18 @@ const canonicalURL = canonical || Astro.url.href;
       <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     )}
     
-    <!-- Fonts -->
+    <!-- Fonts - Optimized Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Icons - Defer Loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /></noscript>
+    
+    <!-- Performance Optimizations -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#D4AF37" />
     
     <!-- Google Analytics -->
     <GoogleAnalytics />

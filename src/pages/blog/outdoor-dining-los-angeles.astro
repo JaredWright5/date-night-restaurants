@@ -1,0 +1,401 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getRandomRestaurants } from '@/data/restaurants';
+
+const restaurants = getRandomRestaurants(6);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Outdoor Dining in Los Angeles: Al Fresco Romance Under the California Sun",
+  "description": "Discover the best outdoor dining restaurants in Los Angeles. From rooftop terraces to garden patios, enjoy romantic al fresco dining with perfect weather year-round.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-11-18",
+  "dateModified": "2024-11-18",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/outdoor-dining-los-angeles"
+  },
+  "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop",
+  "articleSection": "Dining Experiences"
+};
+---
+
+<BaseLayout title="Outdoor Dining in Los Angeles: Al Fresco Romance Under the California Sun" description="Discover the best outdoor dining restaurants in Los Angeles. From rooftop terraces to garden patios, enjoy romantic al fresco dining with perfect weather year-round." structuredData={structuredData}>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="2024-11-18">November 18, 2024</time>
+        <span class="reading-time">8 min read</span>
+      </div>
+      <h1 class="post-title">Outdoor Dining in Los Angeles: Al Fresco Romance Under the California Sun</h1>
+      <p class="post-excerpt">Experience the magic of outdoor dining in Los Angeles. From rooftop terraces with city views to garden patios surrounded by nature, discover the most romantic al fresco dining experiences.</p>
+    </header>
+
+    <div class="post-content">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=600&fit=crop" alt="Outdoor dining patio with romantic atmosphere in Los Angeles" class="featured-image" loading="eager" />
+
+      <p>Los Angeles' year-round perfect weather makes it one of the best cities in the world for outdoor dining. From intimate garden patios to rooftop terraces with stunning city views, al fresco dining in LA offers romantic experiences that are hard to match anywhere else.</p>
+
+      <p>Whether you're looking for a casual brunch under the sun or an elegant dinner under the stars, the city's diverse outdoor dining scene provides the perfect backdrop for any romantic occasion.</p>
+
+      <h2>Why Outdoor Dining in Los Angeles is Special</h2>
+      
+      <p>Los Angeles offers unique advantages for outdoor dining that make it particularly romantic:</p>
+      
+      <h3>Perfect Climate</h3>
+      <p>With over 300 days of sunshine annually, LA provides ideal conditions for outdoor dining:</p>
+      <ul>
+        <li><strong>Mild winters</strong> - Comfortable temperatures year-round</li>
+        <li><strong>Low humidity</strong> - Pleasant conditions for extended outdoor meals</li>
+        <li><strong>Clear skies</strong> - Beautiful sunsets and starry nights</li>
+        <li><strong>Sea breezes</strong> - Natural cooling from the Pacific Ocean</li>
+      </ul>
+
+      <h3>Diverse Settings</h3>
+      <p>From beachside to mountainside, LA offers varied outdoor dining experiences:</p>
+      <ul>
+        <li><strong>Ocean views</strong> - Restaurants overlooking the Pacific</li>
+        <li><strong>City skylines</strong> - Rooftop dining with urban panoramas</li>
+        <li><strong>Garden settings</strong> - Lush patios surrounded by nature</li>
+        <li><strong>Mountain vistas</strong> - Elevated dining with valley views</li>
+      </ul>
+
+      <h2>Types of Outdoor Dining Experiences</h2>
+
+      <h3>Rooftop Dining</h3>
+      <p>Elevated dining with spectacular city views:</p>
+      <ul>
+        <li><strong>Downtown rooftops</strong> - Urban sophistication with skyline views</li>
+        <li><strong>Beachside rooftops</strong> - Ocean views with city backdrops</li>
+        <li><strong>Hillside terraces</strong> - Elevated dining with valley panoramas</li>
+        <li><strong>Hotel rooftops</strong> - Luxury dining with resort amenities</li>
+      </ul>
+
+      <h3>Garden Patios</h3>
+      <p>Intimate settings surrounded by nature:</p>
+      <ul>
+        <li><strong>Hidden courtyards</strong> - Secluded outdoor spaces</li>
+        <li><strong>Botanical gardens</strong> - Dining among beautiful plants</li>
+        <li><strong>Vineyard settings</strong> - Wine country dining experiences</li>
+        <li><strong>Urban gardens</strong> - Green spaces in the city</li>
+      </ul>
+
+      <h3>Beachside Dining</h3>
+      <p>Oceanfront restaurants with sea views:</p>
+      <ul>
+        <li><strong>Beachfront patios</strong> - Direct ocean access</li>
+        <li><strong>Pier dining</strong> - Elevated views over the water</li>
+        <li><strong>Cliffside restaurants</strong> - Dramatic ocean panoramas</li>
+        <li><strong>Marina dining</strong> - Views of boats and harbor activity</li>
+      </ul>
+
+      <h2>Neighborhood Guide for Outdoor Dining</h2>
+
+      <h3>Santa Monica</h3>
+      <p>Beachside charm with ocean views and sea breezes. Perfect for couples who love the water and want to combine dining with beach activities.</p>
+
+      <h3>West Hollywood</h3>
+      <p>Trendy rooftop dining with city views and vibrant nightlife. Great for couples who enjoy urban sophistication and people-watching.</p>
+
+      <h3>Beverly Hills</h3>
+      <p>Elegant garden patios and rooftop terraces with luxury amenities. Ideal for special occasions and upscale dining experiences.</p>
+
+      <h3>Downtown LA</h3>
+      <p>Urban rooftop dining with dramatic city views and industrial chic. Perfect for couples who appreciate modern architecture and city life.</p>
+
+      <h3>Pasadena</h3>
+      <p>Historic charm with garden patios and mountain views. Great for couples who prefer a more relaxed, suburban atmosphere.</p>
+
+      <h2>Seasonal Outdoor Dining</h2>
+
+      <h3>Spring (March-May)</h3>
+      <p>Perfect weather for outdoor dining with blooming flowers and comfortable temperatures:</p>
+      <ul>
+        <li><strong>Garden restaurants</strong> - Beautiful blooming flowers</li>
+        <li><strong>Rooftop dining</strong> - Comfortable temperatures and clear views</li>
+        <li><strong>Beachside patios</strong> - Pleasant sea breezes</li>
+        <li><strong>Mountain terraces</strong> - Clear views and fresh air</li>
+      </ul>
+
+      <h3>Summer (June-August)</h3>
+      <p>Long days and warm evenings perfect for extended outdoor dining:</p>
+      <ul>
+        <li><strong>Sunset dining</strong> - Restaurants with west-facing views</li>
+        <li><strong>Late-night patios</strong> - Extended outdoor dining hours</li>
+        <li><strong>Beachside venues</strong> - Ocean breezes and cooling systems</li>
+        <li><strong>Rooftop bars</strong> - Evening cocktails with city views</li>
+      </ul>
+
+      <h3>Fall (September-November)</h3>
+      <p>Comfortable temperatures and beautiful lighting for romantic dining:</p>
+      <ul>
+        <li><strong>Garden patios</strong> - Fall foliage and comfortable temperatures</li>
+        <li><strong>Rooftop dining</strong> - Clear skies and beautiful sunsets</li>
+        <li><strong>Beachside restaurants</strong> - Pleasant temperatures and sea breezes</li>
+        <li><strong>Mountain terraces</strong> - Clear views and fresh air</li>
+      </ul>
+
+      <h3>Winter (December-February)</h3>
+      <p>Mild temperatures and clear skies perfect for outdoor dining:</p>
+      <ul>
+        <li><strong>Heated patios</strong> - Comfortable dining with heating systems</li>
+        <li><strong>Rooftop dining</strong> - Clear views and comfortable temperatures</li>
+               <li><strong>Beachside venues</strong> - Pleasant sea breezes and ocean views</li>
+        <li><strong>Garden restaurants</strong> - Year-round outdoor dining with protection</li>
+      </ul>
+
+      <h2>What to Look for in Outdoor Dining</h2>
+
+      <h3>Weather Protection</h3>
+      <p>Choose restaurants with proper weather protection:</p>
+      <ul>
+        <li><strong>Retractable roofs</strong> - Protection from rain and excessive sun</li>
+        <li><strong>Heating systems</strong> - Comfort during cooler months</li>
+        <li><strong>Wind barriers</strong> - Protection from strong winds</li>
+        <li><strong>Shade options</strong> - Umbrellas or covered areas</li>
+      </ul>
+
+      <h3>Comfort Features</h3>
+      <p>Look for restaurants that prioritize comfort:</p>
+      <ul>
+        <li><strong>Comfortable seating</strong> - Cushioned chairs and proper tables</li>
+        <li><strong>Proper lighting</strong> - Adequate illumination for evening dining</li>
+        <li><strong>Sound management</strong> - Appropriate noise levels for conversation</li>
+        <li><strong>Privacy options</strong> - Booths or separated areas</li>
+      </ul>
+
+      <h2>Best Times for Outdoor Dining</h2>
+
+      <h3>Brunch (10 AM - 2 PM)</h3>
+      <p>Perfect for casual outdoor dining with morning sunshine and comfortable temperatures.</p>
+
+      <h3>Lunch (12 PM - 3 PM)</h3>
+      <p>Great for business lunches or casual dates with pleasant midday weather.</p>
+
+      <h3>Early Dinner (5 PM - 7 PM)</h3>
+      <p>Ideal for sunset dining with beautiful golden hour lighting.</p>
+
+      <h3>Late Dinner (8 PM - 10 PM)</h3>
+      <p>Perfect for romantic evening dining under the stars with city lights.</p>
+
+      <h2>Special Considerations for Outdoor Dining</h2>
+
+      <h3>Dress Code</h3>
+      <p>Outdoor dining often has more relaxed dress codes, but consider:</p>
+      <ul>
+        <li><strong>Layered clothing</strong> - Temperatures can change throughout the meal</li>
+        <li><strong>Comfortable shoes</strong> - Some outdoor areas have uneven surfaces</li>
+        <li><strong>Sun protection</strong> - Hats and sunglasses for daytime dining</li>
+        <li><strong>Light jackets</strong> - For cooler evening temperatures</li>
+      </ul>
+
+      <h3>Reservations</h3>
+      <p>Outdoor dining is popular, so plan ahead:</p>
+      <ul>
+        <li><strong>Weekend dining</strong> - Book 1-2 weeks in advance</li>
+        <li><strong>Peak season</strong> - Book 2-3 weeks in advance</li>
+        <li><strong>Special occasions</strong> - Book 3-4 weeks in advance</li>
+        <li><strong>Weather-dependent</strong> - Have indoor backup options</li>
+      </ul>
+
+      <h2>Photography and Social Media</h2>
+
+      <h3>Best Photo Opportunities</h3>
+      <p>Outdoor dining provides excellent photo opportunities:</p>
+      <ul>
+        <li><strong>Golden hour</strong> - Beautiful lighting during sunset</li>
+        <li><strong>City views</strong> - Stunning backdrops for photos</li>
+        <li><strong>Natural lighting</strong> - Flattering illumination for portraits</li>
+        <li><strong>Unique settings</strong> - Memorable backgrounds for special occasions</li>
+      </ul>
+
+      <h3>Social Media Tips</h3>
+      <p>Make the most of your outdoor dining experience:</p>
+      <ul>
+        <li><strong>Tag the restaurant</strong> - Share your experience</li>
+        <li><strong>Use location tags</strong> - Help others discover great spots</li>
+        <li><strong>Share the view</strong> - Post photos of the scenery</li>
+        <li><strong>Review your experience</strong> - Help future diners</li>
+      </ul>
+
+      <h2>Budget Considerations</h2>
+
+      <h3>Luxury Outdoor Dining ($100+ per person)</h3>
+      <p>High-end restaurants with exceptional outdoor settings:</p>
+      <ul>
+        <li><strong>Rooftop fine dining</strong> - Exceptional cuisine with city views</li>
+        <li><strong>Beachfront luxury</strong> - Ocean views with premium service</li>
+        <li><strong>Garden fine dining</strong> - Intimate settings with exceptional cuisine</li>
+        <li><strong>Hotel rooftops</strong> - Luxury amenities with stunning views</li>
+      </ul>
+
+      <h3>Mid-Range Outdoor Dining ($50-100 per person)</h3>
+      <p>Quality outdoor dining with great atmosphere:</p>
+      <ul>
+        <li><strong>Neighborhood gems</strong> - Local favorites with outdoor seating</li>
+        <li><strong>Rooftop bars</strong> - Trendy atmospheres with city views</li>
+        <li><strong>Garden restaurants</strong> - Beautiful settings with quality food</li>
+        <li><strong>Beachside venues</strong> - Ocean views with good food and service</li>
+      </ul>
+
+      <h3>Budget-Friendly Outdoor Dining ($30-50 per person)</h3>
+      <p>Great outdoor dining without breaking the bank:</p>
+      <ul>
+        <li><strong>Casual patios</strong> - Relaxed atmospheres with good food</li>
+        <li><strong>Food truck gatherings</strong> - Outdoor dining with variety</li>
+        <li><strong>Neighborhood cafes</strong> - Local favorites with outdoor seating</li>
+        <li><strong>Happy hour specials</strong> - Quality dining at reduced prices</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+
+      <p>Outdoor dining in Los Angeles offers some of the most romantic and memorable dining experiences in the world. With perfect weather year-round, diverse settings from beachside to rooftop, and an incredible variety of cuisines and atmospheres, there's an outdoor dining experience perfect for every couple and occasion.</p>
+
+      <p>Whether you're looking for a casual brunch under the sun or an elegant dinner under the stars, Los Angeles' outdoor dining scene provides the perfect backdrop for creating lasting memories with your special someone.</p>
+
+      <div class="related-posts">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="/blog/best-rooftop-restaurants-los-angeles-2024">Best Rooftop Restaurants in Los Angeles 2024</a></li>
+          <li><a href="/blog/romantic-restaurants-santa-monica-ocean-view">Romantic Restaurants in Santa Monica with Ocean Views</a></li>
+          <li><a href="/blog/summer-date-night-ideas-los-angeles">Summer Date Night Ideas in Los Angeles</a></li>
+          <li><a href="/blog/best-date-night-restaurants-west-hollywood">Best Date Night Restaurants in West Hollywood</a></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.7;
+  }
+
+  .post-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .post-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .post-excerpt {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .featured-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+
+  .post-content h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin: 2.5rem 0 1rem 0;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 0.5rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.4rem;
+    color: #34495e;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .post-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .post-content li {
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+
+  .related-posts {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #e74c3c;
+  }
+
+  .related-posts h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-posts li {
+    margin-bottom: 0.8rem;
+  }
+
+  .related-posts a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .related-posts a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1rem;
+    }
+
+    .post-title {
+      font-size: 2rem;
+    }
+
+    .post-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { AdminDatabase } from '@/lib/admin-database';
+import { restaurants } from '@/data/restaurants';
 
 // Fetch restaurants from Supabase
 let allRestaurants = [];
@@ -18,6 +19,8 @@ try {
 <BaseLayout
   title="All Restaurants | Admin Dashboard"
   description="Manage all restaurants in the database"
+  noIndex={true}
+  canonical="https://datenightrestaurants.com/admin/restaurants"
 >
   <div class="admin-dashboard">
     <header class="admin-header">

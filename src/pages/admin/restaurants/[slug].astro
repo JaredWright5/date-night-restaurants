@@ -1,26 +1,47 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { AdminDatabase } from '@/lib/admin-database';
+import { restaurants } from '@/data/restaurants';
 
 export async function getStaticPaths() {
   try {
-    const restaurants = await AdminDatabase.getRestaurants();
+    // Try to get restaurants from Supabase first
+    const supabaseRestaurants = await AdminDatabase.getRestaurants();
+    if (supabaseRestaurants && supabaseRestaurants.length > 0) {
+      return supabaseRestaurants.map(restaurant => ({
+        params: { slug: restaurant.slug },
+        props: { restaurant }
+      }));
+    }
+  } catch (error) {
+    console.error('Error fetching restaurants from Supabase:', error);
+  }
+  
+  // Fallback to JSON data if Supabase fails
+  try {
     return restaurants.map(restaurant => ({
       params: { slug: restaurant.slug },
       props: { restaurant }
     }));
   } catch (error) {
-    console.error('Error fetching restaurants for static paths:', error);
+    console.error('Error fetching restaurants from JSON:', error);
     return [];
   }
 }
 
 const { restaurant } = Astro.props;
+
+// Handle case where restaurant data is not available
+if (!restaurant) {
+  return new Response('Restaurant not found', { status: 404 });
+}
 ---
 
-<BaseLayout
+<BaseLayout 
   title={`Edit ${restaurant.name} | Admin Dashboard`}
-  description={`Edit restaurant details for ${restaurant.name}`}
+  description={`Edit restaurant details for ${restaurant.name}`} 
+  noIndex={true}
+  canonical={`https://datenightrestaurants.com/admin/restaurants/${restaurant.slug}/`}
 >
   <div class="admin-dashboard">
     <header class="admin-header">

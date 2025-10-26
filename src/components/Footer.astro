@@ -30,28 +30,30 @@ const cuisines = getAllCuisines();
         <h4>Quick Links</h4>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/cities/">Cities</a></li>
-          <li><a href="/cuisines/">Cuisines</a></li>
-          <li><a href="/about/">About</a></li>
+          <li><a href="/losangeles/">Los Angeles</a></li>
+          <li><a href="/neighborhoods/">Neighborhoods</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
       </div>
       
       <div class="footer-section">
-        <h4>Popular Cities</h4>
+        <h4>Popular Neighborhoods</h4>
         <ul>
-          {cities.filter(city => city.restaurantCount > 0).slice(0, 4).map(city => (
-            <li><a href={`/cities/${city.slug}/`}>{city.name}</a></li>
-          ))}
+          <li><a href="/neighborhoods/beverly-hills/restaurants/">Beverly Hills</a></li>
+          <li><a href="/neighborhoods/west-hollywood/restaurants/">West Hollywood</a></li>
+          <li><a href="/neighborhoods/santa-monica/restaurants/">Santa Monica</a></li>
+          <li><a href="/neighborhoods/hollywood/restaurants/">Hollywood</a></li>
         </ul>
       </div>
       
       <div class="footer-section">
-        <h4>Popular Cuisines</h4>
+        <h4>Popular Neighborhoods</h4>
         <ul>
-          {cuisines.filter(cuisine => cuisine.restaurantCount > 0).slice(0, 4).map(cuisine => (
-            <li><a href={`/cuisines/${cuisine.slug}/`}>{cuisine.name}</a></li>
-          ))}
+          <li><a href="/losangeles/restaurants/venice/">Venice Restaurants</a></li>
+          <li><a href="/losangeles/restaurants/santa-monica/">Santa Monica Restaurants</a></li>
+          <li><a href="/losangeles/restaurants/beverly-hills/">Beverly Hills Restaurants</a></li>
+          <li><a href="/losangeles/restaurants/west-hollywood/">West Hollywood Restaurants</a></li>
         </ul>
       </div>
     </div>

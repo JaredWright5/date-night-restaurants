@@ -56,11 +56,7 @@ export interface City {
 export async function getAllRestaurants(): Promise<Restaurant[]> {
   const { data, error } = await supabase
     .from('restaurants')
-    .select(`
-      *,
-      neighborhoods!inner(name, slug),
-      cities!inner(name, slug)
-    `)
+    .select('*')
     .eq('is_active', true)
     .order('date_night_score', { ascending: false });
 
@@ -79,13 +75,9 @@ export async function getAllRestaurants(): Promise<Restaurant[]> {
 export async function getRestaurantsByNeighborhood(neighborhoodSlug: string): Promise<Restaurant[]> {
   const { data, error } = await supabase
     .from('restaurants')
-    .select(`
-      *,
-      neighborhoods!inner(name, slug),
-      cities!inner(name, slug)
-    `)
+    .select('*')
     .eq('is_active', true)
-    .eq('neighborhoods.slug', neighborhoodSlug)
+    .eq('neighborhood_slug', neighborhoodSlug)
     .order('date_night_score', { ascending: false });
 
   if (error) {
@@ -99,13 +91,9 @@ export async function getRestaurantsByNeighborhood(neighborhoodSlug: string): Pr
 export async function getRestaurantBySlug(neighborhoodSlug: string, restaurantSlug: string): Promise<Restaurant | null> {
   const { data, error } = await supabase
     .from('restaurants')
-    .select(`
-      *,
-      neighborhoods!inner(name, slug),
-      cities!inner(name, slug)
-    `)
+    .select('*')
     .eq('is_active', true)
-    .eq('neighborhoods.slug', neighborhoodSlug)
+    .eq('neighborhood_slug', neighborhoodSlug)
     .eq('slug', restaurantSlug)
     .single();
 
@@ -120,11 +108,7 @@ export async function getRestaurantBySlug(neighborhoodSlug: string, restaurantSl
 export async function getAllNeighborhoods(): Promise<Neighborhood[]> {
   const { data, error } = await supabase
     .from('neighborhoods')
-    .select(`
-      *,
-      cities!inner(name, slug)
-    `)
-    .eq('is_active', true)
+    .select('*')
     .order('name');
 
   if (error) {
@@ -138,11 +122,7 @@ export async function getAllNeighborhoods(): Promise<Neighborhood[]> {
 export async function getNeighborhoodBySlug(slug: string): Promise<Neighborhood | null> {
   const { data, error } = await supabase
     .from('neighborhoods')
-    .select(`
-      *,
-      cities!inner(name, slug)
-    `)
-    .eq('is_active', true)
+    .select('*')
     .eq('slug', slug)
     .single();
 
@@ -162,11 +142,7 @@ export async function searchRestaurants(query: string, filters: {
 } = {}): Promise<Restaurant[]> {
   let supabaseQuery = supabase
     .from('restaurants')
-    .select(`
-      *,
-      neighborhoods!inner(name, slug),
-      cities!inner(name, slug)
-    `)
+    .select('*')
     .eq('is_active', true);
 
   // Text search
@@ -176,7 +152,9 @@ export async function searchRestaurants(query: string, filters: {
 
   // Neighborhood filter
   if (filters.neighborhood) {
-    supabaseQuery = supabaseQuery.eq('neighborhoods.slug', filters.neighborhood);
+    // Convert neighborhood name to slug format
+    const neighborhoodSlug = filters.neighborhood.toLowerCase().replace(/\s+/g, '-');
+    supabaseQuery = supabaseQuery.eq('neighborhood_slug', neighborhoodSlug);
   }
 
   // Cuisine filter

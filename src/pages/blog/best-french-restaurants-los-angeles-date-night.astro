@@ -1,0 +1,704 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Filter French restaurants
+const frenchRestaurants = restaurants.filter(restaurant => 
+  restaurant.cuisineTypes.some(cuisine => 
+    cuisine.toLowerCase().includes('french') || 
+    cuisine.toLowerCase().includes('bistro') ||
+    cuisine.toLowerCase().includes('brasserie')
+  )
+).sort((a, b) => b.dateNightScore - a.dateNightScore);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Best French Restaurants in Los Angeles for Date Night: Romantic Bistros & Fine Dining",
+  "description": "Discover the most romantic French restaurants in Los Angeles for date night. From intimate bistros to elegant fine dining, experience the romance of French cuisine in LA.",
+  "author": {
+    "@type": "Person",
+    "name": "Date Night Experts"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/best-french-restaurants-los-angeles-date-night/"
+  },
+  "image": "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1200&h=630&fit=crop"
+};
+---
+
+<BaseLayout
+  title="Best French Restaurants in Los Angeles for Date Night: Romantic Bistros & Fine Dining"
+  description="Discover the most romantic French restaurants in Los Angeles for date night. From intimate bistros to elegant fine dining, experience the romance of French cuisine in LA."
+  keywords={['French restaurants Los Angeles', 'romantic French restaurants LA', 'French bistros date night', 'French fine dining Los Angeles', 'French cuisine date night LA']}
+  canonical="https://datenightrestaurants.com/blog/best-french-restaurants-los-angeles-date-night/"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="/">Home</a> / 
+          <a href="/blog/">Blog</a> / 
+          <span>French Restaurants Guide</span>
+        </div>
+        
+        <h1>Best French Restaurants in Los Angeles for Date Night: Romantic Bistros & Fine Dining</h1>
+        
+        <div class="post-meta">
+          <time datetime="2024-01-15">January 15, 2024</time>
+          <span class="author">by Date Night Experts</span>
+          <span class="category">French Cuisine</span>
+        </div>
+        
+        <div class="post-excerpt">
+          <p>Experience the romance of French cuisine in Los Angeles. From intimate Parisian bistros to elegant fine dining establishments, discover the perfect French restaurant for your next romantic date night.</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <div class="main-content">
+            <section class="intro-section">
+              <h2>Why French Restaurants are Perfect for Date Night</h2>
+              <p>French cuisine embodies romance like no other culinary tradition. With its emphasis on fresh ingredients, elegant presentation, and leisurely dining, French restaurants provide the perfect setting for intimate conversations and romantic moments.</p>
+              
+              <p>Los Angeles boasts an impressive collection of French restaurants, from authentic Parisian bistros to innovative modern French establishments. Whether you're looking for a cozy neighborhood bistro or an elegant fine dining experience, LA's French restaurant scene offers something for every couple and budget.</p>
+            </section>
+
+            <section class="restaurants-section">
+              <h2>Top French Restaurants for Date Night in LA</h2>
+              
+              {frenchRestaurants.slice(0, 8).map((restaurant, index) => (
+                <div class="restaurant-feature">
+                  <div class="restaurant-header">
+                    <h3>{index + 1}. {restaurant.name}</h3>
+                    <div class="restaurant-rating">
+                      <div class="stars">★★★★★</div>
+                      <span class="rating">{restaurant.rating}/5</span>
+                      <span class="date-score">Date Score: {restaurant.dateNightScore}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="restaurant-details">
+                    <p class="restaurant-description">
+                      {restaurant.description || `Experience authentic French cuisine in a romantic setting perfect for date night. This restaurant offers traditional French dishes with modern flair and exceptional service.`}
+                    </p>
+                    
+                    <div class="restaurant-info">
+                      <div class="info-item">
+                        <strong>Address:</strong> {restaurant.address}
+                      </div>
+                      <div class="info-item">
+                        <strong>Phone:</strong> {restaurant.phone}
+                      </div>
+                      <div class="info-item">
+                        <strong>Price Level:</strong> {'$'.repeat(restaurant.priceLevel)}
+                      </div>
+                      <div class="info-item">
+                        <strong>Cuisine:</strong> {restaurant.cuisineTypes.join(', ')}
+                      </div>
+                    </div>
+                    
+                    <div class="french-specialties">
+                      <h4>🇫🇷 French Specialties:</h4>
+                      <ul>
+                        <li>Escargot with garlic butter</li>
+                        <li>Coq au vin with red wine</li>
+                        <li>Bouillabaisse seafood stew</li>
+                        <li>Crème brûlée dessert</li>
+                        <li>French wine selection</li>
+                      </ul>
+                    </div>
+                    
+                    <div class="restaurant-actions">
+                      <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Restaurant Details</a>
+                      {restaurant.website && (
+                        <a href={restaurant.website} target="_blank" rel="noopener" class="btn btn-secondary">Make Reservation</a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </section>
+
+            <section class="french-dining-types">
+              <h2>Types of French Dining in Los Angeles</h2>
+              
+              <div class="dining-types-grid">
+                <div class="dining-type-card">
+                  <h3>🥖 Traditional Bistros</h3>
+                  <p>Authentic Parisian-style bistros with cozy atmospheres, classic French dishes, and intimate seating perfect for romantic conversations.</p>
+                  <ul>
+                    <li>Casual yet elegant atmosphere</li>
+                    <li>Classic French comfort food</li>
+                    <li>Extensive wine lists</li>
+                    <li>Intimate seating arrangements</li>
+                  </ul>
+                </div>
+                
+                <div class="dining-type-card">
+                  <h3>🍽️ Fine Dining</h3>
+                  <p>Elegant French restaurants with sophisticated menus, exceptional service, and refined atmospheres for special occasions.</p>
+                  <ul>
+                    <li>Multi-course tasting menus</li>
+                    <li>Sommelier-curated wine pairings</li>
+                    <li>Impeccable service</li>
+                    <li>Upscale ambiance</li>
+                  </ul>
+                </div>
+                
+                <div class="dining-type-card">
+                  <h3>🍷 Wine Bars</h3>
+                  <p>French wine bars offering small plates, cheese boards, and extensive French wine selections in a relaxed setting.</p>
+                  <ul>
+                    <li>Extensive French wine selection</li>
+                    <li>Artisanal cheese boards</li>
+                    <li>Small plates and charcuterie</li>
+                    <li>Intimate bar seating</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="french-dining-tips">
+              <h2>French Dining Etiquette & Tips</h2>
+              
+              <div class="tips-grid">
+                <div class="tip-card">
+                  <h3>🍷 Wine Pairing</h3>
+                  <p>French cuisine is designed to be enjoyed with wine. Ask your server for recommendations to enhance your dining experience.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>⏰ Leisurely Dining</h3>
+                  <p>French meals are meant to be savored slowly. Plan for 2-3 hours to fully enjoy the experience and conversation.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>🥖 Bread & Butter</h3>
+                  <p>Bread is served with every meal. Use it to soak up sauces and enjoy with your wine between courses.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>🍽️ Course Progression</h3>
+                  <p>French meals typically include appetizer, main course, and dessert. Consider the full experience for the most romantic evening.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="french-neighborhoods">
+              <h2>Best Neighborhoods for French Dining</h2>
+              
+              <div class="neighborhoods-grid">
+                <div class="neighborhood-card">
+                  <h3>🏙️ Beverly Hills</h3>
+                  <p>Upscale French restaurants with elegant atmospheres and celebrity clientele. Perfect for special occasions and luxury dining experiences.</p>
+                </div>
+                
+                <div class="neighborhood-card">
+                  <h3>🌊 Santa Monica</h3>
+                  <p>French restaurants with ocean views and relaxed atmospheres. Great for casual romantic dinners with a coastal vibe.</p>
+                </div>
+                
+                <div class="neighborhood-card">
+                  <h3>🎭 West Hollywood</h3>
+                  <p>Trendy French bistros and wine bars with vibrant atmospheres. Perfect for couples who enjoy a lively dining scene.</p>
+                </div>
+                
+                <div class="neighborhood-card">
+                  <h3>🏛️ Downtown LA</h3>
+                  <p>Modern French restaurants with urban sophistication. Great for couples who appreciate contemporary dining experiences.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="french-menu-guide">
+              <h2>French Menu Guide for Date Night</h2>
+              
+              <div class="menu-sections">
+                <div class="menu-section">
+                  <h3>🥗 Appetizers (Entrées)</h3>
+                  <ul>
+                    <li><strong>Escargot:</strong> Snails in garlic butter - a classic French starter</li>
+                    <li><strong>Foie Gras:</strong> Rich duck liver pâté - a luxurious choice</li>
+                    <li><strong>Onion Soup:</strong> Traditional French onion soup with gruyère cheese</li>
+                    <li><strong>Salad Niçoise:</strong> Fresh salad with tuna, olives, and vegetables</li>
+                  </ul>
+                </div>
+                
+                <div class="menu-section">
+                  <h3>🍖 Main Courses (Plats Principaux)</h3>
+                  <ul>
+                    <li><strong>Coq au Vin:</strong> Chicken braised in red wine - a French classic</li>
+                    <li><strong>Bouillabaisse:</strong> Provençal fish stew - perfect for seafood lovers</li>
+                    <li><strong>Duck Confit:</strong> Slow-cooked duck leg - rich and flavorful</li>
+                    <li><strong>Beef Bourguignon:</strong> Beef stew in red wine - hearty and romantic</li>
+                  </ul>
+                </div>
+                
+                <div class="menu-section">
+                  <h3>🍰 Desserts (Desserts)</h3>
+                  <ul>
+                    <li><strong>Crème Brûlée:</strong> Classic custard with caramelized sugar</li>
+                    <li><strong>Tarte Tatin:</strong> Upside-down apple tart - perfect for sharing</li>
+                    <li><strong>Chocolate Soufflé:</strong> Light and airy chocolate dessert</li>
+                    <li><strong>Profiteroles:</strong> Cream puffs with chocolate sauce</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="conclusion">
+              <h2>Experience the Romance of French Cuisine</h2>
+              <p>French restaurants in Los Angeles offer the perfect setting for romantic date nights. With their emphasis on fresh ingredients, elegant presentation, and leisurely dining, they create an atmosphere that naturally encourages intimacy and conversation.</p>
+              
+              <p>Whether you're celebrating a special occasion or simply want to enjoy a romantic evening together, LA's French restaurant scene provides countless options for every taste and budget. From cozy bistros to elegant fine dining establishments, you'll find the perfect spot to create lasting memories with your loved one.</p>
+            </section>
+          </div>
+          
+          <aside class="sidebar">
+            <div class="related-posts">
+              <h3>Related Articles</h3>
+              <ul>
+                <li><a href="/blog/romantic-italian-restaurants-los-angeles/">Italian Restaurants for Date Night</a></li>
+                <li><a href="/blog/best-date-night-restaurants-beverly-hills/">Beverly Hills Date Night Guide</a></li>
+                <li><a href="/blog/romantic-dinner-ideas-los-angeles/">Romantic Dinner Ideas</a></li>
+                <li><a href="/blog/anniversary-dinner-ideas-los-angeles/">Anniversary Dinner Ideas</a></li>
+              </ul>
+            </div>
+            
+            <div class="newsletter-signup">
+              <h3>Get More Date Night Ideas</h3>
+              <p>Subscribe for the latest restaurant recommendations and romantic dining tips.</p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required />
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    background: white;
+    min-height: 100vh;
+  }
+
+  .post-header {
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #93C5FD 100%);
+    color: white;
+    padding: 4rem 0 3rem;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .breadcrumb a {
+    color: #93C5FD;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .post-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .post-meta .author {
+    color: #93C5FD;
+  }
+
+  .post-meta .category {
+    background: rgba(147, 197, 253, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+  }
+
+  .post-excerpt {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 800px;
+  }
+
+  .post-content {
+    padding: 4rem 0;
+  }
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .main-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .main-content h2 {
+    font-size: 2.2rem;
+    margin: 3rem 0 1.5rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .main-content h3 {
+    font-size: 1.6rem;
+    margin: 2rem 0 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .main-content p {
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+
+  .restaurant-feature {
+    background: #F0F4FF;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #3B82F6;
+  }
+
+  .restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .restaurant-header h3 {
+    margin: 0;
+    color: #2C2C2C;
+    font-size: 1.4rem;
+  }
+
+  .restaurant-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .stars {
+    color: #3B82F6;
+    font-size: 1.1rem;
+  }
+
+  .date-score {
+    background: #3B82F6;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+  }
+
+  .restaurant-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-item {
+    font-size: 0.95rem;
+    color: #666;
+  }
+
+  .french-specialties {
+    background: rgba(59, 130, 246, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #3B82F6;
+  }
+
+  .french-specialties h4 {
+    margin: 0 0 1rem;
+    color: #3B82F6;
+    font-size: 1.1rem;
+  }
+
+  .french-specialties ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .french-specialties li {
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+
+  .restaurant-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: #3B82F6;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #2563EB;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #3B82F6;
+    border: 2px solid #3B82F6;
+  }
+
+  .btn-secondary:hover {
+    background: #3B82F6;
+    color: white;
+  }
+
+  .dining-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .dining-type-card {
+    background: #F0F4FF;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #3B82F6;
+  }
+
+  .dining-type-card h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+  }
+
+  .dining-type-card ul {
+    margin: 1rem 0 0;
+    padding-left: 1.5rem;
+  }
+
+  .dining-type-card li {
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .tip-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-top: 3px solid #3B82F6;
+  }
+
+  .tip-card h3 {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+    color: #2C2C2C;
+  }
+
+  .neighborhoods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .neighborhood-card {
+    background: #F0F4FF;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #3B82F6;
+  }
+
+  .neighborhood-card h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+  }
+
+  .menu-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .menu-section {
+    background: #F0F4FF;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #3B82F6;
+  }
+
+  .menu-section h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+  }
+
+  .menu-section ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .menu-section li {
+    margin-bottom: 0.75rem;
+    color: #666;
+  }
+
+  .sidebar {
+    background: #F0F4FF;
+    padding: 2rem;
+    border-radius: 15px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .sidebar h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+    font-size: 1.3rem;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-posts li {
+    margin-bottom: 0.75rem;
+  }
+
+  .related-posts a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .related-posts a:hover {
+    color: #3B82F6;
+  }
+
+  .newsletter-signup {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .newsletter-form input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form button {
+    padding: 0.75rem;
+    background: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .content-wrapper {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .post-header h1 {
+      font-size: 2.2rem;
+    }
+
+    .restaurant-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .restaurant-actions {
+      flex-direction: column;
+    }
+
+    .dining-types-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .neighborhoods-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .menu-sections {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

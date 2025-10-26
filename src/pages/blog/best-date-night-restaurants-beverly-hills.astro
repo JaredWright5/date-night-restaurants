@@ -1,0 +1,520 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Filter restaurants in Beverly Hills
+const beverlyHillsRestaurants = restaurants.filter(restaurant => 
+  restaurant.area.toLowerCase().includes('beverly hills') || 
+  restaurant.address.toLowerCase().includes('beverly hills')
+).sort((a, b) => b.dateNightScore - a.dateNightScore);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Best Date Night Restaurants in Beverly Hills: Luxury Dining Guide",
+  "description": "Discover the most romantic and luxurious date night restaurants in Beverly Hills. From Michelin-starred fine dining to intimate neighborhood gems.",
+  "author": {
+    "@type": "Person",
+    "name": "Date Night Experts"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/best-date-night-restaurants-beverly-hills/"
+  },
+  "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop"
+};
+---
+
+<BaseLayout
+  title="Best Date Night Restaurants in Beverly Hills: Luxury Dining Guide"
+  description="Discover the most romantic and luxurious date night restaurants in Beverly Hills. From Michelin-starred fine dining to intimate neighborhood gems perfect for special occasions."
+  keywords={['Beverly Hills date night', 'romantic restaurants Beverly Hills', 'luxury dining Beverly Hills', 'fine dining Beverly Hills', 'date night Beverly Hills']}
+  canonical="https://datenightrestaurants.com/blog/best-date-night-restaurants-beverly-hills/"
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="/">Home</a> / 
+          <a href="/blog/">Blog</a> / 
+          <span>Beverly Hills Date Night Guide</span>
+        </div>
+        
+        <h1>Best Date Night Restaurants in Beverly Hills: Luxury Dining Guide</h1>
+        
+        <div class="post-meta">
+          <time datetime="2024-01-15">January 15, 2024</time>
+          <span class="author">by Date Night Experts</span>
+          <span class="category">Beverly Hills Dining</span>
+        </div>
+        
+        <div class="post-excerpt">
+          <p>Beverly Hills offers some of Los Angeles' most sophisticated and romantic dining experiences. From world-renowned fine dining establishments to intimate neighborhood gems, discover the perfect spot for your next special date night.</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <div class="main-content">
+            <section class="intro-section">
+              <h2>Why Beverly Hills is Perfect for Date Night</h2>
+              <p>Beverly Hills represents the pinnacle of luxury dining in Los Angeles. With its tree-lined streets, upscale shopping, and world-class restaurants, it provides the perfect backdrop for romantic evenings. Whether you're celebrating a special occasion or simply want to impress your date, Beverly Hills offers an unparalleled dining experience.</p>
+              
+              <p>The area is home to some of LA's most prestigious restaurants, many of which have earned Michelin stars and international acclaim. From classic French cuisine to innovative Californian fare, Beverly Hills restaurants consistently deliver exceptional food, service, and atmosphere.</p>
+            </section>
+
+            <section class="restaurants-section">
+              <h2>Top Date Night Restaurants in Beverly Hills</h2>
+              
+              {beverlyHillsRestaurants.slice(0, 8).map((restaurant, index) => (
+                <div class="restaurant-feature">
+                  <div class="restaurant-header">
+                    <h3>{index + 1}. {restaurant.name}</h3>
+                    <div class="restaurant-rating">
+                      <div class="stars">★★★★★</div>
+                      <span class="rating">{restaurant.rating}/5</span>
+                      <span class="date-score">Date Score: {restaurant.dateNightScore}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="restaurant-details">
+                    <p class="restaurant-description">
+                      {restaurant.description || `Experience exceptional ${restaurant.cuisineTypes.join(', ')} cuisine in an elegant Beverly Hills setting. Perfect for romantic dinners and special occasions.`}
+                    </p>
+                    
+                    <div class="restaurant-info">
+                      <div class="info-item">
+                        <strong>Address:</strong> {restaurant.address}
+                      </div>
+                      <div class="info-item">
+                        <strong>Phone:</strong> {restaurant.phone}
+                      </div>
+                      <div class="info-item">
+                        <strong>Price Level:</strong> {'$'.repeat(restaurant.priceLevel)}
+                      </div>
+                      <div class="info-item">
+                        <strong>Cuisine:</strong> {restaurant.cuisineTypes.join(', ')}
+                      </div>
+                    </div>
+                    
+                    <div class="restaurant-actions">
+                      <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Restaurant Details</a>
+                      {restaurant.website && (
+                        <a href={restaurant.website} target="_blank" rel="noopener" class="btn btn-secondary">Visit Website</a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </section>
+
+            <section class="tips-section">
+              <h2>Beverly Hills Date Night Tips</h2>
+              
+              <div class="tips-grid">
+                <div class="tip-card">
+                  <h3>🎭 Make Reservations</h3>
+                  <p>Beverly Hills restaurants are popular and often require reservations, especially on weekends. Book at least a week in advance for the best spots.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>👔 Dress to Impress</h3>
+                  <p>Many Beverly Hills restaurants have dress codes. Smart casual to formal attire is typically expected for fine dining establishments.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>🚗 Valet Parking</h3>
+                  <p>Most restaurants offer valet parking, which is often the most convenient option in Beverly Hills. Budget $10-15 for valet service.</p>
+                </div>
+                
+                <div class="tip-card">
+                  <h3>⏰ Timing Matters</h3>
+                  <p>For the most romantic atmosphere, book dinner reservations between 7-8 PM. This allows for a leisurely meal without feeling rushed.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="neighborhood-guide">
+              <h2>Beverly Hills Neighborhoods for Date Night</h2>
+              
+              <div class="neighborhoods">
+                <div class="neighborhood">
+                  <h3>Rodeo Drive Area</h3>
+                  <p>Home to the most prestigious restaurants and luxury shopping. Perfect for special occasions and impressing your date.</p>
+                </div>
+                
+                <div class="neighborhood">
+                  <h3>Beverly Hills Triangle</h3>
+                  <p>A mix of upscale restaurants and casual dining options. Great for both formal and relaxed date nights.</p>
+                </div>
+                
+                <div class="neighborhood">
+                  <h3>Canon Drive</h3>
+                  <p>Features a variety of dining options from casual cafes to fine dining establishments. More intimate and less touristy.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="conclusion">
+              <h2>Plan Your Perfect Beverly Hills Date Night</h2>
+              <p>Beverly Hills offers an unmatched dining experience for romantic date nights. With its world-class restaurants, elegant atmosphere, and exceptional service, it's the perfect destination for special occasions and memorable evenings.</p>
+              
+              <p>Whether you're looking for a Michelin-starred fine dining experience or a cozy neighborhood gem, Beverly Hills has something to offer every couple. Remember to make reservations, dress appropriately, and allow plenty of time to enjoy the experience.</p>
+            </section>
+          </div>
+          
+          <aside class="sidebar">
+            <div class="related-posts">
+              <h3>Related Articles</h3>
+              <ul>
+                <li><a href="/blog/romantic-dinner-ideas-los-angeles/">Romantic Dinner Ideas in Los Angeles</a></li>
+                <li><a href="/blog/best-date-night-restaurants-by-neighborhood-los-angeles/">Best Date Night Restaurants by Neighborhood</a></li>
+                <li><a href="/blog/anniversary-dinner-ideas-los-angeles/">Anniversary Dinner Ideas in Los Angeles</a></li>
+                <li><a href="/blog/budget-friendly-date-night-restaurants-los-angeles/">Budget-Friendly Date Night Restaurants</a></li>
+              </ul>
+            </div>
+            
+            <div class="newsletter-signup">
+              <h3>Get More Date Night Ideas</h3>
+              <p>Subscribe to our newsletter for the latest restaurant recommendations and date night tips.</p>
+              <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required />
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    background: white;
+    min-height: 100vh;
+  }
+
+  .post-header {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 4rem 0 3rem;
+  }
+
+  .breadcrumb {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .breadcrumb a {
+    color: #D4AF37;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .post-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .post-meta .author {
+    color: #D4AF37;
+  }
+
+  .post-meta .category {
+    background: rgba(212, 175, 55, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+  }
+
+  .post-excerpt {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 800px;
+  }
+
+  .post-content {
+    padding: 4rem 0;
+  }
+
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .main-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .main-content h2 {
+    font-size: 2.2rem;
+    margin: 3rem 0 1.5rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .main-content h3 {
+    font-size: 1.6rem;
+    margin: 2rem 0 1rem;
+    color: #2C2C2C;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .main-content p {
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+
+  .restaurant-feature {
+    background: #F8F6F0;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #D4AF37;
+  }
+
+  .restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .restaurant-header h3 {
+    margin: 0;
+    color: #2C2C2C;
+    font-size: 1.4rem;
+  }
+
+  .restaurant-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .stars {
+    color: #D4AF37;
+    font-size: 1.1rem;
+  }
+
+  .date-score {
+    background: #D4AF37;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+  }
+
+  .restaurant-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-item {
+    font-size: 0.95rem;
+    color: #666;
+  }
+
+  .restaurant-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #D4AF37;
+    border: 2px solid #D4AF37;
+  }
+
+  .btn-secondary:hover {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .tip-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-top: 3px solid #D4AF37;
+  }
+
+  .tip-card h3 {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+    color: #2C2C2C;
+  }
+
+  .neighborhoods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .neighborhood {
+    background: #F8F6F0;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #D4AF37;
+  }
+
+  .neighborhood h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+  }
+
+  .sidebar {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .sidebar h3 {
+    margin: 0 0 1rem;
+    color: #2C2C2C;
+    font-size: 1.3rem;
+  }
+
+  .related-posts ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-posts li {
+    margin-bottom: 0.75rem;
+  }
+
+  .related-posts a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .related-posts a:hover {
+    color: #D4AF37;
+  }
+
+  .newsletter-signup {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .newsletter-form input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form button {
+    padding: 0.75rem;
+    background: #D4AF37;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .content-wrapper {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .post-header h1 {
+      font-size: 2.2rem;
+    }
+
+    .restaurant-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .restaurant-actions {
+      flex-direction: column;
+    }
+
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .neighborhoods {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

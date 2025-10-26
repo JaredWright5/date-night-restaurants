@@ -1,0 +1,642 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { restaurants } from '@/data/restaurants';
+
+// Get unique neighborhoods
+const neighborhoods = [...new Set(restaurants.map(r => r.neighborhood))].sort();
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Neighborhood Search - Date Night Restaurants Los Angeles",
+  "description": "Search and explore romantic restaurants by neighborhood in Los Angeles. Find the perfect date night spot in your preferred area.",
+  "url": "https://datenightrestaurants.com/neighborhoods/search"
+};
+---
+
+<BaseLayout 
+  title="Neighborhood Search - Find Date Night Restaurants by Area" 
+  description="Search and explore romantic restaurants by neighborhood in Los Angeles. Find the perfect date night spot in your preferred area."
+  structuredData={structuredData}
+>
+  <!-- Search Hero -->
+  <section class="search-hero">
+    <div class="container">
+      <h1>Find Date Night Restaurants by Neighborhood</h1>
+      <p>Explore romantic dining options across Los Angeles neighborhoods</p>
+    </div>
+  </section>
+
+  <!-- Neighborhood Search Filters -->
+  <section class="search-filters">
+    <div class="container">
+      <div class="filters-container">
+        <div class="search-filter">
+          <input type="text" id="search-input" placeholder="Search neighborhoods or restaurants..." />
+          <i class="fas fa-search"></i>
+        </div>
+        
+        <div class="filter-group">
+          <label for="neighborhood-filter">Neighborhood:</label>
+          <select id="neighborhood-filter">
+            <option value="">All Neighborhoods</option>
+            {neighborhoods.map(neighborhood => (
+              <option value={neighborhood}>{neighborhood}</option>
+            ))}
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="cuisine-filter">Cuisine:</label>
+          <select id="cuisine-filter">
+            <option value="">All Cuisines</option>
+            <option value="Italian">Italian</option>
+            <option value="French">French</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Mexican">Mexican</option>
+            <option value="American">American</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="Asian">Asian</option>
+            <option value="Seafood">Seafood</option>
+            <option value="Steakhouse">Steakhouse</option>
+            <option value="Contemporary">Contemporary</option>
+            <option value="Fusion">Fusion</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Thai">Thai</option>
+            <option value="Indian">Indian</option>
+            <option value="Korean">Korean</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="price-filter">Price Range:</label>
+          <select id="price-filter">
+            <option value="">Any Price</option>
+            <option value="1">$ (Budget)</option>
+            <option value="2">$$ (Moderate)</option>
+            <option value="3">$$$ (Upscale)</option>
+            <option value="4">$$$$ (Fine Dining)</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="rating-filter">Minimum Rating:</label>
+          <select id="rating-filter">
+            <option value="">Any Rating</option>
+            <option value="4.5">4.5+ Stars</option>
+            <option value="4.0">4.0+ Stars</option>
+            <option value="3.5">3.5+ Stars</option>
+            <option value="3.0">3.0+ Stars</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="sort-filter">Sort By:</label>
+          <select id="sort-filter">
+            <option value="name">Neighborhood A-Z</option>
+            <option value="restaurant-count">Most Restaurants</option>
+            <option value="avg-rating">Highest Average Rating</option>
+            <option value="avg-date-score">Highest Date Score</option>
+          </select>
+        </div>
+        
+        <button id="clear-filters" class="clear-filters-btn">Clear All Filters</button>
+      </div>
+      
+      <div class="filter-results">
+        <span id="results-count">Showing all {neighborhoods.length} neighborhoods</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhood Results -->
+  <section class="neighborhood-results">
+    <div class="container">
+      <div class="neighborhoods-grid" id="neighborhoods-grid">
+        {neighborhoods.map(neighborhood => {
+          const neighborhoodRestaurants = restaurants.filter(r => r.neighborhood === neighborhood);
+          const avgRating = neighborhoodRestaurants.reduce((sum, r) => sum + r.rating, 0) / neighborhoodRestaurants.length;
+          const avgDateScore = neighborhoodRestaurants.reduce((sum, r) => sum + r.dateNightScore, 0) / neighborhoodRestaurants.length;
+          const priceRanges = [...new Set(neighborhoodRestaurants.map(r => r.priceLevel))].sort();
+          const cuisines = [...new Set(neighborhoodRestaurants.flatMap(r => r.cuisineTypes || []))].slice(0, 5);
+          
+          return (
+            <article class="neighborhood-card" 
+                     data-name={neighborhood.toLowerCase()}
+                     data-restaurant-count={neighborhoodRestaurants.length}
+                     data-avg-rating={avgRating.toFixed(1)}
+                     data-avg-date-score={Math.round(avgDateScore)}
+                     data-cuisines={cuisines.join(', ').toLowerCase()}>
+              <a href={`/neighborhoods/${neighborhood.toLowerCase().replace(/\s+/g, '-')}/`} class="neighborhood-link">
+                <div class="neighborhood-header">
+                  <h3>{neighborhood}</h3>
+                  <div class="neighborhood-stats">
+                    <span class="restaurant-count">{neighborhoodRestaurants.length} restaurants</span>
+                    <div class="neighborhood-rating">
+                      <span class="stars">{'★'.repeat(Math.floor(avgRating))}</span>
+                      <span class="rating-number">{avgRating.toFixed(1)}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="neighborhood-content">
+                  <div class="neighborhood-info">
+                    <div class="price-ranges">
+                      {priceRanges.map(level => (
+                        <span class="price-tag">{'$'.repeat(level)}</span>
+                      ))}
+                    </div>
+                    <div class="date-score">
+                      <span class="score-label">Avg Date Score:</span>
+                      <span class="score-value">{Math.round(avgDateScore)}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="cuisine-tags">
+                    {cuisines.slice(0, 4).map(cuisine => (
+                      <span class="cuisine-tag">{cuisine}</span>
+                    ))}
+                    {cuisines.length > 4 && (
+                      <span class="cuisine-tag">+{cuisines.length - 4} more</span>
+                    )}
+                  </div>
+                  
+                  <div class="neighborhood-preview">
+                    <div class="preview-restaurants">
+                      {neighborhoodRestaurants.slice(0, 3).map(restaurant => (
+                        <div class="preview-restaurant">
+                          <span class="restaurant-name">{restaurant.name}</span>
+                          <span class="restaurant-rating">{restaurant.rating}★</span>
+                        </div>
+                      ))}
+                      {neighborhoodRestaurants.length > 3 && (
+                        <div class="preview-restaurant">
+                          <span class="restaurant-name">+{neighborhoodRestaurants.length - 3} more</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+      
+      <div id="no-results" class="no-results" style="display: none;">
+        <div class="no-results-content">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>No neighborhoods found</h3>
+          <p>Try adjusting your search criteria or filters</p>
+          <button id="reset-filters" class="btn btn-primary">Reset Filters</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .search-hero {
+    background: linear-gradient(135deg, #2C2C2C 0%, #4A4A4A 50%, #D4AF37 100%);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+
+  .search-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .search-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  .search-filters {
+    background: #F8F6F0;
+    padding: 2rem 0;
+    border-bottom: 1px solid #E8D5B7;
+  }
+
+  .filters-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1rem;
+  }
+
+  .search-filter {
+    position: relative;
+  }
+
+  .search-filter input {
+    width: 100%;
+    padding: 1rem 1.5rem 1rem 3rem;
+    border: 2px solid #E8D5B7;
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .search-filter input:focus {
+    border-color: #D4AF37;
+  }
+
+  .search-filter i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 1.1rem;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .filter-group label {
+    font-weight: 600;
+    color: #2C2C2C;
+    font-size: 0.85rem;
+  }
+
+  .filter-group select {
+    padding: 0.75rem 0.5rem;
+    border: 2px solid #E8D5B7;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    background: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .filter-group select:focus {
+    border-color: #D4AF37;
+  }
+
+  .clear-filters-btn {
+    padding: 0.75rem 1rem;
+    background: #D4AF37;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+
+  .clear-filters-btn:hover {
+    background: #B8941F;
+  }
+
+  .filter-results {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .neighborhood-results {
+    padding: 4rem 0;
+  }
+
+  .neighborhoods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .neighborhood-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .neighborhood-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    border-color: #D4AF37;
+  }
+
+  .neighborhood-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .neighborhood-header {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    color: white;
+    padding: 1.5rem;
+  }
+
+  .neighborhood-header h3 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .neighborhood-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .restaurant-count {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .neighborhood-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stars {
+    color: white;
+    font-size: 1rem;
+  }
+
+  .rating-number {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .neighborhood-content {
+    padding: 1.5rem;
+  }
+
+  .neighborhood-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .price-ranges {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .price-tag {
+    background: #F8F6F0;
+    color: #2C2C2C;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .date-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .score-label {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .score-value {
+    background: #D4AF37;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .cuisine-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cuisine-tag {
+    background: #E8D5B7;
+    color: #2C2C2C;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .neighborhood-preview {
+    border-top: 1px solid #E8D5B7;
+    padding-top: 1rem;
+  }
+
+  .preview-restaurants {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .preview-restaurant {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  .restaurant-name {
+    color: #2C2C2C;
+    font-weight: 500;
+  }
+
+  .restaurant-rating {
+    color: #D4AF37;
+    font-weight: 600;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .no-results-content {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .no-results-content i {
+    font-size: 3rem;
+    color: #D4AF37;
+    margin-bottom: 1rem;
+  }
+
+  .no-results-content h3 {
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin-bottom: 0.5rem;
+  }
+
+  .no-results-content p {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .search-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .search-hero p {
+      font-size: 1rem;
+    }
+
+    .filters-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .neighborhoods-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .neighborhood-stats {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const neighborhoodFilter = document.getElementById('neighborhood-filter');
+    const cuisineFilter = document.getElementById('cuisine-filter');
+    const priceFilter = document.getElementById('price-filter');
+    const ratingFilter = document.getElementById('rating-filter');
+    const sortFilter = document.getElementById('sort-filter');
+    const clearFiltersBtn = document.getElementById('clear-filters');
+    const resetFiltersBtn = document.getElementById('reset-filters');
+    const neighborhoodsGrid = document.getElementById('neighborhoods-grid');
+    const noResults = document.getElementById('no-results');
+    const resultsCount = document.getElementById('results-count');
+    
+    const allNeighborhoods = Array.from(document.querySelectorAll('.neighborhood-card'));
+    let filteredNeighborhoods = [...allNeighborhoods];
+
+    function filterNeighborhoods() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedNeighborhood = neighborhoodFilter.value;
+      const selectedCuisine = cuisineFilter.value;
+      const selectedPrice = priceFilter.value;
+      const selectedRating = ratingFilter.value;
+      const sortBy = sortFilter.value;
+
+      // Filter neighborhoods
+      filteredNeighborhoods = allNeighborhoods.filter(neighborhood => {
+        const name = neighborhood.dataset.name;
+        const cuisines = neighborhood.dataset.cuisines;
+        const restaurantCount = parseInt(neighborhood.dataset.restaurantCount);
+        const avgRating = parseFloat(neighborhood.dataset.avgRating);
+        
+        // Search term filter
+        const matchesSearch = !searchTerm || 
+          name.includes(searchTerm) || 
+          cuisines.includes(searchTerm);
+        
+        // Neighborhood filter
+        const matchesNeighborhood = !selectedNeighborhood || 
+          neighborhood.querySelector('h3').textContent === selectedNeighborhood;
+        
+        // Cuisine filter
+        const matchesCuisine = !selectedCuisine || cuisines.includes(selectedCuisine.toLowerCase());
+        
+        // Price filter (simplified - would need restaurant data)
+        const matchesPrice = !selectedPrice; // For now, show all
+        
+        // Rating filter
+        const matchesRating = !selectedRating || avgRating >= parseFloat(selectedRating);
+        
+        return matchesSearch && matchesNeighborhood && matchesCuisine && 
+               matchesPrice && matchesRating;
+      });
+
+      // Sort neighborhoods
+      filteredNeighborhoods.sort((a, b) => {
+        switch(sortBy) {
+          case 'restaurant-count':
+            return parseInt(b.dataset.restaurantCount) - parseInt(a.dataset.restaurantCount);
+          case 'avg-rating':
+            return parseFloat(b.dataset.avgRating) - parseFloat(a.dataset.avgRating);
+          case 'avg-date-score':
+            return parseInt(b.dataset.avgDateScore) - parseInt(a.dataset.avgDateScore);
+          case 'name':
+          default:
+            return a.dataset.name.localeCompare(b.dataset.name);
+        }
+      });
+
+      // Update display
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      // Hide all neighborhoods
+      allNeighborhoods.forEach(neighborhood => {
+        neighborhood.style.display = 'none';
+      });
+
+      // Show filtered neighborhoods
+      filteredNeighborhoods.forEach(neighborhood => {
+        neighborhood.style.display = 'block';
+      });
+
+      // Update results count
+      resultsCount.textContent = `Showing ${filteredNeighborhoods.length} of ${allNeighborhoods.length} neighborhoods`;
+
+      // Show/hide no results message
+      if (filteredNeighborhoods.length === 0) {
+        neighborhoodsGrid.style.display = 'none';
+        noResults.style.display = 'block';
+      } else {
+        neighborhoodsGrid.style.display = 'grid';
+        noResults.style.display = 'none';
+      }
+    }
+
+    function clearAllFilters() {
+      searchInput.value = '';
+      neighborhoodFilter.value = '';
+      cuisineFilter.value = '';
+      priceFilter.value = '';
+      ratingFilter.value = '';
+      sortFilter.value = 'name';
+      filterNeighborhoods();
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', filterNeighborhoods);
+    neighborhoodFilter.addEventListener('change', filterNeighborhoods);
+    cuisineFilter.addEventListener('change', filterNeighborhoods);
+    priceFilter.addEventListener('change', filterNeighborhoods);
+    ratingFilter.addEventListener('change', filterNeighborhoods);
+    sortFilter.addEventListener('change', filterNeighborhoods);
+    clearFiltersBtn.addEventListener('click', clearAllFilters);
+    resetFiltersBtn.addEventListener('click', clearAllFilters);
+
+    // Initialize
+    filterNeighborhoods();
+  });
+</script>

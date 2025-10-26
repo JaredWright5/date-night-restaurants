@@ -1,6 +1,47 @@
 ---
-// This component now renders only placeholders and relies entirely on client-side JavaScript
-// to populate the featured restaurants from localStorage
+// Use hardcoded featured restaurants with real photos from database
+const featuredRestaurants = [
+  {
+    name: "Cabra Los Angeles",
+    slug: "cabra-los-angeles",
+    dateNightScore: 85,
+    rating: 4.6,
+    priceLevel: 3,
+    cuisineTypes: ["Peruvian", "Latin American", "Rooftop Restaurant"],
+    address: "1060 S Broadway, Los Angeles, CA 90015, USA",
+    photos: ["https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference=AciIO2cXC_4M2sNIoY9KLD4smDCBZrSSGsV1MV9c0RYHmzAl8R8C6AEC9dBdmsEaB6e-KYy4-U2sVSD2mdneeFbc-IOizrcO5Uwpfvcge34DqVYN8Lyx7iX-Y1dMucVmz1GqOkPhD3f3D29EElRtlA08y3Be14vg3RbPMZc31hAILJOGxbEj5ZT9fjv8ml2JdbvmITLL3_GOtB_loF-vSDmU5PBCaEpwWyA-W3Q0LNQ3B1IQD3P_qRFl5TapDFF6BcPDe2wHZzpmDtl3EctdGclkcJJYlnljaiMOfkRf5TG2V2Bffg&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI"]
+  },
+  {
+    name: "Otium",
+    slug: "otium",
+    dateNightScore: 85,
+    rating: 4.5,
+    priceLevel: 4,
+    cuisineTypes: ["Contemporary", "Californian"],
+    address: "222 S Hope St, Los Angeles, CA 90012, USA",
+    photos: ["https://places.googleapis.com/v1/places/ChIJ_RTRaE3GwoARPBWnFhO44DQ/photos/AciIO2fLYd6AM7FYY7oOF1C6bNWMH5UlLwOJdR9unfNmmh1nn64oi52EAt8UwrcDQczeiqNLhHr-Yvielrwf1pp_Y_7L6ajsM42ZMdnSobnLeI-SEvG8RPt19ssypirQ9eyVBdXugL4Oj_OFjcsPu3VP9mkrdaUKPOGXXpQyrnFXb3NNcWXy54thkwz9XGv54Dc_EOv4AQmFDU3EhbRWCIaSRkuZt0RLIFtA4EJpiGfDg1olnflAzaaSSmzPXhq6XVmGLj3vlwKDGHA73NnZ1hAUksVl1NSDna1wX3Z4oRKC3bng6g/media?key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI&maxWidthPx=800"]
+  },
+  {
+    name: "Vibrato Grill Jazz",
+    slug: "vibrato-grill-jazz",
+    dateNightScore: 84,
+    rating: 4.7,
+    priceLevel: 3,
+    cuisineTypes: ["American", "Jazz Club"],
+    address: "2930 Beverly Glen Cir, Los Angeles, CA 90077, USA",
+    photos: ["https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AciIO2e_U28E-UtWGKmgzPveljD_YEEAuz3JhuCi845vwMe6Y_cXnbqL87LCogrNdLN1yervMaiISpugVfmQt0inUyBtwde9vQWFLxiuIBcjtC22G9whH1HKLb5z1lqG4VBf4TfH89fIYTYadwBwRwbuw9ZZ8hWsXmGNhkWOyYbgXocg2fus-p-IRjZe8CtskTJIZtsYaHqsm31f3LD2sal7mx2CLnsTA4_1dGZXNrFqSpxSO0CHX6oaNW0JnvEwW9Z2VbDnyeCdebfwDS2k03RYEyuBcN-lm2wX94uivarIGNQ&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI"]
+  },
+  {
+    name: "The Raymond 1886",
+    slug: "the-raymond-1886",
+    dateNightScore: 84,
+    rating: 4.5,
+    priceLevel: 3,
+    cuisineTypes: ["American", "Contemporary"],
+    address: "1250 S Fair Oaks Ave, Pasadena, CA 91105, USA",
+    photos: ["https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=AciIO2f5jybXmaS7Mm1ruyzNy--bJNWIMCqTdz-Ka1wKCwC9bvGrFPnd4gV1WWsRlVaYWKg1qVTNB8yMbQnI_cBdY1AQxeyAzb0pTSOB9SdJOsURldTliNVRAiBOQKHWTgM8aYkkYNMyWQxHBjbTLC5jR0QnoncsBJjaVS7GsklxNnEfFoHvgtyK6xOFiA0GpvLIlB9EDviPzJNgtEfjvA7sGQasTMBzikZpi5T-LUaX1WkRjqudRjMU62B4jPHFa3nvShJA492S_BtgODsI989FaqUMsV1DaI6qcNwqdYcVv1NfIg&key=AIzaSyCiRZ0a28y84EHFtBufwGklkO35zRGGzkI"]
+  }
+];
 ---
 
 <section class="featured-section">
@@ -16,13 +57,61 @@
       </div>
     </div>
     
-    <div class="featured-grid" id="featured-grid">
-      <!-- Content will be dynamically loaded here by client-side JS -->
-      <!-- Placeholder for initial load -->
-      <div class="featured-card-placeholder"></div>
-      <div class="featured-card-placeholder"></div>
-      <div class="featured-card-placeholder"></div>
-      <div class="featured-card-placeholder"></div>
+    <div class="featured-grid">
+      {featuredRestaurants.map((restaurant) => {
+        const priceSymbols = '$'.repeat(restaurant.priceLevel);
+        const mainImage = restaurant.photos?.[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
+        const cuisineText = restaurant.cuisineTypes?.join(', ') || 'Fine Dining';
+        
+        return (
+          <a href={`/losangeles/${restaurant.slug}/`} class="featured-card-link">
+            <div class="featured-card featured-premium">
+              <div class="featured-badge">
+                <span class="badge-icon">✨</span>
+                <span class="badge-text">Featured</span>
+              </div>
+              
+              <div class="featured-content">
+                <div class="featured-image">
+                  <img src={mainImage} alt={restaurant.name} />
+                  <div class="image-overlay">
+                    <div class="restaurant-rating">
+                      <div class="date-score-display">
+                        <i class="fas fa-heart"></i>
+                        <span>{restaurant.dateNightScore}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="featured-info">
+                  <div class="restaurant-header">
+                    <h3 class="restaurant-name">{restaurant.name}</h3>
+                    <div class="restaurant-price">{priceSymbols}</div>
+                  </div>
+                  
+                  <p class="restaurant-cuisine">{cuisineText}</p>
+                  <p class="restaurant-address">{restaurant.address}</p>
+                  
+                  <div class="featured-highlights">
+                    <div class="date-score">
+                      <i class="fas fa-heart"></i>
+                      <span>Date Score: <strong>{restaurant.dateNightScore}</strong></span>
+                    </div>
+                  </div>
+                  
+                  <div class="featured-actions">
+                    <div class="btn btn-featured">
+                      <i class="fas fa-info-circle"></i>
+                      View Restaurant Details
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>
@@ -95,17 +184,196 @@
     align-items: stretch;
   }
 
-  .featured-card-placeholder {
-    background: #e0e0e0;
-    border-radius: 15px;
-    height: 250px; /* Approximate height of a featured card */
-    animation: pulse 1.5s infinite ease-in-out;
+  .featured-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
   }
 
-  @keyframes pulse {
-    0% { opacity: 0.7; }
-    50% { opacity: 1; }
-    100% { opacity: 0.7; }
+  .featured-card-link:hover {
+    transform: translateY(-5px);
+  }
+
+  .featured-card {
+    background: #FFF8F0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(232, 184, 109, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 3px solid #9CAF88;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: #9CAF88;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .featured-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+    height: 100%;
+    flex: 1;
+  }
+
+  .featured-image {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .restaurant-rating {
+    color: #3E2723;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .date-score-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(44, 44, 44, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 2px solid #D2691E;
+  }
+
+  .date-score-display i {
+    color: #D4AF37;
+  }
+
+  .featured-info {
+    padding: 2rem;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 300px;
+  }
+
+  .restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .restaurant-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    flex: 1;
+  }
+
+  .restaurant-price {
+    background: #9CAF88;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .restaurant-cuisine {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .restaurant-address {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-highlights {
+    margin-bottom: 1.5rem;
+  }
+
+  .date-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .date-score i {
+    color: #d63384;
+  }
+
+  .date-score strong {
+    background: linear-gradient(45deg, #d63384, #ff6b6b);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+  }
+
+  .featured-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .btn-featured {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    flex: 1;
+    justify-content: center;
+    background: #9CAF88;
+    color: white;
+    box-shadow: 0 4px 15px rgba(156, 175, 136, 0.3);
+    pointer-events: none;
   }
   
   @media (max-width: 768px) {
@@ -122,6 +390,10 @@
     .featured-grid {
       grid-template-columns: 1fr;
     }
+
+    .featured-content {
+      grid-template-columns: 1fr;
+    }
   }
   
   @media (max-width: 480px) {
@@ -135,293 +407,3 @@
   }
 </style>
 
-    <script is:inline>
-      // Function to fetch restaurant data from Supabase API
-      async function fetchRestaurantData() {
-        try {
-          const response = await fetch('/api/restaurants');
-          const data = await response.json();
-          
-          if (data.error) {
-            console.warn('API error:', data.error);
-            return {};
-          }
-          
-          // Create a lookup object by slug
-          const restaurantLookup = {};
-          data.restaurants.forEach(restaurant => {
-            restaurantLookup[restaurant.slug] = {
-              name: restaurant.name,
-              slug: restaurant.slug,
-              dateNightScore: restaurant.dateNightScore,
-              rating: restaurant.rating,
-              priceLevel: restaurant.priceLevel,
-              cuisineTypes: restaurant.cuisineTypes,
-              area: restaurant.neighborhood || extractAreaFromAddress(restaurant.address),
-              photos: restaurant.photos,
-              address: restaurant.address
-            };
-          });
-          
-          return restaurantLookup;
-        } catch (error) {
-          console.error('Error fetching restaurant data from Supabase:', error);
-          return {};
-        }
-      }
-      
-      // Helper function to extract area from address
-      function extractAreaFromAddress(address) {
-        const parts = address.split(',');
-        if (parts.length >= 2) {
-          return parts[1].trim();
-        }
-        return 'Los Angeles';
-      }
-
-  // Load featured restaurants from localStorage and update the display
-  document.addEventListener('DOMContentLoaded', async () => {
-    console.log('Featured section script loaded');
-    const featuredGrid = document.querySelector('.featured-grid');
-    if (!featuredGrid) {
-      console.error('Featured grid not found');
-      return;
-    }
-    
-    console.log('Featured grid found:', featuredGrid);
-
-    // Get saved featured restaurants from localStorage
-    const savedFeatured = localStorage.getItem('featuredRestaurants');
-    console.log('Saved featured from localStorage:', savedFeatured);
-    
-    // Use default featured restaurants if none are saved
-    let featuredSlugs;
-    if (!savedFeatured) {
-      console.log('No featured restaurants saved, using default');
-      featuredSlugs = ['felix-trattoria', 'gjelina-on-abbot-kinney', 'fishing-with-dynamite', 'bavel'];
-      // Save the default featured restaurants to localStorage
-      localStorage.setItem('featuredRestaurants', JSON.stringify(featuredSlugs));
-    } else {
-      featuredSlugs = JSON.parse(savedFeatured);
-    }
-
-    try {
-      console.log('Loading featured restaurants:', featuredSlugs);
-
-      // Fetch restaurant data from Supabase API
-      console.log('Fetching restaurant data from API...');
-      const restaurantData = await fetchRestaurantData();
-      console.log('Fetched restaurant data:', restaurantData);
-      console.log('Number of restaurants fetched:', Object.keys(restaurantData).length);
-
-      // Clear existing content
-      featuredGrid.innerHTML = '';
-
-      // Create featured cards for each restaurant with real data
-      featuredSlugs.forEach((slug, index) => {
-        const restaurant = restaurantData[slug];
-        if (!restaurant) {
-          console.warn('Restaurant data not found for:', slug);
-          return;
-        }
-
-        const priceSymbols = '$'.repeat(restaurant.priceLevel);
-        const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
-        const cuisineText = restaurant.cuisineTypes.join(', ');
-
-        const restaurantCard = document.createElement('a');
-        restaurantCard.href = `/losangeles/${slug}/`;
-        restaurantCard.className = 'featured-card-link';
-        restaurantCard.style.cssText = `
-          display: block;
-          text-decoration: none;
-          color: inherit;
-          transition: transform 0.3s ease;
-        `;
-        
-        restaurantCard.innerHTML = `
-          <div class="featured-card featured-premium" style="
-            background: #FFF8F0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(232, 184, 109, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            border: 3px solid #9CAF88;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-          ">
-            <div class="featured-badge" style="
-              position: absolute;
-              bottom: 1rem;
-              left: 1rem;
-              background: #9CAF88;
-              color: white;
-              padding: 0.5rem 1rem;
-              border-radius: 20px;
-              display: flex;
-              align-items: center;
-              gap: 0.5rem;
-              font-weight: 600;
-              font-size: 0.9rem;
-              z-index: 10;
-              box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            ">
-              <span class="badge-icon">✨</span>
-              <span class="badge-text">Featured</span>
-            </div>
-            
-            <div class="featured-content" style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              min-height: 400px;
-              height: 100%;
-              flex: 1;
-            ">
-              <div class="featured-image" style="
-                position: relative;
-                overflow: hidden;
-                background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-              ">
-                <img src="${mainImage}" alt="${restaurant.name}" style="
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  transition: transform 0.3s ease;
-                " />
-                <div class="image-overlay" style="
-                  position: absolute;
-                  top: 1rem;
-                  left: 1rem;
-                ">
-                  <div class="restaurant-rating" style="
-                    color: #3E2723;
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                  ">
-                    <div class="date-score-display" style="
-                      display: flex;
-                      align-items: center;
-                      gap: 0.5rem;
-                      background: rgba(44, 44, 44, 0.9);
-                      color: white;
-                      padding: 0.5rem 1rem;
-                      border-radius: 20px;
-                      font-weight: 600;
-                      font-size: 0.9rem;
-                      border: 2px solid #D2691E;
-                    ">
-                      <i class="fas fa-heart" style="color: #D4AF37;"></i>
-                      <span>${restaurant.dateNightScore}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="featured-info" style="
-                padding: 2rem;
-                background: white;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-                min-height: 300px;
-              ">
-                <div class="restaurant-header" style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: flex-start;
-                  margin-bottom: 1rem;
-                ">
-                  <h3 class="restaurant-name" style="
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                    color: #333;
-                    margin: 0;
-                    flex: 1;
-                  ">${restaurant.name}</h3>
-                  <div class="restaurant-price" style="
-                    background: #9CAF88;
-                    color: white;
-                    padding: 0.5rem 1rem;
-                    border-radius: 20px;
-                    font-size: 0.9rem;
-                    font-weight: 600;
-                    white-space: nowrap;
-                  ">${priceSymbols}</div>
-                </div>
-                
-                <p class="restaurant-cuisine" style="
-                  color: #666;
-                  font-size: 1rem;
-                  margin-bottom: 0.5rem;
-                  font-weight: 500;
-                ">${cuisineText}</p>
-                <p class="restaurant-address" style="
-                  color: #888;
-                  font-size: 0.9rem;
-                  margin-bottom: 1.5rem;
-                ">${restaurant.address}</p>
-                
-                <div class="featured-highlights" style="margin-bottom: 1.5rem;">
-                  <div class="date-score" style="
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    font-size: 0.9rem;
-                    color: #666;
-                    margin-bottom: 0.5rem;
-                  ">
-                    <i class="fas fa-heart" style="color: #d63384;"></i>
-                    <span>Date Score: <strong style="
-                      background: linear-gradient(45deg, #d63384, #ff6b6b);
-                      color: white;
-                      padding: 0.25rem 0.5rem;
-                      border-radius: 10px;
-                      font-size: 0.8rem;
-                    ">${restaurant.dateNightScore}</strong></span>
-                  </div>
-                </div>
-                
-                <div class="featured-actions" style="display: flex; gap: 0.75rem;">
-                  <div class="btn btn-featured" style="
-                    padding: 0.75rem 1.5rem;
-                    border: none;
-                    border-radius: 25px;
-                    cursor: pointer;
-                    font-weight: 600;
-                    transition: all 0.3s ease;
-                    text-decoration: none;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    font-size: 0.9rem;
-                    flex: 1;
-                    justify-content: center;
-                    background: #9CAF88;
-                    color: white;
-                    box-shadow: 0 4px 15px rgba(156, 175, 136, 0.3);
-                    pointer-events: none;
-                  ">
-                    <i class="fas fa-info-circle"></i>
-                    View Restaurant Details
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-        
-        featuredGrid.appendChild(restaurantCard);
-      });
-
-      console.log('Updated featured section with', featuredSlugs.length, 'restaurants');
-    } catch (error) {
-      console.error('Error loading featured restaurants:', error);
-    }
-  });
-</script>

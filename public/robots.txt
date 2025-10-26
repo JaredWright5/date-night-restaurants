@@ -1,0 +1,25 @@
+User-agent: *
+# Allow important pages
+Allow: /$
+Allow: /losangeles/$
+Allow: /losangeles/restaurants/$
+Allow: /losangeles/*/$
+Allow: /neighborhoods/$
+Allow: /neighborhoods/*/restaurants/$
+Allow: /blog/$
+Allow: /blog/*/$
+Allow: /restaurants/search/$
+Allow: /neighborhoods/search/$
+
+# Block problematic patterns
+Disallow: /admin/
+Disallow: /*?*
+Disallow: /cuisines/
+Disallow: /cities/
+Disallow: /~partytown/
+Disallow: /sitemap.xml
+Disallow: /losangeles/neighborhoods/
+Disallow: /losangeles/restaurants/?*
+
+# Sitemap
+Sitemap: https://datenightrestaurants.com/sitemap-index.xml
