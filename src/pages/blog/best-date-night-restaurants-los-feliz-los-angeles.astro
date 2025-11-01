@@ -1,0 +1,673 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAllRestaurants } from '@/lib/supabase';
+
+// Get restaurants from Supabase
+let restaurants;
+try {
+  restaurants = await getAllRestaurants();
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
+// Filter for Los Feliz restaurants
+const losFelizRestaurants = restaurants.filter(r => r.neighborhood === 'Los Feliz');
+const topRestaurants = losFelizRestaurants
+  .sort((a, b) => b.date_night_score - a.date_night_score)
+  .slice(0, Math.min(6, losFelizRestaurants.length));
+
+// Calculate stats
+const avgDateScore = Math.round(losFelizRestaurants.reduce((sum, r) => sum + r.date_night_score, 0) / losFelizRestaurants.length);
+const upscaleCount = losFelizRestaurants.filter(r => r.price_level >= 3).length;
+const cuisineTypes = [...new Set(losFelizRestaurants.flatMap(r => r.cuisine_types))];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": `Best Date Night Restaurants in Los Feliz | ${losFelizRestaurants.length} Romantic Dining Spots`,
+  "description": `Discover the best date night restaurants in Los Feliz, Los Angeles. From trendy bistros to intimate wine bars, explore ${losFelizRestaurants.length} romantic restaurants perfect for couples.`,
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2025-11-19",
+  "dateModified": "2025-11-19",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/best-date-night-restaurants-los-feliz-los-angeles"
+  },
+  "image": "https://images.unsplash.com/photo-1504674900247-087700f998c5?w=1200&h=800&fit=crop"
+};
+---
+
+<BaseLayout
+  title={`Best Date Night Restaurants in Los Feliz | ${losFelizRestaurants.length} Romantic Dining Spots`}
+  description={`Discover the best date night restaurants in Los Feliz, Los Angeles. From trendy bistros to intimate wine bars, explore ${losFelizRestaurants.length} romantic restaurants perfect for couples.`}
+  canonical="https://datenightrestaurants.com/blog/best-date-night-restaurants-los-feliz-los-angeles"
+  keywords={['date night restaurants Los Feliz', 'romantic dining Los Feliz', 'couples restaurants Los Feliz', 'Los Feliz restaurants', 'trendy restaurants Los Feliz', 'bistro dining Los Feliz']}
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="blog-hero-image">
+        <img src="https://images.unsplash.com/photo-1504674900247-087700f998c5?w=1200&h=800&fit=crop" alt="Los Feliz restaurants and dining scene" />
+      </div>
+      <header class="blog-hero">
+        <div class="blog-hero-content">
+          <h1>Best Date Night Restaurants in Los Feliz</h1>
+          <p class="blog-subtitle">Discover {losFelizRestaurants.length} romantic dining spots in LA's most eclectic neighborhood</p>
+          <div class="blog-meta">
+            <span class="publish-date">Published: November 19, 2025</span>
+            <span class="read-time">Reading time: 7 minutes</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Introduction -->
+      <section class="blog-intro">
+        <p>Los Feliz is one of Los Angeles' most charming and eclectic neighborhoods, combining historic architecture with a vibrant culinary scene. With {losFelizRestaurants.length} exceptional date night restaurants, this artistic community offers everything from cozy neighborhood bistros to trendy wine bars perfect for romantic evenings.</p>
+        
+        <p>Whether you're looking for an intimate dinner at a French bistro, creative cuisine at a trendy eatery, or a casual date at a neighborhood favorite, Los Feliz's diverse dining landscape has something for every couple. From the iconic Griffith Park to the trendy shops and cafes along Vermont Avenue, discover the perfect spot for your next romantic dinner.</p>
+      </section>
+
+      <!-- Quick Stats -->
+      <section class="blog-stats">
+        <div class="stat-card">
+          <div class="stat-number">{losFelizRestaurants.length}</div>
+          <div class="stat-label">Restaurants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{avgDateScore}</div>
+          <div class="stat-label">Avg Date Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{upscaleCount}</div>
+          <div class="stat-label">Upscale Options</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{cuisineTypes.length}</div>
+          <div class="stat-label">Cuisine Types</div>
+        </div>
+      </section>
+
+      <!-- Top Restaurants -->
+      <section class="top-restaurants">
+        <h2>Top {Math.min(6, losFelizRestaurants.length)} Date Night Restaurants in Los Feliz</h2>
+        <p>These handpicked restaurants offer the perfect combination of romantic ambiance, exceptional cuisine, and charming atmosphere for couples.</p>
+        
+        <div class="restaurants-grid">
+          {topRestaurants.map((restaurant, index) => (
+            <div class="restaurant-card">
+              <div class="restaurant-rank">#{index + 1}</div>
+              <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+              <div class="restaurant-details">
+                <span class="cuisine">{restaurant.cuisine_types?.join(', ') || 'Contemporary'}</span>
+                <span class="price">{'$'.repeat(restaurant.price_level)}</span>
+                <span class="date-score">Date Score: {restaurant.date_night_score}</span>
+              </div>
+              <p class="restaurant-description">{restaurant.description || `A romantic dining experience in Los Feliz perfect for date nights.`}</p>
+              <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Details</a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Neighborhood Highlights -->
+      <section class="neighborhood-highlights">
+        <h2>Why Los Feliz is Perfect for Date Nights</h2>
+        
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <h3>🏛️ Historic Charm</h3>
+            <p>Los Feliz offers beautiful historic architecture and tree-lined streets, creating a charming and romantic atmosphere perfect for couples who appreciate character and elegance.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🎭 Artistic Vibe</h3>
+            <p>The neighborhood's artistic and creative culture adds character to every dining experience, making each date night feel special and unique.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🍷 Wine Bars & Bistros</h3>
+            <p>Los Feliz is known for its intimate wine bars and cozy bistros, creating perfect settings for couples who prefer relaxed and sophisticated dining.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🌳 Griffith Park Access</h3>
+            <p>Many couples enjoy a romantic walk in nearby Griffith Park before or after dinner, offering stunning city views and natural beauty perfect for memorable moments.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cuisine Diversity -->
+      <section class="cuisine-diversity">
+        <h2>Diverse Culinary Experiences</h2>
+        <p>Los Feliz's restaurant scene reflects LA's eclectic dining culture, offering couples the opportunity to explore cuisines from around the world:</p>
+        
+        <ul class="cuisine-list">
+          {cuisineTypes.slice(0, 8).map(cuisine => (
+            <li><a href={`/cuisines/${cuisine.toLowerCase().replace(/\s+/g, '-').replace(/_/g, '-')}/`}>{cuisine.replace(/_/g, ' ')}</a></li>
+          ))}
+        </ul>
+        
+        <p>From authentic French bistros to modern fusion restaurants, each restaurant brings its own unique atmosphere and culinary expertise to create memorable date night experiences.</p>
+      </section>
+
+      <!-- Planning Your Date Night -->
+      <section class="planning-tips">
+        <h2>Planning Your Los Feliz Date Night</h2>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <h3>🕐 Best Times to Visit</h3>
+            <p>Weekday evenings offer a more relaxed atmosphere with easier parking. Weekend nights are livelier with a trendy crowd—reservations are recommended at popular spots.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>🅿️ Parking Tips</h3>
+            <p>Street parking can be challenging in Los Feliz, especially along Vermont Avenue. Consider arriving early or using ride-sharing services for convenience.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>👗 Dress Code</h3>
+            <p>Los Feliz embraces a casual to smart casual aesthetic. Most restaurants welcome relaxed attire, though some upscale spots might prefer a more polished look.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>🎬 Film History</h3>
+            <p>Many couples enjoy exploring Los Feliz's connection to Hollywood history before or after dinner. The neighborhood offers unique landmarks and cultural sites worth visiting.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related Content -->
+      <section class="related-content">
+        <h2>Explore More Date Night Options</h2>
+        <div class="related-links">
+          <a href="/losangeles/restaurants/neighborhoods/los-feliz/" class="related-link">
+            <h3>All Los Feliz Restaurants</h3>
+            <p>Browse our complete list of {losFelizRestaurants.length} restaurants in Los Feliz</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/silver-lake/" class="related-link">
+            <h3>Silver Lake Restaurants</h3>
+            <p>Discover romantic dining in neighboring Silver Lake</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/hollywood/" class="related-link">
+            <h3>Hollywood Restaurants</h3>
+            <p>Explore more dining options nearby in Hollywood</p>
+          </a>
+          
+          <a href="/blog/wine-bars-los-angeles-date-night/" class="related-link">
+            <h3>Wine Bars in LA</h3>
+            <p>Find the perfect wine bar for romantic evenings</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Ready for Your Next Date Night?</h2>
+        <p>With {losFelizRestaurants.length} exceptional restaurants to choose from, Los Feliz offers endless possibilities for romantic dining. Whether you're planning a trendy night out or a casual neighborhood date, you're sure to find the perfect spot.</p>
+        <div class="cta-buttons">
+          <a href="/losangeles/restaurants/neighborhoods/los-feliz/" class="btn btn-primary">View All Los Feliz Restaurants</a>
+          <a href="/losangeles/restaurants/" class="btn btn-secondary">Explore All LA Restaurants</a>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 80px;
+    background: #F8F6F0;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .blog-hero {
+    text-align: center;
+    padding: 4rem 0 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .blog-intro {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .blog-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .top-restaurants {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 4rem;
+  }
+
+  .top-restaurants h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+
+  .top-restaurants > p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .restaurant-card {
+    border: 2px solid #E8B86D;
+    border-radius: 12px;
+    padding: 2rem;
+    background: #FDF8F3;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(139, 69, 19, 0.2);
+  }
+
+  .restaurant-rank {
+    background: #8B4513;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .restaurant-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2C1810;
+  }
+
+  .restaurant-card h3 a {
+    color: #2C1810;
+    text-decoration: none;
+  }
+
+  .restaurant-card h3 a:hover {
+    color: #8B4513;
+  }
+
+  .restaurant-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .restaurant-details span {
+    background: #E8B86D;
+    color: #2C1810;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .restaurant-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .neighborhood-highlights {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 4rem;
+  }
+
+  .neighborhood-highlights h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2C2C2C;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .highlight-card {
+    padding: 2rem;
+    background: #FDF8F3;
+    border-radius: 12px;
+    border: 2px solid #E8B86D;
+  }
+
+  .highlight-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2C1810;
+  }
+
+  .highlight-card p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .cuisine-diversity {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 4rem;
+  }
+
+  .cuisine-diversity h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+
+  .cuisine-diversity > p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list li {
+    background: #FDF8F3;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #E8B86D;
+  }
+
+  .cuisine-list a {
+    color: #8B4513;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cuisine-list a:hover {
+    color: #2C1810;
+  }
+
+  .planning-tips {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 4rem;
+  }
+
+  .planning-tips h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2C2C2C;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .tip-card {
+    padding: 2rem;
+    background: #FDF8F3;
+    border-radius: 12px;
+    border: 2px solid #E8B86D;
+  }
+
+  .tip-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2C1810;
+  }
+
+  .tip-card p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .related-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 4rem;
+  }
+
+  .related-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2C2C2C;
+  }
+
+  .related-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .related-link {
+    display: block;
+    padding: 2rem;
+    background: #FDF8F3;
+    border-radius: 12px;
+    border: 2px solid #E8B86D;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .related-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(139, 69, 19, 0.2);
+  }
+
+  .related-link h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2C1810;
+  }
+
+  .related-link p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: white;
+    padding: 4rem 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: #8B4513;
+    color: #F5F1E8;
+  }
+
+  .btn-primary:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: #E8B86D;
+    color: #2C1810;
+  }
+
+  .btn-secondary:hover {
+    background: #D4A86A;
+    transform: translateY(-2px);
+  }
+
+  .blog-hero-image {
+    width: 100%;
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 2rem auto 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    max-width: 1200px;
+  }
+
+  .blog-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .blog-hero-content {
+    text-align: center;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    border-radius: 15px;
+    margin-top: 2rem;
+  }
+
+  .blog-hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .blog-hero-content .blog-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+  }
+
+  .blog-hero-content .blog-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero-content h1 {
+      font-size: 2.5rem;
+    }
+    
+    .blog-hero-content .blog-subtitle {
+      font-size: 1.1rem;
+    }
+    
+    .restaurants-grid,
+    .highlights-grid,
+    .tips-grid,
+    .related-links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

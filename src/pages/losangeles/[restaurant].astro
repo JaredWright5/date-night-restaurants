@@ -35,7 +35,11 @@ const priceSymbols = '$'.repeat(restaurant.price_level);
 const mainImage = restaurant.photos?.[0] || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop';
 const dateNightDescription = `Perfect for a romantic date night with ${restaurant.cuisine_types?.join(', ') || 'excellent cuisine'} in ${restaurant.neighborhood}. ${restaurant.description || 'An intimate dining experience.'}`;
 
-const structuredData = {
+// Calculate review count from reviews array
+const reviewCount = restaurant.reviews && Array.isArray(restaurant.reviews) ? restaurant.reviews.length : 0;
+const hasValidRating = restaurant.rating && restaurant.rating > 0;
+
+const structuredData: any = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": restaurant.name,
@@ -49,17 +53,21 @@ const structuredData = {
     "addressRegion": "CA",
     "addressCountry": "US"
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": restaurant.rating || 0,
-    "reviewCount": 0
-  },
   "priceRange": priceSymbols,
   "servesCuisine": restaurant.cuisine_types || [],
   "openingHoursSpecification": [],
   "image": restaurant.photos || [],
   "sameAs": restaurant.website
 };
+
+// Only include aggregateRating if we have valid reviews
+if (hasValidRating && reviewCount > 0) {
+  structuredData.aggregateRating = {
+    "@type": "AggregateRating",
+    "ratingValue": restaurant.rating,
+    "reviewCount": reviewCount
+  };
+}
 ---
 
 <BaseLayout 
@@ -82,11 +90,11 @@ const structuredData = {
           <div class="restaurant-rating">
             <div class="date-score-display">
               <i class="fas fa-heart"></i>
-              <span>{restaurant.dateNightScore}</span>
+              <span>{restaurant.date_night_score}</span>
             </div>
           </div>
           <div class="restaurant-price">{priceSymbols}</div>
-          {restaurant.isTopRated && (
+          {restaurant.date_night_score >= 90 && (
             <div class="top-rated-badge">
               <i class="fas fa-crown"></i>
               <span>Top Rated</span>
@@ -139,7 +147,7 @@ const structuredData = {
         <div class="details-section">
           <h3><i class="fas fa-clock"></i> Opening Hours</h3>
           <ul class="opening-hours">
-            {Object.entries(restaurant.openingHours || {}).map(([day, hours]) => (
+            {Object.entries(restaurant.opening_hours || {}).map(([day, hours]) => (
               <li><strong>{day}:</strong> {hours || 'Closed'}</li>
             ))}
           </ul>
@@ -182,7 +190,7 @@ const structuredData = {
   {relatedRestaurants.length > 0 && (
     <section class="related-restaurants">
       <div class="container">
-        <h2>More Romantic Spots Near {restaurant.area}</h2>
+        <h2>More Romantic Spots Near {restaurant.neighborhood}</h2>
         <div class="restaurants-grid">
           {relatedRestaurants.map(r => (
             <RestaurantCard restaurant={r} showDateScore={false} />

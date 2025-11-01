@@ -1,0 +1,825 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAllRestaurants } from '@/lib/supabase';
+
+// Get restaurants from Supabase
+let restaurants;
+try {
+  restaurants = await getAllRestaurants();
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
+// Filter for Santa Monica restaurants
+const santaMonicaRestaurants = restaurants.filter(r => r.neighborhood === 'Santa Monica');
+const topRestaurants = santaMonicaRestaurants
+  .sort((a, b) => b.date_night_score - a.date_night_score)
+  .slice(0, 6);
+
+// Calculate stats
+const avgDateScore = Math.round(santaMonicaRestaurants.reduce((sum, r) => sum + r.date_night_score, 0) / santaMonicaRestaurants.length);
+const upscaleCount = santaMonicaRestaurants.filter(r => r.price_level >= 3).length;
+const cuisineTypes = [...new Set(santaMonicaRestaurants.flatMap(r => r.cuisine_types))];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best Date Night Restaurants in Santa Monica | 15 Oceanfront Romantic Dining Spots",
+  "description": "Discover the best date night restaurants in Santa Monica, Los Angeles. From oceanfront dining to cozy bistros, explore 15 romantic restaurants perfect for couples.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-10-27",
+  "dateModified": "2024-10-27",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/best-date-night-restaurants-santa-monica-los-angeles"
+  },
+  "image": "https://datenightrestaurants.com/images/santa-monica-date-night.jpg"
+};
+---
+
+<BaseLayout
+  title="Best Date Night Restaurants in Santa Monica | 15 Oceanfront Romantic Dining Spots"
+  description="Discover the best date night restaurants in Santa Monica, Los Angeles. From oceanfront dining to cozy bistros, explore 15 romantic restaurants perfect for couples."
+  canonical="https://datenightrestaurants.com/blog/best-date-night-restaurants-santa-monica-los-angeles"
+  keywords={['date night restaurants Santa Monica', 'romantic dining Santa Monica', 'couples restaurants Santa Monica', 'Santa Monica restaurants', 'oceanfront dining Santa Monica', 'beach restaurants Santa Monica']}
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <div class="container">
+      <!-- Hero Section -->
+      <header class="blog-hero">
+        <h1>Best Date Night Restaurants in Santa Monica</h1>
+        <p class="blog-subtitle">Discover 15 romantic dining spots with stunning ocean views</p>
+        <div class="blog-meta">
+          <span class="publish-date">Published: October 27, 2024</span>
+          <span class="read-time">Reading time: 8 minutes</span>
+        </div>
+      </header>
+
+      <!-- Introduction -->
+      <section class="blog-intro">
+        <p>Santa Monica offers the perfect blend of beachside charm and sophisticated dining, making it one of Los Angeles' most romantic neighborhoods for date nights. With 15 exceptional restaurants, this coastal community provides everything from intimate oceanfront dining to cozy neighborhood bistros.</p>
+        
+        <p>Whether you're watching the sunset over the Pacific Ocean or enjoying a candlelit dinner in a charming courtyard, Santa Monica's restaurants create unforgettable romantic experiences. The sound of waves, the salty ocean breeze, and the warm California light combine to set the perfect mood for couples.</p>
+      </section>
+
+      <!-- Quick Stats -->
+      <section class="blog-stats">
+        <div class="stat-card">
+          <div class="stat-number">{santaMonicaRestaurants.length}</div>
+          <div class="stat-label">Restaurants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{avgDateScore}</div>
+          <div class="stat-label">Avg Date Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{upscaleCount}</div>
+          <div class="stat-label">Upscale Options</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{cuisineTypes.length}</div>
+          <div class="stat-label">Cuisine Types</div>
+        </div>
+      </section>
+
+      <!-- Top Restaurants -->
+      <section class="top-restaurants">
+        <h2>Top 6 Date Night Restaurants in Santa Monica</h2>
+        <p>These carefully selected restaurants offer the perfect combination of romantic ambiance, exceptional cuisine, and memorable oceanfront experiences.</p>
+        
+        <div class="restaurants-grid">
+          {topRestaurants.map((restaurant, index) => (
+            <div class="restaurant-card">
+              <div class="restaurant-rank">#{index + 1}</div>
+              <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+              <div class="restaurant-details">
+                <span class="cuisine">{restaurant.cuisine_types?.join(', ')}</span>
+                <span class="price">{'$'.repeat(restaurant.price_level)}</span>
+                <span class="date-score">Date Score: {restaurant.date_night_score}</span>
+              </div>
+              <p class="restaurant-description">{restaurant.description}</p>
+              <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Details</a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Oceanfront Dining -->
+      <section class="oceanfront-dining">
+        <h2>Oceanfront Dining Experiences</h2>
+        
+        <div class="oceanfront-grid">
+          <div class="oceanfront-card">
+            <h3>🌅 Sunset Views</h3>
+            <p>Many Santa Monica restaurants offer spectacular sunset views over the Pacific Ocean, creating a naturally romantic backdrop for your date night dinner.</p>
+          </div>
+          
+          <div class="oceanfront-card">
+            <h3>🏖️ Beach Proximity</h3>
+            <p>Several restaurants are located just steps from the beach, allowing couples to enjoy a romantic walk along the shore before or after dinner.</p>
+          </div>
+          
+          <div class="oceanfront-card">
+            <h3>🌊 Ocean Breeze</h3>
+            <p>Outdoor dining areas capture the refreshing ocean breeze, creating a comfortable and romantic atmosphere even on warm summer evenings.</p>
+          </div>
+          
+          <div class="oceanfront-card">
+            <h3>🎡 Pier Views</h3>
+            <p>Some restaurants offer views of the iconic Santa Monica Pier, adding a touch of classic California charm to your romantic evening.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Neighborhood Highlights -->
+      <section class="neighborhood-highlights">
+        <h2>Why Santa Monica is Perfect for Date Nights</h2>
+        
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <h3>🏖️ Beach Access</h3>
+            <p>Santa Monica's prime beachfront location provides easy access to romantic beach walks, sunset viewing, and seaside activities.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🛍️ Shopping & Entertainment</h3>
+            <p>The Third Street Promenade and Santa Monica Place offer plenty of pre-dinner shopping and entertainment options for couples.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🚶 Walkable Streets</h3>
+            <p>The pedestrian-friendly downtown area makes it easy to explore multiple restaurants, bars, and attractions on foot.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🌴 Year-Round Weather</h3>
+            <p>Santa Monica's mild Mediterranean climate makes it perfect for outdoor dining and romantic activities throughout the year.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cuisine Diversity -->
+      <section class="cuisine-diversity">
+        <h2>Diverse Culinary Experiences</h2>
+        <p>Santa Monica's restaurant scene reflects the city's diverse population and international influences, offering couples a world of culinary adventures:</p>
+        
+        <ul class="cuisine-list">
+          {cuisineTypes.slice(0, 8).map(cuisine => (
+            <li><a href={`/cuisines/${cuisine.toLowerCase().replace(/\s+/g, '-')}/`}>{cuisine}</a></li>
+          ))}
+        </ul>
+        
+        <p>From fresh seafood caught daily to farm-to-table California cuisine, each restaurant brings its own unique flavors and atmosphere to create memorable date night experiences.</p>
+      </section>
+
+      <!-- Planning Your Date Night -->
+      <section class="planning-tips">
+        <h2>Planning Your Santa Monica Date Night</h2>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <h3>🌅 Sunset Timing</h3>
+            <p>Plan your dinner around sunset (typically 6-8 PM) to enjoy the most romantic ocean views. Many restaurants offer special sunset menus.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>🅿️ Parking Strategy</h3>
+            <p>Downtown Santa Monica can be busy. Consider using the public parking structures or valet services offered by many restaurants.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>👗 Dress Code</h3>
+            <p>Santa Monica restaurants range from casual beachside cafes to upscale fine dining. Smart casual attire is generally appropriate.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>📅 Seasonal Considerations</h3>
+            <p>Summer months are busiest but offer the best weather. Spring and fall provide fewer crowds while maintaining pleasant temperatures.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beach Activities -->
+      <section class="beach-activities">
+        <h2>Pre & Post-Dinner Beach Activities</h2>
+        <p>Make the most of your Santa Monica date night by incorporating these romantic beach activities:</p>
+        
+        <div class="activities-grid">
+          <div class="activity-card">
+            <h3>🌅 Sunset Walk</h3>
+            <p>Take a romantic stroll along the beach as the sun sets over the Pacific Ocean, creating the perfect pre-dinner atmosphere.</p>
+          </div>
+          
+          <div class="activity-card">
+            <h3>🎡 Pier Rides</h3>
+            <p>Visit the iconic Santa Monica Pier for classic amusement park rides and games, adding a playful element to your date night.</p>
+          </div>
+          
+          <div class="activity-card">
+            <h3>🛍️ Shopping</h3>
+            <p>Browse the Third Street Promenade for unique gifts and souvenirs, or explore the farmers market for fresh local products.</p>
+          </div>
+          
+          <div class="activity-card">
+            <h3>🍷 Wine Tasting</h3>
+            <p>Many restaurants offer extensive wine lists featuring California wines, perfect for a romantic post-dinner wine tasting experience.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related Content -->
+      <section class="related-content">
+        <h2>Explore More Date Night Options</h2>
+        <div class="related-links">
+          <a href="/losangeles/restaurants/neighborhoods/santa-monica/" class="related-link">
+            <h3>All Santa Monica Restaurants</h3>
+            <p>Browse our complete list of {santaMonicaRestaurants.length} restaurants in Santa Monica</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/west-hollywood/" class="related-link">
+            <h3>West Hollywood Restaurants</h3>
+            <p>Discover trendy dining spots in West Hollywood</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/downtown-la/" class="related-link">
+            <h3>Downtown LA Restaurants</h3>
+            <p>Explore urban dining experiences in downtown Los Angeles</p>
+          </a>
+          
+          <a href="/blog/romantic-restaurants-santa-monica-ocean-view/" class="related-link">
+            <h3>Ocean View Restaurants</h3>
+            <p>Find the best restaurants with stunning ocean views</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Ready for Your Oceanfront Date Night?</h2>
+        <p>With 15 exceptional restaurants and endless ocean views, Santa Monica offers the perfect setting for romantic dining. Whether you're celebrating a special occasion or planning a casual date night, you're sure to find the perfect spot.</p>
+        <div class="cta-buttons">
+          <a href="/losangeles/restaurants/neighborhoods/santa-monica/" class="btn btn-primary">View All Santa Monica Restaurants</a>
+          <a href="/losangeles/restaurants/" class="btn btn-secondary">Explore All LA Restaurants</a>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 80px;
+    background: #F8F6F0;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .blog-hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    margin-bottom: 3rem;
+  }
+
+  .blog-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .blog-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+  }
+
+  .blog-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .blog-intro {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .blog-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .top-restaurants {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .top-restaurants h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .top-restaurants p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .restaurant-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .restaurant-rank {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: #D4AF37;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .restaurant-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+
+  .restaurant-card h3 a {
+    color: #2C2C2C;
+    text-decoration: none;
+  }
+
+  .restaurant-card h3 a:hover {
+    color: #D4AF37;
+  }
+
+  .restaurant-details {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .restaurant-details span {
+    background: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .cuisine {
+    color: #666;
+  }
+
+  .price {
+    color: #D4AF37;
+  }
+
+  .date-score {
+    color: #2C2C2C;
+  }
+
+  .restaurant-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #D4AF37;
+    border: 2px solid #D4AF37;
+  }
+
+  .btn-secondary:hover {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .oceanfront-dining {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .oceanfront-dining h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .oceanfront-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .oceanfront-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .oceanfront-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .oceanfront-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .neighborhood-highlights {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .neighborhood-highlights h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .highlight-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .highlight-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .cuisine-diversity {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .cuisine-diversity h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cuisine-diversity p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list li {
+    background: #F8F6F0;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .cuisine-list a {
+    color: #2C2C2C;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cuisine-list a:hover {
+    color: #D4AF37;
+  }
+
+  .planning-tips {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .planning-tips h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .tip-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+  }
+
+  .tip-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .tip-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .beach-activities {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .beach-activities h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .beach-activities p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .activity-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .activity-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .activity-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .related-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .related-content h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .related-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .related-link {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+
+  .related-link:hover {
+    transform: translateY(-5px);
+  }
+
+  .related-link h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .related-link p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .blog-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .blog-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .oceanfront-grid,
+    .highlights-grid,
+    .tips-grid,
+    .activities-grid,
+    .related-links {
+      grid-template-columns: 1fr;
+    }
+
+    .cuisine-list {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

@@ -11,7 +11,29 @@ const cuisines = getAllCuisines();
     <div class="footer-content">
       <div class="footer-section">
                 <div class="footer-logo">
-          <div class="footer-logo-icon">D</div>
+          <div class="footer-logo-icon">
+    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Plate base -->
+      <circle cx="16" cy="16" r="14" fill="#F5F1E8" stroke="#8B4513" stroke-width="1"/>
+      <!-- Plate rim -->
+      <circle cx="16" cy="16" r="12" fill="#FAF7F0" stroke="#A0522D" stroke-width="0.5"/>
+      <!-- Fork (refined) -->
+      <path d="M8 6 C7.8 9.5,7.8 12.5,8 16 L8 22" stroke="#8B4513" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M6.6 9.2 L9.4 9.2" stroke="#8B4513" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M6.6 11.0 L9.4 11.0" stroke="#8B4513" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M6.6 12.8 L9.4 12.8" stroke="#8B4513" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Knife (refined) -->
+      <path d="M24.5 6 C25.2 7.5 25.6 9.4 25.6 11.2 C25.6 12.7 25.1 14.3 24.1 15.6 C23.4 16.5 22.5 17.2 21.5 17.7 L21.3 17.8 L21.3 22" fill="none" stroke="#8B4513" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M21.3 22 C21.1 22.8 21.1 23.6 21.3 24.2" stroke="#8B4513" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- Center circle for date element -->
+      <circle cx="16" cy="16" r="6" fill="#E8B86D" stroke="#D2691E" stroke-width="1"/>
+      <!-- Clock hands representing time/date -->
+      <line x1="16" y1="16" x2="16" y2="12" stroke="#8B4513" stroke-width="1" stroke-linecap="round"/>
+      <line x1="16" y1="16" x2="19" y2="16" stroke="#8B4513" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- Center dot -->
+      <circle cx="16" cy="16" r="1" fill="#8B4513"/>
+    </svg>
+          </div>
           <div class="footer-logo-text">
             <span class="footer-logo-main">Date Night</span>
             <span class="footer-logo-sub">Restaurants</span>
@@ -40,10 +62,10 @@ const cuisines = getAllCuisines();
       <div class="footer-section">
         <h4>Popular Neighborhoods</h4>
         <ul>
-          <li><a href="/restaurants/beverly-hills/">Beverly Hills</a></li>
-          <li><a href="/restaurants/west-hollywood/">West Hollywood</a></li>
-          <li><a href="/restaurants/santa-monica/">Santa Monica</a></li>
-          <li><a href="/restaurants/hollywood/">Hollywood</a></li>
+          <li><a href="/losangeles/restaurants/neighborhoods/beverly-hills/">Beverly Hills</a></li>
+          <li><a href="/losangeles/restaurants/neighborhoods/west-hollywood/">West Hollywood</a></li>
+          <li><a href="/losangeles/restaurants/neighborhoods/santa-monica/">Santa Monica</a></li>
+          <li><a href="/losangeles/restaurants/neighborhoods/hollywood/">Hollywood</a></li>
         </ul>
       </div>
       
@@ -73,8 +95,8 @@ const cuisines = getAllCuisines();
 
 <style>
   .footer {
-    background: #333;
-    color: white;
+    background: #2C1810;
+    color: #F5F1E8;
     padding: 3rem 0 1rem;
     margin-top: 4rem;
   }
@@ -96,15 +118,12 @@ const cuisines = getAllCuisines();
   .footer-logo-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #D4AF37, #E6C547);
-    color: #2C2C2C;
+    background: #F5F1E8;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    font-weight: 700;
-    font-family: 'Playfair Display', serif;
+    border: 2px solid #8B4513;
   }
   
   .footer-logo-text {
@@ -114,14 +133,14 @@ const cuisines = getAllCuisines();
   }
   
   .footer-logo-main {
-    color: white;
+    color: #F5F1E8;
     font-size: 1.1rem;
     font-weight: 700;
     font-family: 'Playfair Display', serif;
   }
   
   .footer-logo-sub {
-    color: #ccc;
+    color: #E8B86D;
     font-size: 0.8rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -131,11 +150,11 @@ const cuisines = getAllCuisines();
   .footer-section h3,
   .footer-section h4 {
     margin-bottom: 1rem;
-    color: white;
+    color: #F5F1E8;
   }
   
   .footer-section p {
-    color: #ccc;
+    color: #E8B86D;
     line-height: 1.6;
     margin-bottom: 1rem;
   }
@@ -151,13 +170,13 @@ const cuisines = getAllCuisines();
   }
   
   .footer-section ul li a {
-    color: #ccc;
+    color: #E8B86D;
     text-decoration: none;
     transition: color 0.3s ease;
   }
   
   .footer-section ul li a:hover {
-    color: #D4AF37;
+    color: #F5F1E8;
   }
   
   .social-links {
@@ -172,21 +191,21 @@ const cuisines = getAllCuisines();
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: #444;
+    background: #8B4513;
     border-radius: 50%;
-    color: white;
+    color: #F5F1E8;
     text-decoration: none;
     transition: all 0.3s ease;
   }
   
   .social-links a:hover {
-    background: #D4AF37;
-    color: #2C2C2C;
+    background: #A0522D;
+    color: #F5F1E8;
     transform: translateY(-2px);
   }
   
   .footer-bottom {
-    border-top: 1px solid #555;
+    border-top: 1px solid #8B4513;
     padding-top: 2rem;
   }
   
@@ -199,7 +218,7 @@ const cuisines = getAllCuisines();
   }
   
   .footer-bottom p {
-    color: #999;
+    color: #E8B86D;
     margin: 0;
   }
   
@@ -209,14 +228,14 @@ const cuisines = getAllCuisines();
   }
   
   .footer-links a {
-    color: #999;
+    color: #E8B86D;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
   }
   
   .footer-links a:hover {
-    color: #D4AF37;
+    color: #F5F1E8;
   }
   
   @media (max-width: 768px) {

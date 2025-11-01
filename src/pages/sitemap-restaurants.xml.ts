@@ -1,11 +1,20 @@
 import type { APIRoute } from 'astro';
-import { restaurants } from '@/data/restaurants';
+import { getAllRestaurants } from '@/lib/supabase';
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = async () => {
   const baseUrl = 'https://datenightrestaurants.com';
   const currentDate = new Date().toISOString();
   
-  // Restaurant pages
+  // Get restaurants from Supabase
+  let restaurants;
+  try {
+    restaurants = await getAllRestaurants();
+  } catch (error) {
+    console.error('Error fetching restaurants for sitemap:', error);
+    return new Response('Database connection failed', { status: 500 });
+  }
+  
+  // Restaurant pages with clean URLs
   const restaurantPages = restaurants.map(restaurant => ({
     loc: `${baseUrl}/losangeles/${restaurant.slug}/`,
     lastmod: currentDate,

@@ -63,15 +63,15 @@ const structuredData = {
         
         <div class="hero-stats">
           <div class="stat">
-            <span class="stat-number">${restaurants.length}</span>
+            <span class="stat-number">{restaurants.length}</span>
             <span class="stat-label">Restaurants</span>
           </div>
           <div class="stat">
-            <span class="stat-number">${Math.round(restaurants.reduce((sum, r) => sum + r.date_night_score, 0) / restaurants.length)}</span>
+            <span class="stat-number">{Math.round(restaurants.reduce((sum, r) => sum + r.date_night_score, 0) / restaurants.length)}</span>
             <span class="stat-label">Avg Date Score</span>
           </div>
           <div class="stat">
-            <span class="stat-number">${restaurants.filter(r => r.price_level >= 3).length}</span>
+            <span class="stat-number">{restaurants.filter(r => r.price_level >= 3).length}</span>
             <span class="stat-label">Upscale Options</span>
           </div>
         </div>
@@ -80,7 +80,7 @@ const structuredData = {
       <!-- Results -->
       <section class="restaurants-list">
         <div class="container">
-          <h2>Showing ${restaurants.length} Restaurants in Chinatown</h2>
+          <h2>Showing {restaurants.length} Restaurants in Chinatown</h2>
           <div class="restaurants-grid">
             {restaurants.map(restaurant => (
               <RestaurantCard restaurant={restaurant} />

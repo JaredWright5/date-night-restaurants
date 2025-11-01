@@ -1,0 +1,825 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAllRestaurants } from '@/lib/supabase';
+
+// Get restaurants from Supabase
+let restaurants;
+try {
+  restaurants = await getAllRestaurants();
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
+// Filter for Downtown LA restaurants
+const downtownRestaurants = restaurants.filter(r => r.neighborhood === 'Downtown LA');
+const topRestaurants = downtownRestaurants
+  .sort((a, b) => b.date_night_score - a.date_night_score)
+  .slice(0, 6);
+
+// Calculate stats
+const avgDateScore = Math.round(downtownRestaurants.reduce((sum, r) => sum + r.date_night_score, 0) / downtownRestaurants.length);
+const upscaleCount = downtownRestaurants.filter(r => r.price_level >= 3).length;
+const cuisineTypes = [...new Set(downtownRestaurants.flatMap(r => r.cuisine_types))];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best Date Night Restaurants in Downtown LA | 14 Urban Romantic Dining Spots",
+  "description": "Discover the best date night restaurants in Downtown Los Angeles. From rooftop dining to intimate bistros, explore 14 romantic restaurants perfect for couples.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-10-27",
+  "dateModified": "2024-10-27",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/best-date-night-restaurants-downtown-la-los-angeles"
+  },
+  "image": "https://datenightrestaurants.com/images/downtown-la-date-night.jpg"
+};
+---
+
+<BaseLayout
+  title="Best Date Night Restaurants in Downtown LA | 14 Urban Romantic Dining Spots"
+  description="Discover the best date night restaurants in Downtown Los Angeles. From rooftop dining to intimate bistros, explore 14 romantic restaurants perfect for couples."
+  canonical="https://datenightrestaurants.com/blog/best-date-night-restaurants-downtown-la-los-angeles"
+  keywords={['date night restaurants Downtown LA', 'romantic dining Downtown LA', 'couples restaurants Downtown LA', 'Downtown LA restaurants', 'rooftop dining Downtown LA', 'urban dining Downtown LA']}
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <div class="container">
+      <!-- Hero Section -->
+      <header class="blog-hero">
+        <h1>Best Date Night Restaurants in Downtown LA</h1>
+        <p class="blog-subtitle">Discover 14 romantic dining spots in LA's urban heart</p>
+        <div class="blog-meta">
+          <span class="publish-date">Published: October 27, 2024</span>
+          <span class="read-time">Reading time: 8 minutes</span>
+        </div>
+      </header>
+
+      <!-- Introduction -->
+      <section class="blog-intro">
+        <p>Downtown Los Angeles has undergone a remarkable transformation, emerging as one of the city's most exciting dining destinations. With 14 exceptional date night restaurants, this urban neighborhood offers everything from sophisticated rooftop dining to intimate underground speakeasies perfect for romantic evenings.</p>
+        
+        <p>Whether you're dining in a converted warehouse with exposed brick walls or enjoying cocktails on a rooftop with panoramic city views, Downtown LA's restaurants create unforgettable romantic experiences. The neighborhood's mix of historic architecture, modern skyscrapers, and vibrant street art provides a dynamic backdrop for couples seeking urban romance.</p>
+      </section>
+
+      <!-- Quick Stats -->
+      <section class="blog-stats">
+        <div class="stat-card">
+          <div class="stat-number">{downtownRestaurants.length}</div>
+          <div class="stat-label">Restaurants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{avgDateScore}</div>
+          <div class="stat-label">Avg Date Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{upscaleCount}</div>
+          <div class="stat-label">Upscale Options</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{cuisineTypes.length}</div>
+          <div class="stat-label">Cuisine Types</div>
+        </div>
+      </section>
+
+      <!-- Top Restaurants -->
+      <section class="top-restaurants">
+        <h2>Top 6 Date Night Restaurants in Downtown LA</h2>
+        <p>These carefully selected restaurants offer the perfect combination of romantic ambiance, exceptional cuisine, and memorable urban experiences.</p>
+        
+        <div class="restaurants-grid">
+          {topRestaurants.map((restaurant, index) => (
+            <div class="restaurant-card">
+              <div class="restaurant-rank">#{index + 1}</div>
+              <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+              <div class="restaurant-details">
+                <span class="cuisine">{restaurant.cuisine_types?.join(', ')}</span>
+                <span class="price">{'$'.repeat(restaurant.price_level)}</span>
+                <span class="date-score">Date Score: {restaurant.date_night_score}</span>
+              </div>
+              <p class="restaurant-description">{restaurant.description}</p>
+              <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Details</a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Urban Dining -->
+      <section class="urban-dining">
+        <h2>Urban Dining Experiences</h2>
+        
+        <div class="urban-grid">
+          <div class="urban-card">
+            <h3>🏙️ Skyline Views</h3>
+            <p>Many Downtown LA restaurants offer spectacular views of the city skyline, creating a romantic urban backdrop for your date night dinner.</p>
+          </div>
+          
+          <div class="urban-card">
+            <h3>🏭 Historic Architecture</h3>
+            <p>Several restaurants are housed in beautifully restored historic buildings, adding character and charm to your romantic dining experience.</p>
+          </div>
+          
+          <div class="urban-card">
+            <h3>🌃 Nightlife Access</h3>
+            <p>Downtown LA's vibrant nightlife scene means you can easily transition from dinner to cocktails, live music, or dancing.</p>
+          </div>
+          
+          <div class="urban-card">
+            <h3>🚇 Easy Transportation</h3>
+            <p>With multiple Metro stations and ride-sharing options, Downtown LA is easily accessible from throughout the greater LA area.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Neighborhood Highlights -->
+      <section class="neighborhood-highlights">
+        <h2>Why Downtown LA is Perfect for Date Nights</h2>
+        
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <h3>🎭 Arts & Culture</h3>
+            <p>Downtown LA is home to world-class museums, theaters, and galleries, perfect for combining dinner with cultural experiences.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🍷 Craft Cocktail Scene</h3>
+            <p>The neighborhood boasts some of LA's most innovative cocktail bars and speakeasies, ideal for pre-dinner drinks or nightcaps.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🌆 Rooftop Culture</h3>
+            <p>Downtown LA's rooftop dining scene offers stunning views and sophisticated atmospheres perfect for romantic evenings.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🚶 Walkable Districts</h3>
+            <p>Distinct neighborhoods like the Arts District and Historic Core make it easy to explore multiple venues on foot.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cuisine Diversity -->
+      <section class="cuisine-diversity">
+        <h2>Diverse Culinary Experiences</h2>
+        <p>Downtown LA's restaurant scene reflects the city's multicultural population and innovative culinary spirit, offering couples a world of dining adventures:</p>
+        
+        <ul class="cuisine-list">
+          {cuisineTypes.slice(0, 8).map(cuisine => (
+            <li><a href={`/cuisines/${cuisine.toLowerCase().replace(/\s+/g, '-')}/`}>{cuisine}</a></li>
+          ))}
+        </ul>
+        
+        <p>From modern fusion concepts to authentic ethnic cuisines, each restaurant brings its own unique flavors and atmosphere to create memorable date night experiences in the heart of the city.</p>
+      </section>
+
+      <!-- Planning Your Date Night -->
+      <section class="planning-tips">
+        <h2>Planning Your Downtown LA Date Night</h2>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <h3>🚇 Transportation</h3>
+            <p>Downtown LA is well-connected by Metro. Consider using public transportation or ride-sharing to avoid parking challenges.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>🅿️ Parking Strategy</h3>
+            <p>Many restaurants offer valet parking. Street parking can be limited, so plan ahead or use parking apps to find nearby lots.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>👗 Dress Code</h3>
+            <p>Downtown LA restaurants range from casual to upscale. Smart casual to business casual attire is generally appropriate.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>📅 Weekday vs Weekend</h3>
+            <p>Weekdays offer a more relaxed atmosphere with easier reservations. Weekends are livelier but require advance booking.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pre & Post-Dinner Activities -->
+      <section class="downtown-activities">
+        <h2>Pre & Post-Dinner Downtown Activities</h2>
+        <p>Make the most of your Downtown LA date night by incorporating these romantic urban activities:</p>
+        
+        <div class="activities-grid">
+          <div class="activity-card">
+            <h3>🎨 Art Walk</h3>
+            <p>Explore the Arts District's galleries and street art, or visit world-class museums like The Broad or MOCA.</p>
+          </div>
+          
+          <div class="activity-card">
+            <h3>🍷 Rooftop Cocktails</h3>
+            <p>Enjoy pre-dinner drinks at one of Downtown's many rooftop bars with stunning city views.</p>
+          </div>
+          
+          <div class="activity-card">
+            <h3>🎭 Live Entertainment</h3>
+            <p>Catch a show at the Walt Disney Concert Hall or enjoy live music at intimate venues throughout the district.</p>
+          </div>
+          
+          <div class="activity-card">
+            <h3>🌃 Nighttime Stroll</h3>
+            <p>Take a romantic walk through Grand Central Market or explore the Historic Core's beautifully lit architecture.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related Content -->
+      <section class="related-content">
+        <h2>Explore More Date Night Options</h2>
+        <div class="related-links">
+          <a href="/losangeles/restaurants/neighborhoods/downtown-la/" class="related-link">
+            <h3>All Downtown LA Restaurants</h3>
+            <p>Browse our complete list of {downtownRestaurants.length} restaurants in Downtown LA</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/west-hollywood/" class="related-link">
+            <h3>West Hollywood Restaurants</h3>
+            <p>Discover trendy dining spots in West Hollywood</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/santa-monica/" class="related-link">
+            <h3>Santa Monica Restaurants</h3>
+            <p>Explore oceanfront dining in Santa Monica</p>
+          </a>
+          
+          <a href="/blog/downtown-la-date-night-urban-romance/" class="related-link">
+            <h3>Urban Romance Guide</h3>
+            <p>Complete guide to romantic activities in Downtown LA</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Ready for Your Urban Date Night?</h2>
+        <p>With 14 exceptional restaurants and endless urban adventures, Downtown LA offers the perfect setting for romantic dining in the heart of the city. Whether you're celebrating a special occasion or planning a casual date night, you're sure to find the perfect spot.</p>
+        <div class="cta-buttons">
+          <a href="/losangeles/restaurants/neighborhoods/downtown-la/" class="btn btn-primary">View All Downtown LA Restaurants</a>
+          <a href="/losangeles/restaurants/" class="btn btn-secondary">Explore All LA Restaurants</a>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 80px;
+    background: #F8F6F0;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .blog-hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    margin-bottom: 3rem;
+  }
+
+  .blog-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .blog-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+  }
+
+  .blog-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .blog-intro {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .blog-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .top-restaurants {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .top-restaurants h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .top-restaurants p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .restaurant-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .restaurant-rank {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: #D4AF37;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .restaurant-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+
+  .restaurant-card h3 a {
+    color: #2C2C2C;
+    text-decoration: none;
+  }
+
+  .restaurant-card h3 a:hover {
+    color: #D4AF37;
+  }
+
+  .restaurant-details {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .restaurant-details span {
+    background: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .cuisine {
+    color: #666;
+  }
+
+  .price {
+    color: #D4AF37;
+  }
+
+  .date-score {
+    color: #2C2C2C;
+  }
+
+  .restaurant-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #D4AF37;
+    border: 2px solid #D4AF37;
+  }
+
+  .btn-secondary:hover {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .urban-dining {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .urban-dining h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .urban-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .urban-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .urban-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .urban-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .neighborhood-highlights {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .neighborhood-highlights h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .highlight-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .highlight-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .cuisine-diversity {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .cuisine-diversity h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cuisine-diversity p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list li {
+    background: #F8F6F0;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .cuisine-list a {
+    color: #2C2C2C;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cuisine-list a:hover {
+    color: #D4AF37;
+  }
+
+  .planning-tips {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .planning-tips h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .tip-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+  }
+
+  .tip-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .tip-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .downtown-activities {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .downtown-activities h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .downtown-activities p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .activity-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .activity-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .activity-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .related-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .related-content h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .related-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .related-link {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+
+  .related-link:hover {
+    transform: translateY(-5px);
+  }
+
+  .related-link h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .related-link p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .blog-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .blog-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .urban-grid,
+    .highlights-grid,
+    .tips-grid,
+    .activities-grid,
+    .related-links {
+      grid-template-columns: 1fr;
+    }
+
+    .cuisine-list {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

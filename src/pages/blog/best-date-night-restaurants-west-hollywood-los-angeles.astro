@@ -1,0 +1,681 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAllRestaurants } from '@/lib/supabase';
+
+// Get restaurants from Supabase
+let restaurants;
+try {
+  restaurants = await getAllRestaurants();
+} catch (error) {
+  console.error('Error fetching restaurants:', error);
+  return new Response('Database connection failed. Please check your Supabase configuration.', { status: 500 });
+}
+
+// Filter for West Hollywood restaurants
+const westHollywoodRestaurants = restaurants.filter(r => r.neighborhood === 'West Hollywood');
+const topRestaurants = westHollywoodRestaurants
+  .sort((a, b) => b.date_night_score - a.date_night_score)
+  .slice(0, 6);
+
+// Calculate stats
+const avgDateScore = Math.round(westHollywoodRestaurants.reduce((sum, r) => sum + r.date_night_score, 0) / westHollywoodRestaurants.length);
+const upscaleCount = westHollywoodRestaurants.filter(r => r.price_level >= 3).length;
+const cuisineTypes = [...new Set(westHollywoodRestaurants.flatMap(r => r.cuisine_types))];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best Date Night Restaurants in West Hollywood | 17 Romantic Dining Spots",
+  "description": "Discover the best date night restaurants in West Hollywood, Los Angeles. From rooftop dining to intimate bistros, explore 17 romantic restaurants perfect for couples.",
+  "author": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Date Night Restaurants",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://datenightrestaurants.com/logo.png"
+    }
+  },
+  "datePublished": "2024-10-27",
+  "dateModified": "2024-10-27",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://datenightrestaurants.com/blog/best-date-night-restaurants-west-hollywood-los-angeles"
+  },
+  "image": "https://datenightrestaurants.com/images/west-hollywood-date-night.jpg"
+};
+---
+
+<BaseLayout
+  title="Best Date Night Restaurants in West Hollywood | 17 Romantic Dining Spots"
+  description="Discover the best date night restaurants in West Hollywood, Los Angeles. From rooftop dining to intimate bistros, explore 17 romantic restaurants perfect for couples."
+  canonical="https://datenightrestaurants.com/blog/best-date-night-restaurants-west-hollywood-los-angeles"
+  keywords={['date night restaurants West Hollywood', 'romantic dining West Hollywood', 'couples restaurants West Hollywood', 'West Hollywood restaurants', 'rooftop dining West Hollywood', 'fine dining West Hollywood']}
+  structuredData={structuredData}
+>
+  <article class="blog-post">
+    <div class="container">
+      <!-- Hero Section -->
+      <header class="blog-hero">
+        <h1>Best Date Night Restaurants in West Hollywood</h1>
+        <p class="blog-subtitle">Discover 17 romantic dining spots in LA's most vibrant neighborhood</p>
+        <div class="blog-meta">
+          <span class="publish-date">Published: October 27, 2024</span>
+          <span class="read-time">Reading time: 8 minutes</span>
+        </div>
+      </header>
+
+      <!-- Introduction -->
+      <section class="blog-intro">
+        <p>West Hollywood is Los Angeles' entertainment capital, known for its vibrant nightlife, trendy bars, and world-class dining scene. With 17 exceptional date night restaurants, this neighborhood offers everything from intimate rooftop dining to cozy neighborhood bistros perfect for romantic evenings.</p>
+        
+        <p>Whether you're celebrating an anniversary, planning a first date, or simply want to enjoy a special night out, West Hollywood's diverse culinary landscape has something for every couple. From the glamorous Sunset Strip to the charming streets of WeHo, discover the perfect spot for your next romantic dinner.</p>
+      </section>
+
+      <!-- Quick Stats -->
+      <section class="blog-stats">
+        <div class="stat-card">
+          <div class="stat-number">{westHollywoodRestaurants.length}</div>
+          <div class="stat-label">Restaurants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{avgDateScore}</div>
+          <div class="stat-label">Avg Date Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{upscaleCount}</div>
+          <div class="stat-label">Upscale Options</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{cuisineTypes.length}</div>
+          <div class="stat-label">Cuisine Types</div>
+        </div>
+      </section>
+
+      <!-- Top Restaurants -->
+      <section class="top-restaurants">
+        <h2>Top 6 Date Night Restaurants in West Hollywood</h2>
+        <p>These handpicked restaurants offer the perfect combination of romantic ambiance, exceptional cuisine, and memorable experiences for couples.</p>
+        
+        <div class="restaurants-grid">
+          {topRestaurants.map((restaurant, index) => (
+            <div class="restaurant-card">
+              <div class="restaurant-rank">#{index + 1}</div>
+              <h3><a href={`/losangeles/${restaurant.slug}/`}>{restaurant.name}</a></h3>
+              <div class="restaurant-details">
+                <span class="cuisine">{restaurant.cuisine_types?.join(', ')}</span>
+                <span class="price">{'$'.repeat(restaurant.price_level)}</span>
+                <span class="date-score">Date Score: {restaurant.date_night_score}</span>
+              </div>
+              <p class="restaurant-description">{restaurant.description}</p>
+              <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">View Details</a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Neighborhood Highlights -->
+      <section class="neighborhood-highlights">
+        <h2>Why West Hollywood is Perfect for Date Nights</h2>
+        
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <h3>🎭 Entertainment District</h3>
+            <p>Located in the heart of LA's entertainment industry, West Hollywood offers a glamorous backdrop for romantic dinners with easy access to theaters, clubs, and cultural venues.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🌆 Rooftop Dining</h3>
+            <p>Many restaurants feature stunning rooftop patios with panoramic views of the Hollywood Hills and downtown LA skyline, creating unforgettable romantic settings.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🍷 Wine & Cocktail Scene</h3>
+            <p>West Hollywood is home to some of LA's best wine bars and craft cocktail lounges, perfect for pre-dinner drinks or post-dinner nightcaps.</p>
+          </div>
+          
+          <div class="highlight-card">
+            <h3>🚶 Walkable Streets</h3>
+            <p>The neighborhood's pedestrian-friendly streets make it easy to stroll between restaurants, bars, and entertainment venues for a complete evening out.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cuisine Diversity -->
+      <section class="cuisine-diversity">
+        <h2>Diverse Culinary Experiences</h2>
+        <p>West Hollywood's restaurant scene reflects LA's multicultural dining landscape, offering couples the opportunity to explore cuisines from around the world:</p>
+        
+        <ul class="cuisine-list">
+          {cuisineTypes.slice(0, 8).map(cuisine => (
+            <li><a href={`/cuisines/${cuisine.toLowerCase().replace(/\s+/g, '-')}/`}>{cuisine}</a></li>
+          ))}
+        </ul>
+        
+        <p>From authentic Italian trattorias to modern fusion concepts, each restaurant brings its own unique atmosphere and culinary expertise to create memorable date night experiences.</p>
+      </section>
+
+      <!-- Planning Your Date Night -->
+      <section class="planning-tips">
+        <h2>Planning Your West Hollywood Date Night</h2>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <h3>🕐 Best Times to Visit</h3>
+            <p>Weekday evenings (Tuesday-Thursday) offer a more intimate atmosphere with easier reservations. Weekend nights are livelier but require advance booking.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>🅿️ Parking Tips</h3>
+            <p>Street parking can be challenging. Consider valet parking at restaurants or use ride-sharing services for a stress-free evening.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>👗 Dress Code</h3>
+            <p>West Hollywood restaurants range from casual to upscale. Check restaurant websites for specific dress codes, but smart casual is generally appropriate.</p>
+          </div>
+          
+          <div class="tip-card">
+            <h3>📅 Reservations</h3>
+            <p>Popular restaurants book up quickly, especially on weekends. Make reservations 1-2 weeks in advance for the best selection.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related Content -->
+      <section class="related-content">
+        <h2>Explore More Date Night Options</h2>
+        <div class="related-links">
+          <a href="/losangeles/restaurants/neighborhoods/west-hollywood/" class="related-link">
+            <h3>All West Hollywood Restaurants</h3>
+            <p>Browse our complete list of {westHollywoodRestaurants.length} restaurants in West Hollywood</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/santa-monica/" class="related-link">
+            <h3>Santa Monica Restaurants</h3>
+            <p>Discover romantic oceanfront dining in Santa Monica</p>
+          </a>
+          
+          <a href="/losangeles/restaurants/neighborhoods/downtown-la/" class="related-link">
+            <h3>Downtown LA Restaurants</h3>
+            <p>Explore urban dining experiences in downtown Los Angeles</p>
+          </a>
+          
+          <a href="/blog/best-rooftop-restaurants-los-angeles-date-night/" class="related-link">
+            <h3>Best Rooftop Restaurants</h3>
+            <p>Find the perfect rooftop dining spots for romantic evenings</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Ready for Your Next Date Night?</h2>
+        <p>With 17 exceptional restaurants to choose from, West Hollywood offers endless possibilities for romantic dining. Whether you're planning a special celebration or a casual date night, you're sure to find the perfect spot.</p>
+        <div class="cta-buttons">
+          <a href="/losangeles/restaurants/neighborhoods/west-hollywood/" class="btn btn-primary">View All West Hollywood Restaurants</a>
+          <a href="/losangeles/restaurants/" class="btn btn-secondary">Explore All LA Restaurants</a>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 80px;
+    background: #F8F6F0;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .blog-hero {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%);
+    color: white;
+    margin-bottom: 3rem;
+  }
+
+  .blog-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #D4AF37;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .blog-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+  }
+
+  .blog-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .blog-intro {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .blog-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .top-restaurants {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .top-restaurants h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .top-restaurants p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .restaurant-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .restaurant-rank {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: #D4AF37;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .restaurant-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2C2C2C;
+  }
+
+  .restaurant-card h3 a {
+    color: #2C2C2C;
+    text-decoration: none;
+  }
+
+  .restaurant-card h3 a:hover {
+    color: #D4AF37;
+  }
+
+  .restaurant-details {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .restaurant-details span {
+    background: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .cuisine {
+    color: #666;
+  }
+
+  .price {
+    color: #D4AF37;
+  }
+
+  .date-score {
+    color: #2C2C2C;
+  }
+
+  .restaurant-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #D4AF37;
+    border: 2px solid #D4AF37;
+  }
+
+  .btn-secondary:hover {
+    background: #D4AF37;
+    color: white;
+  }
+
+  .neighborhood-highlights {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .neighborhood-highlights h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .highlight-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .highlight-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .cuisine-diversity {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .cuisine-diversity h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cuisine-diversity p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .cuisine-list li {
+    background: #F8F6F0;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .cuisine-list a {
+    color: #2C2C2C;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .cuisine-list a:hover {
+    color: #D4AF37;
+  }
+
+  .planning-tips {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .planning-tips h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .tip-card {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+  }
+
+  .tip-card h3 {
+    font-size: 1.3rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+  }
+
+  .tip-card p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .related-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .related-content h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .related-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .related-link {
+    background: #F8F6F0;
+    padding: 2rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+
+  .related-link:hover {
+    transform: translateY(-5px);
+  }
+
+  .related-link h3 {
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .related-link p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .blog-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .blog-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .highlights-grid,
+    .tips-grid,
+    .related-links {
+      grid-template-columns: 1fr;
+    }
+
+    .cuisine-list {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

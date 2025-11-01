@@ -1,0 +1,9 @@
+---
+// Redirect old Beverly Grove URL to neighborhoods index
+export function getStaticPaths() {
+  return [];
+}
+
+return Astro.redirect('/neighborhoods/', 301);
+---
+

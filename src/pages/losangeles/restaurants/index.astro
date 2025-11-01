@@ -25,27 +25,40 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "numberOfItems": restaurants.length,
-  "itemListElement": restaurants.map((restaurant, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
+  "itemListElement": restaurants.map((restaurant, index) => {
+    // Calculate review count from reviews array
+    const reviewCount = restaurant.reviews && Array.isArray(restaurant.reviews) ? restaurant.reviews.length : 0;
+    const hasValidRating = restaurant.rating && restaurant.rating > 0;
+    
+    // Build base restaurant item
+    const restaurantItem: any = {
       "@type": "Restaurant",
       "name": restaurant.name,
-      "url": `https://datenightrestaurants.com/restaurants/${restaurant.neighborhood_slug}/${restaurant.slug}/`,
+      "url": `https://datenightrestaurants.com/losangeles/${restaurant.slug}/`,
       "address": {
         "@type": "PostalAddress",
         "streetAddress": restaurant.address,
         "addressLocality": restaurant.neighborhood,
         "addressRegion": "CA",
         "addressCountry": "US"
-      },
-      "aggregateRating": {
+      }
+    };
+    
+    // Only include aggregateRating if we have valid reviews
+    if (hasValidRating && reviewCount > 0) {
+      restaurantItem.aggregateRating = {
         "@type": "AggregateRating",
         "ratingValue": restaurant.rating,
-        "reviewCount": 0
-      }
+        "reviewCount": reviewCount
+      };
     }
-  }))
+    
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": restaurantItem
+    };
+  })
 };
 ---
 <BaseLayout
@@ -430,6 +443,60 @@ const structuredData = {
           noResults.style.display = 'none';
         }
       }
+    }
+  });
+</script>
+
+<script>
+  // Live-sync date night scores from Supabase at runtime
+  document.addEventListener('DOMContentLoaded', async function () {
+    try {
+      const response = await fetch('/api/restaurants', { headers: { 'Accept': 'application/json' } });
+      if (!response.ok) return;
+      const liveRestaurants = await response.json();
+      const slugToScore = new Map(liveRestaurants.map(r => [r.slug, r.date_night_score]));
+      const idToScore = new Map(liveRestaurants.map(r => [String(r.id), r.date_night_score]));
+
+      const cards = document.querySelectorAll('.restaurant-card');
+      cards.forEach(card => {
+        // Prefer DB id mapping; fallback to slug
+        const id = card.getAttribute('data-id');
+        const slug = card.getAttribute('data-slug');
+        let score = undefined;
+        if (id && idToScore.has(id)) {
+          score = idToScore.get(id);
+        } else if (slug && slugToScore.has(slug)) {
+          score = slugToScore.get(slug);
+        }
+        if (typeof score !== 'number') return;
+
+        // Update visible score (overlay)
+        const overlayNum = card.querySelector('.card-rating .date-score-display span:last-child');
+        if (overlayNum) overlayNum.textContent = String(score);
+
+        // Update visible score (details)
+        const detailNum = card.querySelector('.date-score strong');
+        if (detailNum) detailNum.textContent = String(score);
+
+        // Update data attribute for filters
+        card.setAttribute('data-date-score', String(score));
+
+        // Handle Top Rated badge
+        const imgContainer = card.querySelector('.card-image');
+        const existingBadge = card.querySelector('.top-rated-badge');
+        if (score >= 90) {
+          if (!existingBadge && imgContainer) {
+            const badgeDiv = document.createElement('div');
+            badgeDiv.className = 'top-rated-badge';
+            badgeDiv.innerHTML = '<i class="fas fa-crown"></i><span>Top Rated</span>';
+            imgContainer.appendChild(badgeDiv);
+          }
+        } else if (existingBadge) {
+          existingBadge.remove();
+        }
+      });
+    } catch (e) {
+      console.error('Failed to live-sync date scores:', e);
     }
   });
 </script>
