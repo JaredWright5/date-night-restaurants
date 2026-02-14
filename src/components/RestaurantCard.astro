@@ -94,7 +94,14 @@ const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-141
         <a href={`/losangeles/${restaurant.slug}/`} class="btn btn-primary">
           <i class="fas fa-info-circle"></i> View Details
         </a>
+        <a href={`https://www.opentable.com/s?term=${encodeURIComponent(restaurant.name)}`} class="btn btn-outline" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+          <i class="fas fa-utensils"></i> Make Reservation
+        </a>
       </div>
+
+      <a href={`https://www.opentable.com/s?term=${encodeURIComponent(restaurant.name)}`} class="btn-reservation" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+        <i class="fas fa-calendar-check"></i> Reserve a Table
+      </a>
     </div>
   </a>
 </div>
@@ -243,7 +250,10 @@ const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-141
 
 
   .card-actions {
-    text-align: center;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .btn {
@@ -265,6 +275,43 @@ const mainImage = restaurant.photos[0] || 'https://images.unsplash.com/photo-141
   }
 
   .btn i {
+    font-size: 0.9rem;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #8B4513;
+    border: 2px solid #8B4513;
+  }
+
+  .btn-outline:hover {
+    background: #8B4513;
+    color: #F5F1E8;
+  }
+
+  .btn-reservation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    margin-top: 0.75rem;
+    background: linear-gradient(135deg, #D4A017, #E8B86D);
+    color: #2C1810;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn-reservation:hover {
+    background: linear-gradient(135deg, #B8860B, #D4A017);
+    transform: scale(1.02);
+  }
+
+  .btn-reservation i {
     font-size: 0.9rem;
   }
 
