@@ -423,13 +423,50 @@ const structuredData = {
       <div class="newsletter-content">
         <h2>Stay Updated on LA's Best Date Spots</h2>
         <p>Get our latest guides, restaurant reviews, and exclusive date night tips delivered to your inbox.</p>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Enter your email address" required />
-          <button type="submit" class="btn btn-primary">Subscribe</button>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" id="newsletter-email" placeholder="Enter your email address" required />
+          <button type="submit" class="btn btn-primary" id="newsletter-btn">Subscribe</button>
         </form>
+        <p id="newsletter-msg" style="display:none; margin-top:1rem;"></p>
       </div>
     </div>
   </section>
+  
+  <script>
+    document.getElementById('newsletter-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('newsletter-btn');
+      const msg = document.getElementById('newsletter-msg');
+      const email = document.getElementById('newsletter-email').value;
+      
+      btn.disabled = true;
+      btn.textContent = 'Subscribing...';
+      
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        
+        if (res.ok) {
+          msg.style.display = 'block';
+          msg.style.color = '#2C2C2C';
+          msg.textContent = '✓ You\'re in! Check your inbox.';
+          document.getElementById('newsletter-email').value = '';
+        } else {
+          throw new Error('Failed');
+        }
+      } catch {
+        msg.style.display = 'block';
+        msg.style.color = '#c00';
+        msg.textContent = 'Something went wrong. Try again.';
+      }
+      
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+    });
+  </script>
 </BaseLayout>
 
 <style>
